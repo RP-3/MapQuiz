@@ -1,0 +1,821 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26E951496A75DD54A0AB3B4ECC4A1A3C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		5920F96E3106EECEB9102882FE21F77C /* Pods-overlayPractice-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = ACA5B1F6E6476255567B1B4CB501F314 /* Pods-overlayPractice-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6CBBC8BC086570E62F708F810B30EBAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		851F8A775993895EE6EC41C0CC6DE798 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		93DE7E2E2E97071CCC68180000526D89 /* Pods-overlayPracticeUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2639ABAC88075FFED1A4BB6B5788F5A2 /* Pods-overlayPracticeUITests-dummy.m */; };
+		972DCC85823B5740C59D2B79EB6C0E79 /* SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 05CA09B061E193906653AC21FD3A94F1 /* SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9775DC942A009DDC76FF86F0CCC5446E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
+		A52C0391EF5D737EE02A38C89B18252F /* SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B9BBA8F5B33E56C38F5546432F66B7 /* SwiftyJSON-dummy.m */; };
+		AEB3EA605852B0A162FBDB9220FC7F95 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDE506ECE97701EBA44FDBFF401C1A04 /* SwiftyJSON.swift */; };
+		C149806695280B7CBC264DB2E7945048 /* Pods-overlayPracticeTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5BFE47C42D5F075CAF8D1FE84C380978 /* Pods-overlayPracticeTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D648B2817DECCD17D68F1943839131FD /* Pods-overlayPractice-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 290FFFD607C1406E73C53627F0DEDD82 /* Pods-overlayPractice-dummy.m */; };
+		F379C6C019B3710974AB2381B757517D /* Pods-overlayPracticeUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 924040AC6A987557A91BB4C76C81DA69 /* Pods-overlayPracticeUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F4ABCBE91A98FA82ECB5EFB224A2F5FF /* Pods-overlayPracticeTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB69FD2587949241DA8653F85212D98F /* Pods-overlayPracticeTests-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F264490EB7149F6660CB1BC5886B548F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 88E1290D5C1AA577185CAC5695121B8F;
+			remoteInfo = SwiftyJSON;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		02F246E349DB57178AECC05D547FA3B1 /* Pods_overlayPracticeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		03492495EF6EB5766102F24FBFC2AC91 /* Pods-overlayPractice-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-overlayPractice-resources.sh"; sourceTree = "<group>"; };
+		05CA09B061E193906653AC21FD3A94F1 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		095A2216CC4F3E14D039308C87A4FEF1 /* Pods-overlayPracticeUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-overlayPracticeUITests.modulemap"; sourceTree = "<group>"; };
+		154E455F3506BBEF20D9C90BBE81C1FD /* Pods-overlayPracticeUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-overlayPracticeUITests-frameworks.sh"; sourceTree = "<group>"; };
+		1FCFD3BB28E8964829606E740317A795 /* Pods-overlayPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-overlayPractice.debug.xcconfig"; sourceTree = "<group>"; };
+		1FD7E820CA8C078B9A8DE569A99E4D13 /* Pods-overlayPracticeTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-overlayPracticeTests-frameworks.sh"; sourceTree = "<group>"; };
+		214ACC851304E47282B8D21C5E4489CA /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		21C3265560E44050FCB92590F2A00C74 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2398EA8B794AED398D9E39C59900CC53 /* Pods-overlayPracticeUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-overlayPracticeUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		24C7E026D45C63DBCD5202A096BD4D80 /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		2639ABAC88075FFED1A4BB6B5788F5A2 /* Pods-overlayPracticeUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-overlayPracticeUITests-dummy.m"; sourceTree = "<group>"; };
+		290FFFD607C1406E73C53627F0DEDD82 /* Pods-overlayPractice-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-overlayPractice-dummy.m"; sourceTree = "<group>"; };
+		2D1C92B05950DBCE2A4927F1F881A543 /* Pods_overlayPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2E7F7C62EE34D2D271E6E1234A2002B2 /* SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SwiftyJSON.xcconfig; sourceTree = "<group>"; };
+		304CCDF56B7549B57BCA8657348C856E /* Pods-overlayPracticeTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-overlayPracticeTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		32B9BBA8F5B33E56C38F5546432F66B7 /* SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		35A5E94F617D8F4A41E168F56846986D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5BFE47C42D5F075CAF8D1FE84C380978 /* Pods-overlayPracticeTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-overlayPracticeTests-umbrella.h"; sourceTree = "<group>"; };
+		5DBEEA1B4E8A6C0547E7DEE15BC0C29B /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		74A18455097A563193E91136588DE2AA /* Pods-overlayPracticeTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-overlayPracticeTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		7902566642E3B78261E35881210FF8EF /* Pods-overlayPracticeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-overlayPracticeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		7A4565C68CFC982C71CC069DCCC0C562 /* Pods-overlayPracticeUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-overlayPracticeUITests-resources.sh"; sourceTree = "<group>"; };
+		7BA3472CC23171678F0CC5B69A4352D2 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
+		81BB819BC686243E8D4B9DE9694924BD /* Pods-overlayPracticeTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-overlayPracticeTests-resources.sh"; sourceTree = "<group>"; };
+		889432B5439A7E367E682B8551C96FBF /* Pods-overlayPractice-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-overlayPractice-frameworks.sh"; sourceTree = "<group>"; };
+		88EED15524BA851787F4792A1C30CEC1 /* Pods-overlayPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-overlayPractice.release.xcconfig"; sourceTree = "<group>"; };
+		924040AC6A987557A91BB4C76C81DA69 /* Pods-overlayPracticeUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-overlayPracticeUITests-umbrella.h"; sourceTree = "<group>"; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9E5197B7026243A6BD425CC9257981B1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACA5B1F6E6476255567B1B4CB501F314 /* Pods-overlayPractice-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-overlayPractice-umbrella.h"; sourceTree = "<group>"; };
+		B294A20E93DBE9C074AA164B196BFB90 /* Pods_overlayPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBF610E40BDF6E542FA21FF7E5491205 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		BDE506ECE97701EBA44FDBFF401C1A04 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		C4A9A658C966F6BB111BEDBDEA1F874A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CB69FD2587949241DA8653F85212D98F /* Pods-overlayPracticeTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-overlayPracticeTests-dummy.m"; sourceTree = "<group>"; };
+		CDCDBD0D827E7AB9FEC0DA3DB9F40DF2 /* Pods-overlayPractice-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-overlayPractice-acknowledgements.plist"; sourceTree = "<group>"; };
+		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		D032A29E584B77AE187E586922267CF5 /* SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SwiftyJSON.modulemap; sourceTree = "<group>"; };
+		D1C473146C2F2072AA63EBC30326E513 /* Pods-overlayPractice-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-overlayPractice-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DBCC90B4043535720F391ADCF3ADB63C /* Pods-overlayPracticeUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-overlayPracticeUITests-acknowledgements.plist"; sourceTree = "<group>"; };
+		DC617E9B4B3C30815CFE07C579B8AB81 /* Pods-overlayPracticeTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-overlayPracticeTests.modulemap"; sourceTree = "<group>"; };
+		FEC9718C34D42F72E2D2ED590E1EDD55 /* Pods-overlayPractice.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-overlayPractice.modulemap"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		108EEA3AD1A327B401EB9516E554EE7A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9775DC942A009DDC76FF86F0CCC5446E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		219BEBF65F65FC079A9498EF09800DD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CBBC8BC086570E62F708F810B30EBAB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFA89005D8D84A3168B2C456E0F199E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				851F8A775993895EE6EC41C0CC6DE798 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3E567FDA042A2736ABF547EE29A0CC1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26E951496A75DD54A0AB3B4ECC4A1A3C /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0CFF91EA0D07F294DB62A5BC7EADE4CF /* Pods-overlayPractice */ = {
+			isa = PBXGroup;
+			children = (
+				35A5E94F617D8F4A41E168F56846986D /* Info.plist */,
+				FEC9718C34D42F72E2D2ED590E1EDD55 /* Pods-overlayPractice.modulemap */,
+				D1C473146C2F2072AA63EBC30326E513 /* Pods-overlayPractice-acknowledgements.markdown */,
+				CDCDBD0D827E7AB9FEC0DA3DB9F40DF2 /* Pods-overlayPractice-acknowledgements.plist */,
+				290FFFD607C1406E73C53627F0DEDD82 /* Pods-overlayPractice-dummy.m */,
+				889432B5439A7E367E682B8551C96FBF /* Pods-overlayPractice-frameworks.sh */,
+				03492495EF6EB5766102F24FBFC2AC91 /* Pods-overlayPractice-resources.sh */,
+				ACA5B1F6E6476255567B1B4CB501F314 /* Pods-overlayPractice-umbrella.h */,
+				1FCFD3BB28E8964829606E740317A795 /* Pods-overlayPractice.debug.xcconfig */,
+				88EED15524BA851787F4792A1C30CEC1 /* Pods-overlayPractice.release.xcconfig */,
+			);
+			name = "Pods-overlayPractice";
+			path = "Target Support Files/Pods-overlayPractice";
+			sourceTree = "<group>";
+		};
+		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		56F13FA80E6DB9FF4E1C96EC5B50789E /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				0CFF91EA0D07F294DB62A5BC7EADE4CF /* Pods-overlayPractice */,
+				BDBBE34914709523541109B919ED3DC7 /* Pods-overlayPracticeTests */,
+				A1EFAE0EFB9A71EF8139419EED340AA1 /* Pods-overlayPracticeUITests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		70A8E4D3C62B6C203D238581DA091C21 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				BDE506ECE97701EBA44FDBFF401C1A04 /* SwiftyJSON.swift */,
+				8EC39E1DC11846207722B71AAFE40F98 /* Support Files */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		7DB346D0F39D3F0E887471402A8071AB = {
+			isa = PBXGroup;
+			children = (
+				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
+				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
+				BD1E3C710F12F4B4C092FC8E2AD22110 /* Pods */,
+				AEB71AD7F2FFE7F09F204304AE684EC3 /* Products */,
+				56F13FA80E6DB9FF4E1C96EC5B50789E /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		8EC39E1DC11846207722B71AAFE40F98 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C4A9A658C966F6BB111BEDBDEA1F874A /* Info.plist */,
+				D032A29E584B77AE187E586922267CF5 /* SwiftyJSON.modulemap */,
+				2E7F7C62EE34D2D271E6E1234A2002B2 /* SwiftyJSON.xcconfig */,
+				32B9BBA8F5B33E56C38F5546432F66B7 /* SwiftyJSON-dummy.m */,
+				BBF610E40BDF6E542FA21FF7E5491205 /* SwiftyJSON-prefix.pch */,
+				05CA09B061E193906653AC21FD3A94F1 /* SwiftyJSON-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		A1EFAE0EFB9A71EF8139419EED340AA1 /* Pods-overlayPracticeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9E5197B7026243A6BD425CC9257981B1 /* Info.plist */,
+				095A2216CC4F3E14D039308C87A4FEF1 /* Pods-overlayPracticeUITests.modulemap */,
+				2398EA8B794AED398D9E39C59900CC53 /* Pods-overlayPracticeUITests-acknowledgements.markdown */,
+				DBCC90B4043535720F391ADCF3ADB63C /* Pods-overlayPracticeUITests-acknowledgements.plist */,
+				2639ABAC88075FFED1A4BB6B5788F5A2 /* Pods-overlayPracticeUITests-dummy.m */,
+				154E455F3506BBEF20D9C90BBE81C1FD /* Pods-overlayPracticeUITests-frameworks.sh */,
+				7A4565C68CFC982C71CC069DCCC0C562 /* Pods-overlayPracticeUITests-resources.sh */,
+				924040AC6A987557A91BB4C76C81DA69 /* Pods-overlayPracticeUITests-umbrella.h */,
+				24C7E026D45C63DBCD5202A096BD4D80 /* Pods-overlayPracticeUITests.debug.xcconfig */,
+				5DBEEA1B4E8A6C0547E7DEE15BC0C29B /* Pods-overlayPracticeUITests.release.xcconfig */,
+			);
+			name = "Pods-overlayPracticeUITests";
+			path = "Target Support Files/Pods-overlayPracticeUITests";
+			sourceTree = "<group>";
+		};
+		AEB71AD7F2FFE7F09F204304AE684EC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B294A20E93DBE9C074AA164B196BFB90 /* Pods_overlayPractice.framework */,
+				2D1C92B05950DBCE2A4927F1F881A543 /* Pods_overlayPracticeTests.framework */,
+				02F246E349DB57178AECC05D547FA3B1 /* Pods_overlayPracticeUITests.framework */,
+				214ACC851304E47282B8D21C5E4489CA /* SwiftyJSON.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BD1E3C710F12F4B4C092FC8E2AD22110 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				70A8E4D3C62B6C203D238581DA091C21 /* SwiftyJSON */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		BDBBE34914709523541109B919ED3DC7 /* Pods-overlayPracticeTests */ = {
+			isa = PBXGroup;
+			children = (
+				21C3265560E44050FCB92590F2A00C74 /* Info.plist */,
+				DC617E9B4B3C30815CFE07C579B8AB81 /* Pods-overlayPracticeTests.modulemap */,
+				304CCDF56B7549B57BCA8657348C856E /* Pods-overlayPracticeTests-acknowledgements.markdown */,
+				74A18455097A563193E91136588DE2AA /* Pods-overlayPracticeTests-acknowledgements.plist */,
+				CB69FD2587949241DA8653F85212D98F /* Pods-overlayPracticeTests-dummy.m */,
+				1FD7E820CA8C078B9A8DE569A99E4D13 /* Pods-overlayPracticeTests-frameworks.sh */,
+				81BB819BC686243E8D4B9DE9694924BD /* Pods-overlayPracticeTests-resources.sh */,
+				5BFE47C42D5F075CAF8D1FE84C380978 /* Pods-overlayPracticeTests-umbrella.h */,
+				7902566642E3B78261E35881210FF8EF /* Pods-overlayPracticeTests.debug.xcconfig */,
+				7BA3472CC23171678F0CC5B69A4352D2 /* Pods-overlayPracticeTests.release.xcconfig */,
+			);
+			name = "Pods-overlayPracticeTests";
+			path = "Target Support Files/Pods-overlayPracticeTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		52CFD17AEE0D5D27B826A3BA57F89261 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F379C6C019B3710974AB2381B757517D /* Pods-overlayPracticeUITests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		732F0E1D92FD43AEBFCFA780F3647845 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C149806695280B7CBC264DB2E7945048 /* Pods-overlayPracticeTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ACAAF83F4352274CE0E555770ECD657 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				972DCC85823B5740C59D2B79EB6C0E79 /* SwiftyJSON-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A1C3469118EEA40B4B666664AB069E93 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5920F96E3106EECEB9102882FE21F77C /* Pods-overlayPractice-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1813BDE0F1FBE5FF6B007FF168365BA4 /* Pods-overlayPracticeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA9C3B8828833DAD2B7BD8EAA8F58933 /* Build configuration list for PBXNativeTarget "Pods-overlayPracticeUITests" */;
+			buildPhases = (
+				81841605CDF7A5B20D268D6C3D027E10 /* Sources */,
+				108EEA3AD1A327B401EB9516E554EE7A /* Frameworks */,
+				52CFD17AEE0D5D27B826A3BA57F89261 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-overlayPracticeUITests";
+			productName = "Pods-overlayPracticeUITests";
+			productReference = 02F246E349DB57178AECC05D547FA3B1 /* Pods_overlayPracticeUITests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		88E1290D5C1AA577185CAC5695121B8F /* SwiftyJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D15047F8004EC64AD0E4D62FFF2C1A6C /* Build configuration list for PBXNativeTarget "SwiftyJSON" */;
+			buildPhases = (
+				9C9426A9CECF552EA070A639A4F29EDA /* Sources */,
+				219BEBF65F65FC079A9498EF09800DD2 /* Frameworks */,
+				7ACAAF83F4352274CE0E555770ECD657 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SwiftyJSON;
+			productName = SwiftyJSON;
+			productReference = 214ACC851304E47282B8D21C5E4489CA /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		B14F41E44BA72C6FBF04B748F353E5A0 /* Pods-overlayPracticeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E539315E464FD0380CFF8FDBC5073767 /* Build configuration list for PBXNativeTarget "Pods-overlayPracticeTests" */;
+			buildPhases = (
+				1C2793C61657C264C384BDDEDAC191D9 /* Sources */,
+				C3E567FDA042A2736ABF547EE29A0CC1 /* Frameworks */,
+				732F0E1D92FD43AEBFCFA780F3647845 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-overlayPracticeTests";
+			productName = "Pods-overlayPracticeTests";
+			productReference = 2D1C92B05950DBCE2A4927F1F881A543 /* Pods_overlayPracticeTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		CA5BD0F026E3090D3764824436D7EF28 /* Pods-overlayPractice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FF14576DD26224DE3E458B3967E776C /* Build configuration list for PBXNativeTarget "Pods-overlayPractice" */;
+			buildPhases = (
+				F2FB445C5620F14080D17F509C67AC9B /* Sources */,
+				AFA89005D8D84A3168B2C456E0F199E1 /* Frameworks */,
+				A1C3469118EEA40B4B666664AB069E93 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				ABECC4FF772CF74A1005AE34549B3B90 /* PBXTargetDependency */,
+			);
+			name = "Pods-overlayPractice";
+			productName = "Pods-overlayPractice";
+			productReference = B294A20E93DBE9C074AA164B196BFB90 /* Pods_overlayPractice.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D41D8CD98F00B204E9800998ECF8427E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0700;
+			};
+			buildConfigurationList = 2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
+			productRefGroup = AEB71AD7F2FFE7F09F204304AE684EC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CA5BD0F026E3090D3764824436D7EF28 /* Pods-overlayPractice */,
+				B14F41E44BA72C6FBF04B748F353E5A0 /* Pods-overlayPracticeTests */,
+				1813BDE0F1FBE5FF6B007FF168365BA4 /* Pods-overlayPracticeUITests */,
+				88E1290D5C1AA577185CAC5695121B8F /* SwiftyJSON */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1C2793C61657C264C384BDDEDAC191D9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F4ABCBE91A98FA82ECB5EFB224A2F5FF /* Pods-overlayPracticeTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		81841605CDF7A5B20D268D6C3D027E10 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93DE7E2E2E97071CCC68180000526D89 /* Pods-overlayPracticeUITests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9C9426A9CECF552EA070A639A4F29EDA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A52C0391EF5D737EE02A38C89B18252F /* SwiftyJSON-dummy.m in Sources */,
+				AEB3EA605852B0A162FBDB9220FC7F95 /* SwiftyJSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2FB445C5620F14080D17F509C67AC9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D648B2817DECCD17D68F1943839131FD /* Pods-overlayPractice-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		ABECC4FF772CF74A1005AE34549B3B90 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftyJSON;
+			target = 88E1290D5C1AA577185CAC5695121B8F /* SwiftyJSON */;
+			targetProxy = F264490EB7149F6660CB1BC5886B548F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3FA451D268613890FA8A5A03801E11D5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		598AD614CD93DC48285C2BD2F4126EC7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24C7E026D45C63DBCD5202A096BD4D80 /* Pods-overlayPracticeUITests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-overlayPracticeUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_overlayPracticeUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		6CB1FF58BAC67E44D9857376F95C7F13 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E7F7C62EE34D2D271E6E1234A2002B2 /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8C95216784F076671FE2407B3D038624 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2E7F7C62EE34D2D271E6E1234A2002B2 /* SwiftyJSON.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/SwiftyJSON/SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SwiftyJSON/SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9EA70F8C357D3F150FBED79408A532DD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1FCFD3BB28E8964829606E740317A795 /* Pods-overlayPractice.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-overlayPractice/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-overlayPractice/Pods-overlayPractice.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_overlayPractice;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B95A79CD70BA385504AD0CEF5FF6CC51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 88EED15524BA851787F4792A1C30CEC1 /* Pods-overlayPractice.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-overlayPractice/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-overlayPractice/Pods-overlayPractice.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_overlayPractice;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E2E708920082DFA921EF281DD96F529E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7902566642E3B78261E35881210FF8EF /* Pods-overlayPracticeTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-overlayPracticeTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_overlayPracticeTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E8D84B02629FFF3D1788B08F6880ADD4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DBEEA1B4E8A6C0547E7DEE15BC0C29B /* Pods-overlayPracticeUITests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-overlayPracticeUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_overlayPracticeUITests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F1E8EF4ECE5B1E2638568371C636CBE5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7BA3472CC23171678F0CC5B69A4352D2 /* Pods-overlayPracticeTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-overlayPracticeTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_overlayPracticeTests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2D8E8EC45A3A1A1D94AE762CB5028504 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E62115DE8C09934BF8D2FE5D15FED1E /* Debug */,
+				3FA451D268613890FA8A5A03801E11D5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2FF14576DD26224DE3E458B3967E776C /* Build configuration list for PBXNativeTarget "Pods-overlayPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9EA70F8C357D3F150FBED79408A532DD /* Debug */,
+				B95A79CD70BA385504AD0CEF5FF6CC51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D15047F8004EC64AD0E4D62FFF2C1A6C /* Build configuration list for PBXNativeTarget "SwiftyJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8C95216784F076671FE2407B3D038624 /* Debug */,
+				6CB1FF58BAC67E44D9857376F95C7F13 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E539315E464FD0380CFF8FDBC5073767 /* Build configuration list for PBXNativeTarget "Pods-overlayPracticeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2E708920082DFA921EF281DD96F529E /* Debug */,
+				F1E8EF4ECE5B1E2638568371C636CBE5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA9C3B8828833DAD2B7BD8EAA8F58933 /* Build configuration list for PBXNativeTarget "Pods-overlayPracticeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				598AD614CD93DC48285C2BD2F4126EC7 /* Debug */,
+				E8D84B02629FFF3D1788B08F6880ADD4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+}

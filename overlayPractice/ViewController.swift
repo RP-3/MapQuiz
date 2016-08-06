@@ -17,13 +17,8 @@ class ViewController: UIViewController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //1. read json file
-        
-        //2. add it to core data
-        
         
         // Do any additional setup after loading the view, typically from a nib.
-        print("mali", Mali)
         addBoundary()
     }
 

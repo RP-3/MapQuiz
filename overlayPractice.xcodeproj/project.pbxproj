@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		57F35472D4CE11C03821BE1C /* Pods_overlayPracticeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */; };
+		6CDE31A7BFEC749E9EF658F5 /* Pods_overlayPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */; };
 		950BD3631D56742D001C5893 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3621D56742D001C5893 /* countries.json */; };
 		950BD3641D56742D001C5893 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3621D56742D001C5893 /* countries.json */; };
 		950BD3651D56742D001C5893 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3621D56742D001C5893 /* countries.json */; };
@@ -20,6 +22,7 @@
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
+		F006B2B9764F3AA91CCF6C4E /* Pods_overlayPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +43,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2FE44603B85BFB361BFA7393 /* Pods-overlayPractice.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPractice.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice.debug.xcconfig"; sourceTree = "<group>"; };
+		3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		950BD3621D56742D001C5893 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		950C36111D56479E009710DD /* overlayPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = overlayPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36141D56479E009710DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +62,11 @@
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
+		A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPractice.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice.release.xcconfig"; sourceTree = "<group>"; };
+		A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBE27A5606EB497A157318E4 /* Pods-overlayPracticeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPractice.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F006B2B9764F3AA91CCF6C4E /* Pods_overlayPractice.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CDE31A7BFEC749E9EF658F5 /* Pods_overlayPracticeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,12 +90,36 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				57F35472D4CE11C03821BE1C /* Pods_overlayPracticeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0FFB897856EF19D161E460FB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2FE44603B85BFB361BFA7393 /* Pods-overlayPractice.debug.xcconfig */,
+				A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */,
+				EBE27A5606EB497A157318E4 /* Pods-overlayPracticeTests.debug.xcconfig */,
+				9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */,
+				5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */,
+				58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		450DC07DF22FAD3D3E74DFDF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */,
+				3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */,
+				A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		950C36081D56479D009710DD = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +127,8 @@
 				950C36281D56479E009710DD /* overlayPracticeTests */,
 				950C36331D56479E009710DD /* overlayPracticeUITests */,
 				950C36121D56479E009710DD /* Products */,
+				0FFB897856EF19D161E460FB /* Pods */,
+				450DC07DF22FAD3D3E74DFDF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -150,9 +190,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 950C36391D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPractice" */;
 			buildPhases = (
+				EE199D3F92946C645026C36D /* [CP] Check Pods Manifest.lock */,
 				950C360D1D56479E009710DD /* Sources */,
 				950C360E1D56479E009710DD /* Frameworks */,
 				950C360F1D56479E009710DD /* Resources */,
+				7A11D585999003FC04724622 /* [CP] Embed Pods Frameworks */,
+				390915ED4F87BBAD7A585BC0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -167,9 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 950C363C1D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPracticeTests" */;
 			buildPhases = (
+				FD461CB23D3ECC554FA6A076 /* [CP] Check Pods Manifest.lock */,
 				950C36211D56479E009710DD /* Sources */,
 				950C36221D56479E009710DD /* Frameworks */,
 				950C36231D56479E009710DD /* Resources */,
+				26165637EECE9D720097B7C2 /* [CP] Embed Pods Frameworks */,
+				DDFF1979DD7A68780C04A45B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -185,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 950C363F1D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPracticeUITests" */;
 			buildPhases = (
+				8953F61F2E75B7C28BC8CEEF /* [CP] Check Pods Manifest.lock */,
 				950C362C1D56479E009710DD /* Sources */,
 				950C362D1D56479E009710DD /* Frameworks */,
 				950C362E1D56479E009710DD /* Resources */,
+				A3EF271CE20B61D6CC876161 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,6 +322,129 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		26165637EECE9D720097B7C2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		390915ED4F87BBAD7A585BC0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7A11D585999003FC04724622 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8953F61F2E75B7C28BC8CEEF /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		A3EF271CE20B61D6CC876161 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DDFF1979DD7A68780C04A45B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EE199D3F92946C645026C36D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD461CB23D3ECC554FA6A076 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		950C360D1D56479E009710DD /* Sources */ = {
@@ -426,6 +597,7 @@
 		};
 		950C363A1D56479E009710DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2FE44603B85BFB361BFA7393 /* Pods-overlayPractice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = overlayPractice/Info.plist;
@@ -437,6 +609,7 @@
 		};
 		950C363B1D56479E009710DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = overlayPractice/Info.plist;
@@ -448,6 +621,7 @@
 		};
 		950C363D1D56479E009710DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBE27A5606EB497A157318E4 /* Pods-overlayPracticeTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = overlayPracticeTests/Info.plist;
@@ -460,6 +634,7 @@
 		};
 		950C363E1D56479E009710DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = overlayPracticeTests/Info.plist;
@@ -472,6 +647,7 @@
 		};
 		950C36401D56479E009710DD /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = overlayPracticeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -483,6 +659,7 @@
 		};
 		950C36411D56479E009710DD /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = overlayPracticeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

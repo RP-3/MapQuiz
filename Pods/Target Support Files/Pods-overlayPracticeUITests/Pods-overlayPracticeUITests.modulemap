@@ -1,0 +1,6 @@
+framework module Pods_overlayPracticeUITests {
+  umbrella header "Pods-overlayPracticeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
