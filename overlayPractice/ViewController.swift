@@ -8,8 +8,9 @@
 
 import UIKit
 import MapKit
+import CoreData
 
-class ViewController: UIViewController, MKMapViewDelegate {
+class ViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
     
@@ -18,6 +19,13 @@ class ViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        let land = app.landAreas
+        let fetchRequest = NSFetchRequest(entityName: "LandArea")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
+        let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
+        print("entities", entities.count)
         // Do any additional setup after loading the view, typically from a nib.
         addBoundary()
     }

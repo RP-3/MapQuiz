@@ -9,9 +9,24 @@
 /* Begin PBXBuildFile section */
 		57F35472D4CE11C03821BE1C /* Pods_overlayPracticeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */; };
 		6CDE31A7BFEC749E9EF658F5 /* Pods_overlayPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */; };
-		950BD3631D56742D001C5893 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3621D56742D001C5893 /* countries.json */; };
-		950BD3641D56742D001C5893 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3621D56742D001C5893 /* countries.json */; };
-		950BD3651D56742D001C5893 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3621D56742D001C5893 /* countries.json */; };
+		950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
+		950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
+		950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
+		950BD3791D56999C001C5893 /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3781D56999C001C5893 /* countries_continents_capitals.json */; };
+		950BD37A1D56999C001C5893 /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3781D56999C001C5893 /* countries_continents_capitals.json */; };
+		950BD37B1D56999C001C5893 /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3781D56999C001C5893 /* countries_continents_capitals.json */; };
+		950BD37E1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
+		950BD37F1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
+		950BD3801D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
+		950BD3811D5699AF001C5893 /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37D1D5699AF001C5893 /* LandArea.swift */; };
+		950BD3821D5699AF001C5893 /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37D1D5699AF001C5893 /* LandArea.swift */; };
+		950BD3831D5699AF001C5893 /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37D1D5699AF001C5893 /* LandArea.swift */; };
+		950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3841D569A8E001C5893 /* CoreDataStack.swift */; };
+		950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3841D569A8E001C5893 /* CoreDataStack.swift */; };
+		950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3841D569A8E001C5893 /* CoreDataStack.swift */; };
+		950BD38A1D569B09001C5893 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3891D569B09001C5893 /* CoreDataController.swift */; };
+		950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3891D569B09001C5893 /* CoreDataController.swift */; };
+		950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3891D569B09001C5893 /* CoreDataController.swift */; };
 		950C36151D56479E009710DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950C36171D56479E009710DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* ViewController.swift */; };
 		950C361A1D56479E009710DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C36181D56479E009710DD /* Main.storyboard */; };
@@ -47,7 +62,12 @@
 		3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		950BD3621D56742D001C5893 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		950BD3781D56999C001C5893 /* countries_continents_capitals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_continents_capitals.json; sourceTree = "<group>"; };
+		950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		950BD37D1D5699AF001C5893 /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
+		950BD3841D569A8E001C5893 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		950BD3891D569B09001C5893 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		950C36111D56479E009710DD /* overlayPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = overlayPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36141D56479E009710DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		950C36161D56479E009710DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +140,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		950BD3881D569AE9001C5893 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				950C36161D56479E009710DD /* ViewController.swift */,
+				950BD3891D569B09001C5893 /* CoreDataController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		950C36081D56479D009710DD = {
 			isa = PBXGroup;
 			children = (
@@ -145,14 +174,14 @@
 		950C36131D56479E009710DD /* overlayPractice */ = {
 			isa = PBXGroup;
 			children = (
+				950BD3881D569AE9001C5893 /* Controllers */,
 				950D9AA31D565DE800159227 /* Models */,
 				950C36141D56479E009710DD /* AppDelegate.swift */,
-				950C36161D56479E009710DD /* ViewController.swift */,
 				950C36181D56479E009710DD /* Main.storyboard */,
 				950C361B1D56479E009710DD /* Assets.xcassets */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36201D56479E009710DD /* Info.plist */,
-				950BD3621D56742D001C5893 /* countries.json */,
+				950BD3781D56999C001C5893 /* countries_continents_capitals.json */,
 			);
 			path = overlayPractice;
 			sourceTree = "<group>";
@@ -178,7 +207,11 @@
 		950D9AA31D565DE800159227 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */,
+				950BD37D1D5699AF001C5893 /* LandArea.swift */,
 				950D9AA41D565DFA00159227 /* Country.swift */,
+				950BD3731D569838001C5893 /* Model.xcdatamodeld */,
+				950BD3841D569A8E001C5893 /* CoreDataStack.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -300,7 +333,7 @@
 			files = (
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
-				950BD3631D56742D001C5893 /* countries.json in Resources */,
+				950BD3791D56999C001C5893 /* countries_continents_capitals.json in Resources */,
 				950C361A1D56479E009710DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,7 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BD3641D56742D001C5893 /* countries.json in Resources */,
+				950BD37A1D56999C001C5893 /* countries_continents_capitals.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BD3651D56742D001C5893 /* countries.json in Resources */,
+				950BD37B1D56999C001C5893 /* countries_continents_capitals.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,9 +484,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950C36171D56479E009710DD /* ViewController.swift in Sources */,
+				950BD38A1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
+				950BD37E1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */,
+				950BD3811D5699AF001C5893 /* LandArea.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
+				950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,8 +499,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950BD3821D5699AF001C5893 /* LandArea.swift in Sources */,
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
+				950BD37F1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */,
+				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
+				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,8 +513,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				950BD3831D5699AF001C5893 /* LandArea.swift in Sources */,
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
+				950BD3801D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */,
+				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
+				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +757,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		950BD3731D569838001C5893 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				950BD3741D569838001C5893 /* Model.xcdatamodel */,
+			);
+			currentVersion = 950BD3741D569838001C5893 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 950C36091D56479D009710DD /* Project object */;
 }

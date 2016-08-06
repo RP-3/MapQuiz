@@ -13,6 +13,8 @@ import SwiftyJSON
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    let landAreas = CoreDataStack(modelName: "Model")!
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
@@ -22,13 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func preloadData () {
         //1. read the json file
-        if let path = NSBundle.mainBundle().pathForResource("countries", ofType: "json") {
+        if let path = NSBundle.mainBundle().pathForResource("countries_continents_capitals", ofType: "json") {
             do {
                 let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let jsonObj = JSON(data: data)
                 if jsonObj != JSON.null {
                     //2. loop through the data and insert it into core data
-                    
+                    var i = 0
+                    while i < jsonObj.count {
+                        _ = LandArea(name: String(jsonObj[i]["country"]), continent: String(jsonObj[i]["continent"]), coordinates: String(jsonObj[i]["coordinates"]), context: landAreas.context)
+                        i += 1
+                    }
                 } else {
                     print("could not get json from file, make sure that file contains valid json.")
                 }
