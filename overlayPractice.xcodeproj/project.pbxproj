@@ -12,9 +12,6 @@
 		950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
 		950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
 		950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
-		950BD3791D56999C001C5893 /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3781D56999C001C5893 /* countries_continents_capitals.json */; };
-		950BD37A1D56999C001C5893 /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3781D56999C001C5893 /* countries_continents_capitals.json */; };
-		950BD37B1D56999C001C5893 /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BD3781D56999C001C5893 /* countries_continents_capitals.json */; };
 		950BD37E1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
 		950BD37F1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
 		950BD3801D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
@@ -63,7 +60,6 @@
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		950BD3781D56999C001C5893 /* countries_continents_capitals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_continents_capitals.json; sourceTree = "<group>"; };
 		950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		950BD37D1D5699AF001C5893 /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
 		950BD3841D569A8E001C5893 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -181,7 +177,6 @@
 				950C361B1D56479E009710DD /* Assets.xcassets */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36201D56479E009710DD /* Info.plist */,
-				950BD3781D56999C001C5893 /* countries_continents_capitals.json */,
 			);
 			path = overlayPractice;
 			sourceTree = "<group>";
@@ -333,7 +328,6 @@
 			files = (
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
-				950BD3791D56999C001C5893 /* countries_continents_capitals.json in Resources */,
 				950C361A1D56479E009710DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +336,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BD37A1D56999C001C5893 /* countries_continents_capitals.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +343,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BD37B1D56999C001C5893 /* countries_continents_capitals.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

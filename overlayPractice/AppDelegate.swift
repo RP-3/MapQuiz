@@ -15,19 +15,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     let landAreas = CoreDataStack(modelName: "Model")!
+    
+    func resetData () {
+        // Remove previous stuff (if any)
+        do{
+            try landAreas.dropAllData()
+        }catch{
+            print("Error droping all objects in DB")
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        resetData()
+        preloadData()
         // Override point for customization after application launch.
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let isPreloaded = defaults.boolForKey("isPreloaded")
-        if !isPreloaded {
-            print("data not preloaded yet ...")
-            preloadData()
-            defaults.setBool(true, forKey: "isPreloaded")
-        } else {
-            print("data is already loaded into core data")
-        }
-        landAreas.autoSave(60)
+//        let defaults = NSUserDefaults.standardUserDefaults()
+//        let isPreloaded = defaults.boolForKey("isPreloaded")
+//        if !isPreloaded {
+//            print("data not preloaded yet ...")
+//            preloadData()
+//            defaults.setBool(true, forKey: "isPreloaded")
+//        } else {
+//            print("data is already loaded into core data")
+//        }
+//        landAreas.autoSave(60)
         return true
     }
     

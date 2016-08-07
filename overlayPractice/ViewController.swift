@@ -10,12 +10,22 @@ import UIKit
 import MapKit
 import CoreData
 
+
 class ViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
     
-    var Mali = Country()
-    
+//    let continentCodes = [
+//        "AF": "Africa",
+//        "AF": "Africa",
+//        "AN": "Antarctica",
+//        "AS": "Asia",
+//        "EU": "Europe",
+//        "NA": "North America",
+//        "OC": "Oceania",
+//        "SA": "South America"
+//    ]
+    var uk = Country()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,12 +36,29 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)
+        
+        var countriesInRegion: [Country] = []
+        //make an array of country models - loop through core data for all with desired continent code and make to model
+        for entity in entities {
+            if (entity.continent == "AS") {
+                let country = Country(name: entity.name!, points: entity.coordinates!)
+                countriesInRegion.append(country)
+            }
+        }
+
         // Do any additional setup after loading the view, typically from a nib.
-        addBoundary()
+        addBoundary(countriesInRegion)
     }
 
-    func addBoundary() {
-        let polygon = MKPolygon(coordinates: &Mali.boundary, count: Mali.boundaryPointsCount)
+    func addBoundary(countries: [Country]) {
+        for country in countries {
+            let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
+            worldMap.addOverlay(polygon)
+        }
+    }
+    
+    func addBoundary1() {
+        let polygon = MKPolygon(coordinates: &uk.boundary, count: uk.boundaryPointsCount)
         worldMap.addOverlay(polygon)
     }
     
