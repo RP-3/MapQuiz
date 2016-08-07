@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func preloadData () {
         //1. read the json file
-        if let path = NSBundle.mainBundle().pathForResource("countries_continents_capitals", ofType: "json") {
+        if let path = NSBundle.mainBundle().pathForResource("countries", ofType: "json") {
             do {
                 let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let jsonObj = JSON(data: data)
@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     //2. loop through the data and insert it into core data
                     var i = 0
                     while i < jsonObj.count {
-                        _ = LandArea(name: String(jsonObj[i]["country"]), continent: String(jsonObj[i]["continent"]), coordinates: String(jsonObj[i]["coordinates"]), context: landAreas.context)
+                        _ = LandArea(name: String(jsonObj[i]["country"]), continent: String(jsonObj[i]["continent"]), coordinates: String(jsonObj[i]["coordinates"]), coordType: String(jsonObj[i]["coordinate_type"]), context: landAreas.context)
                         i += 1
                     }
                 } else {
