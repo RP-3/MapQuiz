@@ -26,28 +26,35 @@ class Country {
         boundary = []
         let boundaryPoints =  json
         boundaryPointsCount = json.count
-        print("----->", boundaryPointsCount)
         
-        for i in 0...boundaryPointsCount-1 {
-            let lat = String(boundaryPoints[i][1])
-            let long = String(boundaryPoints[i][0])
-            boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
+        //add logic here to ask if the 0th array is > 1 and keep going to deepest nesting
+        if json.count > 2 {
+            print("ONE")
+            boundaryPointsCount = json.count
+            for i in 0...boundaryPointsCount-1 {
+                let lat = String(boundaryPoints[i][1])
+                let long = String(boundaryPoints[i][0])
+                boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
+            }
+        } else if json[0].count > 2 {
+            print("TWO")
+            boundaryPointsCount = json[0].count
+            for i in 0...boundaryPointsCount-1 {
+                let lat = String(boundaryPoints[i][1])
+                let long = String(boundaryPoints[i][0])
+                boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
+            }
+        } else if json[0][0].count > 2 {
+            print("ONE")
+            boundaryPointsCount = json[0][0].count
+            for i in 0...boundaryPointsCount-1 {
+                let lat = String(boundaryPoints[i][1])
+                let long = String(boundaryPoints[i][0])
+                boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
+            }
         }
-
+        print("count---->", boundaryPointsCount)
+        
     }
-    
-//    init () {
-//        boundary = []
-//
-//        var boundaryPoints = [[-6.287505662999905,49.91400788000006],[-6.297271287999934,49.909613348000065],[-6.30915279899989,49.91364166900003],[-6.307443813999896,49.927435614000146],[-6.298817511999886,49.935492255000085],[-6.292225714999916,49.93207428600006],[-6.28416907499988,49.92275625200013],[-6.287505662999905,49.91400788000006]]
-//        
-//        boundaryPointsCount = boundaryPoints.count
-//        for i in 0...boundaryPointsCount-1 {
-//            let lat = String(boundaryPoints[i][1])
-//            let long = String(boundaryPoints[i][0])
-//            boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
-//        }
-//
-//    }
     
 }

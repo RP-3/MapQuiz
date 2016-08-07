@@ -25,7 +25,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 //        "OC": "Oceania",
 //        "SA": "South America"
 //    ]
-    var uk = Country()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -55,11 +55,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
             worldMap.addOverlay(polygon)
         }
-    }
-    
-    func addBoundary1() {
-        let polygon = MKPolygon(coordinates: &uk.boundary, count: uk.boundaryPointsCount)
-        worldMap.addOverlay(polygon)
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
