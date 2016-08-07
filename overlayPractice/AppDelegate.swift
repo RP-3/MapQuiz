@@ -52,7 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     //2. loop through the data and insert it into core data
                     var i = 0
                     while i < jsonObj.count {
-                        _ = LandArea(name: String(jsonObj[i]["country"]), continent: String(jsonObj[i]["continent"]), coordinates: String(jsonObj[i]["coordinates"]), coordType: String(jsonObj[i]["coordinate_type"]), context: landAreas.context)
+                        _ = LandArea(name: String(jsonObj[i]["country"]), continent: String(jsonObj[i]["continent"]), coordinates: String(jsonObj[i]["coordinates"]), coordType: String(jsonObj[i]["coordinates_type"]), context: landAreas.context)
                         i += 1
                     }
                 } else {
