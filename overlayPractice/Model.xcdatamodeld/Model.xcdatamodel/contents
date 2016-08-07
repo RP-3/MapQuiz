@@ -3,10 +3,11 @@
     <entity name="LandArea" representedClassName=".LandArea" syncable="YES">
         <attribute name="capital" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="continent" attributeType="String" syncable="YES"/>
+        <attribute name="coordinate_type" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="coordinates" attributeType="String" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="LandArea" positionX="-54" positionY="-9" width="128" height="105"/>
+        <element name="LandArea" positionX="-54" positionY="-9" width="128" height="120"/>
     </elements>
 </model>

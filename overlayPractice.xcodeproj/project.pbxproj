@@ -12,15 +12,15 @@
 		950BCE881D56C1B40055E04E /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BCE871D56C1B40055E04E /* countries_continents_capitals.json */; };
 		950BCE891D56C1B40055E04E /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BCE871D56C1B40055E04E /* countries_continents_capitals.json */; };
 		950BCE8A1D56C1B40055E04E /* countries_continents_capitals.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BCE871D56C1B40055E04E /* countries_continents_capitals.json */; };
+		950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
+		950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
+		950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
+		950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE981D576AB40055E04E /* LandArea.swift */; };
+		950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE981D576AB40055E04E /* LandArea.swift */; };
+		950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE981D576AB40055E04E /* LandArea.swift */; };
 		950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
 		950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
 		950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
-		950BD37E1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
-		950BD37F1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
-		950BD3801D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */; };
-		950BD3811D5699AF001C5893 /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37D1D5699AF001C5893 /* LandArea.swift */; };
-		950BD3821D5699AF001C5893 /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37D1D5699AF001C5893 /* LandArea.swift */; };
-		950BD3831D5699AF001C5893 /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD37D1D5699AF001C5893 /* LandArea.swift */; };
 		950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3841D569A8E001C5893 /* CoreDataStack.swift */; };
 		950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3841D569A8E001C5893 /* CoreDataStack.swift */; };
 		950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3841D569A8E001C5893 /* CoreDataStack.swift */; };
@@ -63,9 +63,9 @@
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		950BCE871D56C1B40055E04E /* countries_continents_capitals.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries_continents_capitals.json; sourceTree = "<group>"; };
+		950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		950BCE981D576AB40055E04E /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
-		950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		950BD37D1D5699AF001C5893 /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
 		950BD3841D569A8E001C5893 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		950BD3891D569B09001C5893 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		950C36111D56479E009710DD /* overlayPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = overlayPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -207,8 +207,8 @@
 		950D9AA31D565DE800159227 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				950BD37C1D5699AF001C5893 /* LandArea+CoreDataProperties.swift */,
-				950BD37D1D5699AF001C5893 /* LandArea.swift */,
+				950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */,
+				950BCE981D576AB40055E04E /* LandArea.swift */,
 				950D9AA41D565DFA00159227 /* Country.swift */,
 				950BD3731D569838001C5893 /* Model.xcdatamodeld */,
 				950BD3841D569A8E001C5893 /* CoreDataStack.swift */,
@@ -485,11 +485,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
+				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
 				950C36171D56479E009710DD /* ViewController.swift in Sources */,
 				950BD38A1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
-				950BD37E1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */,
-				950BD3811D5699AF001C5893 /* LandArea.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
 				950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
@@ -499,11 +499,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BD3821D5699AF001C5893 /* LandArea.swift in Sources */,
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
-				950BD37F1D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */,
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
+				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
+				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
@@ -513,11 +513,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BD3831D5699AF001C5893 /* LandArea.swift in Sources */,
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
-				950BD3801D5699AF001C5893 /* LandArea+CoreDataProperties.swift in Sources */,
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
+				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
+				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
