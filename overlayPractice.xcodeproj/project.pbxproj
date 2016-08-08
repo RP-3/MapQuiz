@@ -15,9 +15,6 @@
 		950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE981D576AB40055E04E /* LandArea.swift */; };
 		950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE981D576AB40055E04E /* LandArea.swift */; };
 		950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE981D576AB40055E04E /* LandArea.swift */; };
-		950BCEA01D576AEA0055E04E /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BCE9F1D576AEA0055E04E /* countries.json */; };
-		950BCEA11D576AEA0055E04E /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BCE9F1D576AEA0055E04E /* countries.json */; };
-		950BCEA21D576AEA0055E04E /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 950BCE9F1D576AEA0055E04E /* countries.json */; };
 		950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
 		950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
 		950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3731D569838001C5893 /* Model.xcdatamodeld */; };
@@ -37,6 +34,9 @@
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
+		95FD92FB1D59325D007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD92FA1D59325D007E98E1 /* countries.json */; };
+		95FD92FC1D59325D007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD92FA1D59325D007E98E1 /* countries.json */; };
+		95FD92FD1D59325D007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD92FA1D59325D007E98E1 /* countries.json */; };
 		F006B2B9764F3AA91CCF6C4E /* Pods_overlayPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -64,7 +64,6 @@
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		950BCE981D576AB40055E04E /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
-		950BCE9F1D576AEA0055E04E /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		950BD3841D569A8E001C5893 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		950BD3891D569B09001C5893 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		95FD92FA1D59325D007E98E1 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPractice.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice.release.xcconfig"; sourceTree = "<group>"; };
 		A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,7 +181,7 @@
 				950C361B1D56479E009710DD /* Assets.xcassets */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36201D56479E009710DD /* Info.plist */,
-				950BCE9F1D576AEA0055E04E /* countries.json */,
+				95FD92FA1D59325D007E98E1 /* countries.json */,
 			);
 			path = overlayPractice;
 			sourceTree = "<group>";
@@ -333,7 +333,7 @@
 			files = (
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
-				950BCEA01D576AEA0055E04E /* countries.json in Resources */,
+				95FD92FB1D59325D007E98E1 /* countries.json in Resources */,
 				950C361A1D56479E009710DD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,7 +342,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BCEA11D576AEA0055E04E /* countries.json in Resources */,
+				95FD92FC1D59325D007E98E1 /* countries.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,7 +350,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950BCEA21D576AEA0055E04E /* countries.json in Resources */,
+				95FD92FD1D59325D007E98E1 /* countries.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -40,7 +40,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         var countriesInRegion: [Country] = []
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
-            if (entity.continent == "EU") {
+            if (entity.continent == "AF") {
                 
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 countriesInRegion.append(country)
