@@ -40,7 +40,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         var countriesInRegion: [Country] = []
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
-            if (entity.continent == "NA") {
+            if (entity.continent == "EU") {
+                
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 countriesInRegion.append(country)
             }
@@ -52,8 +53,18 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 
     func addBoundary(countries: [Country]) {
         for country in countries {
-            let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
-            worldMap.addOverlay(polygon)
+            if country.geojsonFormat == "MultiPolygon" {
+                //then need to loop through each boundary and make each a polygon and calculate the number of points
+                for var landArea in country.multiBoundary {
+                    let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
+                    worldMap.addOverlay(multiPolygon)
+                }
+            } else {
+                //print("boundary", country.boundary)
+                let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
+                worldMap.addOverlay(polygon)
+            }
+            
         }
     }
     
