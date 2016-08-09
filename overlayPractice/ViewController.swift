@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreData
 
-//TODO: BUG in displaying the countries: Russia, Fiji, Kyrgyzstan and Antartica
+//TODO: BUG in displaying the countries: Russia, Fiji, Kyrgyzstan
 
 class ViewController: CoreDataController, MKMapViewDelegate {
 
@@ -43,7 +43,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         var countriesInRegion: [Country] = []
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
-            if (entity.continent == continent) {
+            if (entity.name == "Kyrgyzstan") {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 countriesInRegion.append(country)
             }

@@ -33,10 +33,12 @@ class Country {
         
         //add logic here to ask if the 0th array is > 1 and keep going to deepest nesting
         if coordType == "Polygon" {
+            print("count", json.count)
             //take json loop through and make polygon points
             for i in 0...json.count-1 {
                 //need another loop here??
                 boundaryPointsCount = json[i].count
+                print("inner count", json[i].count)
                 //print("count", boundaryPointsCount, name)
                 for element in json[i] {
                     let lat = String(element.1[1])
@@ -61,6 +63,8 @@ class Country {
             }
             
         }
+        
+        print(boundary.count)
         
     }
     
