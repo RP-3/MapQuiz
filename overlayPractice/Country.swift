@@ -54,7 +54,16 @@ class Country {
                     var shape = [CLLocationCoordinate2D]()
                     for coord in element.1 {
                         let lat = String(coord.1[1])
-                        let long = String(coord.1[0])
+                        var long = String(coord.1[0])
+                        
+                        if var numberLong =  Float(long) {
+                            //long = Float(long) + 180
+                            if numberLong == -180 {
+                                long = String(179.9)
+                            } else if numberLong == 180 {
+                                long = String(179.9)
+                            }
+                        }
                         let coords = CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)
                         shape.append(coords)
                     }
