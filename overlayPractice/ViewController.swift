@@ -10,13 +10,13 @@ import UIKit
 import MapKit
 import CoreData
 
+//TODO: BUG in displaying the countries: Russia, Fiji and Antartica
 
 class ViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
     
 //    let continentCodes = [
-//        "AF": "Africa",
 //        "AF": "Africa",
 //        "AN": "Antarctica",
 //        "AS": "Asia",
@@ -40,8 +40,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         var countriesInRegion: [Country] = []
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
-            if (entity.continent == "AF") {
-                
+            if (entity.continent == "SA") {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 countriesInRegion.append(country)
             }
@@ -60,20 +59,37 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     worldMap.addOverlay(multiPolygon)
                 }
             } else {
-                //print("boundary", country.boundary)
                 let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
                 worldMap.addOverlay(polygon)
             }
             
         }
+        
+        
+        //I could find the max and min lat and long but as there are only 6/7 continents this feels ugly and I would rather have a dictionary of all the coordinates and a scale to use
+        var midPoints = [
+            "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
+            "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
+            "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
+            "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
+            "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
+            "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
+        ]
+        
+        let latDelta:CLLocationDegrees = midPoints["SA"]!["scale"]!
+        let longDelta:CLLocationDegrees = midPoints["SA"]!["scale"]!
+        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints["SA"]!["lat"]!, midPoints["SA"]!["long"]!)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
+        worldMap.setRegion(region, animated: true)
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         //let overlayView: MKOverlayRenderer?
         if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.strokeColor = UIColor.magentaColor()
-            polygonView.fillColor = UIColor.greenColor()
+            polygonView.strokeColor = UIColor.orangeColor()
+            polygonView.fillColor = UIColor.blueColor()
             polygonView.alpha = 0.5
             return polygonView
         }

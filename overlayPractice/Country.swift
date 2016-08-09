@@ -41,7 +41,6 @@ class Country {
                 for element in json[i] {
                     let lat = String(element.1[1])
                     let long = String(element.1[0])
-                    //print("lat long", lat, long)
                     boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
                 }
             }
