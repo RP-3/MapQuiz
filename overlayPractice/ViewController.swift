@@ -10,11 +10,13 @@ import UIKit
 import MapKit
 import CoreData
 
-//TODO: BUG in displaying the countries: Russia, Fiji and Antartica
+//TODO: BUG in displaying the countries: Russia, Fiji, Kyrgyzstan and Antartica
 
 class ViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
+    
+    var continent: String?
     
 //    let continentCodes = [
 //        "AF": "Africa",
@@ -25,6 +27,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 //        "OC": "Oceania",
 //        "SA": "South America"
 //    ]
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +43,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         var countriesInRegion: [Country] = []
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
-            if (entity.continent == "SA") {
+            if (entity.continent == continent) {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 countriesInRegion.append(country)
             }
@@ -76,10 +79,10 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
         ]
         
-        let latDelta:CLLocationDegrees = midPoints["SA"]!["scale"]!
-        let longDelta:CLLocationDegrees = midPoints["SA"]!["scale"]!
+        let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
+        let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
         let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints["SA"]!["lat"]!, midPoints["SA"]!["long"]!)
+        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
         worldMap.setRegion(region, animated: true)
     }

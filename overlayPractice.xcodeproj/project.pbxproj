@@ -37,6 +37,13 @@
 		95FD92FB1D59325D007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD92FA1D59325D007E98E1 /* countries.json */; };
 		95FD92FC1D59325D007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD92FA1D59325D007E98E1 /* countries.json */; };
 		95FD92FD1D59325D007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD92FA1D59325D007E98E1 /* countries.json */; };
+		95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
+		95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
+		95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
+		95FD93021D5962D1007E98E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* ViewController.swift */; };
+		95FD93031D5962D1007E98E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* ViewController.swift */; };
+		95FD93041D596347007E98E1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
+		95FD93051D596348007E98E1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		F006B2B9764F3AA91CCF6C4E /* Pods_overlayPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +89,7 @@
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		95FD92FA1D59325D007E98E1 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
+		95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPractice.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice.release.xcconfig"; sourceTree = "<group>"; };
 		A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +153,7 @@
 			children = (
 				950C36161D56479E009710DD /* ViewController.swift */,
 				950BD3891D569B09001C5893 /* CoreDataController.swift */,
+				95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -484,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
 				950C36171D56479E009710DD /* ViewController.swift in Sources */,
@@ -502,10 +512,13 @@
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
+				95FD93021D5962D1007E98E1 /* ViewController.swift in Sources */,
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
+				95FD93041D596347007E98E1 /* Country.swift in Sources */,
+				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -516,10 +529,13 @@
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
+				95FD93031D5962D1007E98E1 /* ViewController.swift in Sources */,
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
+				95FD93051D596348007E98E1 /* Country.swift in Sources */,
+				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

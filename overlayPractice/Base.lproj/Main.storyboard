@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Ub5-C1-CYD">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -40,6 +40,114 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708" y="487"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="roh-m0-3kG">
+            <objects>
+                <navigationController id="Ub5-C1-CYD" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rtt-vl-c5K">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Tvf-Cl-yWk" kind="relationship" relationship="rootViewController" id="Hgp-Pj-yAW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="skm-as-Rfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-694" y="487"/>
+        </scene>
+        <!--Choice View Controller-->
+        <scene sceneID="l4j-w4-kkv">
+            <objects>
+                <viewController id="Tvf-Cl-yWk" customClass="ChoiceViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hmd-dB-rt5"/>
+                        <viewControllerLayoutGuide type="bottom" id="hlT-uX-wF0"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="F6O-GL-zVe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wT1-Ui-oO9">
+                                <rect key="frame" x="285" y="142" width="30" height="30"/>
+                                <state key="normal" title="Asia">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="asiaButton:" destination="Tvf-Cl-yWk" eventType="touchUpInside" id="TJ8-wR-Qeo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zg0-yq-Z0V">
+                                <rect key="frame" x="280" y="249" width="41" height="30"/>
+                                <state key="normal" title="Africa">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="africaButton:" destination="Tvf-Cl-yWk" eventType="touchUpInside" id="yI5-dp-DOL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emz-5s-GgP">
+                                <rect key="frame" x="276" y="306" width="49" height="30"/>
+                                <state key="normal" title="Europe">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="europeButton:" destination="Tvf-Cl-yWk" eventType="touchUpInside" id="5ph-1R-KBo"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="83R-Xx-IJk">
+                                <rect key="frame" x="274" y="198" width="52" height="30"/>
+                                <state key="normal" title="Ociania">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ocianiaButton:" destination="Tvf-Cl-yWk" eventType="touchUpInside" id="Pbs-Z3-1T3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePr-Mw-xLd">
+                                <rect key="frame" x="250" y="369" width="100" height="30"/>
+                                <state key="normal" title="North America">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="northAmericaButton:" destination="Tvf-Cl-yWk" eventType="touchUpInside" id="HZB-gH-Sx2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mSX-Mq-Xiy">
+                                <rect key="frame" x="250" y="427" width="101" height="30"/>
+                                <state key="normal" title="South America">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="southAmericaButton:" destination="Tvf-Cl-yWk" eventType="touchUpInside" id="GMA-Ha-3ec"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14921095749999999" green="0.76621809549999997" blue="0.72552637880000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Emz-5s-GgP" firstAttribute="centerY" secondItem="F6O-GL-zVe" secondAttribute="centerY" constant="21" id="Be4-Ma-smv"/>
+                            <constraint firstItem="mSX-Mq-Xiy" firstAttribute="centerX" secondItem="F6O-GL-zVe" secondAttribute="centerX" id="J17-Uf-RMt"/>
+                            <constraint firstItem="ePr-Mw-xLd" firstAttribute="centerX" secondItem="F6O-GL-zVe" secondAttribute="centerX" id="SBb-Na-0Vm"/>
+                            <constraint firstItem="Zg0-yq-Z0V" firstAttribute="centerX" secondItem="F6O-GL-zVe" secondAttribute="centerX" id="Wg8-Zm-MTI"/>
+                            <constraint firstItem="wT1-Ui-oO9" firstAttribute="centerX" secondItem="F6O-GL-zVe" secondAttribute="centerX" id="ZxR-W9-lYb"/>
+                            <constraint firstItem="Emz-5s-GgP" firstAttribute="top" secondItem="Zg0-yq-Z0V" secondAttribute="bottom" constant="27" id="dw9-3A-AaW"/>
+                            <constraint firstItem="83R-Xx-IJk" firstAttribute="top" secondItem="wT1-Ui-oO9" secondAttribute="bottom" constant="26" id="ggT-tf-vfK"/>
+                            <constraint firstItem="83R-Xx-IJk" firstAttribute="centerX" secondItem="F6O-GL-zVe" secondAttribute="centerX" id="hyC-sK-PMt"/>
+                            <constraint firstItem="mSX-Mq-Xiy" firstAttribute="top" secondItem="ePr-Mw-xLd" secondAttribute="bottom" constant="28" id="nhi-Ro-1ff"/>
+                            <constraint firstItem="Zg0-yq-Z0V" firstAttribute="top" secondItem="83R-Xx-IJk" secondAttribute="bottom" constant="21" id="o1P-NR-PlV"/>
+                            <constraint firstItem="ePr-Mw-xLd" firstAttribute="top" secondItem="Emz-5s-GgP" secondAttribute="bottom" constant="33" id="oo5-b3-zE9"/>
+                            <constraint firstItem="Emz-5s-GgP" firstAttribute="centerX" secondItem="F6O-GL-zVe" secondAttribute="centerX" id="rvE-hm-FRt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="YCI-IH-Zwp"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMap" id="VJI-Nh-8dY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="40" y="487"/>
         </scene>
     </scenes>
 </document>
