@@ -34,6 +34,9 @@
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
+		956808651D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
+		956808661D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
+		956808671D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
 		95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
@@ -88,6 +91,7 @@
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		956808641D5A591000BE5962 /* countries2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries2.json; sourceTree = "<group>"; };
 		95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		95FD93061D5A0879007E98E1 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -190,6 +194,7 @@
 				950C361B1D56479E009710DD /* Assets.xcassets */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36201D56479E009710DD /* Info.plist */,
+				956808641D5A591000BE5962 /* countries2.json */,
 				95FD93061D5A0879007E98E1 /* countries.json */,
 			);
 			path = overlayPractice;
@@ -340,6 +345,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				956808651D5A591000BE5962 /* countries2.json in Resources */,
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
 				95FD93071D5A0879007E98E1 /* countries.json in Resources */,
@@ -352,6 +358,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD93081D5A0879007E98E1 /* countries.json in Resources */,
+				956808661D5A591000BE5962 /* countries2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD93091D5A0879007E98E1 /* countries.json in Resources */,
+				956808671D5A591000BE5962 /* countries2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
