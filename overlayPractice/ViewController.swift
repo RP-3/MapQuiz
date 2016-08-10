@@ -48,9 +48,17 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 countriesInRegion.append(country)
             }
         }
-
+        
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
+        view.addGestureRecognizer(gestureRecognizer)
         // Do any additional setup after loading the view, typically from a nib.
         addBoundary(countriesInRegion)
+    }
+    
+    func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
+        let point: CGPoint = gestureRecognizer.locationInView(worldMap)
+        print("tapped",point)
+        //now want to locate in which polygon this point was .. if in any
     }
 
     func addBoundary(countries: [Country]) {
@@ -88,9 +96,9 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        //let overlayView: MKOverlayRenderer?
         if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.lineWidth = 0.75
             polygonView.strokeColor = UIColor.orangeColor()
             polygonView.fillColor = UIColor.blueColor()
             polygonView.alpha = 0.5
@@ -98,6 +106,22 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
         return MKOverlayRenderer()
     }
+    
+//    func revealRegionDetailsWithLongPressOnMap(sender: UILongPressGestureRecognizer) {
+//        print("")
+//        if sender.state != UIGestureRecognizerState.Began { return }
+//        let touchLocation = sender.locationInView(worldMap)
+//        let locationCoordinate = worldMap.convertPoint(touchLocation, toCoordinateFromView: worldMap)
+//        var point = MKMapPointForCoordinate(locationCoordinate)
+//        var mapRect = MKMapRectMake(point.x, point.y, 0, 0);
+//        
+//        print("------->", point, mapRect)
+////        for polygon in protectedMapView.overlays as! [MKPolygon] {
+////            if polygon.intersectsMapRect(mapRect) {
+////                println("found")
+////            }
+////        }
+//    }
 
 }
 
