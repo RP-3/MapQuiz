@@ -17,6 +17,7 @@ class Country {
     var multiBoundary: [[CLLocationCoordinate2D]]
     var boundaryPointsCount: NSInteger
     var geojsonFormat: String
+    var polygons: [MKPolygon]?
     
     init (name: String, points: String, coordType: String) {
         

@@ -63,70 +63,21 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         addBoundary(countriesInRegion)
     }
     
+    var polys = [Country]()
+    
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let newCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-        let mapPointAsCGP = CGPointMake(CGFloat(newCoordinates.latitude), CGFloat(newCoordinates.longitude));
         
-        print(mapPointAsCGP.x, mapPointAsCGP.y)
-        
-//        for country in countriesInRegion {
-//            var polygon: MKPolygon = MKPolygon()
-//            if country.geojsonFormat == "MultiPolygon" {
-//                //then need to loop through each boundary and make each a polygon and calculate the number of points
-//                for var landArea in country.multiBoundary {
-//                    polygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-//                }
-//            } else {
-//                polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
-//            }
-//            
-//            let mpr: CGMutablePathRef = CGPathCreateMutable()
-//            
-//            for p in 0..<polygon.pointCount {
-//                let mp = polygon.points()[p]
-//                if p == 0 {
-//                    CGPathMoveToPoint(mpr, nil, CGFloat(mp.x), CGFloat(mp.y))
-//                }else{
-//                    CGPathAddLineToPoint(mpr, nil, CGFloat(mp.x), CGFloat(mp.y))
-//                }
-//            }
-//            
-//            if CGPathContainsPoint(mpr, nil, mapPointAsCGP, false) {
-//                print("----------------------------------------------------- is inside!")
-//            }
-//            
-//        }
-
         let point = MKMapPointForCoordinate(newCoordinates)
-        let mapRect = MKMapRectMake(point.x, point.y, 0.000000000000001, 0.000000000000001);
+        let mapRect = MKMapRectMake(point.x, point.y, 0.1, 0.1);
         
-        var polys = [MKPolygon]()
         for polygon in worldMap.overlays as! [MKPolygon] {
             if polygon.intersectsMapRect(mapRect) {
-                polys.append(polygon)
+                print("found intersection")
             }
         }
-        if polys.count > 1 {
-           //then need to find the nearest country found
-            print("foudn multiple matches!")
-            var closest: CLLocationDistance = 0
-            var matchedShape: MKPolygon = MKPolygon()
-            for poly in polys {
-                let center = MKMapPointForCoordinate(poly.coordinate)
-                let distance = MKMetersBetweenMapPoints(center, point)
-                if distance > closest {
-                    closest = distance
-                    matchedShape = poly
-                } else if distance == closest {
-                    print("SAME DISTAnCE!")
-                }
-            }
-            print("matched polygon", matchedShape)
-        } else if polys.count == 1 {
-            //then only one country found
-            print("found one match!")
-        }
+        
     }
 
     func addBoundary(countries: [Country]) {
@@ -135,10 +86,12 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 //then need to loop through each boundary and make each a polygon and calculate the number of points
                 for var landArea in country.multiBoundary {
                     let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
+                    country.polygons?.append(multiPolygon)
                     worldMap.addOverlay(multiPolygon)
                 }
             } else {
                 let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
+                country.polygons?.append(polygon)
                 worldMap.addOverlay(polygon)
             }
             
