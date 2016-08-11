@@ -6,18 +6,6 @@
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
-import UIKit
-import MapKit
-import CoreData
-
-//TODO: BUG in displaying the countries: Russia, Fiji, Kyrgyzstan
-
-class ViewController: CoreDataController, MKMapViewDelegate {
-
-    @IBOutlet weak var worldMap: MKMapView!
-    
-    var continent: String?
-    
 //    let continentCodes = [
 //        "AF": "Africa",
 //        "AN": "Antarctica",
@@ -27,10 +15,21 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 //        "OC": "Oceania",
 //        "SA": "South America"
 //    ]
+
+import UIKit
+import MapKit
+import CoreData
+
+//todo: not zoom out on delete overlay, better click accurcay,
+
+class ViewController: CoreDataController, MKMapViewDelegate {
+
+    @IBOutlet weak var worldMap: MKMapView!
+    
+    var continent: String?
     
     var countriesInRegion: [Country] = []
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,15 +51,10 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
         worldMap.mapType = .SatelliteFlyover
         
-//        let template = "http://tile.openstreetmap.org/{z}/{x}/{y}.png"
-//        let overlay = MKTileOverlay(URLTemplate: template)
-//        overlay.canReplaceMapContent = true
-        //worldMap.addOverlay(overlay, level: .AboveLabels)
-        
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
         // Do any additional setup after loading the view, typically from a nib.
-        addBoundary(countriesInRegion)
+        addBoundary(countriesInRegion, resetZoom: true)
     }
     
     var polys = [MKPolygon]()
@@ -123,7 +117,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             for c in 0..<countriesInRegion.count-1 {
                 if countriesInRegion[c].country == countriesIntersected[0] {
                     countriesInRegion.removeAtIndex(c)
-                    //remove all overlays from the map and then add them from the countriesInRegion array
                     deleteMapOverlays()
                 }
             }
@@ -137,10 +130,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         for overlay: MKOverlay in worldMap.overlays {
             worldMap.removeOverlay(overlay)
         }
-        addBoundary(countriesInRegion)
+        //add extra argument so not reset the region on the screen
+        addBoundary(countriesInRegion, resetZoom: false)
     }
 
-    func addBoundary(countries: [Country]) {
+    func addBoundary(countries: [Country], resetZoom: Bool) {
         for country in countries {
             if country.geojsonFormat == "MultiPolygon" {
                 var polygons = [MKPolygon]()
@@ -159,37 +153,36 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             
         }
         
-        //I could find the max and min lat and long but as there are only 6/7 continents this feels ugly and I would rather have a dictionary of all the coordinates and a scale to use
-        var midPoints = [
-            "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
-            "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
-            "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
-            "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
-            "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
-            "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
-        ]
-        
-        let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-        let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
-        worldMap.setRegion(region, animated: true)
+        if resetZoom {
+            //I could find the max and min lat and long but as there are only 6/7 continents this feels ugly and I would rather have a dictionary of all the coordinates and a scale to use
+            var midPoints = [
+                "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
+                "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
+                "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
+                "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
+                "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
+                "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
+            ]
+            
+            let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
+            let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
+            let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+            let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
+            let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
+            worldMap.setRegion(region, animated: true)
+        }
+
     }
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        guard let tileOverlay = overlay as? MKTileOverlay else {
-            if overlay is MKPolygon {
-                let polygonView = MKPolygonRenderer(overlay: overlay)
-                polygonView.lineWidth = 0.75
-                polygonView.strokeColor = UIColor.orangeColor()
-                polygonView.fillColor = UIColor.blueColor()
-                polygonView.alpha = 0.5
-                return polygonView
-            }
-            return MKOverlayRenderer()
+        if overlay is MKPolygon {
+            let polygonView = MKPolygonRenderer(overlay: overlay)
+            polygonView.lineWidth = 0.75
+            polygonView.strokeColor = UIColor.whiteColor()
+            polygonView.fillColor = UIColor.orangeColor()
+            return polygonView
         }
-        return MKTileOverlayRenderer(tileOverlay: tileOverlay)
+        return MKOverlayRenderer()
     }
 
 }
