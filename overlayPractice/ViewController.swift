@@ -63,19 +63,57 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         addBoundary(countriesInRegion)
     }
     
-    var polys = [Country]()
+    var polys = [MKPolygon]()
+    var countriesIntersected = [String]()
     
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let newCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         
         let point = MKMapPointForCoordinate(newCoordinates)
-        let mapRect = MKMapRectMake(point.x, point.y, 0.1, 0.1);
+        let mapRect = MKMapRectMake(point.x, point.y, 0.000000000000001, 0.0000000000001);
         
-        for polygon in worldMap.overlays as! [MKPolygon] {
-            if polygon.intersectsMapRect(mapRect) {
-                print("found intersection")
+//        for polygon in worldMap.overlays as! [MKPolygon] {
+//            if polygon.intersectsMapRect(mapRect) {
+//                print("found intersection")
+//            }
+//        }
+        //loop through the countries in continent
+        for country in countriesInRegion {
+            //loop through all innner polygons for continent
+            for polygon in country.polygons! {
+                
+                if polygon.intersectsMapRect(mapRect) {
+                    polys.append(polygon)
+                    countriesIntersected.append(country.country)
+                }
             }
+            
+        }
+        
+        if polys.count > 1 {
+            //then need to find the nearest country found
+            print("foudn multiple matches!")
+            var closest: CLLocationDistance = 0
+            var matchedCountry: String = ""
+            for p in 0..<polys.count {
+                let center = MKMapPointForCoordinate(polys[p].coordinate)
+                let distance = MKMetersBetweenMapPoints(center, point)
+                if distance > closest {
+                    closest = distance
+                    matchedCountry = countriesIntersected[p]
+                } else if distance == closest {
+                    print("SAME DISTAnCE!")
+                }
+            }
+            print("matched polygon", matchedCountry)
+            polys.removeAll()
+            countriesIntersected.removeAll()
+        } else if polys.count == 1 {
+            //then only one country found
+            print("found one match!", countriesIntersected[0])
+            polys.removeAll()
+            countriesIntersected.removeAll()
         }
         
     }
@@ -83,15 +121,17 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     func addBoundary(countries: [Country]) {
         for country in countries {
             if country.geojsonFormat == "MultiPolygon" {
+                var polygons = [MKPolygon]()
                 //then need to loop through each boundary and make each a polygon and calculate the number of points
                 for var landArea in country.multiBoundary {
                     let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-                    country.polygons?.append(multiPolygon)
+                    polygons.append(multiPolygon)
                     worldMap.addOverlay(multiPolygon)
                 }
+                country.polygons = polygons
             } else {
                 let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
-                country.polygons?.append(polygon)
+                country.polygons = [polygon]
                 worldMap.addOverlay(polygon)
             }
             
