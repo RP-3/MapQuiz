@@ -21,9 +21,7 @@ import MapKit
 import CoreData
 
 //todo: better click accurcay
-// make opaque before delete
 // add label to country on delete
-// bug some countries not delete???!!
 
 class ViewController: CoreDataController, MKMapViewDelegate {
 
@@ -61,7 +59,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     }
     
     var polys = [MKPolygon]()
-    //var countriesIntersected = [String]()
+    var previousMatch: String = ""
     
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         let pointTapped = gestureRecognizer.locationInView(worldMap)
@@ -69,16 +67,9 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         
         let point = MKMapPointForCoordinate(newCoordinates)
         let mapRect = MKMapRectMake(point.x, point.y, 0.000000000000001, 0.0000000000001);
-        
-//        for polygon in worldMap.overlays as! [MKPolygon] {
-//            if polygon.intersectsMapRect(mapRect) {
-//                print("found intersection")
-//            }
-//        }
        
         //empty out arrays of data
         polys.removeAll()
-        //countriesIntersected.removeAll()
         
          //loop through the countries in continent
         for country in countriesInRegion {
@@ -88,7 +79,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 
                 if polygon.intersectsMapRect(mapRect) {
                     polys.append(polygon)
-                    //countriesIntersected.append(country.country)
                 }
             }
         }
@@ -111,27 +101,37 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             print("matched polygon", matchedCountry)
             //now want to change the appearance of this polygon
             for (index, country) in countriesInRegion.enumerate() {
-                if country.country == matchedCountry {
+                //if this country has been tapped last then we want to delete it else we make it transparent
+                if country.country == matchedCountry && previousMatch != matchedCountry {
+                    country.alpha = "0.8"
+                    previousMatch = matchedCountry
+                } else if country.country == matchedCountry && previousMatch == matchedCountry {
                     countriesInRegion.removeAtIndex(index)
-                    //remove all overlays from the map and then add them from the countriesInRegion array
-                    deleteMapOverlays()
+                } else {
+                    country.alpha = "1.0"
                 }
+                reloadMapOverlays()
             }
         } else if polys.count == 1 {
             //then only one country found
             print("found one match!", countriesInRegion.count)
             for (index, country) in countriesInRegion.enumerate() {
-                print("loooping", country.country, polys[0].title!)
-                if country.country == polys[0].title! {
+                //if this country has been tapped last then we want to delete it else we make it transparent
+                if country.country == polys[0].title! && previousMatch != polys[0].title! {
+                    country.alpha = "0.8"
+                    previousMatch = polys[0].title!
+                } else if country.country == polys[0].title! && previousMatch == polys[0].title! {
                     countriesInRegion.removeAtIndex(index)
-                    deleteMapOverlays()
+                } else {
+                    country.alpha = "1.0"
                 }
+                reloadMapOverlays()
             }
         }
         
     }
     
-    func deleteMapOverlays() {
+    func reloadMapOverlays() {
         for overlay: MKOverlay in worldMap.overlays {
             worldMap.removeOverlay(overlay)
         }
@@ -147,7 +147,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 for var landArea in country.multiBoundary {
                     let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
                     multiPolygon.title = country.country
-                    multiPolygon.subtitle = "0.4"
+                    multiPolygon.subtitle = country.alpha
                     //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
                     polygons.append(multiPolygon)
                     worldMap.addOverlay(multiPolygon)
@@ -156,7 +156,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             } else {
                 let polygon = MKPolygon(coordinates: &country.boundary, count: country.boundaryPointsCount)
                 polygon.title = country.country
-                polygon.subtitle = "1.0"
+                polygon.subtitle = country.alpha
                 //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: polygon)
                 country.polygons = [polygon]
                 worldMap.addOverlay(polygon)
@@ -203,16 +203,16 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 
 }
 
-class customPolygon: MKPolygon {
-    var alpha: CGFloat
-    var country: String
-    var polygonShape: MKPolygon
-    
-    init(countryName: String, alphaValue: CGFloat, polygon: MKPolygon) {
-        country = countryName
-        alpha = alphaValue
-        polygonShape = polygon
-    }
-}
+//class customPolygon: MKPolygon {
+//    var alpha: CGFloat
+//    var country: String
+//    var polygonShape: MKPolygon
+//    
+//    init(countryName: String, alphaValue: CGFloat, polygon: MKPolygon) {
+//        country = countryName
+//        alpha = alphaValue
+//        polygonShape = polygon
+//    }
+//}
 
 

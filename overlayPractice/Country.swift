@@ -18,6 +18,7 @@ class Country {
     var boundaryPointsCount: NSInteger
     var geojsonFormat: String
     var polygons: [MKPolygon]?
+    var alpha: String = "1.0"
     
     init (name: String, points: String, coordType: String) {
         
@@ -54,7 +55,7 @@ class Country {
                     for coord in element.1 {
                         let lat = String(coord.1[1])
                         var long = String(coord.1[0])
-                        if var numberLong =  Float(long) {
+                        if let numberLong =  Float(long) {
                             if numberLong == -180 {
                                 long = String(179.9)
                             } else if numberLong == 180 {
