@@ -107,15 +107,37 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 }
             }
             print("matched polygon", matchedCountry)
+            //now want to change the appearance of this polygon
+            for c in 0..<countriesInRegion.count-1 {
+                if countriesInRegion[c].country == matchedCountry {
+                    countriesInRegion.removeAtIndex(c)
+                    //remove all overlays from the map and then add them from the countriesInRegion array
+                    deleteMapOverlays()
+                }
+            }
             polys.removeAll()
             countriesIntersected.removeAll()
         } else if polys.count == 1 {
             //then only one country found
             print("found one match!", countriesIntersected[0])
+            for c in 0..<countriesInRegion.count-1 {
+                if countriesInRegion[c].country == countriesIntersected[0] {
+                    countriesInRegion.removeAtIndex(c)
+                    //remove all overlays from the map and then add them from the countriesInRegion array
+                    deleteMapOverlays()
+                }
+            }
             polys.removeAll()
             countriesIntersected.removeAll()
         }
         
+    }
+    
+    func deleteMapOverlays() {
+        for overlay: MKOverlay in worldMap.overlays {
+            worldMap.removeOverlay(overlay)
+        }
+        addBoundary(countriesInRegion)
     }
 
     func addBoundary(countries: [Country]) {

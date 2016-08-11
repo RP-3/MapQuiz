@@ -12,7 +12,6 @@ class ChoiceViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("here")
     }
     
     var senderTag = [
