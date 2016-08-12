@@ -87,26 +87,32 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             //then need to find the nearest country found
             print("foudn multiple matches!")
             var closest: CLLocationDistance = 0
-            var matchedCountry: String = ""
+            var matchedCountry = MKPolygon()
             for p in 0..<polys.count {
                 let center = MKMapPointForCoordinate(polys[p].coordinate)
                 let distance = MKMetersBetweenMapPoints(center, point)
                 if distance > closest {
                     closest = distance
-                    matchedCountry = polys[p].title!
+                    matchedCountry = polys[p]
                 } else if distance == closest {
                     print("SAME DISTAnCE!--- PROBLEM!")
                 }
             }
-            print("matched polygon", matchedCountry)
+            print("matched polygon", matchedCountry.title)
             //now want to change the appearance of this polygon
             for (index, country) in countriesInRegion.enumerate() {
                 //if this country has been tapped last then we want to delete it else we make it transparent
                 if country.country == matchedCountry && previousMatch != matchedCountry {
                     country.alpha = "0.8"
-                    previousMatch = matchedCountry
+                    previousMatch = matchedCountry.title!
                 } else if country.country == matchedCountry && previousMatch == matchedCountry {
                     countriesInRegion.removeAtIndex(index)
+                    //need to add a label to the country
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = matchedCountry.coordinate
+                    annotation.title = matchedCountry.title!
+                    worldMap.addAnnotation(annotation)
+                    
                 } else {
                     country.alpha = "1.0"
                 }
@@ -122,6 +128,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     previousMatch = polys[0].title!
                 } else if country.country == polys[0].title! && previousMatch == polys[0].title! {
                     countriesInRegion.removeAtIndex(index)
+                    //need to add a label to the country
+                    let annotation = MKPointAnnotation()
+                    annotation.coordinate = polys[0].coordinate
+                    annotation.title = polys[0].title
+                    worldMap.addAnnotation(annotation)
                 } else {
                     country.alpha = "1.0"
                 }
@@ -129,6 +140,34 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             }
         }
         
+    }
+
+    
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
+        let reuseId: String = "reuseid"
+        
+        var aView: MKAnnotationView
+        
+        if let av = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) {
+            av.annotation = annotation
+            aView = av
+        } else {
+            let av = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            let lbl = UILabel(frame: CGRectMake(0, 0, 40, 15))
+            lbl.adjustsFontSizeToFitWidth = true
+            lbl.backgroundColor = UIColor.blackColor()
+            lbl.textColor = UIColor.whiteColor()
+            lbl.alpha = 0.5
+            lbl.tag = 42
+            av.addSubview(lbl)
+            //Following lets the callout still work if you tap on the label...
+            av.canShowCallout = true
+            av.frame = lbl.frame
+            aView = av
+        }
+        let lbl: UILabel = (aView.viewWithTag(42) as! UILabel)
+        lbl.text = annotation.title!
+        return aView
     }
     
     func reloadMapOverlays() {
