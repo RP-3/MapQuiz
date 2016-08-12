@@ -31,12 +31,13 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     
     var score: Int = 0
     
-    var countriesInContinent = [String: Country]()
+    //var countriesInContinent = [String: Country]()
+    var createdPolygonOverlays = [String: MKPolygon]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        score = countriesInContinent.count
+        score = createdPolygonOverlays.count
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
@@ -49,15 +50,14 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         for entity in entities {
             if (entity.continent == continent) {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
-                countriesInContinent[country.country] = country
+                //countriesInContinent[country.country] = country
+                addBoundary(country, resetZoom: true)
             }
         }
-        self.title = String("\(score) / \(countriesInContinent.count)")
-        print("----->", countriesInContinent.count)
+        self.title = String("\(score) / \(createdPolygonOverlays.count)")
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
-        addBoundary(countriesInContinent, resetZoom: true)
     }
     
     var polys = [MKPolygon]()
@@ -73,14 +73,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         //empty out arrays of data
         polys.removeAll()
         
-         //loop through the countries in continent
-        for (key, value) in countriesInContinent {
-            
+        //loop through the countries in continent
+        for (key, _) in createdPolygonOverlays {
             //loop through all innner polygons for continent
-            for polygon in countriesInContinent[key]!.polygons! {
-                if polygon.intersectsMapRect(mapRect) {
-                    polys.append(polygon)
-                }
+            if createdPolygonOverlays[key]!.intersectsMapRect(mapRect) {
+                polys.append(createdPolygonOverlays[key]!)
             }
         }
         
@@ -102,31 +99,40 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             print("matched polygon", matchedCountry.title)
             //now want to change the appearance of this polygon
             //if this country has been tapped last then we want to delete it else we make it transparent
-            if countriesInContinent[matchedCountry.title!]!.country == matchedCountry && previousMatch != matchedCountry {
-                countriesInContinent[matchedCountry.title!]!.alpha = "0.8"
+            if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch != matchedCountry {
+                //update the polygon in the polygon dictionary
+                createdPolygonOverlays[matchedCountry.title!]!.subtitle = "0.8"
                 previousMatch = matchedCountry.title!
-                //need a way to update just oe polygons alpha
+                //need a way to update just one polygons alpha
                 
-            } else if countriesInContinent[matchedCountry.title!]!.country == matchedCountry && previousMatch == matchedCountry {
+                //delete the polygon and then re-add it?
+                worldMap.removeOverlay(createdPolygonOverlays[matchedCountry.title!]!)
+                worldMap.addOverlay(createdPolygonOverlays[matchedCountry.title!]!)
+               
+                
+            } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch == matchedCountry {
                 //countriesInContinent.removeAtIndex(index)
                 updateMapOverlays(matchedCountry.title!)
             } else {
-                countriesInContinent[matchedCountry.title!]!.alpha = "1.0"
+                createdPolygonOverlays[matchedCountry.title!]!.subtitle = "1.0"
             }
         } else if polys.count == 1 {
             //then only one country found
-            print("found one match!", countriesInContinent.count)
+            print("found one match!", createdPolygonOverlays.count)
             //if this country has been tapped last then we want to delete it else we make it transparent
-            if countriesInContinent[polys[0].title!]!.country == polys[0].title! && previousMatch != polys[0].title! {
-                //countriesInContinent[key]!.alpha = "0.8"
+            if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch != polys[0].title! {
+                createdPolygonOverlays[polys[0].title!]!.subtitle = "0.8"
                 previousMatch = polys[0].title!
                 //need a way to update just the one polygon
                 
+                //delete the polygon and then re-add it?
+                worldMap.removeOverlay(createdPolygonOverlays[polys[0].title!]!)
+                worldMap.addOverlay(createdPolygonOverlays[polys[0].title!]!)
                 
-            } else if countriesInContinent[polys[0].title!]!.country == polys[0].title! && previousMatch == polys[0].title! {
+            } else if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch == polys[0].title! {
                 updateMapOverlays(polys[0].title!)
             } else {
-                countriesInContinent[polys[0].title!]!.alpha = "1.0"
+                createdPolygonOverlays[polys[0].title!]!.subtitle = "1.0"
             }
         }
         
@@ -165,7 +171,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         for overlay: MKOverlay in worldMap.overlays {
             //worldMap.removeOverlay(overlay)
             if overlay.title! == titleOfPolyToRemove {
-                countriesInContinent.removeValueForKey(titleOfPolyToRemove)
+                createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = overlay.coordinate
                 annotation.title = titleOfPolyToRemove
@@ -174,32 +180,32 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             }
         }
         score += 1
-        self.title = String("\(score) / \(countriesInContinent.count)")
+        self.title = String("\(score) / \(createdPolygonOverlays.count)")
     }
 
-    func addBoundary(countries: [String: Country], resetZoom: Bool) {
-        for (key, value) in countries {
-            if countries[key]?.geojsonFormat == "MultiPolygon" {
-                var polygons = [MKPolygon]()
-                //then need to loop through each boundary and make each a polygon and calculate the number of points
-                for var landArea in (countries[key]?.multiBoundary)! {
-                    let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-                    multiPolygon.title = countries[key]?.country
-                    multiPolygon.subtitle = countries[key]?.alpha
-                    //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
-                    polygons.append(multiPolygon)
-                    worldMap.addOverlay(multiPolygon)
-                }
-                countries[key]?.polygons = polygons
-            } else {
-                let polygon = MKPolygon(coordinates: &countries[key]!.boundary, count: (countries[key]?.boundaryPointsCount)!)
-                polygon.title = countries[key]?.country
-                polygon.subtitle = countries[key]?.alpha
-                //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: polygon)
-                countries[key]?.polygons = [polygon]
-                worldMap.addOverlay(polygon)
+    func addBoundary(countryShape: Country, resetZoom: Bool) {
+
+        if countryShape.geojsonFormat == "MultiPolygon" {
+            var polygons = [MKPolygon]()
+            //then need to loop through each boundary and make each a polygon and calculate the number of points
+            for var landArea in (countryShape.multiBoundary) {
+                let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
+                multiPolygon.title = countryShape.country
+                multiPolygon.subtitle = countryShape.alpha
+                //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
+                polygons.append(multiPolygon)
+                worldMap.addOverlay(multiPolygon)
+                createdPolygonOverlays[multiPolygon.title!] = multiPolygon
             }
-            
+            //countries[key]?.polygons = polygons
+        } else {
+            let polygon = MKPolygon(coordinates: &countryShape.boundary, count: countryShape.boundaryPointsCount)
+            polygon.title = countryShape.country
+            polygon.subtitle = countryShape.alpha
+            //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: polygon)
+            //countries[key]?.polygons = [polygon]
+            worldMap.addOverlay(polygon)
+            createdPolygonOverlays[polygon.title!] = polygon
         }
         
         if resetZoom {
