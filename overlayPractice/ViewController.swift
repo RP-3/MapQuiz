@@ -30,10 +30,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     var continent: String?
     
     var countriesInRegion: [Country] = []
+    var score: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        score = countriesInRegion.count
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
@@ -42,7 +43,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)
         
-        
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
             if (entity.continent == continent) {
@@ -50,6 +50,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 countriesInRegion.append(country)
             }
         }
+        self.title = String("\(score) / \(countriesInRegion.count)")
+        print("----->", countriesInRegion.count)
         worldMap.mapType = .SatelliteFlyover
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
@@ -107,12 +109,13 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     previousMatch = matchedCountry.title!
                 } else if country.country == matchedCountry && previousMatch == matchedCountry {
                     countriesInRegion.removeAtIndex(index)
+                    score += 1
+                    print("score", countriesInRegion.count)
                     //need to add a label to the country
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = matchedCountry.coordinate
                     annotation.title = matchedCountry.title!
                     worldMap.addAnnotation(annotation)
-                    
                 } else {
                     country.alpha = "1.0"
                 }
@@ -128,6 +131,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     previousMatch = polys[0].title!
                 } else if country.country == polys[0].title! && previousMatch == polys[0].title! {
                     countriesInRegion.removeAtIndex(index)
+                    score += 1
+                    print("score", countriesInRegion.count)
                     //need to add a label to the country
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = polys[0].coordinate
@@ -159,6 +164,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             lbl.textColor = UIColor.whiteColor()
             lbl.alpha = 0.5
             lbl.tag = 42
+            lbl.numberOfLines = 0
             av.addSubview(lbl)
             //Following lets the callout still work if you tap on the label...
             av.canShowCallout = true
@@ -176,6 +182,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
         //add extra argument so not reset the region on the screen
         addBoundary(countriesInRegion, resetZoom: false)
+        self.title = String("\(score) / \(countriesInRegion.count)")
     }
 
     func addBoundary(countries: [Country], resetZoom: Bool) {
