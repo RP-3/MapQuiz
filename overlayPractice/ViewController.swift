@@ -31,10 +31,10 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     
     var score: Int = 0
     
+    var countriesInContinent = [String: Country]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var countriesInContinent = [String: Country]()
         
         score = countriesInContinent.count
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -55,98 +55,86 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         self.title = String("\(score) / \(countriesInContinent.count)")
         print("----->", countriesInContinent.count)
         
-//        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
-//        view.addGestureRecognizer(gestureRecognizer)
-        // Do any additional setup after loading the view, typically from a nib.
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
+        view.addGestureRecognizer(gestureRecognizer)
         addBoundary(countriesInContinent, resetZoom: true)
     }
     
     var polys = [MKPolygon]()
     var previousMatch: String = ""
     
-//    func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
-//        let pointTapped = gestureRecognizer.locationInView(worldMap)
-//        let newCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-//        
-//        let point = MKMapPointForCoordinate(newCoordinates)
-//        let mapRect = MKMapRectMake(point.x, point.y, 0.000000000000001, 0.0000000000001);
-//       
-//        //empty out arrays of data
-//        polys.removeAll()
-//        
-//         //loop through the countries in continent
-//        for country in countriesInContinent {
-//            
-//            //loop through all innner polygons for continent
-//            for polygon in country.polygons! {
-//                
-//                if polygon.intersectsMapRect(mapRect) {
-//                    polys.append(polygon)
-//                }
-//            }
-//        }
-//        
-//        if polys.count > 1 {
-//            //then need to find the nearest country found
-//            print("foudn multiple matches!")
-//            var closest: CLLocationDistance = 0
-//            var matchedCountry = MKPolygon()
-//            for p in 0..<polys.count {
-//                let center = MKMapPointForCoordinate(polys[p].coordinate)
-//                let distance = MKMetersBetweenMapPoints(center, point)
-//                if distance > closest {
-//                    closest = distance
-//                    matchedCountry = polys[p]
-//                } else if distance == closest {
-//                    print("SAME DISTAnCE!--- PROBLEM!")
-//                }
-//            }
-//            print("matched polygon", matchedCountry.title)
-//            //now want to change the appearance of this polygon
-//            for (index, country) in countriesInRegion.enumerate() {
-//                //if this country has been tapped last then we want to delete it else we make it transparent
-//                if country.country == matchedCountry && previousMatch != matchedCountry {
-//                    country.alpha = "0.8"
-//                    previousMatch = matchedCountry.title!
-//                } else if country.country == matchedCountry && previousMatch == matchedCountry {
-//                    countriesInRegion.removeAtIndex(index)
-//                    score += 1
-//                    print("score", countriesInRegion.count)
-//                    //need to add a label to the country
-//                    let annotation = MKPointAnnotation()
-//                    annotation.coordinate = matchedCountry.coordinate
-//                    annotation.title = matchedCountry.title!
-//                    worldMap.addAnnotation(annotation)
-//                } else {
-//                    country.alpha = "1.0"
-//                }
-//                reloadMapOverlays()
-//            }
-//        } else if polys.count == 1 {
-//            //then only one country found
-//            print("found one match!", countriesInRegion.count)
-//            for (index, country) in countriesInRegion.enumerate() {
-//                //if this country has been tapped last then we want to delete it else we make it transparent
-//                if country.country == polys[0].title! && previousMatch != polys[0].title! {
-//                    country.alpha = "0.8"
-//                    previousMatch = polys[0].title!
-//                } else if country.country == polys[0].title! && previousMatch == polys[0].title! {
-//                    countriesInRegion.removeAtIndex(index)
-//                    score += 1
-//                    print("score", countriesInRegion.count)
-//                    //need to add a label to the country
-//                    let annotation = MKPointAnnotation()
-//                    annotation.coordinate = polys[0].coordinate
-//                    annotation.title = polys[0].title
-//                    worldMap.addAnnotation(annotation)
-//                } else {
-//                    country.alpha = "1.0"
-//                }
-//                reloadMapOverlays()
-//            }
-//        }
-//        
-//    }
+    func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
+        let pointTapped = gestureRecognizer.locationInView(worldMap)
+        let newCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
+        
+        let point = MKMapPointForCoordinate(newCoordinates)
+        let mapRect = MKMapRectMake(point.x, point.y, 0.000000000000001, 0.0000000000001);
+       
+        //empty out arrays of data
+        polys.removeAll()
+        
+         //loop through the countries in continent
+        for (key, value) in countriesInContinent {
+            
+            //loop through all innner polygons for continent
+            for polygon in countriesInContinent[key]!.polygons! {
+                if polygon.intersectsMapRect(mapRect) {
+                    polys.append(polygon)
+                }
+            }
+        }
+        
+        if polys.count > 1 {
+            //then need to find the nearest country found
+            print("foudn multiple matches!")
+            var closest: CLLocationDistance = 0
+            var matchedCountry = MKPolygon()
+            for p in 0..<polys.count {
+                let center = MKMapPointForCoordinate(polys[p].coordinate)
+                let distance = MKMetersBetweenMapPoints(center, point)
+                if distance > closest {
+                    closest = distance
+                    matchedCountry = polys[p]
+                } else if distance == closest {
+                    print("SAME DISTAnCE!--- PROBLEM!")
+                }
+            }
+            print("matched polygon", matchedCountry.title)
+            //now want to change the appearance of this polygon
+            for (key, value) in countriesInContinent {
+                //if this country has been tapped last then we want to delete it else we make it transparent
+                if countriesInContinent[key]!.country == matchedCountry && previousMatch != matchedCountry {
+                    countriesInContinent[key]!.alpha = "0.8"
+                    previousMatch = matchedCountry.title!
+                    //need a way to update just oe polygons alpha
+                    
+                } else if countriesInContinent[key]!.country == matchedCountry && previousMatch == matchedCountry {
+                    //countriesInContinent.removeAtIndex(index)
+                    updateMapOverlays(matchedCountry.title!)
+                } else {
+                    countriesInContinent[key]!.alpha = "1.0"
+                }
+            }
+        } else if polys.count == 1 {
+            //then only one country found
+            print("found one match!", countriesInContinent.count)
+            for (key, value) in countriesInContinent {
+                //if this country has been tapped last then we want to delete it else we make it transparent
+                if countriesInContinent[key]!.country == polys[0].title! && previousMatch != polys[0].title! {
+                    //countriesInContinent[key]!.alpha = "0.8"
+                    previousMatch = polys[0].title!
+                    //need a way to update just the one polygon
+                    
+                    
+                } else if countriesInContinent[key]!.country == polys[0].title! && previousMatch == polys[0].title! {
+                    updateMapOverlays(polys[0].title!)
+                } else {
+                    countriesInContinent[key]!.alpha = "1.0"
+                }
+            }
+        }
+        
+    }
 
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
@@ -177,18 +165,24 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         return aView
     }
     
-//    func reloadMapOverlays() {
-//        for overlay: MKOverlay in worldMap.overlays {
-//            worldMap.removeOverlay(overlay)
-//        }
-//        //add extra argument so not reset the region on the screen
-//        addBoundary(countriesInContinent, resetZoom: false)
-//        self.title = String("\(score) / \(countriesInContinent.count)")
-//    }
+    func updateMapOverlays(titleOfPolyToRemove: String) {
+        for overlay: MKOverlay in worldMap.overlays {
+            //worldMap.removeOverlay(overlay)
+            if overlay.title! == titleOfPolyToRemove {
+                countriesInContinent.removeValueForKey(titleOfPolyToRemove)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = overlay.coordinate
+                annotation.title = titleOfPolyToRemove
+                worldMap.addAnnotation(annotation)
+                worldMap.removeOverlay(overlay)
+            }
+        }
+        score += 1
+        self.title = String("\(score) / \(countriesInContinent.count)")
+    }
 
     func addBoundary(countries: [String: Country], resetZoom: Bool) {
-        for (key, index) in countries {
-            print(key, index)
+        for (key, value) in countries {
             if countries[key]?.geojsonFormat == "MultiPolygon" {
                 var polygons = [MKPolygon]()
                 //then need to loop through each boundary and make each a polygon and calculate the number of points
