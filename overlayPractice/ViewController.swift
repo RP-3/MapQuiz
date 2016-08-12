@@ -101,36 +101,32 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             }
             print("matched polygon", matchedCountry.title)
             //now want to change the appearance of this polygon
-            for (key, value) in countriesInContinent {
-                //if this country has been tapped last then we want to delete it else we make it transparent
-                if countriesInContinent[key]!.country == matchedCountry && previousMatch != matchedCountry {
-                    countriesInContinent[key]!.alpha = "0.8"
-                    previousMatch = matchedCountry.title!
-                    //need a way to update just oe polygons alpha
-                    
-                } else if countriesInContinent[key]!.country == matchedCountry && previousMatch == matchedCountry {
-                    //countriesInContinent.removeAtIndex(index)
-                    updateMapOverlays(matchedCountry.title!)
-                } else {
-                    countriesInContinent[key]!.alpha = "1.0"
-                }
+            //if this country has been tapped last then we want to delete it else we make it transparent
+            if countriesInContinent[matchedCountry.title!]!.country == matchedCountry && previousMatch != matchedCountry {
+                countriesInContinent[matchedCountry.title!]!.alpha = "0.8"
+                previousMatch = matchedCountry.title!
+                //need a way to update just oe polygons alpha
+                
+            } else if countriesInContinent[matchedCountry.title!]!.country == matchedCountry && previousMatch == matchedCountry {
+                //countriesInContinent.removeAtIndex(index)
+                updateMapOverlays(matchedCountry.title!)
+            } else {
+                countriesInContinent[matchedCountry.title!]!.alpha = "1.0"
             }
         } else if polys.count == 1 {
             //then only one country found
             print("found one match!", countriesInContinent.count)
-            for (key, value) in countriesInContinent {
-                //if this country has been tapped last then we want to delete it else we make it transparent
-                if countriesInContinent[key]!.country == polys[0].title! && previousMatch != polys[0].title! {
-                    //countriesInContinent[key]!.alpha = "0.8"
-                    previousMatch = polys[0].title!
-                    //need a way to update just the one polygon
-                    
-                    
-                } else if countriesInContinent[key]!.country == polys[0].title! && previousMatch == polys[0].title! {
-                    updateMapOverlays(polys[0].title!)
-                } else {
-                    countriesInContinent[key]!.alpha = "1.0"
-                }
+            //if this country has been tapped last then we want to delete it else we make it transparent
+            if countriesInContinent[polys[0].title!]!.country == polys[0].title! && previousMatch != polys[0].title! {
+                //countriesInContinent[key]!.alpha = "0.8"
+                previousMatch = polys[0].title!
+                //need a way to update just the one polygon
+                
+                
+            } else if countriesInContinent[polys[0].title!]!.country == polys[0].title! && previousMatch == polys[0].title! {
+                updateMapOverlays(polys[0].title!)
+            } else {
+                countriesInContinent[polys[0].title!]!.alpha = "1.0"
             }
         }
         
