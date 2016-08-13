@@ -22,24 +22,6 @@ import CoreData
 
 //todo: better click accurcay!!!
 
-//logic:
-/*
- 1. ask user question as pop up label from bottom
-    - have a list of all the countries in the continent chosen
-    - have a list of guessed: true if guessed/false if not guessed
-    -OR make two lists then when choosing the rendom index to pick one fron you will know it has not been guessed
- 
- 2. store country asked
- 3. when country clicked then check against guess country
- 4. if correct - fade/color to show the country selected and then remove and add marker/label increment score
- 5. if incorrect - after fade on second tap then make the country red not change score
- 6. if incorrect stay on that counry until correct
- 7. have a button to reveal all
- 8. have a next button to re-generate a new country question
- */
-
-
-
 class ViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
@@ -100,7 +82,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         label.frame = CGRectMake(0, (screenHeight - 105), (screenSize.width + 5), 44)
         
         label.textAlignment = NSTextAlignment.Center
-        label.text = "Where is \(randomVal)?"
+        label.text = "Find \(randomVal)"
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)
@@ -116,6 +98,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
+        //zoom out to the whole region?
+        
     }
     
     var polys = [MKPolygon]()
@@ -167,9 +151,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     self.label.text = "Found!"
                     label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
                     //add toFind to guessed
-                    game["guessed"]![toFind] = toFind
-                    game["toPlay"]!.removeValueForKey(toFind)
-                    resetQuestionLabel()
+                    delay(1.0) {
+                        self.game["guessed"]![self.toFind] = self.toFind
+                        self.game["toPlay"]!.removeValueForKey(self.toFind)
+                        self.resetQuestionLabel()
+                    }
                     
                     //then we can delete country overlay from map as correct selection
                     updateMapOverlays(matchedCountry.title!)
@@ -178,7 +164,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
                     label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                     delay(1.0) {
-                        self.label.text = "Where is \(self.toFind)?"
+                        self.label.text = "Find \(self.toFind)"
                         self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                     }
                 }
@@ -192,10 +178,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 if (toFind == polys[0].title!) {
                     self.label.text = "Found!"
                     label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                    game["guessed"]![toFind] = toFind
-                    game["toPlay"]!.removeValueForKey(toFind)
-                    resetQuestionLabel()
-                    
+                    delay(1.0) {
+                        self.game["guessed"]![self.toFind] = self.toFind
+                        self.game["toPlay"]!.removeValueForKey(self.toFind)
+                        self.resetQuestionLabel()
+                    }
                     //then we can delete country overlay from map as correct selection
                     updateMapOverlays(polys[0].title!)
                     previousMatch = ""
