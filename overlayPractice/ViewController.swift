@@ -41,6 +41,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     let label = UILabel()
     
     var createdPolygonOverlays = [String: MKPolygon]()
+    var coordinates = [String: [CLLocationCoordinate2D]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,95 +109,135 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         
         let pointTapped = gestureRecognizer.locationInView(worldMap)
-        let newCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-        
-        let point = MKMapPointForCoordinate(newCoordinates)
-        let mapRect = MKMapRectMake(point.x, point.y, 0.000000000000001, 0.0000000000001);
+        let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
        
         //empty out arrays of data
         polys.removeAll()
         
         //loop through the countries in continent
-        for (key, _) in createdPolygonOverlays {
-            //loop through all innner polygons for continent
-            if createdPolygonOverlays[key]!.intersectsMapRect(mapRect) {
-                polys.append(createdPolygonOverlays[key]!)
+        for (key, _) in coordinates {
+            //if any coordinates array contains the tapped point then return true!
+            if (contains(coordinates[key]!, selectedPoint: tappedCoordinates)) {
+                print("MATCHED", createdPolygonOverlays[key]!.title)
+                
+                //say if the matched name exists in the polygons on the screen
+                
+                if previousMatch != createdPolygonOverlays[key]!.title {
+                    switchOpacities(createdPolygonOverlays[key]!)
+                } else if previousMatch == createdPolygonOverlays[key]!.title {
+                    if (toFind == createdPolygonOverlays[key]!.title) {
+                        self.label.text = "Found!"
+                        label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+                        delay(1.0) {
+                            self.game["guessed"]![self.toFind] = self.toFind
+                            self.game["toPlay"]!.removeValueForKey(self.toFind)
+                            self.resetQuestionLabel()
+                        }
+                        //then we can delete country overlay from map as correct selection
+                        updateMapOverlays(createdPolygonOverlays[key]!.title!)
+                        previousMatch = ""
+                    } else {
+                        //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
+                        label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+                        delay(1.0) {
+                            self.label.text = "Where is \(self.toFind)?"
+                            self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                        }
+                    }
+                }
+                
+                
+            } else {
+                print("NO MATCH")
             }
         }
         
-        if polys.count > 1 {
-            //then need to find the nearest country found
-            print("foudn multiple matches!")
-            var closest: CLLocationDistance = 0
-            var matchedCountry = MKPolygon()
-            for p in 0..<polys.count {
-                let center = MKMapPointForCoordinate(polys[p].coordinate)
-                let distance = MKMetersBetweenMapPoints(center, point)
-                if distance > closest {
-                    closest = distance
-                    matchedCountry = polys[p]
-                } else if distance == closest {
-                    print("SAME DISTAnCE!--- PROBLEM!")
-                }
-            }
-            print("matched polygon", matchedCountry.title, createdPolygonOverlays[matchedCountry.title!]!.title)
-            //now want to change the appearance of this polygon
-            
-            //if this matched country was not the previous one
-            if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry.title! && previousMatch != matchedCountry {
-                switchOpacities(matchedCountry)
-            //if the matched country is the same as the previous match then delete the overlay
-            } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry.title && previousMatch == matchedCountry {
-                if (toFind == matchedCountry.title) {
-                    self.label.text = "Found!"
-                    label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                    //add toFind to guessed
-                    delay(1.0) {
-                        self.game["guessed"]![self.toFind] = self.toFind
-                        self.game["toPlay"]!.removeValueForKey(self.toFind)
-                        self.resetQuestionLabel()
-                    }
-                    
-                    //then we can delete country overlay from map as correct selection
-                    updateMapOverlays(matchedCountry.title!)
-                    previousMatch = ""
-                } else {
-                    //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
-                    label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-                    delay(1.0) {
-                        self.label.text = "Find \(self.toFind)"
-                        self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-                    }
-                }
-            }
-        } else if polys.count == 1 {
-            //then only one country found
-            //if this country has been tapped last then we want to delete it else we make it transparent
-            if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch != polys[0].title! {
-                switchOpacities(polys[0])
-            } else if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch == polys[0].title! {
-                if (toFind == polys[0].title!) {
-                    self.label.text = "Found!"
-                    label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                    delay(1.0) {
-                        self.game["guessed"]![self.toFind] = self.toFind
-                        self.game["toPlay"]!.removeValueForKey(self.toFind)
-                        self.resetQuestionLabel()
-                    }
-                    //then we can delete country overlay from map as correct selection
-                    updateMapOverlays(polys[0].title!)
-                    previousMatch = ""
-                } else {
-                    //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
-                    label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-                    delay(1.0) {
-                        self.label.text = "Where is \(self.toFind)?"
-                        self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-                    }
-                }
-            }
-        }
+//        if polys.count > 1 {
+//            //then need to find the nearest country found
+//            print("foudn multiple matches!")
+//            var closest: CLLocationDistance = 0
+//            var matchedCountry = MKPolygon()
+//            for p in 0..<polys.count {
+//                let center = MKMapPointForCoordinate(polys[p].coordinate)
+//                let distance = MKMetersBetweenMapPoints(center, point)
+//                if distance > closest {
+//                    closest = distance
+//                    matchedCountry = polys[p]
+//                } else if distance == closest {
+//                    print("SAME DISTAnCE!--- PROBLEM!")
+//                }
+//            }
+//            print("matched polygon", matchedCountry.title, createdPolygonOverlays[matchedCountry.title!]!.title)
+//            //now want to change the appearance of this polygon
+//            
+//            //if this matched country was not the previous one
+//            if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry.title! && previousMatch != matchedCountry {
+//                switchOpacities(matchedCountry)
+//            //if the matched country is the same as the previous match then delete the overlay
+//            } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry.title && previousMatch == matchedCountry {
+//                if (toFind == matchedCountry.title) {
+//                    self.label.text = "Found!"
+//                    label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+//                    //add toFind to guessed
+//                    delay(1.0) {
+//                        self.game["guessed"]![self.toFind] = self.toFind
+//                        self.game["toPlay"]!.removeValueForKey(self.toFind)
+//                        self.resetQuestionLabel()
+//                    }
+//                    
+//                    //then we can delete country overlay from map as correct selection
+//                    updateMapOverlays(matchedCountry.title!)
+//                    previousMatch = ""
+//                } else {
+//                    //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
+//                    label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+//                    delay(1.0) {
+//                        self.label.text = "Find \(self.toFind)"
+//                        self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+//                    }
+//                }
+//            }
+//        } else if polys.count == 1 {
+//            //then only one country found
+//            //if this country has been tapped last then we want to delete it else we make it transparent
+//            if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch != polys[0].title! {
+//                switchOpacities(polys[0])
+//            } else if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch == polys[0].title! {
+//                if (toFind == polys[0].title!) {
+//                    self.label.text = "Found!"
+//                    label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+//                    delay(1.0) {
+//                        self.game["guessed"]![self.toFind] = self.toFind
+//                        self.game["toPlay"]!.removeValueForKey(self.toFind)
+//                        self.resetQuestionLabel()
+//                    }
+//                    //then we can delete country overlay from map as correct selection
+//                    updateMapOverlays(polys[0].title!)
+//                    previousMatch = ""
+//                } else {
+//                    //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
+//                    label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+//                    delay(1.0) {
+//                        self.label.text = "Where is \(self.toFind)?"
+//                        self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+//                    }
+//                }
+//            }
+//        }
         
+    }
+    
+    func contains(polygon: [CLLocationCoordinate2D], selectedPoint: CLLocationCoordinate2D) -> Bool {
+        var pJ=polygon.last!
+        var contains = false
+        for pI in polygon {
+            if ( ((pI.latitude >= selectedPoint.latitude) != (pJ.latitude >= selectedPoint.latitude)) &&
+                (selectedPoint.longitude <= (pJ.longitude - pI.longitude) * (selectedPoint.latitude - pI.latitude) / (pJ.latitude - pI.latitude) + pI.longitude) ){
+                contains = !contains
+            }
+            pJ=pI
+        }
+        return contains
     }
     
 
@@ -223,14 +264,14 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "showScore" {
-            let controller = segue.destinationViewController as! ScoreViewController
-            //get the id property on the annotation
-            controller.score = score
-            controller.scoreTotal = totalCountries
-        }
-    }
+//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+//        if segue.identifier == "showScore" {
+//            let controller = segue.destinationViewController as! ScoreViewController
+//            //get the id property on the annotation
+//            controller.score = score
+//            controller.scoreTotal = totalCountries
+//        }
+//    }
     
     //logic for the switching of country if the same country is not tapped again
     func switchOpacities (currentMatch: MKPolygon) {
@@ -246,7 +287,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
             worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
         }
-        previousMatch = polys[0].title!
+        previousMatch = createdPolygonOverlays[currentMatch.title!]!.title!
         //delete the polygon and then re-add it
         worldMap.removeOverlay(createdPolygonOverlays[currentMatch.title!]!)
         worldMap.addOverlay(createdPolygonOverlays[currentMatch.title!]!)
@@ -310,6 +351,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 polygons.append(multiPolygon)
                 worldMap.addOverlay(multiPolygon)
                 createdPolygonOverlays[multiPolygon.title!] = multiPolygon
+                coordinates[multiPolygon.title!] = landArea
             }
             //countries[key]?.polygons = polygons
         } else {
@@ -320,6 +362,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             //countries[key]?.polygons = [polygon]
             worldMap.addOverlay(polygon)
             createdPolygonOverlays[polygon.title!] = polygon
+            coordinates[polygon.title!] = countryShape.boundary
         }
         
         if resetZoom {
