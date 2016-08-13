@@ -21,7 +21,8 @@ import MapKit
 import CoreData
 
 //todo: better click accurcay
-// add label to country on delete
+//Sort out alpha value in click if NOT clicked the same country again
+//Sort out why on click some countries there is no response
 
 class ViewController: CoreDataController, MKMapViewDelegate {
 
@@ -98,41 +99,57 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             }
             print("matched polygon", matchedCountry.title)
             //now want to change the appearance of this polygon
-            //if this country has been tapped last then we want to delete it else we make it transparent
+            
+            //if this matched country was not the previous one
             if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch != matchedCountry {
-                //update the polygon in the polygon dictionary
+                
+                //make the subtitle 0.8
                 createdPolygonOverlays[matchedCountry.title!]!.subtitle = "0.8"
+                
+                //if the previous polygon exists the reset the value
+                if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
+                    //update the polygon in the polygon dictionary
+                    createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
+                    print("previous NOT in change to 0.8", createdPolygonOverlays[previousMatch]!.subtitle)
+                }
                 previousMatch = matchedCountry.title!
-                //need a way to update just one polygons alpha
-                
-                //delete the polygon and then re-add it?
+                //delete the polygon and then re-add it
                 worldMap.removeOverlay(createdPolygonOverlays[matchedCountry.title!]!)
+                worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
                 worldMap.addOverlay(createdPolygonOverlays[matchedCountry.title!]!)
-               
-                
+                worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
+            
+            //if the matched country is the same as the previous match then delete the overlay
             } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch == matchedCountry {
-                //countriesInContinent.removeAtIndex(index)
+                print("previous same", previousMatch)
+                //second tap on this country then we want to remove it
                 updateMapOverlays(matchedCountry.title!)
-            } else {
-                createdPolygonOverlays[matchedCountry.title!]!.subtitle = "1.0"
+                previousMatch = ""
             }
         } else if polys.count == 1 {
             //then only one country found
-            print("found one match!", createdPolygonOverlays.count)
             //if this country has been tapped last then we want to delete it else we make it transparent
             if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch != polys[0].title! {
+                print("current prev", previousMatch)
+                //make the subtitle 0.8
                 createdPolygonOverlays[polys[0].title!]!.subtitle = "0.8"
+                
+                //if the previous polygon exists the reset the value
+                if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
+                    //update the polygon in the polygon dictionary
+                    createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
+                    print("previous NOT in change to 0.8", createdPolygonOverlays[previousMatch]!.subtitle)
+                }
                 previousMatch = polys[0].title!
-                //need a way to update just the one polygon
-                
-                //delete the polygon and then re-add it?
+                //delete the polygon and then re-add it
                 worldMap.removeOverlay(createdPolygonOverlays[polys[0].title!]!)
+                worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
                 worldMap.addOverlay(createdPolygonOverlays[polys[0].title!]!)
-                
+                worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
             } else if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch == polys[0].title! {
+                print("previous SAME", previousMatch)
                 updateMapOverlays(polys[0].title!)
-            } else {
-                createdPolygonOverlays[polys[0].title!]!.subtitle = "1.0"
+                previousMatch = ""
             }
         }
         
