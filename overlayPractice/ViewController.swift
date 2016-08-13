@@ -122,9 +122,9 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 
                 //say if the matched name exists in the polygons on the screen
                 
-                if previousMatch != createdPolygonOverlays[key]!.title {
-                    switchOpacities(createdPolygonOverlays[key]!)
-                } else if previousMatch == createdPolygonOverlays[key]!.title {
+                //if previousMatch != createdPolygonOverlays[key]!.title {
+                    //switchOpacities(createdPolygonOverlays[key]!)
+                //} else if previousMatch == createdPolygonOverlays[key]!.title {
                     if (toFind == createdPolygonOverlays[key]!.title) {
                         self.label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
@@ -144,7 +144,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
                     }
-                }
+                //}
                 
                 
             } else {
@@ -201,24 +201,24 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 //    }
     
     //logic for the switching of country if the same country is not tapped again
-    func switchOpacities (currentMatch: MKPolygon) {
-        print("current prev", previousMatch, currentMatch.title!)
-        //make the subtitle 0.8
-        createdPolygonOverlays[currentMatch.title!]!.subtitle = "0.8"
-        
-        //if the previous polygon exists the reset the value
-        if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
-            //update the polygon in the polygon dictionary
-            createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
-            print("---->retrun prev to 1", createdPolygonOverlays[previousMatch]!.subtitle)
-            worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
-            worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
-        }
-        previousMatch = createdPolygonOverlays[currentMatch.title!]!.title!
-        //delete the polygon and then re-add it
-        worldMap.removeOverlay(createdPolygonOverlays[currentMatch.title!]!)
-        worldMap.addOverlay(createdPolygonOverlays[currentMatch.title!]!)
-    }
+//    func switchOpacities (currentMatch: MKPolygon) {
+//        print("current prev", previousMatch, currentMatch.title!)
+//        //make the subtitle 0.8
+//        createdPolygonOverlays[currentMatch.title!]!.subtitle = "0.8"
+//        
+//        //if the previous polygon exists the reset the value
+//        if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
+//            //update the polygon in the polygon dictionary
+//            createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
+//            print("---->retrun prev to 1", createdPolygonOverlays[previousMatch]!.subtitle)
+//            worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
+//            worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
+//        }
+//        previousMatch = createdPolygonOverlays[currentMatch.title!]!.title!
+//        //delete the polygon and then re-add it
+//        worldMap.removeOverlay(createdPolygonOverlays[currentMatch.title!]!)
+//        worldMap.addOverlay(createdPolygonOverlays[currentMatch.title!]!)
+//    }
 
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
