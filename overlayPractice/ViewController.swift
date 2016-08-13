@@ -97,16 +97,14 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                     print("SAME DISTAnCE!--- PROBLEM!")
                 }
             }
-            print("matched polygon", matchedCountry.title)
+            print("matched polygon", matchedCountry.title, createdPolygonOverlays[matchedCountry.title!]!.title)
             //now want to change the appearance of this polygon
             
             //if this matched country was not the previous one
-            if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch != matchedCountry {
-                
-                
-            
+            if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry.title! && previousMatch != matchedCountry {
+                switchOpacities(matchedCountry)
             //if the matched country is the same as the previous match then delete the overlay
-            } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch == matchedCountry {
+            } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry.title && previousMatch == matchedCountry {
                 print("previous same", previousMatch)
                 //second tap on this country then we want to remove it
                 updateMapOverlays(matchedCountry.title!)
