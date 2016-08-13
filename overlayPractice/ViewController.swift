@@ -40,8 +40,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     
     let label = UILabel()
     
-    var createdPolygonOverlays = [String: MKPolygon]()
-    var coordinates = [String: [CLLocationCoordinate2D]]()
+    var createdPolygonOverlays = [String: [MKPolygon]]()
+    var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -116,16 +116,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         
         //loop through the countries in continent
         for (key, _) in coordinates {
-            //if any coordinates array contains the tapped point then return true!
-            if (contains(coordinates[key]!, selectedPoint: tappedCoordinates)) {
-                print("MATCHED", createdPolygonOverlays[key]!.title)
-                
-                //say if the matched name exists in the polygons on the screen
-                
-                //if previousMatch != createdPolygonOverlays[key]!.title {
-                    //switchOpacities(createdPolygonOverlays[key]!)
-                //} else if previousMatch == createdPolygonOverlays[key]!.title {
-                    if (toFind == createdPolygonOverlays[key]!.title) {
+            
+            for landArea in coordinates[key]! {
+                //each thing is a land area of coordinates
+                if (contains(landArea, selectedPoint: tappedCoordinates)) {
+                    if (toFind == key) {
                         self.label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
                         delay(1.0) {
@@ -134,7 +129,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                             self.resetQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
-                        updateMapOverlays(createdPolygonOverlays[key]!.title!)
+                        updateMapOverlays(key)
                         previousMatch = ""
                     } else {
                         //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
@@ -144,12 +139,12 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
                     }
-                //}
-                
-                
-            } else {
-                print("NO MATCH")
+                } else {
+                    print("NO MATCH")
+                }
+     
             }
+
         }
         
     }
@@ -199,28 +194,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 //            controller.scoreTotal = totalCountries
 //        }
 //    }
-    
-    //logic for the switching of country if the same country is not tapped again
-//    func switchOpacities (currentMatch: MKPolygon) {
-//        print("current prev", previousMatch, currentMatch.title!)
-//        //make the subtitle 0.8
-//        createdPolygonOverlays[currentMatch.title!]!.subtitle = "0.8"
-//        
-//        //if the previous polygon exists the reset the value
-//        if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
-//            //update the polygon in the polygon dictionary
-//            createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
-//            print("---->retrun prev to 1", createdPolygonOverlays[previousMatch]!.subtitle)
-//            worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
-//            worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
-//        }
-//        previousMatch = createdPolygonOverlays[currentMatch.title!]!.title!
-//        //delete the polygon and then re-add it
-//        worldMap.removeOverlay(createdPolygonOverlays[currentMatch.title!]!)
-//        worldMap.addOverlay(createdPolygonOverlays[currentMatch.title!]!)
-//    }
 
-    
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let reuseId: String = "reuseid"
         
@@ -277,10 +251,10 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
                 polygons.append(multiPolygon)
                 worldMap.addOverlay(multiPolygon)
-                createdPolygonOverlays[multiPolygon.title!] = multiPolygon
-                coordinates[multiPolygon.title!] = landArea
+                polygons.append(multiPolygon)
             }
-            //countries[key]?.polygons = polygons
+            createdPolygonOverlays[countryShape.country] = polygons
+            coordinates[countryShape.country] = countryShape.multiBoundary
         } else {
             let polygon = MKPolygon(coordinates: &countryShape.boundary, count: countryShape.boundaryPointsCount)
             polygon.title = countryShape.country
@@ -288,10 +262,11 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: polygon)
             //countries[key]?.polygons = [polygon]
             worldMap.addOverlay(polygon)
-            createdPolygonOverlays[polygon.title!] = polygon
-            coordinates[polygon.title!] = countryShape.boundary
+            createdPolygonOverlays[polygon.title!] = [polygon]
+            coordinates[polygon.title!] = [countryShape.boundary]
         }
         
+        //TODO: break out to another fn
         if resetZoom {
             //I could find the max and min lat and long but as there are only 6/7 continents this feels ugly and I would rather have a dictionary of all the coordinates and a scale to use
             var midPoints = [
