@@ -47,6 +47,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     var continent: String?
     
     var score: Int = 0
+    var totalCountries: Int = 0
     
     var game = [
         "guessed": [String:String](),
@@ -61,6 +62,9 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let showButton: UIBarButtonItem = UIBarButtonItem(title: "Show", style: .Plain, target: self, action: #selector(self.showAllCountries))
+        self.navigationItem.rightBarButtonItem = showButton
         
         score = createdPolygonOverlays.count
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -79,7 +83,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                 addBoundary(country, resetZoom: true)
             }
         }
-        self.title = String("\(score) / \(createdPolygonOverlays.count)")
+        totalCountries = createdPolygonOverlays.count
+        self.title = String("\(score) / \(totalCountries)")
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
@@ -100,6 +105,17 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)
         worldMap.addSubview(label)
+    }
+    
+    func showAllCountries () {
+        //TODO: more functionality??
+        //delete all overlays off the map
+        for overlay: MKOverlay in worldMap.overlays {
+            //TODO: show name of country
+            worldMap.removeOverlay(overlay)
+        }
+        //delete the countries dictionary
+        createdPolygonOverlays.removeAll()
     }
     
     var polys = [MKPolygon]()
@@ -207,11 +223,26 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     
     //ask new question
     func resetQuestionLabel () {
-        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-        let randomVal = Array(game["toPlay"]!.values)[index]
-        toFind = randomVal
-        label.text = "Where is \(randomVal)?"
-        label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+        if game["toPlay"]?.count > 0 {
+            let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
+            let randomVal = Array(game["toPlay"]!.values)[index]
+            toFind = randomVal
+            label.text = "Where is \(randomVal)?"
+            label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+        } else {
+            //nothing left to play - all countries have been guessed
+            //push to score screen
+            performSegueWithIdentifier("showScore", sender: nil)
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "showScore" {
+            let controller = segue.destinationViewController as! ScoreViewController
+            //get the id property on the annotation
+            controller.score = score
+            controller.scoreTotal = totalCountries
+        }
     }
     
     //logic for the switching of country if the same country is not tapped again
@@ -276,7 +307,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             }
         }
         score += 1
-        self.title = String("\(score) / \(createdPolygonOverlays.count)")
+        self.title = String("\(score) / \(totalCountries)")
     }
 
     func addBoundary(countryShape: Country, resetZoom: Bool) {

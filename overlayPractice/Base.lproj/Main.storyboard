@@ -35,11 +35,51 @@
                     </view>
                     <connections>
                         <outlet property="worldMap" destination="l8A-8g-QZk" id="24k-eT-7ts"/>
+                        <segue destination="bSz-hd-KAs" kind="show" identifier="showScore" id="BNX-qd-wIf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="708" y="487"/>
+        </scene>
+        <!--Score View Controller-->
+        <scene sceneID="JGY-Yt-J9A">
+            <objects>
+                <viewController id="bSz-hd-KAs" customClass="ScoreViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YtN-ZL-YuP"/>
+                        <viewControllerLayoutGuide type="bottom" id="hxu-yh-EVT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9R7-uw-1Cz">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You scored:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-s6-j3V">
+                                <rect key="frame" x="255" y="175" width="91" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIt-Br-sdo">
+                                <rect key="frame" x="260" y="252" width="81" height="96"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hTN-s6-j3V" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="BiI-IQ-G52"/>
+                            <constraint firstItem="hTN-s6-j3V" firstAttribute="centerY" secondItem="9R7-uw-1Cz" secondAttribute="centerY" constant="-114.5" id="sM1-Ns-SMz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="scoreLabel" destination="vIt-Br-sdo" id="EQp-Ge-HVc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bob-r1-aZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1426" y="487"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="roh-m0-3kG">
