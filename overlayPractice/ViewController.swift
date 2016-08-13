@@ -103,21 +103,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             //if this matched country was not the previous one
             if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch != matchedCountry {
                 
-                //make the subtitle 0.8
-                createdPolygonOverlays[matchedCountry.title!]!.subtitle = "0.8"
                 
-                //if the previous polygon exists the reset the value
-                if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
-                    //update the polygon in the polygon dictionary
-                    createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
-                    print("previous NOT in change to 0.8", createdPolygonOverlays[previousMatch]!.subtitle)
-                }
-                previousMatch = matchedCountry.title!
-                //delete the polygon and then re-add it
-                worldMap.removeOverlay(createdPolygonOverlays[matchedCountry.title!]!)
-                worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
-                worldMap.addOverlay(createdPolygonOverlays[matchedCountry.title!]!)
-                worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
             
             //if the matched country is the same as the previous match then delete the overlay
             } else if createdPolygonOverlays[matchedCountry.title!]!.title == matchedCountry && previousMatch == matchedCountry {
@@ -130,29 +116,33 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             //then only one country found
             //if this country has been tapped last then we want to delete it else we make it transparent
             if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch != polys[0].title! {
-                print("current prev", previousMatch)
-                //make the subtitle 0.8
-                createdPolygonOverlays[polys[0].title!]!.subtitle = "0.8"
-                
-                //if the previous polygon exists the reset the value
-                if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
-                    //update the polygon in the polygon dictionary
-                    createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
-                    print("previous NOT in change to 0.8", createdPolygonOverlays[previousMatch]!.subtitle)
-                }
-                previousMatch = polys[0].title!
-                //delete the polygon and then re-add it
-                worldMap.removeOverlay(createdPolygonOverlays[polys[0].title!]!)
-                worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
-                worldMap.addOverlay(createdPolygonOverlays[polys[0].title!]!)
-                worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
+                switchOpacities(polys[0])
             } else if createdPolygonOverlays[polys[0].title!]!.title == polys[0].title! && previousMatch == polys[0].title! {
-                print("previous SAME", previousMatch)
                 updateMapOverlays(polys[0].title!)
                 previousMatch = ""
             }
         }
         
+    }
+    
+    //logic for the switching of country if the same country is not tapped again
+    func switchOpacities (currentMatch: MKPolygon) {
+        print("current prev", previousMatch, currentMatch.title!)
+        //make the subtitle 0.8
+        createdPolygonOverlays[currentMatch.title!]!.subtitle = "0.8"
+        
+        //if the previous polygon exists the reset the value
+        if (createdPolygonOverlays[previousMatch] != nil) && previousMatch != "" {
+            //update the polygon in the polygon dictionary
+            createdPolygonOverlays[previousMatch]!.subtitle = "1.0"
+            print("---->retrun prev to 1", createdPolygonOverlays[previousMatch]!.subtitle)
+            worldMap.removeOverlay(createdPolygonOverlays[previousMatch]!)
+            worldMap.addOverlay(createdPolygonOverlays[previousMatch]!)
+        }
+        previousMatch = polys[0].title!
+        //delete the polygon and then re-add it
+        worldMap.removeOverlay(createdPolygonOverlays[currentMatch.title!]!)
+        worldMap.addOverlay(createdPolygonOverlays[currentMatch.title!]!)
     }
 
     
