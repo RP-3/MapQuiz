@@ -25,7 +25,7 @@
 		950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3891D569B09001C5893 /* CoreDataController.swift */; };
 		950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BD3891D569B09001C5893 /* CoreDataController.swift */; };
 		950C36151D56479E009710DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
-		950C36171D56479E009710DD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* ViewController.swift */; };
+		950C36171D56479E009710DD /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* MapViewController.swift */; };
 		950C361A1D56479E009710DD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C36181D56479E009710DD /* Main.storyboard */; };
 		950C361C1D56479E009710DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 950C361B1D56479E009710DD /* Assets.xcassets */; };
 		950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C361D1D56479E009710DD /* LaunchScreen.storyboard */; };
@@ -41,8 +41,8 @@
 		95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
-		95FD93021D5962D1007E98E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* ViewController.swift */; };
-		95FD93031D5962D1007E98E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* ViewController.swift */; };
+		95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* MapViewController.swift */; };
+		95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* MapViewController.swift */; };
 		95FD93041D596347007E98E1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		95FD93051D596348007E98E1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		95FD93071D5A0879007E98E1 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 95FD93061D5A0879007E98E1 /* countries.json */; };
@@ -80,7 +80,7 @@
 		950BD3891D569B09001C5893 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
 		950C36111D56479E009710DD /* overlayPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = overlayPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36141D56479E009710DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		950C36161D56479E009710DD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		950C36161D56479E009710DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		950C36191D56479E009710DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		950C361B1D56479E009710DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		950C361E1D56479E009710DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -157,7 +157,7 @@
 		950BD3881D569AE9001C5893 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				950C36161D56479E009710DD /* ViewController.swift */,
+				950C36161D56479E009710DD /* MapViewController.swift */,
 				950BD3891D569B09001C5893 /* CoreDataController.swift */,
 				95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */,
 				95B7BF531D5F585B004B1760 /* ScoreViewController.swift */,
@@ -507,7 +507,7 @@
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
-				950C36171D56479E009710DD /* ViewController.swift in Sources */,
+				950C36171D56479E009710DD /* MapViewController.swift in Sources */,
 				950BD38A1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
@@ -524,7 +524,7 @@
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
-				95FD93021D5962D1007E98E1 /* ViewController.swift in Sources */,
+				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
@@ -541,7 +541,7 @@
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
-				95FD93031D5962D1007E98E1 /* ViewController.swift in Sources */,
+				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,

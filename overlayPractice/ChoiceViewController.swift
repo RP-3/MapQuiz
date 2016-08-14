@@ -57,7 +57,7 @@ class ChoiceViewController: CoreDataController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showMap" {
-            let controller = segue.destinationViewController as! ViewController
+            let controller = segue.destinationViewController as! MapViewController
             controller.continent = continentChoice
         }
     }

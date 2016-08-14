@@ -9,7 +9,7 @@
         <!--Score:-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Score:" id="BYZ-38-t0r" customClass="ViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Score:" id="BYZ-38-t0r" customClass="MapViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

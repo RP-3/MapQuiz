@@ -22,7 +22,7 @@ import CoreData
 
 //todo: better click accurcay!!!
 
-class ViewController: CoreDataController, MKMapViewDelegate {
+class MapViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
     
@@ -67,7 +67,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         totalCountries = createdPolygonOverlays.count
         self.title = String("\(score) / \(totalCountries)")
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.overlaySelected))
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
         
         //start the game
