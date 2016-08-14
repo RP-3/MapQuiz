@@ -46,9 +46,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let showButton: UIBarButtonItem = UIBarButtonItem(title: "Show", style: .Plain, target: self, action: #selector(self.showAllCountries))
-        self.navigationItem.rightBarButtonItem = showButton
-        
         score = createdPolygonOverlays.count
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -76,39 +73,25 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         //start the game
         //make label to show the user and pick random index to grab country name with
         
-        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-        let randomVal = Array(game["toPlay"]!.values)[index]
-        makeQuestionLabel(randomVal)
+        makeQuestionLabel()
         
         worldMap.mapType = .Satellite
     }
     
-    func makeQuestionLabel (countryToFind: String) {
+    func makeQuestionLabel () {
+        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
+        let countryToFind = Array(game["toPlay"]!.values)[index]
         toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
-        let screenHeight = UIScreen.mainScreen().bounds.height
-        label.frame = CGRectMake(0, (screenHeight - 105), (screenSize.width + 5), 44)
+        label.frame = CGRectMake(0, 0 + 44, (screenSize.width + 5), 35)
         
         label.textAlignment = NSTextAlignment.Center
-        label.text = "Find \(countryToFind)"
+        label.text = "Find: \(countryToFind)"
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)
         worldMap.addSubview(label)
     }
-    
-    func showAllCountries () {
-        //TODO: more functionality??
-        //delete all overlays off the map
-        for overlay: MKOverlay in worldMap.overlays {
-            //TODO: show name of country
-            worldMap.removeOverlay(overlay)
-        }
-        //delete the countries dictionary
-        createdPolygonOverlays.removeAll()
-        setZoomForContinent()
-    }
-    
     
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         
@@ -135,7 +118,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                         //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                         delay(1.0) {
-                            self.label.text = "Find \(self.toFind)"
+                            self.label.text = "Find: \(self.toFind)"
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
                     }
@@ -175,7 +158,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
             let randomVal = Array(game["toPlay"]!.values)[index]
             toFind = randomVal
-            label.text = "Find \(randomVal)"
+            label.text = "Find: \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //nothing left to play - all countries have been guessed
@@ -259,12 +242,24 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             polygonView.lineWidth = 0.75
             polygonView.alpha = 0.8
             polygonView.strokeColor = UIColor.whiteColor()
-            if (overlay.subtitle == nil) {
-                polygonView.fillColor = UIColor.orangeColor()
-            }
+//            if (overlay.subtitle == nil) {
+            polygonView.fillColor = UIColor.orangeColor()
+//            }
             return polygonView
         }
         return MKOverlayRenderer()
+    }
+    
+    @IBAction func showAll(sender: AnyObject) {
+        //TODO: more functionality??
+        //delete all overlays off the map
+        for overlay: MKOverlay in worldMap.overlays {
+            //TODO: show name of country
+            worldMap.removeOverlay(overlay)
+        }
+        //delete the countries dictionary
+        createdPolygonOverlays.removeAll()
+        setZoomForContinent()
     }
     
     func setZoomForContinent () {
