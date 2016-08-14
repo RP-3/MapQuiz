@@ -63,7 +63,8 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             if (entity.continent == continent) {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 game["toPlay"]![entity.name!] = entity.name
-                addBoundary(country, resetZoom: true)
+                addBoundary(country)
+                setZoomForContinent()
             }
         }
         totalCountries = createdPolygonOverlays.count
@@ -74,21 +75,26 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         
         //start the game
         //make label to show the user and pick random index to grab country name with
+        
         let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
         let randomVal = Array(game["toPlay"]!.values)[index]
-        toFind = randomVal
+        makeQuestionLabel(randomVal)
         
+        worldMap.mapType = .Satellite
+    }
+    
+    func makeQuestionLabel (countryToFind: String) {
+        toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         let screenHeight = UIScreen.mainScreen().bounds.height
         label.frame = CGRectMake(0, (screenHeight - 105), (screenSize.width + 5), 44)
         
         label.textAlignment = NSTextAlignment.Center
-        label.text = "Find \(randomVal)"
+        label.text = "Find \(countryToFind)"
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)
         worldMap.addSubview(label)
-        worldMap.mapType = .Satellite
     }
     
     func showAllCountries () {
@@ -100,19 +106,14 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
-        //zoom out to the whole region?
+        setZoomForContinent()
     }
     
-    var polys = [MKPolygon]()
-    var previousMatch: String = ""
     
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-       
-        //empty out arrays of data
-        polys.removeAll()
         
         //loop through the countries in continent
         for (key, _) in coordinates {
@@ -126,21 +127,18 @@ class ViewController: CoreDataController, MKMapViewDelegate {
                         delay(1.0) {
                             self.game["guessed"]![self.toFind] = self.toFind
                             self.game["toPlay"]!.removeValueForKey(self.toFind)
-                            self.resetQuestionLabel()
+                            self.setQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
                         updateMapOverlays(key)
-                        previousMatch = ""
                     } else {
                         //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                         delay(1.0) {
-                            self.label.text = "Where is \(self.toFind)?"
+                            self.label.text = "Find \(self.toFind)"
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
                     }
-                } else {
-                    print("NO MATCH")
                 }
      
             }
@@ -172,12 +170,12 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     }
     
     //ask new question
-    func resetQuestionLabel () {
+    func setQuestionLabel () {
         if game["toPlay"]?.count > 0 {
             let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
             let randomVal = Array(game["toPlay"]!.values)[index]
             toFind = randomVal
-            label.text = "Where is \(randomVal)?"
+            label.text = "Find \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //nothing left to play - all countries have been guessed
@@ -225,7 +223,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
         for overlay: MKOverlay in worldMap.overlays {
-            //worldMap.removeOverlay(overlay)
             if overlay.title! == titleOfPolyToRemove {
                 createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
                 let annotation = MKPointAnnotation()
@@ -239,7 +236,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         self.title = String("\(score) / \(totalCountries)")
     }
 
-    func addBoundary(countryShape: Country, resetZoom: Bool) {
+    func addBoundary(countryShape: Country) {
 
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
@@ -253,26 +250,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         }
         createdPolygonOverlays[countryShape.country] = polygons
         coordinates[countryShape.country] = countryShape.boundary
-        
-        //TODO: break out to another fn
-        if resetZoom {
-            //I could find the max and min lat and long but as there are only 6/7 continents this feels ugly and I would rather have a dictionary of all the coordinates and a scale to use
-            var midPoints = [
-                "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
-                "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
-                "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
-                "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
-                "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
-                "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
-            ]
-            
-            let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-            let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-            let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-            let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
-            let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
-            worldMap.setRegion(region, animated: true)
-        }
 
     }
     
@@ -282,24 +259,34 @@ class ViewController: CoreDataController, MKMapViewDelegate {
             polygonView.lineWidth = 0.75
             polygonView.alpha = 0.8
             polygonView.strokeColor = UIColor.whiteColor()
-            polygonView.fillColor = UIColor.orangeColor()
+            if (overlay.subtitle == nil) {
+                polygonView.fillColor = UIColor.orangeColor()
+            }
             return polygonView
         }
         return MKOverlayRenderer()
     }
+    
+    func setZoomForContinent () {
+        // dictionary of points and zooms for the continents
+        var midPoints = [
+            "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
+            "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
+            "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
+            "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
+            "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
+            "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
+        ]
+        
+        let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
+        let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
+        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
+        worldMap.setRegion(region, animated: true)
+    }
 
 }
 
-//class customPolygon: MKPolygon {
-//    var alpha: CGFloat
-//    var country: String
-//    var polygonShape: MKPolygon
-//    
-//    init(countryName: String, alphaValue: CGFloat, polygon: MKPolygon) {
-//        country = countryName
-//        alpha = alphaValue
-//        polygonShape = polygon
-//    }
-//}
 
 
