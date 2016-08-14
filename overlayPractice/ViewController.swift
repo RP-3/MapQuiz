@@ -152,6 +152,10 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         dispatch_get_main_queue(), closure)
     }
     
+    @IBAction func skip(sender: AnyObject) {
+        setQuestionLabel()
+    }
+    
     //ask new question
     func setQuestionLabel () {
         if game["toPlay"]?.count > 0 {

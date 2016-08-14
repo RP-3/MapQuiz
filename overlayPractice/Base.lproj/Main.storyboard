@@ -34,7 +34,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fiC-nJ-RxD"/>
-                                    <barButtonItem systemItem="fastForward" id="b97-5y-DDv"/>
+                                    <barButtonItem systemItem="fastForward" id="b97-5y-DDv">
+                                        <connections>
+                                            <action selector="skip:" destination="BYZ-38-t0r" id="13N-42-Dpx"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oId-07-gXD"/>
                                 </items>
                             </toolbar>
