@@ -88,6 +88,7 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)
         worldMap.addSubview(label)
+        worldMap.mapType = .Satellite
     }
     
     func showAllCountries () {
@@ -100,7 +101,6 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
         //zoom out to the whole region?
-        
     }
     
     var polys = [MKPolygon]()
@@ -241,30 +241,18 @@ class ViewController: CoreDataController, MKMapViewDelegate {
 
     func addBoundary(countryShape: Country, resetZoom: Bool) {
 
-        if countryShape.geojsonFormat == "MultiPolygon" {
-            var polygons = [MKPolygon]()
-            //then need to loop through each boundary and make each a polygon and calculate the number of points
-            for var landArea in (countryShape.multiBoundary) {
-                let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-                multiPolygon.title = countryShape.country
-                multiPolygon.subtitle = countryShape.alpha
-                //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
-                polygons.append(multiPolygon)
-                worldMap.addOverlay(multiPolygon)
-                polygons.append(multiPolygon)
-            }
-            createdPolygonOverlays[countryShape.country] = polygons
-            coordinates[countryShape.country] = countryShape.multiBoundary
-        } else {
-            let polygon = MKPolygon(coordinates: &countryShape.boundary, count: countryShape.boundaryPointsCount)
-            polygon.title = countryShape.country
-            polygon.subtitle = countryShape.alpha
-            //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: polygon)
-            //countries[key]?.polygons = [polygon]
-            worldMap.addOverlay(polygon)
-            createdPolygonOverlays[polygon.title!] = [polygon]
-            coordinates[polygon.title!] = [countryShape.boundary]
+        var polygons = [MKPolygon]()
+        //then need to loop through each boundary and make each a polygon and calculate the number of points
+        for var landArea in (countryShape.boundary) {
+            let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
+            multiPolygon.title = countryShape.country
+            //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
+            polygons.append(multiPolygon)
+            worldMap.addOverlay(multiPolygon)
+            polygons.append(multiPolygon)
         }
+        createdPolygonOverlays[countryShape.country] = polygons
+        coordinates[countryShape.country] = countryShape.boundary
         
         //TODO: break out to another fn
         if resetZoom {
@@ -292,11 +280,9 @@ class ViewController: CoreDataController, MKMapViewDelegate {
         if overlay is MKPolygon {
             let polygonView = MKPolygonRenderer(overlay: overlay)
             polygonView.lineWidth = 0.75
+            polygonView.alpha = 0.8
             polygonView.strokeColor = UIColor.whiteColor()
             polygonView.fillColor = UIColor.orangeColor()
-            if let n = NSNumberFormatter().numberFromString(overlay.subtitle!!) {
-                polygonView.alpha = CGFloat(n)
-            }
             return polygonView
         }
         return MKOverlayRenderer()

@@ -13,11 +13,9 @@ import SwiftyJSON
 class Country {
     
     var country: String
-    var boundary: [CLLocationCoordinate2D]
-    var multiBoundary: [[CLLocationCoordinate2D]]
+    var boundary: [[CLLocationCoordinate2D]]
     var boundaryPointsCount: NSInteger
     var geojsonFormat: String
-    var alpha: String = "1.0"
     
     init (name: String, points: String, coordType: String) {
         
@@ -29,21 +27,20 @@ class Country {
         let json = JSON(data: data)
         
         boundary = []
-        multiBoundary = []
         boundaryPointsCount = 0
         
         //add logic here to ask if the 0th array is > 1 and keep going to deepest nesting
         if coordType == "Polygon" {
             //take json loop through and make polygon points
             for i in 0...json.count-1 {
-                //need another loop here??
                 boundaryPointsCount = json[i].count
-                //print("count", boundaryPointsCount, name)
+                var points = [CLLocationCoordinate2D]()
                 for element in json[i] {
                     let lat = String(element.1[1])
                     let long = String(element.1[0])
-                    boundary += [CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)]
+                    points.append(CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!))
                 }
+                boundary.append(points)
             }
         } else if coordType == "MultiPolygon" {
             //loop through json and for each one inside this loop through
@@ -64,7 +61,7 @@ class Country {
                         let coords = CLLocationCoordinate2DMake(CLLocationDegrees(lat)!, CLLocationDegrees(long)!)
                         shape.append(coords)
                     }
-                    multiBoundary += [shape]
+                    boundary.append(shape)
                 }
             }
             
