@@ -62,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="708" y="487"/>
+            <point key="canvasLocation" x="1482" y="487"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
@@ -101,7 +101,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bob-r1-aZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1426" y="487"/>
+            <point key="canvasLocation" x="2226" y="487"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="roh-m0-3kG">
@@ -204,12 +204,59 @@
                     </view>
                     <navigationItem key="navigationItem" id="YCI-IH-Zwp"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMap" id="VJI-Nh-8dY"/>
+                        <segue destination="X10-jV-LcE" kind="show" identifier="pickGame" id="jjm-L2-doL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40" y="487"/>
+        </scene>
+        <!--Choose Quiz Mode-->
+        <scene sceneID="zk9-HW-YKC">
+            <objects>
+                <viewController id="X10-jV-LcE" customClass="ChooseQuizMode" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="RpZ-kT-OHM"/>
+                        <viewControllerLayoutGuide type="bottom" id="Svr-af-yzF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dxO-6u-vVA">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
+                                <rect key="frame" x="247" y="285" width="103" height="30"/>
+                                <state key="normal" title="Learning Mode">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="practice:" destination="X10-jV-LcE" eventType="touchUpInside" id="h5M-AM-V1k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
+                                <rect key="frame" x="247" y="210" width="107" height="30"/>
+                                <state key="normal" title="Challenge Time">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="challenge:" destination="X10-jV-LcE" eventType="touchUpInside" id="exR-PP-8Jb"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14921095749999999" green="0.76621809549999997" blue="0.72552637880000004" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="top" secondItem="Sxn-Bc-Ym6" secondAttribute="bottom" constant="45" id="677-FL-zLS"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="i74-SO-DjM"/>
+                            <constraint firstItem="Sxn-Bc-Ym6" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="nVx-nW-nEO"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" id="zrf-Yh-WaC"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMap" id="vr7-0c-mhh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="762" y="487"/>
         </scene>
     </scenes>
 </document>

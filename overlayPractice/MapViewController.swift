@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  overlayPractice
 //
 //  Created by Anna Rogers on 8/6/16.
@@ -26,7 +26,8 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
     
-    var continent: String?
+    var continent: String!
+    var mode: String!
     
     var score: Int = 0
     var totalCountries: Int = 0

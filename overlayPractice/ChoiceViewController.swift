@@ -27,37 +27,37 @@ class ChoiceViewController: CoreDataController {
     
     @IBAction func asiaButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
-        performSegueWithIdentifier("showMap", sender: nil)
+        performSegueWithIdentifier("pickGame", sender: nil)
     }
 
     @IBAction func ocianiaButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
-        performSegueWithIdentifier("showMap", sender: nil)
+        performSegueWithIdentifier("pickGame", sender: nil)
     }
 
     @IBAction func africaButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
-        performSegueWithIdentifier("showMap", sender: nil)
+        performSegueWithIdentifier("pickGame", sender: nil)
     }
 
     @IBAction func europeButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
-        performSegueWithIdentifier("showMap", sender: nil)
+        performSegueWithIdentifier("pickGame", sender: nil)
     }
     
     @IBAction func northAmericaButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
-        performSegueWithIdentifier("showMap", sender: nil)
+        performSegueWithIdentifier("pickGame", sender: nil)
     }
     
     @IBAction func southAmericaButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
-        performSegueWithIdentifier("showMap", sender: nil)
+        performSegueWithIdentifier("pickGame", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showMap" {
-            let controller = segue.destinationViewController as! MapViewController
+        if segue.identifier == "pickGame" {
+            let controller = segue.destinationViewController as! ChooseQuizMode
             controller.continent = continentChoice
         }
     }
