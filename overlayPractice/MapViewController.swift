@@ -35,19 +35,21 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
     var game = [
         "guessed": [String:String](),
         "toPlay": [String:String](),
+        "revealed": [String: String]()
     ]
     
     var toFind = ""
     //question label
     let label = UILabel()
     
+    //dictionary keyed by country name with the values as an array of all the polygons for that country
     var createdPolygonOverlays = [String: [MKPolygon]]()
+    //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
     var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        score = createdPolygonOverlays.count
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
@@ -66,7 +68,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
             }
         }
         totalCountries = createdPolygonOverlays.count
-        self.title = String("\(score) / \(totalCountries)")
+        self.title = String("0 / \(totalCountries)")
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
@@ -77,6 +79,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
         makeQuestionLabel()
         
         worldMap.mapType = .Satellite
+        
     }
     
     func makeQuestionLabel () {
@@ -109,8 +112,6 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
                         self.label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
                         self.delay(1.0) {
-                            self.game["guessed"]![self.toFind] = self.toFind
-                            self.game["toPlay"]!.removeValueForKey(self.toFind)
                             self.setQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
@@ -150,19 +151,25 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
         }
     }
     
-//    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-//        if segue.identifier == "showScore" {
-//            let controller = segue.destinationViewController as! ScoreViewController
-//            //get the id property on the annotation
-//            controller.score = score
-//            controller.scoreTotal = totalCountries
-//        }
-//    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if segue.identifier == "showScore" {
+            let controller = segue.destinationViewController as! ScoreViewController
+            //get the id property on the annotation
+            if mode == "practice" {
+                controller.score = game["guessed"]?.count
+                controller.scoreTotal = totalCountries
+                controller.revealed = game["revealed"]?.count
+            }
+            
+        }
+    }
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
+                //remove references to this polygon
                 createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
+                coordinates.removeValueForKey(titleOfPolyToRemove)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = overlay.coordinate
                 annotation.title = titleOfPolyToRemove
@@ -170,8 +177,9 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
                 worldMap.removeOverlay(overlay)
             }
         }
-        score += 1
-        self.title = String("\(score) / \(totalCountries)")
+        self.game["guessed"]![self.toFind] = self.toFind
+        self.game["toPlay"]!.removeValueForKey(self.toFind)
+        self.title = String("\(game["guessed"]!.count) / \(totalCountries)")
     }
 
     func addBoundary(countryShape: Country) {
@@ -204,7 +212,27 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
         setZoomForContinent()
     }
     
-
+    
+    // this button shows the uncovers the current courty being asked
+    @IBAction func reveal(sender: AnyObject) {
+        // get the name of the country being asked
+        for overlay in worldMap.overlays {
+            if overlay.title!! == toFind {
+                worldMap.removeOverlay(overlay)
+                //remove reference to it in view
+                continue
+            }
+        }
+        print("polygons: ",createdPolygonOverlays.count)
+        print("coordinates: ",coordinates.count)
+        game["toPlay"]!.removeValueForKey(toFind)
+        game["revealed"]![toFind] = toFind
+        createdPolygonOverlays.removeValueForKey(toFind)
+        coordinates.removeValueForKey(toFind)
+        setQuestionLabel()
+        
+    }
+    
 
 }
 

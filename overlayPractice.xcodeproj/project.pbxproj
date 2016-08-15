@@ -40,6 +40,8 @@
 		95ACFE2D1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */; };
 		95ACFE2E1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */; };
 		95ACFE2F1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */; };
+		95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
+		95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
@@ -538,6 +540,7 @@
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,6 +559,7 @@
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

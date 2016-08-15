@@ -28,15 +28,21 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ECH-xe-Oi7"/>
-                                    <barButtonItem title="Show All" id="FDV-bM-1nN">
+                                    <barButtonItem title="Reveal" id="jCr-3q-gxM">
                                         <connections>
-                                            <action selector="showAll:" destination="BYZ-38-t0r" id="h8w-T6-ump"/>
+                                            <action selector="reveal:" destination="BYZ-38-t0r" id="nEi-de-vwl"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="95c-ha-6RB"/>
+                                    <barButtonItem title="Skip" id="b97-5y-DDv">
+                                        <connections>
+                                            <action selector="skip:" destination="BYZ-38-t0r" id="13N-42-Dpx"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fiC-nJ-RxD"/>
-                                    <barButtonItem systemItem="fastForward" id="b97-5y-DDv">
+                                    <barButtonItem title="Show All" id="FDV-bM-1nN">
                                         <connections>
-                                            <action selector="skip:" destination="BYZ-38-t0r" id="13N-42-Dpx"/>
+                                            <action selector="showAll:" destination="BYZ-38-t0r" id="h8w-T6-ump"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oId-07-gXD"/>
@@ -82,8 +88,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIt-Br-sdo">
-                                <rect key="frame" x="260" y="252" width="81" height="96"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIt-Br-sdo">
+                                <rect key="frame" x="271" y="277" width="60" height="47"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="39"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -92,6 +98,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="hTN-s6-j3V" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="BiI-IQ-G52"/>
+                            <constraint firstItem="vIt-Br-sdo" firstAttribute="centerY" secondItem="9R7-uw-1Cz" secondAttribute="centerY" id="Md3-Mh-VXL"/>
+                            <constraint firstItem="vIt-Br-sdo" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="r0D-fB-xLj"/>
                             <constraint firstItem="hTN-s6-j3V" firstAttribute="centerY" secondItem="9R7-uw-1Cz" secondAttribute="centerY" constant="-114.5" id="sM1-Ns-SMz"/>
                         </constraints>
                     </view>
