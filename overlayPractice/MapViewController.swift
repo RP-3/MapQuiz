@@ -29,7 +29,6 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
     var continent: String!
     var mode: String!
     
-    var score: Int = 0
     var totalCountries: Int = 0
     
     var game = [
@@ -37,6 +36,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
         "toPlay": [String:String](),
         "revealed": [String: String]()
     ]
+    var misses = 0
     
     var toFind = ""
     //question label
@@ -111,7 +111,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
                     if (toFind == key) {
                         self.label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                        self.delay(1.0) {
+                        self.delay(0.7) {
                             self.setQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
@@ -119,7 +119,8 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
                     } else {
                         //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-                        self.delay(1.0) {
+                        misses += 1
+                        self.delay(0.7) {
                             self.label.text = "Find: \(self.toFind)"
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
@@ -159,6 +160,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
                 controller.score = game["guessed"]?.count
                 controller.scoreTotal = totalCountries
                 controller.revealed = game["revealed"]?.count
+                controller.misses = misses
             }
             
         }

@@ -82,29 +82,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You scored:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-s6-j3V">
-                                <rect key="frame" x="255" y="175" width="91" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of X countries:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTN-s6-j3V">
+                                <rect key="frame" x="228" y="175" width="144" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="0/0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIt-Br-sdo">
-                                <rect key="frame" x="271" y="277" width="60" height="47"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Correct" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iX3-4e-qDT">
+                                <rect key="frame" x="271" y="238" width="58" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wrong Guesss" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCl-WV-ssg">
+                                <rect key="frame" x="244" y="306" width="112" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Uncovered" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ayu-CL-ikU">
+                                <rect key="frame" x="258" y="356" width="84" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iX3-4e-qDT" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="1XR-n1-9Av"/>
+                            <constraint firstItem="iX3-4e-qDT" firstAttribute="top" secondItem="hTN-s6-j3V" secondAttribute="bottom" constant="42" id="1yX-Oj-5g3"/>
+                            <constraint firstItem="nCl-WV-ssg" firstAttribute="top" secondItem="Ayu-CL-ikU" secondAttribute="bottom" constant="-71" id="211-5b-cBi"/>
                             <constraint firstItem="hTN-s6-j3V" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="BiI-IQ-G52"/>
-                            <constraint firstItem="vIt-Br-sdo" firstAttribute="centerY" secondItem="9R7-uw-1Cz" secondAttribute="centerY" id="Md3-Mh-VXL"/>
-                            <constraint firstItem="vIt-Br-sdo" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="r0D-fB-xLj"/>
+                            <constraint firstItem="nCl-WV-ssg" firstAttribute="top" secondItem="iX3-4e-qDT" secondAttribute="bottom" constant="47" id="Ea9-cB-qgL"/>
+                            <constraint firstItem="nCl-WV-ssg" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="MUz-El-fES"/>
+                            <constraint firstItem="Ayu-CL-ikU" firstAttribute="centerX" secondItem="9R7-uw-1Cz" secondAttribute="centerX" id="liB-pj-EhP"/>
                             <constraint firstItem="hTN-s6-j3V" firstAttribute="centerY" secondItem="9R7-uw-1Cz" secondAttribute="centerY" constant="-114.5" id="sM1-Ns-SMz"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="scoreLabel" destination="vIt-Br-sdo" id="EQp-Ge-HVc"/>
+                        <outlet property="correct" destination="iX3-4e-qDT" id="JA6-o8-2qL"/>
+                        <outlet property="titleLabel" destination="hTN-s6-j3V" id="dvv-qb-cjf"/>
+                        <outlet property="uncovered" destination="Ayu-CL-ikU" id="Yd0-aB-b1B"/>
+                        <outlet property="wrong" destination="nCl-WV-ssg" id="Kfc-ug-mRx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bob-r1-aZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
