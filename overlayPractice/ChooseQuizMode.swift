@@ -27,6 +27,7 @@ class ChooseQuizMode: CoreDataController {
         if segue.identifier == "showMap" {
             let controller = segue.destinationViewController as! MapViewController
             controller.mode = mode
+            controller.continent = continent
         }
     }
     

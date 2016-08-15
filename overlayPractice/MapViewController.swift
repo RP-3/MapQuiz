@@ -38,6 +38,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
     ]
     
     var toFind = ""
+    //question label
     let label = UILabel()
     
     var createdPolygonOverlays = [String: [MKPolygon]]()
