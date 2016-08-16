@@ -15,17 +15,21 @@ class ChooseQuizMode: CoreDataController {
     
     @IBAction func challenge(sender: AnyObject) {
         mode = "challenge"
-        performSegueWithIdentifier("showMap", sender: nil)
+//        performSegueWithIdentifier("showMap", sender: nil)
     }
     
     @IBAction func practice(sender: AnyObject) {
         mode = "practice"
-        performSegueWithIdentifier("showMap", sender: nil)
+//        performSegueWithIdentifier("showMap", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showMap" {
+        if segue.identifier == "showPractice" {
             let controller = segue.destinationViewController as! MapViewController
+            controller.mode = mode
+            controller.continent = continent
+        } else if segue.identifier == "showChallenge" {
+            let controller = segue.destinationViewController as! ChallengeViewController
             controller.mode = mode
             controller.continent = continent
         }

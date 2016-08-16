@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="487"/>
+            <point key="canvasLocation" x="1500" y="907"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
@@ -128,7 +128,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bob-r1-aZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2226" y="487"/>
+            <point key="canvasLocation" x="2562" y="907"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="roh-m0-3kG">
@@ -257,6 +257,7 @@
                                 </state>
                                 <connections>
                                     <action selector="practice:" destination="X10-jV-LcE" eventType="touchUpInside" id="h5M-AM-V1k"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="FC7-yq-MxI"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
@@ -266,6 +267,7 @@
                                 </state>
                                 <connections>
                                     <action selector="challenge:" destination="X10-jV-LcE" eventType="touchUpInside" id="exR-PP-8Jb"/>
+                                    <segue destination="G5K-E1-s6u" kind="show" identifier="showChallenge" id="LHz-gq-eC8"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,13 +279,28 @@
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMap" id="vr7-0c-mhh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="762" y="487"/>
+        </scene>
+        <!--Challenge View Controller-->
+        <scene sceneID="g3a-J1-8en">
+            <objects>
+                <viewController id="G5K-E1-s6u" customClass="ChallengeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="CNN-qE-ekX"/>
+                        <viewControllerLayoutGuide type="bottom" id="5nF-Om-J93"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KQ8-v6-Z8a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bRS-iy-mxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1500" y="1"/>
         </scene>
     </scenes>
 </document>
