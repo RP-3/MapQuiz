@@ -28,15 +28,15 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ECH-xe-Oi7"/>
-                                    <barButtonItem title="Reveal" id="jCr-3q-gxM">
-                                        <connections>
-                                            <action selector="reveal:" destination="BYZ-38-t0r" id="nEi-de-vwl"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="95c-ha-6RB"/>
                                     <barButtonItem title="Skip" id="b97-5y-DDv">
                                         <connections>
                                             <action selector="skip:" destination="BYZ-38-t0r" id="13N-42-Dpx"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="95c-ha-6RB"/>
+                                    <barButtonItem title="Reveal" id="jCr-3q-gxM">
+                                        <connections>
+                                            <action selector="reveal:" destination="BYZ-38-t0r" id="nEi-de-vwl"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fiC-nJ-RxD"/>
@@ -62,13 +62,60 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="leftBottomBtn" destination="jCr-3q-gxM" id="fKv-g8-sCD"/>
+                        <outlet property="midBottomBtn" destination="b97-5y-DDv" id="wtD-P1-6EK"/>
+                        <outlet property="rightBottomBtn" destination="FDV-bM-1nN" id="XIW-Nu-E3c"/>
                         <outlet property="worldMap" destination="l8A-8g-QZk" id="24k-eT-7ts"/>
                         <segue destination="bSz-hd-KAs" kind="show" identifier="showScore" id="BNX-qd-wIf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1482" y="487"/>
+            <point key="canvasLocation" x="1506" y="229"/>
+        </scene>
+        <!--Challenge View Controller-->
+        <scene sceneID="xi7-LY-HdE">
+            <objects>
+                <viewController id="NfS-5R-5L5" customClass="ChallengeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FY3-PF-NAc"/>
+                        <viewControllerLayoutGuide type="bottom" id="dHa-CD-M9C"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Rl4-Ts-TPx">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZEd-Eh-z7A">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NzU-4z-t5r"/>
+                                    <barButtonItem title="00:00:00" id="KdQ-1S-ZmJ"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NhX-tm-8oz"/>
+                                </items>
+                            </toolbar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="p8H-fM-oyQ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZEd-Eh-z7A" firstAttribute="top" secondItem="p8H-fM-oyQ" secondAttribute="bottom" id="7r0-cF-apc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZEd-Eh-z7A" secondAttribute="trailing" constant="-20" id="AHS-hD-LqV"/>
+                            <constraint firstItem="ZEd-Eh-z7A" firstAttribute="leading" secondItem="Rl4-Ts-TPx" secondAttribute="leadingMargin" constant="-20" id="DyZ-1p-5h8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="p8H-fM-oyQ" secondAttribute="trailing" constant="-20" id="GpE-eX-XmT"/>
+                            <constraint firstItem="dHa-CD-M9C" firstAttribute="top" secondItem="ZEd-Eh-z7A" secondAttribute="bottom" id="Jmh-vU-Lzb"/>
+                            <constraint firstItem="ZEd-Eh-z7A" firstAttribute="top" secondItem="p8H-fM-oyQ" secondAttribute="bottom" id="Lww-tN-gl3"/>
+                            <constraint firstItem="p8H-fM-oyQ" firstAttribute="leading" secondItem="Rl4-Ts-TPx" secondAttribute="leadingMargin" constant="-20" id="Wdh-W1-7rF"/>
+                            <constraint firstItem="p8H-fM-oyQ" firstAttribute="top" secondItem="FY3-PF-NAc" secondAttribute="bottom" id="YLv-d9-VxP"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="timer" destination="KdQ-1S-ZmJ" id="ntW-9u-Cfj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vAt-0s-k68" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1518" y="994"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
@@ -257,6 +304,7 @@
                                 </state>
                                 <connections>
                                     <action selector="practice:" destination="X10-jV-LcE" eventType="touchUpInside" id="h5M-AM-V1k"/>
+                                    <segue destination="NfS-5R-5L5" kind="show" id="mus-oO-7Qc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
@@ -266,6 +314,7 @@
                                 </state>
                                 <connections>
                                     <action selector="challenge:" destination="X10-jV-LcE" eventType="touchUpInside" id="exR-PP-8Jb"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="VES-8T-Usa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -277,9 +326,6 @@
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMap" id="vr7-0c-mhh"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

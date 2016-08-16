@@ -29,6 +29,9 @@ import CoreData
 class MapViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
+    @IBOutlet weak var rightBottomBtn: UIBarButtonItem!
+    @IBOutlet weak var midBottomBtn: UIBarButtonItem!
+    @IBOutlet weak var leftBottomBtn: UIBarButtonItem!
     
     var continent: String!
     var mode: String!
@@ -45,14 +48,46 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
     var toFind = ""
     //question label
     let label = UILabel()
+    let displayTimeLabel = UILabel()
+    
+    var timer = NSTimer()
+    var startTime = NSTimeInterval()
     
     //dictionary keyed by country name with the values as an array of all the polygons for that country
     var createdPolygonOverlays = [String: [MKPolygon]]()
     //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
     var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
     
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+       
+        
+        //logic here to test what mode - if the mode is challenge then want to show alert to sat ready to start?
+        if mode == "challenge" {
+            let alertController = UIAlertController(title: "Ready?", message: "Press go to start the clock ticking!", preferredStyle: UIAlertControllerStyle.Alert)
+            let OKAction = UIAlertAction(title: "Go!", style: .Default) { (action:UIAlertAction!) in
+                //start the timer!
+                
+                
+                let screenWidth = UIScreen.mainScreen().bounds.width
+                let screenHeight = UIScreen.mainScreen().bounds.height
+                self.displayTimeLabel.frame = CGRectMake(screenWidth/2, screenHeight-30, screenWidth/3, 25)
+                self.displayTimeLabel.center = CGPointMake(screenWidth / 2, screenHeight / 2)
+                self.displayTimeLabel.text = "00:00:00"
+                self.view.addSubview(self.displayTimeLabel)
+                
+                let aSelector : Selector = #selector(MapViewController.updateTime)
+                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
+                self.startTime = NSDate.timeIntervalSinceReferenceDate()
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion:nil)
+
+            //remove the reveal button and the show all button - bottom bar contain the lives?
+        }
+        
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -153,6 +188,8 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
             //nothing left to play - all countries have been guessed
             //push to score screen
             performSegueWithIdentifier("showScore", sender: nil)
+            timer.invalidate()
+//            timer == nil
         }
         self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
     }
@@ -325,6 +362,29 @@ extension MapViewController {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(delay * Double(NSEC_PER_SEC))),
         //then run the closure fn in the main queue when delay over
         dispatch_get_main_queue(), closure)
+    }
+    
+    func updateTime() {
+        var currentTime = NSDate.timeIntervalSinceReferenceDate()
+        //Find the difference between current time and start time.
+        var elapsedTime: NSTimeInterval = currentTime - startTime
+        //calculate the minutes in elapsed time.
+        let minutes = UInt8(elapsedTime / 60.0)
+        elapsedTime -= (NSTimeInterval(minutes) * 60)
+        //calculate the seconds in elapsed time.
+        let seconds = UInt8(elapsedTime)
+        elapsedTime -= NSTimeInterval(seconds)
+        
+        //find out the fraction of milliseconds to be displayed.
+        let fraction = UInt8(elapsedTime * 100)
+        
+        //add the leading zero for minutes, seconds and millseconds and store them as string constants
+        let strMinutes = String(format: "%02d", minutes)
+        let strSeconds = String(format: "%02d", seconds)
+        let strFraction = String(format: "%02d", fraction)
+        
+        //concatenate minuets, seconds and milliseconds as assign it to the UILabel
+        displayTimeLabel.text = "\(strMinutes):\(strSeconds):\(strFraction)"
     }
 
     

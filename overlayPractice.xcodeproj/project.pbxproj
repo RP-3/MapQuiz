@@ -42,6 +42,12 @@
 		95ACFE2F1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */; };
 		95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
+		95ACFE331D63524E000E0E23 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE321D63524E000E0E23 /* ChallengeViewController.swift */; };
+		95ACFE341D63524E000E0E23 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE321D63524E000E0E23 /* ChallengeViewController.swift */; };
+		95ACFE351D63524E000E0E23 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE321D63524E000E0E23 /* ChallengeViewController.swift */; };
+		95ACFE371D635400000E0E23 /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE361D635400000E0E23 /* PracticeViewController.swift */; };
+		95ACFE381D635400000E0E23 /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE361D635400000E0E23 /* PracticeViewController.swift */; };
+		95ACFE391D635400000E0E23 /* PracticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE361D635400000E0E23 /* PracticeViewController.swift */; };
 		95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
@@ -99,6 +105,8 @@
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		956808641D5A591000BE5962 /* countries2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries2.json; sourceTree = "<group>"; };
 		95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseQuizMode.swift; sourceTree = "<group>"; };
+		95ACFE321D63524E000E0E23 /* ChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
+		95ACFE361D635400000E0E23 /* PracticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeViewController.swift; sourceTree = "<group>"; };
 		95B7BF531D5F585B004B1760 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		95FD93061D5A0879007E98E1 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
@@ -168,6 +176,8 @@
 				95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */,
 				95B7BF531D5F585B004B1760 /* ScoreViewController.swift */,
 				95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */,
+				95ACFE321D63524E000E0E23 /* ChallengeViewController.swift */,
+				95ACFE361D635400000E0E23 /* PracticeViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -511,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95ACFE371D635400000E0E23 /* PracticeViewController.swift in Sources */,
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				95ACFE2D1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
@@ -521,6 +532,7 @@
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
 				95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
+				95ACFE331D63524E000E0E23 /* ChallengeViewController.swift in Sources */,
 				950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,6 +544,7 @@
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
 				95ACFE2E1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				95ACFE381D635400000E0E23 /* PracticeViewController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
@@ -540,6 +553,7 @@
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				95ACFE341D63524E000E0E23 /* ChallengeViewController.swift in Sources */,
 				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -551,6 +565,7 @@
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
 				95ACFE2F1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				95ACFE391D635400000E0E23 /* PracticeViewController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
@@ -559,6 +574,7 @@
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				95ACFE351D63524E000E0E23 /* ChallengeViewController.swift in Sources */,
 				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
