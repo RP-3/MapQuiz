@@ -10,16 +10,14 @@ import UIKit
 import MapKit
 import CoreData
 
-class PracticeViewController: MapViewController {
+class PracticeViewController: CoreDataController {
     
-    //var continent:String!
-    
+    var continent:String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //start timer and set lives and score
-        //give up button
+        
         
     }
     

@@ -20,31 +20,16 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="l8A-8g-QZk">
                                 <rect key="frame" x="0.0" y="20" width="600" height="536"/>
-                                <connections>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="S38-kX-GgI"/>
-                                </connections>
                             </mapView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PNm-Jr-m5T">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="ECH-xe-Oi7"/>
-                                    <barButtonItem title="Skip" id="b97-5y-DDv">
-                                        <connections>
-                                            <action selector="skip:" destination="BYZ-38-t0r" id="13N-42-Dpx"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="Skip" id="b97-5y-DDv"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="95c-ha-6RB"/>
-                                    <barButtonItem title="Reveal" id="jCr-3q-gxM">
-                                        <connections>
-                                            <action selector="reveal:" destination="BYZ-38-t0r" id="nEi-de-vwl"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="Reveal" id="jCr-3q-gxM"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fiC-nJ-RxD"/>
-                                    <barButtonItem title="Show All" id="FDV-bM-1nN">
-                                        <connections>
-                                            <action selector="showAll:" destination="BYZ-38-t0r" id="h8w-T6-ump"/>
-                                        </connections>
-                                    </barButtonItem>
+                                    <barButtonItem title="Show All" id="FDV-bM-1nN"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="oId-07-gXD"/>
                                 </items>
                             </toolbar>
@@ -62,16 +47,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="leftBottomBtn" destination="jCr-3q-gxM" id="fKv-g8-sCD"/>
-                        <outlet property="midBottomBtn" destination="b97-5y-DDv" id="wtD-P1-6EK"/>
-                        <outlet property="rightBottomBtn" destination="FDV-bM-1nN" id="XIW-Nu-E3c"/>
-                        <outlet property="worldMap" destination="l8A-8g-QZk" id="24k-eT-7ts"/>
+                        <outlet property="worldMap" destination="l8A-8g-QZk" id="77h-PZ-s3E"/>
                         <segue destination="bSz-hd-KAs" kind="show" identifier="showScore" id="BNX-qd-wIf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1506" y="229"/>
+            <point key="canvasLocation" x="1561" y="113"/>
         </scene>
         <!--Challenge View Controller-->
         <scene sceneID="xi7-LY-HdE">
@@ -89,7 +71,7 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NzU-4z-t5r"/>
-                                    <barButtonItem title="00:00:00" id="KdQ-1S-ZmJ"/>
+                                    <barButtonItem title="00:00" id="KdQ-1S-ZmJ"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="NhX-tm-8oz"/>
                                 </items>
                             </toolbar>
@@ -110,12 +92,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="displayTimeLabel" destination="KdQ-1S-ZmJ" id="rdZ-Vt-9YO"/>
                         <outlet property="timer" destination="KdQ-1S-ZmJ" id="ntW-9u-Cfj"/>
+                        <outlet property="worldMap" destination="p8H-fM-oyQ" id="UhO-j6-Gqf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vAt-0s-k68" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1518" y="994"/>
+            <point key="canvasLocation" x="1561" y="815"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
@@ -297,33 +281,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="247" y="285" width="103" height="30"/>
-                                <state key="normal" title="Learning Mode">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="practice:" destination="X10-jV-LcE" eventType="touchUpInside" id="h5M-AM-V1k"/>
-                                    <segue destination="NfS-5R-5L5" kind="show" id="mus-oO-7Qc"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
-                                <rect key="frame" x="247" y="210" width="107" height="30"/>
+                                <rect key="frame" x="247" y="285" width="107" height="30"/>
                                 <state key="normal" title="Challenge Time">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="challenge:" destination="X10-jV-LcE" eventType="touchUpInside" id="exR-PP-8Jb"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="VES-8T-Usa"/>
+                                    <segue destination="NfS-5R-5L5" kind="show" identifier="showChallenge" id="Eyc-ax-1bA"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
+                                <rect key="frame" x="249" y="207" width="103" height="30"/>
+                                <state key="normal" title="Learning Mode">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="practice:" destination="X10-jV-LcE" eventType="touchUpInside" id="h5M-AM-V1k"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="BDQ-ko-Glh"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14921095749999999" green="0.76621809549999997" blue="0.72552637880000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="9c9-0V-Weg" firstAttribute="top" secondItem="Sxn-Bc-Ym6" secondAttribute="bottom" constant="45" id="677-FL-zLS"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="top" secondItem="Sxn-Bc-Ym6" secondAttribute="bottom" constant="-108" id="677-FL-zLS"/>
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="i74-SO-DjM"/>
                             <constraint firstItem="Sxn-Bc-Ym6" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="nVx-nW-nEO"/>
-                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" id="zrf-Yh-WaC"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" constant="-78" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
                 </viewController>

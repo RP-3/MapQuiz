@@ -29,9 +29,6 @@ import CoreData
 class MapViewController: CoreDataController, MKMapViewDelegate {
 
     @IBOutlet weak var worldMap: MKMapView!
-    @IBOutlet weak var rightBottomBtn: UIBarButtonItem!
-    @IBOutlet weak var midBottomBtn: UIBarButtonItem!
-    @IBOutlet weak var leftBottomBtn: UIBarButtonItem!
     
     var continent: String!
     var mode: String!
@@ -62,32 +59,6 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        
-        //logic here to test what mode - if the mode is challenge then want to show alert to sat ready to start?
-        if mode == "challenge" {
-            let alertController = UIAlertController(title: "Ready?", message: "Press go to start the clock ticking!", preferredStyle: UIAlertControllerStyle.Alert)
-            let OKAction = UIAlertAction(title: "Go!", style: .Default) { (action:UIAlertAction!) in
-                //start the timer!
-                
-                
-                let screenWidth = UIScreen.mainScreen().bounds.width
-                let screenHeight = UIScreen.mainScreen().bounds.height
-                self.displayTimeLabel.frame = CGRectMake(screenWidth/2, screenHeight-30, screenWidth/3, 25)
-                self.displayTimeLabel.center = CGPointMake(screenWidth / 2, screenHeight / 2)
-                self.displayTimeLabel.text = "00:00:00"
-                self.view.addSubview(self.displayTimeLabel)
-                
-                let aSelector : Selector = #selector(MapViewController.updateTime)
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(0.01, target: self, selector: aSelector, userInfo: nil, repeats: true)
-                self.startTime = NSDate.timeIntervalSinceReferenceDate()
-            }
-            alertController.addAction(OKAction)
-            self.presentViewController(alertController, animated: true, completion:nil)
-
-            //remove the reveal button and the show all button - bottom bar contain the lives?
-        }
-        
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -365,7 +336,7 @@ extension MapViewController {
     }
     
     func updateTime() {
-        var currentTime = NSDate.timeIntervalSinceReferenceDate()
+        let currentTime = NSDate.timeIntervalSinceReferenceDate()
         //Find the difference between current time and start time.
         var elapsedTime: NSTimeInterval = currentTime - startTime
         //calculate the minutes in elapsed time.

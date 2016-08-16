@@ -11,18 +11,19 @@ import UIKit
 class ChooseQuizMode: CoreDataController {
     
     var continent: String!
+    var mode: String!
     
-//    @IBAction func challenge(sender: AnyObject) {
-//        mode = "challenge"
-//    }
-//    
-//    @IBAction func practice(sender: AnyObject) {
-//        mode = "practice"
-//    }
+    @IBAction func challenge(sender: AnyObject) {
+        mode = "challenge"
+    }
+    
+    @IBAction func practice(sender: AnyObject) {
+        mode = "practice"
+    }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showPractice" {
-            let controller = segue.destinationViewController as! PracticeViewController
+            let controller = segue.destinationViewController as! MapViewController
             controller.continent = continent
         } else if segue.identifier == "showChallenge" {
             let controller = segue.destinationViewController as! ChallengeViewController
