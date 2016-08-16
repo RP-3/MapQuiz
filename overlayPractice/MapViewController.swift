@@ -154,6 +154,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
             //push to score screen
             performSegueWithIdentifier("showScore", sender: nil)
         }
+        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -185,7 +186,6 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
         }
         self.game["guessed"]![self.toFind] = self.toFind
         self.game["toPlay"]!.removeValueForKey(self.toFind)
-        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
     }
 
     func addBoundary(countryShape: Country) {
