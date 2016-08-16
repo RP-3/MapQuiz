@@ -234,7 +234,10 @@ extension ChallengeViewController {
     func updateTime () {
         if(count > 0){
             let minutes = String(count / 60)
-            let seconds = String(count % 60)
+            var seconds = String(count % 60)
+            if String(seconds).characters.count == 1 {
+                seconds = seconds + String("0")
+            }
             label2.text = minutes + ":" + seconds
             count -= 1
         }
