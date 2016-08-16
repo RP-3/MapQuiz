@@ -299,9 +299,21 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-Ez-aWX">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pXZ-W0-flh"/>
-                                    <barButtonItem title="00:00" id="nth-o9-kny"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TkM-iA-nzS"/>
+                                    <barButtonItem style="plain" id="2jd-Fl-eZ8">
+                                        <view key="customView" contentMode="scaleToFill" id="g33-QR-722">
+                                            <rect key="frame" x="20" y="1" width="83" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hYb-N5-KfP">
+                                                    <rect key="frame" x="17" y="11" width="44" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="B82-If-DOD">
@@ -322,6 +334,7 @@
                     </view>
                     <connections>
                         <outlet property="displayTimerLabel" destination="B82-If-DOD" id="mUS-IH-xTC"/>
+                        <outlet property="label2" destination="hYb-N5-KfP" id="AUm-mf-ea3"/>
                         <outlet property="worldMap" destination="B82-If-DOD" id="KLj-8V-Ym6"/>
                     </connections>
                 </viewController>

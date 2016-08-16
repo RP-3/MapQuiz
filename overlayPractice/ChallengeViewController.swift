@@ -17,7 +17,7 @@ class ChallengeViewController: CoreDataController {
     
     @IBOutlet weak var displayTimerLabel: MKMapView!
     @IBOutlet weak var worldMap: MKMapView!
-    
+    @IBOutlet weak var label2: UILabel!
     
     var totalCountries: Int = 0
     
@@ -32,6 +32,8 @@ class ChallengeViewController: CoreDataController {
     //question label
     let label = UILabel()
     
+    var count = 600
+    
     //dictionary keyed by country name with the values as an array of all the polygons for that country
     var createdPolygonOverlays = [String: [MKPolygon]]()
     //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
@@ -43,6 +45,15 @@ class ChallengeViewController: CoreDataController {
         super.viewDidLoad()
         
         worldMap.delegate = mapDelegate
+        
+        let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
+        let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
+            print("start the timer")
+            _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
+            
+        }
+        alertController.addAction(OKAction)
+        self.presentViewController(alertController, animated: true, completion:nil)
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -89,7 +100,6 @@ class ChallengeViewController: CoreDataController {
     }
     
     func addBoundary(countryShape: Country) {
-        print("add boundary")
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for var landArea in (countryShape.boundary) {
@@ -105,6 +115,76 @@ class ChallengeViewController: CoreDataController {
         
     }
     
+    
+    func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
+        
+        let pointTapped = gestureRecognizer.locationInView(worldMap)
+        let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
+        
+        //loop through the countries in continent
+        for (key, _) in coordinates {
+            
+            for landArea in coordinates[key]! {
+                //each thing is a land area of coordinates
+                if (self.contains(landArea, selectedPoint: tappedCoordinates)) {
+                    if (toFind == key) {
+                        self.label.text = "Found!"
+                        label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+                        self.delay(0.7) {
+                            self.setQuestionLabel()
+                        }
+                        //then we can delete country overlay from map as correct selection
+                        updateMapOverlays(key)
+                    } else {
+                        //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
+                        label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+                        misses += 1
+                        self.delay(0.7) {
+                            self.label.text = "Find: \(self.toFind)"
+                            self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                        }
+                    }
+                }
+                
+            }
+            
+        }
+        
+    }
+    
+    //ask new question
+    func setQuestionLabel () {
+        if game["toPlay"]?.count > 0 {
+            let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
+            let randomVal = Array(game["toPlay"]!.values)[index]
+            toFind = randomVal
+            label.text = "Find: \(randomVal)"
+            label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+        } else {
+            //nothing left to play - all countries have been guessed
+            //push to score screen
+            performSegueWithIdentifier("showScore", sender: nil)
+        }
+        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
+    }
+    
+    
+    func updateMapOverlays(titleOfPolyToRemove: String) {
+        for overlay: MKOverlay in worldMap.overlays {
+            if overlay.title! == titleOfPolyToRemove {
+                //remove references to this polygon
+                createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
+                coordinates.removeValueForKey(titleOfPolyToRemove)
+                let annotation = MKPointAnnotation()
+                annotation.coordinate = overlay.coordinate
+                annotation.title = titleOfPolyToRemove
+                worldMap.addAnnotation(annotation)
+                worldMap.removeOverlay(overlay)
+            }
+        }
+        self.game["guessed"]![self.toFind] = self.toFind
+        self.game["toPlay"]!.removeValueForKey(self.toFind)
+    }
     
 }
 
@@ -149,6 +229,15 @@ extension ChallengeViewController {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(delay * Double(NSEC_PER_SEC))),
                        //then run the closure fn in the main queue when delay over
             dispatch_get_main_queue(), closure)
+    }
+    
+    func updateTime () {
+        if(count > 0){
+            let minutes = String(count / 60)
+            let seconds = String(count % 60)
+            label2.text = minutes + ":" + seconds
+            count -= 1
+        }
     }
     
     
