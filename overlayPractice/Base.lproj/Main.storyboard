@@ -295,8 +295,35 @@
                     <view key="view" contentMode="scaleToFill" id="KQ8-v6-Z8a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-Ez-aWX">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="pXZ-W0-flh"/>
+                                    <barButtonItem title="00:00" id="nth-o9-kny"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="TkM-iA-nzS"/>
+                                </items>
+                            </toolbar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="B82-If-DOD">
+                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                            </mapView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="B82-If-DOD" secondAttribute="trailing" constant="-20" id="DZy-jq-NtQ"/>
+                            <constraint firstItem="B82-If-DOD" firstAttribute="top" secondItem="CNN-qE-ekX" secondAttribute="bottom" id="GSJ-fY-q3A"/>
+                            <constraint firstItem="5nF-Om-J93" firstAttribute="top" secondItem="hjc-Ez-aWX" secondAttribute="bottom" id="NLM-mj-JMB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="hjc-Ez-aWX" secondAttribute="trailing" constant="-20" id="UWM-5S-7tc"/>
+                            <constraint firstItem="hjc-Ez-aWX" firstAttribute="top" secondItem="B82-If-DOD" secondAttribute="bottom" id="gHQ-Vf-sX2"/>
+                            <constraint firstItem="hjc-Ez-aWX" firstAttribute="leading" secondItem="KQ8-v6-Z8a" secondAttribute="leadingMargin" constant="-20" id="grR-ML-lTw"/>
+                            <constraint firstItem="B82-If-DOD" firstAttribute="leading" secondItem="KQ8-v6-Z8a" secondAttribute="leadingMargin" constant="-20" id="mBs-6Y-NRK"/>
+                            <constraint firstItem="hjc-Ez-aWX" firstAttribute="top" secondItem="B82-If-DOD" secondAttribute="bottom" id="s8X-N5-Iqq"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="displayTimerLabel" destination="B82-If-DOD" id="mUS-IH-xTC"/>
+                        <outlet property="worldMap" destination="B82-If-DOD" id="KLj-8V-Ym6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRS-iy-mxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

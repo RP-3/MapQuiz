@@ -26,7 +26,7 @@ import CoreData
 // lives
 // ending
 
-class MapViewController: CoreDataController, MKMapViewDelegate {
+class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
     
@@ -51,8 +51,12 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
     //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
     var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
     
+    var mapDelegate = MapViewDelegate()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        worldMap.delegate = mapDelegate
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -275,48 +279,6 @@ extension MapViewController {
         let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
         worldMap.setRegion(region, animated: true)
-    }
-    
-    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
-        if overlay is MKPolygon {
-            let polygonView = MKPolygonRenderer(overlay: overlay)
-            polygonView.lineWidth = 0.75
-            polygonView.alpha = 0.8
-            polygonView.strokeColor = UIColor.whiteColor()
-            //            if (overlay.subtitle == nil) {
-            polygonView.fillColor = UIColor.orangeColor()
-            //            }
-            return polygonView
-        }
-        return MKOverlayRenderer()
-    }
-    
-    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId: String = "reuseid"
-        
-        var aView: MKAnnotationView
-        
-        if let av = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) {
-            av.annotation = annotation
-            aView = av
-        } else {
-            let av = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            let lbl = UILabel(frame: CGRectMake(0, 0, 40, 15))
-            lbl.adjustsFontSizeToFitWidth = true
-            lbl.backgroundColor = UIColor.blackColor()
-            lbl.textColor = UIColor.whiteColor()
-            lbl.alpha = 0.5
-            lbl.tag = 42
-            lbl.numberOfLines = 0
-            av.addSubview(lbl)
-            //Following lets the callout still work if you tap on the label...
-            av.canShowCallout = true
-            av.frame = lbl.frame
-            aView = av
-        }
-        let lbl: UILabel = (aView.viewWithTag(42) as! UILabel)
-        lbl.text = annotation.title!
-        return aView
     }
     
     func delay (delay:Double, closure:()->()) {
