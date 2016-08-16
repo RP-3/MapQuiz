@@ -20,7 +20,11 @@ import UIKit
 import MapKit
 import CoreData
 
-//todo: better click accurcay!!!
+
+// starting logic for challenge mode
+// timer
+// lives
+// ending
 
 class MapViewController: CoreDataController, MKMapViewDelegate {
 
@@ -181,7 +185,7 @@ class MapViewController: CoreDataController, MKMapViewDelegate {
         }
         self.game["guessed"]![self.toFind] = self.toFind
         self.game["toPlay"]!.removeValueForKey(self.toFind)
-        self.title = String("\(game["guessed"]!.count) / \(totalCountries)")
+        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
     }
 
     func addBoundary(countryShape: Country) {
