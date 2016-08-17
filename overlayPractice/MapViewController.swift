@@ -197,12 +197,14 @@ class MapViewController: CoreDataController {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for var landArea in (countryShape.boundary) {
-            let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-            multiPolygon.title = countryShape.country
-            //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
-            polygons.append(multiPolygon)
-            worldMap.addOverlay(multiPolygon)
-            polygons.append(multiPolygon)
+            //let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
+            //MAKE CUSTOM POLYGON
+            let overlay = customPolygon(guessed: false, coords: landArea, numberOfPoints: landArea.count)
+            overlay.title = countryShape.country
+            
+            polygons.append(overlay)
+            worldMap.addOverlay(overlay)
+            polygons.append(overlay)
         }
         createdPolygonOverlays[countryShape.country] = polygons
         coordinates[countryShape.country] = countryShape.boundary
@@ -244,6 +246,23 @@ class MapViewController: CoreDataController {
     }
     
 
+}
+
+
+// attempt to make the custom polygon class
+class customPolygon: MKPolygon {
+    
+    var coordinates:[CLLocationCoordinate2D]!
+    var count: Int!
+    var userGuessed: Bool!
+    
+    init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
+        super.init()
+        coordinates = coords
+        count = numberOfPoints
+        userGuessed = guessed
+    }
+    
 }
 
 extension MapViewController {

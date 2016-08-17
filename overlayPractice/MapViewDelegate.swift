@@ -12,13 +12,14 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
-            let polygonView = MKPolygonRenderer(overlay: overlay)
+            let polygonView = MKPolygonRenderer(overlay: (overlay as! customPolygon))
             polygonView.lineWidth = 0.75
             polygonView.alpha = 0.8
             polygonView.strokeColor = UIColor.whiteColor()
-            //            if (overlay.subtitle == nil) {
-            polygonView.fillColor = UIColor.orangeColor()
-            //            }
+            //here we check for a property on the custom overlay
+            //if ((overlay as! customPolygon).userGuessed == false) {
+            //polygonView.fillColor = UIColor.orangeColor()
+            //}
             return polygonView
         }
         return MKOverlayRenderer()

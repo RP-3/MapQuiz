@@ -32,8 +32,7 @@ class ChallengeViewController: CoreDataController {
     
     var game = [
         "guessed": [String:String](),
-        "toPlay": [String:String](),
-        "revealed": [String: String]()
+        "toPlay": [String:String]()
     ]
     var misses = 0
     
@@ -55,6 +54,17 @@ class ChallengeViewController: CoreDataController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //decrease timer for smaller continents
+        if continent == "OC" {
+            count = 150
+            timerLabel.text = "2:30"
+        }
+        
+        if continent == "SA" {
+            count = 300
+            timerLabel.text = "5:00"
+        }
+        
         worldMap.delegate = mapDelegate
         
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
@@ -65,8 +75,6 @@ class ChallengeViewController: CoreDataController {
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
-        
-        
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -197,7 +205,7 @@ class ChallengeViewController: CoreDataController {
             //push to score screen
             performSegueWithIdentifier("showScore", sender: nil)
         }
-        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
+        self.title = String("\(game["guessed"]!.count) / \(totalCountries)")
     }
     
     
