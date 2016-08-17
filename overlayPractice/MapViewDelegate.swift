@@ -17,9 +17,9 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
             polygonView.alpha = 0.8
             polygonView.strokeColor = UIColor.whiteColor()
             //here we check for a property on the custom overlay
-            //if ((overlay as! customPolygon).userGuessed == false) {
-            //polygonView.fillColor = UIColor.orangeColor()
-            //}
+            if ((overlay as! customPolygon).userGuessed == false) {
+                polygonView.fillColor = UIColor.orangeColor()
+            }
             return polygonView
         }
         return MKOverlayRenderer()

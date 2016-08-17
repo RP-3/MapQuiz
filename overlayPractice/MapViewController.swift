@@ -252,17 +252,13 @@ class MapViewController: CoreDataController {
 // attempt to make the custom polygon class
 class customPolygon: MKPolygon {
     
-    var coordinates:[CLLocationCoordinate2D]!
-    var count: Int!
     var userGuessed: Bool!
-    
-    init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
-        super.init()
-        coordinates = coords
-        count = numberOfPoints
+    convenience init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
+        self.init()
+        var coords = coords
+        self.init(coordinates: &coords, count: numberOfPoints)
         userGuessed = guessed
     }
-    
 }
 
 extension MapViewController {
