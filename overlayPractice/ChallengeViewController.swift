@@ -6,6 +6,10 @@
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
+//next add in lives
+//add in score page
+//add in BOMB to finish
+
 import UIKit
 import MapKit
 import CoreData
@@ -17,7 +21,12 @@ class ChallengeViewController: CoreDataController {
     
     @IBOutlet weak var displayTimerLabel: MKMapView!
     @IBOutlet weak var worldMap: MKMapView!
-    @IBOutlet weak var label2: UILabel!
+    
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var lifeThree: UILabel!
+    @IBOutlet weak var lifeTwo: UILabel!
+    @IBOutlet weak var lifeOne: UILabel!
+    
     
     var totalCountries: Int = 0
     
@@ -27,6 +36,8 @@ class ChallengeViewController: CoreDataController {
         "revealed": [String: String]()
     ]
     var misses = 0
+    
+    var lives = 3
     
     var toFind = ""
     //question label
@@ -54,6 +65,8 @@ class ChallengeViewController: CoreDataController {
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
+        
+        
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -139,9 +152,28 @@ class ChallengeViewController: CoreDataController {
                         //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                         misses += 1
+                        lives -= 1
+                        
+                        if lives == 2 {
+                           lifeThree.enabled = false
+                        } else if lives == 1 {
+                            lifeTwo.enabled = false
+                        } else {
+                            lifeOne.enabled = false
+                            //BOOM! No more lives segue to score page?
+                            print("No more lives!")
+                        }
+                        
                         self.delay(0.7) {
-                            self.label.text = "Find: \(self.toFind)"
-                            self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                            if self.lives == 0 {
+                                //segue to score page
+                                // show bomb  - present modally?
+                                // show time taken and then number correct?
+                            } else {
+                                //reset the question label
+                                self.label.text = "Find: \(self.toFind)"
+                                self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                            }
                         }
                     }
                 }
@@ -238,7 +270,7 @@ extension ChallengeViewController {
             if String(seconds).characters.count == 1 {
                 seconds = seconds + String("0")
             }
-            label2.text = minutes + ":" + seconds
+            timerLabel.text = minutes + ":" + seconds
             count -= 1
         }
     }
