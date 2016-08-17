@@ -34,6 +34,18 @@
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
+		9512E7971D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7931D649DBE005D8EAD /* Game+CoreDataProperties.swift */; };
+		9512E7981D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7931D649DBE005D8EAD /* Game+CoreDataProperties.swift */; };
+		9512E7991D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7931D649DBE005D8EAD /* Game+CoreDataProperties.swift */; };
+		9512E79A1D649DBE005D8EAD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7941D649DBE005D8EAD /* Game.swift */; };
+		9512E79B1D649DBE005D8EAD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7941D649DBE005D8EAD /* Game.swift */; };
+		9512E79C1D649DBE005D8EAD /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7941D649DBE005D8EAD /* Game.swift */; };
+		9512E79D1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */; };
+		9512E79E1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */; };
+		9512E79F1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */; };
+		9512E7A01D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
+		9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
+		9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
 		956808651D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
 		956808661D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
 		956808671D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
@@ -103,6 +115,11 @@
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
+		9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv2.xcdatamodel; sourceTree = "<group>"; };
+		9512E7931D649DBE005D8EAD /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9512E7941D649DBE005D8EAD /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attempt+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9512E7961D649DBE005D8EAD /* Attempt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attempt.swift; sourceTree = "<group>"; };
 		956808641D5A591000BE5962 /* countries2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries2.json; sourceTree = "<group>"; };
 		95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseQuizMode.swift; sourceTree = "<group>"; };
 		95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +260,10 @@
 			children = (
 				950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */,
 				950BCE981D576AB40055E04E /* LandArea.swift */,
+				9512E7931D649DBE005D8EAD /* Game+CoreDataProperties.swift */,
+				9512E7941D649DBE005D8EAD /* Game.swift */,
+				9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */,
+				9512E7961D649DBE005D8EAD /* Attempt.swift */,
 				950D9AA41D565DFA00159227 /* Country.swift */,
 				950BD3731D569838001C5893 /* Model.xcdatamodeld */,
 				950BD3841D569A8E001C5893 /* CoreDataStack.swift */,
@@ -522,18 +543,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
 				95ACFE2D1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				95ACFE3F1D63629B000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
 				950C36171D56479E009710DD /* MapViewController.swift in Sources */,
 				950BD38A1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				9512E7971D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */,
 				950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				9512E79D1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
 				95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
 				95ACFE3B1D635E9B000E0E23 /* ChallengeViewController.swift in Sources */,
 				950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */,
+				9512E7A01D649DBE005D8EAD /* Attempt.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -550,11 +575,15 @@
 				95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
+				9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */,
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				95ACFE3C1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
+				9512E7981D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */,
+				9512E79B1D649DBE005D8EAD /* Game.swift in Sources */,
+				9512E79E1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,11 +600,15 @@
 				95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
+				9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */,
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				95ACFE3D1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
+				9512E7991D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */,
+				9512E79C1D649DBE005D8EAD /* Game.swift in Sources */,
+				9512E79F1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,9 +851,10 @@
 		950BD3731D569838001C5893 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */,
 				950BD3741D569838001C5893 /* Model.xcdatamodel */,
 			);
-			currentVersion = 950BD3741D569838001C5893 /* Model.xcdatamodel */;
+			currentVersion = 9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
