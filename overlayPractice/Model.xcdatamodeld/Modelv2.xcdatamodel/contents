@@ -10,6 +10,7 @@
     <entity name="Game" representedClassName=".Game" syncable="YES">
         <attribute name="continent" attributeType="String" syncable="YES"/>
         <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="finished_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="mode" attributeType="String" syncable="YES"/>
         <relationship name="attempt" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attempt" inverseName="game" inverseEntity="Attempt" syncable="YES"/>
     </entity>
@@ -23,6 +24,6 @@
     <elements>
         <element name="LandArea" positionX="-54" positionY="-9" width="128" height="120"/>
         <element name="Attempt" positionX="-36" positionY="45" width="128" height="120"/>
-        <element name="Game" positionX="-18" positionY="63" width="128" height="105"/>
+        <element name="Game" positionX="-18" positionY="63" width="128" height="120"/>
     </elements>
 </model>

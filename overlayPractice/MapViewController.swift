@@ -31,7 +31,8 @@ class MapViewController: CoreDataController {
     @IBOutlet weak var worldMap: MKMapView!
     
     var continent: String!
-    var mode: String!
+    
+    var currentGame: Game!
     
     var totalCountries: Int = 0
     
@@ -58,6 +59,12 @@ class MapViewController: CoreDataController {
         
         worldMap.delegate = mapDelegate
         
+        //customize the navigation bar buttons
+        self.navigationItem.hidesBackButton = true
+        let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
+        self.navigationItem.leftBarButtonItem = newBackButton
+
+        
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
@@ -65,6 +72,11 @@ class MapViewController: CoreDataController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)
+        
+        //make a new game in core data
+        currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
+        //let autosave save it
+        print("THE GAME: ",currentGame)
         
         //make an array of country models - loop through core data for all with desired continent code and make to model
         for entity in entities {
@@ -117,9 +129,14 @@ class MapViewController: CoreDataController {
                 //each thing is a land area of coordinates
                 if (self.contains(landArea, selectedPoint: tappedCoordinates)) {
                     if (toFind == key) {
-                        self.label.text = "Found!"
+                        label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                        self.delay(0.7) {
+                        //save the attempt to coredata
+                        let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+                        turn.game = currentGame
+                        currentGame.attempt?.setByAddingObject(turn)
+                        
+                        delay(0.7) {
                             self.setQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
@@ -128,7 +145,12 @@ class MapViewController: CoreDataController {
                         //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                         misses += 1
-                        self.delay(0.7) {
+                        //save attempt to core data
+                        let turn = Attempt(toFind: toFind, guessed: key, revealed: false, context: fetchedResultsController!.managedObjectContext)
+                        turn.game = currentGame
+                        currentGame.attempt?.setByAddingObject(turn)
+                        
+                        delay(0.7) {
                             self.label.text = "Find: \(self.toFind)"
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
@@ -157,20 +179,21 @@ class MapViewController: CoreDataController {
             //nothing left to play - all countries have been guessed
             //push to score screen
             performSegueWithIdentifier("showScore", sender: nil)
+            // save finish date to core data
+            currentGame.finished_at = NSDate()
         }
         self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
     }
     
+    // TODO:
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showScore" {
-            let controller = segue.destinationViewController as! ScoreViewController
+            //let controller = segue.destinationViewController as! ScoreViewController
             //get the id property on the annotation
-            if mode == "practice" {
-                controller.score = game["guessed"]?.count
-                controller.scoreTotal = totalCountries
-                controller.revealed = game["revealed"]?.count
-                controller.misses = misses
-            }
+//            controller.score = game["guessed"]?.count
+//            controller.scoreTotal = totalCountries
+//            controller.revealed = game["revealed"]?.count
+//            controller.misses = misses
             
         }
     }
@@ -228,8 +251,13 @@ class MapViewController: CoreDataController {
         // get the name of the country being asked
         for overlay in worldMap.overlays {
             if overlay.title!! == toFind {
-                worldMap.removeOverlay(overlay)
                 //remove reference to it in view
+                worldMap.removeOverlay(overlay)
+                // add reveal to core data
+                let turn = Attempt(toFind: toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
+                turn.game = currentGame
+                currentGame.attempt?.setByAddingObject(turn)
+                
                 continue
             }
         }
@@ -243,7 +271,17 @@ class MapViewController: CoreDataController {
         
     }
     
-
+    func returnToMainMenue () {
+        navigationController?.popToRootViewControllerAnimated(true)
+        currentGame.finished_at = NSDate()
+        do {
+            try fetchedResultsController!.managedObjectContext.save()
+        } catch {
+            print("error saving :(", error)
+        }
+        
+    }
+    
 }
 
 extension MapViewController {

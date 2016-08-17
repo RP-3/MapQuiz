@@ -127,9 +127,9 @@ extension CoreDataStack {
     func save() {
         context.performBlockAndWait(){
             if self.context.hasChanges{
-                do{
+                do {
                     try self.context.save()
-                }catch{
+                } catch {
                     fatalError("Error while saving main context: \(error)")
                 }
                 
@@ -137,7 +137,7 @@ extension CoreDataStack {
                 self.persistingContext.performBlock(){
                     do{
                         try self.persistingContext.save()
-                    }catch{
+                    } catch {
                         fatalError("Error while saving persisting context: \(error)")
                     }
                 }

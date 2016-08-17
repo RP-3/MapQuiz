@@ -32,5 +32,4 @@ class Game: NSManagedObject {
         return fmt.stringFromDate(created_at!)
     }
 
-
 }

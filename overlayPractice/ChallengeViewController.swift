@@ -67,7 +67,6 @@ class ChallengeViewController: CoreDataController {
         self.presentViewController(alertController, animated: true, completion:nil)
         
         
-        
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")

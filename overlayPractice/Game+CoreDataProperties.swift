@@ -16,7 +16,8 @@ extension Game {
 
     @NSManaged var continent: String?
     @NSManaged var mode: String?
-    @NSManaged var created_at: NSDate?
     @NSManaged var attempt: NSSet?
-
+    @NSManaged var created_at: NSDate?
+    @NSManaged var finished_at: NSDate?
+    
 }
