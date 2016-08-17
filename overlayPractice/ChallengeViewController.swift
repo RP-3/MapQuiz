@@ -17,7 +17,6 @@ import CoreData
 class ChallengeViewController: CoreDataController {
     
     var continent: String!
-    var mode: String!
     
     @IBOutlet weak var displayTimerLabel: MKMapView!
     @IBOutlet weak var worldMap: MKMapView!
