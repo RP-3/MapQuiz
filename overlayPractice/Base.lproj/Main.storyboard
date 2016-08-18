@@ -139,7 +139,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="overrideRootPractice" id="NBt-C6-Rvg"/>
+                        <segue destination="Tvf-Cl-yWk" kind="relationship" relationship="rootViewController" id="StS-M0-bSx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skm-as-Rfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -241,7 +241,7 @@
         <!--Choose Quiz Mode-->
         <scene sceneID="zk9-HW-YKC">
             <objects>
-                <viewController id="X10-jV-LcE" customClass="ChooseQuizMode" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseQuizMode" id="X10-jV-LcE" customClass="ChooseQuizMode" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RpZ-kT-OHM"/>
                         <viewControllerLayoutGuide type="bottom" id="Svr-af-yzF"/>
@@ -368,7 +368,4 @@
             <point key="canvasLocation" x="1500" y="1"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="NBt-C6-Rvg"/>
-    </inferredMetricsTieBreakers>
 </document>

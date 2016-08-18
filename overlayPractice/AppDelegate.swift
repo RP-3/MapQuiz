@@ -65,11 +65,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             } else if entities[0].mode == "practice" {
                 //let controller = segue.destinationViewController as! PracticeViewController
                 let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let viewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("PracticeViewController")
-                (viewContoller as! MapViewController).continent = entities[0].continent
-                (viewContoller as! MapViewController).currentGame = entities[0]
-                //self.window!.rootViewController!.performSegueWithIdentifier("overrideRootPractice", sender: self)
-                self.window!.rootViewController!.addChildViewController(viewContoller)
+                
+                
+                let rootViewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("ChoiceViewController")
+                let modeViewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("ChooseQuizMode") as! ChooseQuizMode
+                let mapViewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("PracticeViewController")
+                rootViewContoller.addChildViewController(modeViewContoller)
+                rootViewContoller.addChildViewController(mapViewContoller)
+                
+//                (viewContoller as! MapViewController).continent = entities[0].continent
+//                (viewContoller as! MapViewController).currentGame = entities[0]
+//                //self.window!.rootViewController!.performSegueWithIdentifier("overrideRootPractice", sender: self)
+//                //let initailViewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("ChoiceViewController")
+//                
+//                viewContoller.navigationController?.viewControllers.insert(modeViewContoller, atIndex: 0)
+//                viewContoller.navigationController?.viewControllers.insert(initailViewContoller, atIndex: 0)
+                
+                
+                
+                self.window!.rootViewController!.presentViewController(mapViewContoller, animated: true, completion: nil)
             }
             
         }

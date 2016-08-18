@@ -50,6 +50,14 @@ class MapViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // if come straight here then need to create stack again
+
+        
+        self.navigationController!.title = "HI!"
+        //customize the navigation bar buttons
+        self.navigationItem.hidesBackButton = true
+        let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
+        self.navigationItem.leftBarButtonItem = newBackButton
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -82,19 +90,16 @@ class MapViewController: CoreDataController {
             for attempt in currentGame.attempt! {
 
                 if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
-
                     game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
                     game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
-                    
+
                     for overlay in worldMap.overlays {
                         if overlay.title! == (attempt as! Attempt).countryToFind {
                             worldMap.removeOverlay(overlay)
                             continue
                         }
                     }
-                    
                 } else if (attempt as! Attempt).revealed == true {
-
                     game["revealed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind!
                     game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                     
@@ -104,25 +109,17 @@ class MapViewController: CoreDataController {
                             continue
                         }
                     }
-                    
                 } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
-                    
                     misses += 1
                 }
             }
-            
-            
         }
         
         worldMap.delegate = mapDelegate
         
-        //customize the navigation bar buttons
-        self.navigationItem.hidesBackButton = true
-        let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
-        self.navigationItem.leftBarButtonItem = newBackButton
-
+        
         totalCountries = game["toPlay"]!.count
-        self.title = String("0 / \(totalCountries)")
+        //self.title = String("0 / \(totalCountries)")
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
