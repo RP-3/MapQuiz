@@ -6,13 +6,18 @@
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
-//next add in lives
-//add in score page
-//add in BOMB to finish
-
 import UIKit
 import MapKit
 import CoreData
+
+//1. loop through the attempts:
+// if attempt country === found country then add one to the score and remove it from the polygons
+// if practice
+// if attempt is a reveal then reveal and increment count left
+//get count of revealed guesses
+// get count of bad guesses
+// if challenge then check wrong guesses
+//inplement lives accordingly
 
 class ChallengeViewController: CoreDataController {
     

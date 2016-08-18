@@ -9,7 +9,7 @@
         <!--Score:-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Score:" id="BYZ-38-t0r" customClass="MapViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PracticeViewController" title="Score:" id="BYZ-38-t0r" customClass="MapViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -68,7 +68,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="907"/>
+            <point key="canvasLocation" x="-376" y="777"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
@@ -139,17 +139,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Tvf-Cl-yWk" kind="relationship" relationship="rootViewController" id="Hgp-Pj-yAW"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="overrideRootPractice" id="NBt-C6-Rvg"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="skm-as-Rfh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-694" y="487"/>
+            <point key="canvasLocation" x="-1262" y="455"/>
         </scene>
         <!--Choice View Controller-->
         <scene sceneID="l4j-w4-kkv">
             <objects>
-                <viewController id="Tvf-Cl-yWk" customClass="ChoiceViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoiceViewController" id="Tvf-Cl-yWk" customClass="ChoiceViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hmd-dB-rt5"/>
                         <viewControllerLayoutGuide type="bottom" id="hlT-uX-wF0"/>
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40" y="487"/>
+            <point key="canvasLocation" x="-555" y="61"/>
         </scene>
         <!--Choose Quiz Mode-->
         <scene sceneID="zk9-HW-YKC">
@@ -280,12 +280,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="487"/>
+            <point key="canvasLocation" x="821" y="-794"/>
         </scene>
         <!--Challenge View Controller-->
         <scene sceneID="g3a-J1-8en">
             <objects>
-                <viewController id="G5K-E1-s6u" customClass="ChallengeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChallengeViewController" id="G5K-E1-s6u" customClass="ChallengeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CNN-qE-ekX"/>
                         <viewControllerLayoutGuide type="bottom" id="5nF-Om-J93"/>
@@ -368,4 +368,7 @@
             <point key="canvasLocation" x="1500" y="1"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="NBt-C6-Rvg"/>
+    </inferredMetricsTieBreakers>
 </document>

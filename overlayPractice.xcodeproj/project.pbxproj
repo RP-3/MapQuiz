@@ -46,6 +46,8 @@
 		9512E7A01D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
 		9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
 		9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
+		954D46721D65435B0084F278 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C36181D56479E009710DD /* Main.storyboard */; };
+		954D46731D65435C0084F278 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C36181D56479E009710DD /* Main.storyboard */; };
 		956808651D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
 		956808661D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
 		956808671D5A591000BE5962 /* countries2.json in Resources */ = {isa = PBXBuildFile; fileRef = 956808641D5A591000BE5962 /* countries2.json */; };
@@ -398,6 +400,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954D46721D65435B0084F278 /* Main.storyboard in Resources */,
 				95FD93081D5A0879007E98E1 /* countries.json in Resources */,
 				956808661D5A591000BE5962 /* countries2.json in Resources */,
 			);
@@ -407,6 +410,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				954D46731D65435C0084F278 /* Main.storyboard in Resources */,
 				95FD93091D5A0879007E98E1 /* countries.json in Resources */,
 				956808671D5A591000BE5962 /* countries2.json in Resources */,
 			);

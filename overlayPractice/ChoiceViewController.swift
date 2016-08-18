@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class ChoiceViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     var senderTag = [
         1: "AS",
         2: "OC",

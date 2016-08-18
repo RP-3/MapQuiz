@@ -20,12 +20,6 @@ import UIKit
 import MapKit
 import CoreData
 
-
-// starting logic for challenge mode
-// timer
-// lives
-// ending
-
 class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
@@ -56,6 +50,29 @@ class MapViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // if the game has already been set then there is already a game in action
+        if currentGame != nil {
+            //1. loop through the attempts:
+            for attempt in currentGame.attempt! {
+                // if attempt country === found country then add one to the score and remove it from the polygons
+                // if attempt is a reveal then reveal and increment count left
+                //get count of revealed guesses
+                // get count of bad guesses
+                if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
+                    
+                } else if (attempt as! Attempt).revealed == true {
+                    // revealed counter ++
+                    // reveal them
+                    // title counter increase
+                } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
+                    //then increase count of bad guesses
+                    
+                }
+            }
+            
+            
+        }
         
         worldMap.delegate = mapDelegate
         
@@ -97,7 +114,6 @@ class MapViewController: CoreDataController {
         //make label to show the user and pick random index to grab country name with
         
         makeQuestionLabel()
-        
         worldMap.mapType = .Satellite
         
     }
@@ -243,6 +259,15 @@ class MapViewController: CoreDataController {
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
         setZoomForContinent()
+        
+        //think about finishing the game here
+        // what do now?
+//        currentGame.finished_at = NSDate()
+//        do {
+//            try fetchedResultsController!.managedObjectContext.save()
+//        } catch {
+//            print("error saving :(", error)
+//        }
     }
     
     
@@ -273,13 +298,13 @@ class MapViewController: CoreDataController {
     
     func returnToMainMenue () {
         navigationController?.popToRootViewControllerAnimated(true)
-        currentGame.finished_at = NSDate()
+        //currentGame.finished_at = NSDate()
         do {
             try fetchedResultsController!.managedObjectContext.save()
         } catch {
             print("error saving :(", error)
         }
-        
+
     }
     
 }

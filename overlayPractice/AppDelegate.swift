@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 import SwiftyJSON
 
 @UIApplicationMain
@@ -30,14 +31,49 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //preloadData ()
         //Override point for customization after application launch.
         let defaults = NSUserDefaults.standardUserDefaults()
-        let isPreloaded = defaults.boolForKey("isPreloaded")
+        let isPreloaded = defaults.boolForKey("dataPreloaded")
         if !isPreloaded {
             print("data not preloaded yet ...")
             preloadData()
-            defaults.setBool(true, forKey: "isPreloaded")
+            defaults.setBool(true, forKey: "dataPreloaded")
         } else {
             print("data is already loaded into core data")
         }
+        
+        //now look in the games stored in core data and get the latest
+        let moc = landAreas.context
+        let fetchRequest = NSFetchRequest(entityName: "Game")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+
+        var entities: [Game]
+        do {
+            entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        
+        print("entities:     ", entities)
+        if entities[0].finished_at == nil {
+            // then we want the user to return to where they last left off
+            //see what mode the game is in and segue to that controller
+            if entities[0].mode == "challenge" {
+                //let controller = segue.destinationViewController as! ChallengeViewController
+                let storyboard: UIStoryboard = UIStoryboard(name: "ChallengeViewController", bundle: nil)
+                let viewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("ChallengeViewController")
+                print("SEGUE TO CONTROLLER",viewContoller)
+                
+            } else if entities[0].mode == "practice" {
+                //let controller = segue.destinationViewController as! PracticeViewController
+                let storyboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let viewContoller: UIViewController = storyboard.instantiateViewControllerWithIdentifier("PracticeViewController")
+                (viewContoller as! MapViewController).continent = entities[0].continent
+                (viewContoller as! MapViewController).currentGame = entities[0]
+                //self.window!.rootViewController!.performSegueWithIdentifier("overrideRootPractice", sender: self)
+                self.window!.rootViewController!.addChildViewController(viewContoller)
+            }
+            
+        }
+        
         landAreas.autoSave(60)
         return true
     }
