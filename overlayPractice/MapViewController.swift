@@ -282,6 +282,42 @@ class MapViewController: CoreDataController {
         
     }
     
+    override func applicationFinishedRestoringState() {
+//        guard let petId = petId else { return }
+//        currentPet = MatchedPetsManager.sharedManager.petForId(petId)
+        // if the game has already been partially played then set up old scores
+//        if currentGame.attempt?.count > 0 {
+//            //1. loop through the attempts:
+//            for attempt in currentGame.attempt! {
+//                
+//                if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
+//                    game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
+//                    game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+//                    
+//                    for overlay in worldMap.overlays {
+//                        if overlay.title! == (attempt as! Attempt).countryToFind {
+//                            worldMap.removeOverlay(overlay)
+//                            continue
+//                        }
+//                    }
+//                } else if (attempt as! Attempt).revealed == true {
+//                    game["revealed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind!
+//                    game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+//                    
+//                    for overlay in worldMap.overlays {
+//                        if overlay.title! == (attempt as! Attempt).countryToFind {
+//                            worldMap.removeOverlay(overlay)
+//                            continue
+//                        }
+//                    }
+//                } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
+//                    misses += 1
+//                }
+//            }
+//        }
+        
+    }
+    
 }
 
 extension MapViewController {
