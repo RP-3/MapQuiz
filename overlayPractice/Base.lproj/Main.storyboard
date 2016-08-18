@@ -9,7 +9,7 @@
         <!--Score:-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Score:" id="BYZ-38-t0r" customClass="MapViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PracticeViewController" title="Score:" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="MapViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -73,7 +73,7 @@
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
             <objects>
-                <viewController id="bSz-hd-KAs" customClass="ScoreViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bSz-hd-KAs" customClass="ScoreViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="YtN-ZL-YuP"/>
                         <viewControllerLayoutGuide type="bottom" id="hxu-yh-EVT"/>
@@ -133,7 +133,7 @@
         <!--Navigation Controller-->
         <scene sceneID="roh-m0-3kG">
             <objects>
-                <navigationController id="Ub5-C1-CYD" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NavigationViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Ub5-C1-CYD" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Rtt-vl-c5K">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -149,7 +149,7 @@
         <!--Choice View Controller-->
         <scene sceneID="l4j-w4-kkv">
             <objects>
-                <viewController id="Tvf-Cl-yWk" customClass="ChoiceViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChoiceViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Tvf-Cl-yWk" customClass="ChoiceViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hmd-dB-rt5"/>
                         <viewControllerLayoutGuide type="bottom" id="hlT-uX-wF0"/>
@@ -241,7 +241,7 @@
         <!--Choose Quiz Mode-->
         <scene sceneID="zk9-HW-YKC">
             <objects>
-                <viewController id="X10-jV-LcE" customClass="ChooseQuizMode" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseQuizModeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X10-jV-LcE" customClass="ChooseQuizMode" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RpZ-kT-OHM"/>
                         <viewControllerLayoutGuide type="bottom" id="Svr-af-yzF"/>
@@ -285,7 +285,7 @@
         <!--Challenge View Controller-->
         <scene sceneID="g3a-J1-8en">
             <objects>
-                <viewController id="G5K-E1-s6u" customClass="ChallengeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChallengeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="G5K-E1-s6u" customClass="ChallengeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="CNN-qE-ekX"/>
                         <viewControllerLayoutGuide type="bottom" id="5nF-Om-J93"/>
