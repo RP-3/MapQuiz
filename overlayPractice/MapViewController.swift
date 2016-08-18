@@ -51,23 +51,63 @@ class MapViewController: CoreDataController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // if the game has already been set then there is already a game in action
-        if currentGame != nil {
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        let land = app.landAreas
+        let fetchRequest = NSFetchRequest(entityName: "LandArea")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
+        let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
+        print("entities", entities.count)
+        
+        //make a new game in core data if not one 
+        if currentGame == nil {
+            currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
+            //let autosave save it
+            print("THE GAME: ",currentGame)
+        }
+        
+        //make an array of country models - loop through core data for all with desired continent code and make to model
+        for entity in entities {
+            if (entity.continent == continent) {
+                let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
+                game["toPlay"]![entity.name!] = entity.name
+                addBoundary(country)
+                setZoomForContinent()
+            }
+        }
+        
+        // if the game has already been partially played then set up old scores
+        if currentGame.attempt?.count > 0 {
             //1. loop through the attempts:
             for attempt in currentGame.attempt! {
-                // if attempt country === found country then add one to the score and remove it from the polygons
-                // if attempt is a reveal then reveal and increment count left
-                //get count of revealed guesses
-                // get count of bad guesses
+
                 if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
+
+                    game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
+                    game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                    
+                    for overlay in worldMap.overlays {
+                        if overlay.title! == (attempt as! Attempt).countryToFind {
+                            worldMap.removeOverlay(overlay)
+                            continue
+                        }
+                    }
                     
                 } else if (attempt as! Attempt).revealed == true {
-                    // revealed counter ++
-                    // reveal them
-                    // title counter increase
-                } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
-                    //then increase count of bad guesses
+
+                    game["revealed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind!
+                    game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                     
+                    for overlay in worldMap.overlays {
+                        if overlay.title! == (attempt as! Attempt).countryToFind {
+                            worldMap.removeOverlay(overlay)
+                            continue
+                        }
+                    }
+                    
+                } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
+                    
+                    misses += 1
                 }
             }
             
@@ -81,30 +121,7 @@ class MapViewController: CoreDataController {
         let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
         self.navigationItem.leftBarButtonItem = newBackButton
 
-        
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        let land = app.landAreas
-        let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
-        let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
-        print("entities", entities.count)
-        
-        //make a new game in core data
-        currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
-        //let autosave save it
-        print("THE GAME: ",currentGame)
-        
-        //make an array of country models - loop through core data for all with desired continent code and make to model
-        for entity in entities {
-            if (entity.continent == continent) {
-                let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
-                game["toPlay"]![entity.name!] = entity.name
-                addBoundary(country)
-                setZoomForContinent()
-            }
-        }
-        totalCountries = createdPolygonOverlays.count
+        totalCountries = game["toPlay"]!.count
         self.title = String("0 / \(totalCountries)")
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
@@ -112,7 +129,6 @@ class MapViewController: CoreDataController {
         
         //start the game
         //make label to show the user and pick random index to grab country name with
-        
         makeQuestionLabel()
         worldMap.mapType = .Satellite
         
@@ -218,8 +234,8 @@ class MapViewController: CoreDataController {
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
                 //remove references to this polygon
-                createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
-                coordinates.removeValueForKey(titleOfPolyToRemove)
+//                createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
+//                coordinates.removeValueForKey(titleOfPolyToRemove)
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = overlay.coordinate
                 annotation.title = titleOfPolyToRemove
@@ -286,12 +302,11 @@ class MapViewController: CoreDataController {
                 continue
             }
         }
-        print("polygons: ",createdPolygonOverlays.count)
         print("coordinates: ",coordinates.count)
         game["toPlay"]!.removeValueForKey(toFind)
         game["revealed"]![toFind] = toFind
-        createdPolygonOverlays.removeValueForKey(toFind)
-        coordinates.removeValueForKey(toFind)
+//        createdPolygonOverlays.removeValueForKey(toFind)
+//        coordinates.removeValueForKey(toFind)
         setQuestionLabel()
         
     }
