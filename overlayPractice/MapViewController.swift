@@ -20,12 +20,6 @@ import UIKit
 import MapKit
 import CoreData
 
-
-// starting logic for challenge mode
-// timer
-// lives
-// ending
-
 class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
@@ -33,6 +27,7 @@ class MapViewController: CoreDataController {
     var continent: String!
     
     var currentGame: Game!
+    var restoreOccur: Bool?
     
     var totalCountries: Int = 0
     
@@ -53,6 +48,7 @@ class MapViewController: CoreDataController {
     var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
     
     var mapDelegate = MapViewDelegate()
+    var entities: [LandArea]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,22 +59,24 @@ class MapViewController: CoreDataController {
         self.navigationItem.hidesBackButton = true
         let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
         self.navigationItem.leftBarButtonItem = newBackButton
-
         
+        //1. load all the countries for the selected continent into createdPolygonOverlays dictionary
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
-        let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
-        print("entities", entities.count)
+        entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         
-        //make a new game in core data
-        currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
-        //let autosave save it
-        print("THE GAME: ",currentGame)
         
-        //make an array of country models - loop through core data for all with desired continent code and make to model
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
+        view.addGestureRecognizer(gestureRecognizer)
+        
+        worldMap.mapType = .Satellite
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
         for entity in entities {
             if (entity.continent == continent) {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
@@ -88,18 +86,49 @@ class MapViewController: CoreDataController {
             }
         }
         totalCountries = createdPolygonOverlays.count
+        // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
         
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
-        view.addGestureRecognizer(gestureRecognizer)
-        
-        //start the game
+        // 2. if restore then get the existing game else if not restore then make a new game
+        if (restoreOccur == true) {
+            print("data is saved go get it")
+            
+            // if the game has already been partially played then set up old scores
+            if currentGame.attempt?.count > 0 {
+                //1. loop through the attempts and adjust overlays and score to match
+                for attempt in currentGame.attempt! {
+                    if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
+                        game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
+                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        for overlay in worldMap.overlays {
+                            if overlay.title! == (attempt as! Attempt).countryToFind {
+                                print("removing...")
+                                worldMap.removeOverlay(overlay)
+                                continue
+                            }
+                        }
+                    } else if (attempt as! Attempt).revealed == true {
+                        game["revealed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind!
+                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        for overlay in worldMap.overlays {
+                            if overlay.title! == (attempt as! Attempt).countryToFind {
+                                worldMap.removeOverlay(overlay)
+                                continue
+                            }
+                        }
+                    } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
+                        misses += 1
+                    }
+                }
+            }
+        } else {
+            //make a new game in core data and set as current
+            currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
+            // use autosave to save it - else on exiting the core data entities are saved
+        }
+        print("games to play 3 --->", game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
-        
         makeQuestionLabel()
-        
-        worldMap.mapType = .Satellite
-        
     }
     
     func makeQuestionLabel () {
@@ -282,40 +311,35 @@ class MapViewController: CoreDataController {
         
     }
     
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        // save the continent as minimal source of data
+        coder.encodeObject(continent as AnyObject, forKey: "continent")
+        super.encodeRestorableStateWithCoder(coder)
+    }
+    
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        let data = coder.decodeObjectForKey("continent")
+        continent = String(data!)
+        restoreOccur = true
+        super.decodeRestorableStateWithCoder(coder)
+    }
+    
+    // once the app has loaded again work out what to show on the screen
     override func applicationFinishedRestoringState() {
-//        guard let petId = petId else { return }
-//        currentPet = MatchedPetsManager.sharedManager.petForId(petId)
-        // if the game has already been partially played then set up old scores
-//        if currentGame.attempt?.count > 0 {
-//            //1. loop through the attempts:
-//            for attempt in currentGame.attempt! {
-//                
-//                if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
-//                    game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
-//                    game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
-//                    
-//                    for overlay in worldMap.overlays {
-//                        if overlay.title! == (attempt as! Attempt).countryToFind {
-//                            worldMap.removeOverlay(overlay)
-//                            continue
-//                        }
-//                    }
-//                } else if (attempt as! Attempt).revealed == true {
-//                    game["revealed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind!
-//                    game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
-//                    
-//                    for overlay in worldMap.overlays {
-//                        if overlay.title! == (attempt as! Attempt).countryToFind {
-//                            worldMap.removeOverlay(overlay)
-//                            continue
-//                        }
-//                    }
-//                } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
-//                    misses += 1
-//                }
-//            }
-//        }
         
+        //grab the unfinished game and set to currrent game
+        let moc = fetchedResultsController!.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Game")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+        
+        var entities: [Game]
+        do {
+            entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        // set the current game
+        currentGame = entities[0]
     }
     
 }
