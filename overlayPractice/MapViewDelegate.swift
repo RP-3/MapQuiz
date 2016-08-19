@@ -18,10 +18,8 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
             polygonView.alpha = 0.9
             polygonView.strokeColor = UIColor.whiteColor()
             if custom.userGuessed == false {
-                print("user has not guessed yet keep orange")
                 polygonView.fillColor = UIColor.orangeColor()
             } else {
-                print("guessed not orange")
                 polygonView.fillColor = UIColor.clearColor()
             }
             return polygonView

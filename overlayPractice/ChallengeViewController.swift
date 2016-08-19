@@ -29,12 +29,14 @@ class ChallengeViewController: CoreDataController {
     let Helpers = HelperFunctions.sharedInstance
     
     var totalCountries: Int = 0
+    var currentGame: Game!
+    var restoreOccur: Bool?
     
     var game = [
         "guessed": [String:String](),
-        "toPlay": [String:String](),
-        "revealed": [String: String]()
+        "toPlay": [String:String]()
     ]
+    var revealed = 0
     var misses = 0
     
     var lives = 3
@@ -43,20 +45,20 @@ class ChallengeViewController: CoreDataController {
     //question label
     let label = UILabel()
     
-    var count = 600
+    var stopwatch = 600
     
     //dictionary keyed by country name with the values as an array of all the polygons for that country
     var createdPolygonOverlays = [String: [MKPolygon]]()
     //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
     var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
+    var entities: [LandArea]!
     
     var mapDelegate = MapViewDelegate()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         worldMap.delegate = mapDelegate
-        
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
             print("start the timer")
@@ -65,37 +67,75 @@ class ChallengeViewController: CoreDataController {
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
-        
-        
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
-        let entities = fetchedResultsController!.fetchedObjects as! [LandArea]
+        entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)
-        
         //make an array of country models - loop through core data for all with desired continent code and make to model
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
+        view.addGestureRecognizer(gestureRecognizer)
+        // set map
+        worldMap.mapType = .Satellite
+    }
+    
+    
+    override func viewWillAppear(animated: Bool) {
         for entity in entities {
             if (entity.continent == continent) {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
-                let region = Helpers.setZoomForContinent(continent)
-                worldMap.setRegion(region, animated: true)
             }
         }
         totalCountries = createdPolygonOverlays.count
+        // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
-        
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
-        view.addGestureRecognizer(gestureRecognizer)
-        
-        //start the game
+        print("<><><><><>",game["toPlay"]!.count)
+        // 2. if restore then get the existing game else if not restore then make a new game
+        if (restoreOccur == true) {
+            restoreOccur = false
+            print("data is saved go get it")
+            // if the game has already been partially played then set up old scores
+            if currentGame.attempt?.count > 0 {
+                //1. loop through the attempts and adjust overlays and score to match
+                for attempt in currentGame.attempt! {
+                    if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
+                        game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
+                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        for overlay in worldMap.overlays {
+                            if overlay.title! == (attempt as! Attempt).countryToFind {
+                                worldMap.removeOverlay(overlay)
+                                continue
+                            }
+                        }
+                    } else if (attempt as! Attempt).revealed == true {
+                        revealed += 1
+                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        for overlay in worldMap.overlays {
+                            if overlay.title! == (attempt as! Attempt).countryToFind {
+                                worldMap.removeOverlay(overlay)
+                                continue
+                            }
+                        }
+                    } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
+                        misses += 1
+                    }
+                }
+            }
+        } else {
+            //make a new game in core data and set as current
+            currentGame = Game(continent: continent, mode: "challenge", context: fetchedResultsController!.managedObjectContext)
+            let region = Helpers.setZoomForContinent(continent)
+            worldMap.setRegion(region, animated: true)
+        }
+        print("games to play --->", game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
-        worldMap.mapType = .Satellite
     }
+    
     
     func makeQuestionLabel () {
         let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
@@ -103,7 +143,6 @@ class ChallengeViewController: CoreDataController {
         toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         label.frame = CGRectMake(0, 0, (screenSize.width + 5), 35)
-        
         label.textAlignment = NSTextAlignment.Center
         label.text = "Find: \(countryToFind)"
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
@@ -112,47 +151,56 @@ class ChallengeViewController: CoreDataController {
         worldMap.addSubview(label)
     }
     
+    
     func addBoundary(countryShape: Country) {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
-        for var landArea in (countryShape.boundary) {
-            let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-            multiPolygon.title = countryShape.country
-            //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
-            polygons.append(multiPolygon)
-            worldMap.addOverlay(multiPolygon)
-            polygons.append(multiPolygon)
+        for landArea in (countryShape.boundary) {
+            // make custom polygon to be able to edit properties 
+            let overlay = customPolygon(guessed: false, coords: landArea, numberOfPoints: landArea.count)
+            overlay.title = countryShape.country
+            polygons.append(overlay)
+            worldMap.addOverlay(overlay)
+            polygons.append(overlay)
         }
         createdPolygonOverlays[countryShape.country] = polygons
         coordinates[countryShape.country] = countryShape.boundary
-        
     }
     
-    
+     // work out if the click was on a country
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-        
         //loop through the countries in continent
+        
         for (key, _) in coordinates {
-            
             for landArea in coordinates[key]! {
                 //each thing is a land area of coordinates
                 if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                     if (toFind == key) {
                         self.label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+                        
+                        // add guess to core data
+                        let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+                        turn.game = currentGame
+                        currentGame.attempt?.setByAddingObject(turn)
+                        
                         Helpers.delay(0.7) {
                             self.setQuestionLabel()
                         }
-                        //then we can delete country overlay from map as correct selection
                         updateMapOverlays(key)
                     } else {
-                        //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
+                        //it was an incorrect guess
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                         misses += 1
                         lives -= 1
+                        
+                        //save attempt to core data
+                        let turn = Attempt(toFind: toFind, guessed: key, revealed: false, context: fetchedResultsController!.managedObjectContext)
+                        turn.game = currentGame
+                        currentGame.attempt?.setByAddingObject(turn)
                         
                         if lives == 2 {
                            lifeThree.enabled = false
@@ -186,6 +234,7 @@ class ChallengeViewController: CoreDataController {
     
     //ask new question
     func setQuestionLabel () {
+        self.title = String("\(game["guessed"]!.count + revealed) / \(totalCountries)")
         if game["toPlay"]?.count > 0 {
             let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
             let randomVal = Array(game["toPlay"]!.values)[index]
@@ -193,44 +242,86 @@ class ChallengeViewController: CoreDataController {
             label.text = "Find: \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
-            //nothing left to play - all countries have been guessed
             //push to score screen
             performSegueWithIdentifier("showScore", sender: nil)
         }
-        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
     }
     
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
-                //remove references to this polygon
-                createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
-                coordinates.removeValueForKey(titleOfPolyToRemove)
+                //update the polygon so it just has a white outline
+                worldMap.removeOverlay(overlay)
+                (overlay as! customPolygon).userGuessed = true
+                worldMap.addOverlay(overlay)
+                
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = overlay.coordinate
                 annotation.title = titleOfPolyToRemove
                 worldMap.addAnnotation(annotation)
-                worldMap.removeOverlay(overlay)
             }
         }
         self.game["guessed"]![self.toFind] = self.toFind
         self.game["toPlay"]!.removeValueForKey(self.toFind)
     }
     
-}
-
-extension ChallengeViewController {
-    
     func updateTime () {
-        if(count > 0){
-            let minutes = String(count / 60)
-            var seconds = String(count % 60)
+        if(stopwatch > 0){
+            let minutes = String(stopwatch / 60)
+            var seconds = String(stopwatch % 60)
             if String(seconds).characters.count == 1 {
                 seconds = seconds + String("0")
             }
             timerLabel.text = minutes + ":" + seconds
-            count -= 1
+            stopwatch -= 1
         }
+    }
+    
+    
+    // functions to deal with the restoring state
+    override func encodeRestorableStateWithCoder(coder: NSCoder) {
+        // save the continent as minimal source of data
+        coder.encodeObject(continent as AnyObject, forKey: "continent")
+        coder.encodeInteger(stopwatch, forKey: "stoppedTime")
+        super.encodeRestorableStateWithCoder(coder)
+    }
+    
+    override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        let data = coder.decodeObjectForKey("continent")
+        continent = String(data!)
+        stopwatch = coder.decodeIntegerForKey("stoppedTime")
+        restoreOccur = true
+        super.decodeRestorableStateWithCoder(coder)
+    }
+    
+    // once the app has loaded again work out what to show on the screen
+    override func applicationFinishedRestoringState() {
+        //grab the unfinished game and set to currrent game
+        let moc = fetchedResultsController!.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Game")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+        
+        var entities: [Game]
+        do {
+            entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        // set the current game
+        currentGame = entities[0]
+    }
+    
+}
+
+
+// TODO : move this elsewhere
+class customPolygon: MKPolygon {
+    var userGuessed: Bool!
+    convenience init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
+        self.init()
+        var coords = coords
+        self.init(coordinates: &coords, count: numberOfPoints)
+        userGuessed = guessed
     }
 }

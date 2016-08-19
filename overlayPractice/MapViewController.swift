@@ -52,16 +52,14 @@ class MapViewController: CoreDataController {
     var mapDelegate = MapViewDelegate()
     var entities: [LandArea]!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         worldMap.delegate = mapDelegate
-        
         //customize the navigation bar buttons
-        self.navigationItem.hidesBackButton = true
-        let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
-        self.navigationItem.leftBarButtonItem = newBackButton
-        
+//        self.navigationItem.hidesBackButton = true
+//        let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
+//        self.navigationItem.leftBarButtonItem = newBackButton
         //1. load all the countries for the selected continent into createdPolygonOverlays dictionary
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -70,29 +68,26 @@ class MapViewController: CoreDataController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities: ", entities.count)
-        
+        // add tap recogniser
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
-        
+        // set map type
         worldMap.mapType = .Satellite
     }
     
+    
     override func viewWillAppear(animated: Bool) {
-        
         for entity in entities {
             if (entity.continent == continent) {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
-                let region = Helpers.setZoomForContinent(continent)
-                worldMap.setRegion(region, animated: true)
             }
         }
         totalCountries = createdPolygonOverlays.count
         // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
         print("<><><><><>",game["toPlay"]!.count)
-        
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
@@ -128,11 +123,14 @@ class MapViewController: CoreDataController {
             //make a new game in core data and set as current
             currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
             // use autosave to save it - else on exiting the core data entities are saved
+            let region = Helpers.setZoomForContinent(continent)
+            worldMap.setRegion(region, animated: true)
         }
         print("games to play --->", game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
     }
+    
     
     func makeQuestionLabel () {
         let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
@@ -149,10 +147,10 @@ class MapViewController: CoreDataController {
         worldMap.addSubview(label)
     }
     
+    // work out if the click was on a country
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-        
         //loop through the countries in continent
         for (key, _) in coordinates {
             for landArea in coordinates[key]! {
@@ -168,28 +166,23 @@ class MapViewController: CoreDataController {
                         Helpers.delay(0.7) {
                             self.setQuestionLabel()
                         }
-                        //then we can delete country overlay from map as correct selection
                         updateMapOverlays(key)
                     } else {
-                        //it was an incorrect guess, want to currently do nothing/change color/say wrong country on label
+                        //it was an incorrect guess
                         label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
                         misses += 1
                         //save attempt to core data
                         let turn = Attempt(toFind: toFind, guessed: key, revealed: false, context: fetchedResultsController!.managedObjectContext)
                         turn.game = currentGame
                         currentGame.attempt?.setByAddingObject(turn)
-                        
                         Helpers.delay(0.7) {
                             self.label.text = "Find: \(self.toFind)"
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
                     }
                 }
-     
             }
-
         }
-        
     }
     
     @IBAction func skip(sender: AnyObject) {
@@ -239,7 +232,6 @@ class MapViewController: CoreDataController {
                 annotation.coordinate = overlay.coordinate
                 annotation.title = titleOfPolyToRemove
                 worldMap.addAnnotation(annotation)
-                //worldMap.removeOverlay(overlay)
             }
         }
         self.game["guessed"]![self.toFind] = self.toFind
@@ -249,7 +241,7 @@ class MapViewController: CoreDataController {
     func addBoundary(countryShape: Country) {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
-        for var landArea in (countryShape.boundary) {
+        for landArea in (countryShape.boundary) {
             //let polygon = MKPolygon(coordinates: &landArea, count: landArea.count)
             let overlay = customPolygon(guessed: false, coords: landArea, numberOfPoints: landArea.count )
             overlay.title = countryShape.country
@@ -297,8 +289,7 @@ class MapViewController: CoreDataController {
         setQuestionLabel()
     }
     
-    func returnToMainMenue () {
-        navigationController?.popToRootViewControllerAnimated(true)
+    override func viewWillDisappear(animated: Bool) {
         currentGame.finished_at = NSDate()
         do {
             try fetchedResultsController!.managedObjectContext.save()
@@ -306,6 +297,7 @@ class MapViewController: CoreDataController {
             print("error saving :(", error)
         }
     }
+    
     
     // functions to deal with the restoring state
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
@@ -338,16 +330,6 @@ class MapViewController: CoreDataController {
         currentGame = entities[0]
     }
     
-}
-
-class customPolygon: MKPolygon {
-    var userGuessed: Bool!
-    convenience init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
-        self.init()
-        var coords = coords
-        self.init(coordinates: &coords, count: numberOfPoints)
-        userGuessed = guessed
-    }
 }
 
 

@@ -12,6 +12,9 @@
 		9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
+		9504F24F1D67BDB8009F8C24 /* ChallengeScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */; };
+		9504F2501D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */; };
+		9504F2511D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */; };
 		950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
 		950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
 		950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
@@ -100,6 +103,7 @@
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreViewController.swift; sourceTree = "<group>"; };
 		950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		950BCE981D576AB40055E04E /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -200,6 +204,7 @@
 				95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */,
 				95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */,
 				9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */,
+				9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -551,6 +556,7 @@
 				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
 				95ACFE2D1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				95ACFE3F1D63629B000E0E23 /* MapViewDelegate.swift in Sources */,
+				9504F24F1D67BDB8009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
 				950C36171D56479E009710DD /* MapViewController.swift in Sources */,
@@ -575,6 +581,7 @@
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
 				95ACFE2E1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				9504F2501D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */,
@@ -601,6 +608,7 @@
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
 				95ACFE2F1D60FDAC000E0E23 /* ChooseQuizMode.swift in Sources */,
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
+				9504F2511D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */,
@@ -745,6 +753,7 @@
 			baseConfigurationReference = 2FE44603B85BFB361BFA7393 /* Pods-overlayPractice.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = overlayPractice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPractice";
@@ -757,6 +766,7 @@
 			baseConfigurationReference = A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = overlayPractice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPractice";

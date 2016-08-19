@@ -70,6 +70,24 @@
             </objects>
             <point key="canvasLocation" x="1500" y="907"/>
         </scene>
+        <!--Challenge Score View Controller-->
+        <scene sceneID="4WP-8H-eyQ">
+            <objects>
+                <viewController storyboardIdentifier="challengeScoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eOy-0M-5nD" customClass="ChallengeScoreViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DLH-8C-A0D"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Ok-n5-I2u"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xAr-wL-aR4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i5F-2d-ndN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2457" y="1"/>
+        </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
             <objects>
@@ -361,6 +379,7 @@
                         <outlet property="lifeTwo" destination="Ooo-6P-4SX" id="J3M-w5-qVp"/>
                         <outlet property="timerLabel" destination="hYb-N5-KfP" id="pYb-Yt-mVa"/>
                         <outlet property="worldMap" destination="B82-If-DOD" id="KLj-8V-Ym6"/>
+                        <segue destination="eOy-0M-5nD" kind="show" id="TMX-ex-ICM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRS-iy-mxH" userLabel="First Responder" sceneMemberID="firstResponder"/>

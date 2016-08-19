@@ -37,17 +37,6 @@ class ScoreViewController: CoreDataController {
         
     }
     
-    //if the mode was practice then give a lowdown of the scores - 
-    // revealed
-    // guessed
-    // lost
-    // number of wrong guesses
-    
-    // if quiz mode then:
-    // message - "Boom you made it"
-    // message - "you lost"
-    
-    
     func home () {
         navigationController?.popToRootViewControllerAnimated(true)
     }
