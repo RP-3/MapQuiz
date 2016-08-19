@@ -30,11 +30,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //preloadData ()
         //Override point for customization after application launch.
         let defaults = NSUserDefaults.standardUserDefaults()
-        let isPreloaded = defaults.boolForKey("isPreloaded")
+        let isPreloaded = defaults.boolForKey("dataPreloaded")
         if !isPreloaded {
             print("data not preloaded yet ...")
             preloadData()
-            defaults.setBool(true, forKey: "isPreloaded")
+            defaults.setBool(true, forKey: "dataPreloaded")
         } else {
             print("data is already loaded into core data")
         }

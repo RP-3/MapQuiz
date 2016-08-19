@@ -86,13 +86,14 @@ class MapViewController: CoreDataController {
             }
         }
         totalCountries = createdPolygonOverlays.count
+        
         // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
-        
+        print("<><><><><>",game["toPlay"]!.count)
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
+            restoreOccur = false
             print("data is saved go get it")
-            
             // if the game has already been partially played then set up old scores
             if currentGame.attempt?.count > 0 {
                 //1. loop through the attempts and adjust overlays and score to match
@@ -102,7 +103,6 @@ class MapViewController: CoreDataController {
                         game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
-                                print("removing...")
                                 worldMap.removeOverlay(overlay)
                                 continue
                             }
