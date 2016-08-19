@@ -81,7 +81,8 @@ class ChallengeViewController: CoreDataController {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
-                setZoomForContinent()
+                let region = Helpers.setZoomForContinent(continent)
+                worldMap.setRegion(region, animated: true)
             }
         }
         totalCountries = createdPolygonOverlays.count
@@ -221,25 +222,6 @@ class ChallengeViewController: CoreDataController {
 
 extension ChallengeViewController {
     
-    func setZoomForContinent () {
-        // dictionary of points and zooms for the continents
-        var midPoints = [
-            "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
-            "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
-            "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
-            "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
-            "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
-            "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
-        ]
-        
-        let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-        let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
-        worldMap.setRegion(region, animated: true)
-    }
-    
     func updateTime () {
         if(count > 0){
             let minutes = String(count / 60)
@@ -251,6 +233,4 @@ extension ChallengeViewController {
             count -= 1
         }
     }
-    
-    
 }

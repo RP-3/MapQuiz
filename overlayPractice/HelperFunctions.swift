@@ -14,22 +14,6 @@ class HelperFunctions {
     static let sharedInstance = HelperFunctions()
     private init() {}
     
-//    func makeQuestionLabel () -> UILabel {
-//        let label = UILabel()
-//        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-//        let countryToFind = Array(game["toPlay"]!.values)[index]
-//        toFind = countryToFind
-//        let screenSize = UIScreen.mainScreen().bounds.size
-//        label.frame = CGRectMake(0, 0 + 44, (screenSize.width + 5), 35)
-//        
-//        label.textAlignment = NSTextAlignment.Center
-//        label.text = "Find: \(countryToFind)"
-//        label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-//        label.textColor = UIColor.whiteColor()
-//        view.frame.origin.y = 44 * (-1)
-//        return label
-//    }
-    
     func contains(polygon: [CLLocationCoordinate2D], selectedPoint: CLLocationCoordinate2D) -> Bool {
         var pJ=polygon.last!
         var contains = false

@@ -150,13 +150,11 @@ class MapViewController: CoreDataController {
     }
     
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
-        
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         
         //loop through the countries in continent
         for (key, _) in coordinates {
-
             for landArea in coordinates[key]! {
                 //each thing is a land area of coordinates
                 if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
@@ -167,7 +165,6 @@ class MapViewController: CoreDataController {
                         let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
                         turn.game = currentGame
                         currentGame.attempt?.setByAddingObject(turn)
-                        
                         Helpers.delay(0.7) {
                             self.setQuestionLabel()
                         }
@@ -233,13 +230,16 @@ class MapViewController: CoreDataController {
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
                 //remove references to this polygon
-                createdPolygonOverlays.removeValueForKey(titleOfPolyToRemove)
-                coordinates.removeValueForKey(titleOfPolyToRemove)
+                //now need to get this polygon re-rendered - remove and then add?
+                worldMap.removeOverlay(overlay)
+                (overlay as! customPolygon).userGuessed = true
+                worldMap.addOverlay(overlay)
+                
                 let annotation = MKPointAnnotation()
                 annotation.coordinate = overlay.coordinate
                 annotation.title = titleOfPolyToRemove
                 worldMap.addAnnotation(annotation)
-                worldMap.removeOverlay(overlay)
+                //worldMap.removeOverlay(overlay)
             }
         }
         self.game["guessed"]![self.toFind] = self.toFind
@@ -250,12 +250,12 @@ class MapViewController: CoreDataController {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for var landArea in (countryShape.boundary) {
-            let multiPolygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-            multiPolygon.title = countryShape.country
-            //let overlay = customPolygon(countryName: country.country, alphaValue: 1.0, polygon: multiPolygon)
-            polygons.append(multiPolygon)
-            worldMap.addOverlay(multiPolygon)
-            polygons.append(multiPolygon)
+            //let polygon = MKPolygon(coordinates: &landArea, count: landArea.count)
+            let overlay = customPolygon(guessed: false, coords: landArea, numberOfPoints: landArea.count )
+            overlay.title = countryShape.country
+            polygons.append(overlay)
+            worldMap.addOverlay(overlay)
+            polygons.append(overlay)
         }
         createdPolygonOverlays[countryShape.country] = polygons
         coordinates[countryShape.country] = countryShape.boundary
@@ -290,8 +290,6 @@ class MapViewController: CoreDataController {
                 continue
             }
         }
-        print("polygons: ",createdPolygonOverlays.count)
-        print("coordinates: ",coordinates.count)
         game["toPlay"]!.removeValueForKey(toFind)
         revealed += 1
         createdPolygonOverlays.removeValueForKey(toFind)
@@ -340,6 +338,16 @@ class MapViewController: CoreDataController {
         currentGame = entities[0]
     }
     
+}
+
+class customPolygon: MKPolygon {
+    var userGuessed: Bool!
+    convenience init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
+        self.init()
+        var coords = coords
+        self.init(coordinates: &coords, count: numberOfPoints)
+        userGuessed = guessed
+    }
 }
 
 
