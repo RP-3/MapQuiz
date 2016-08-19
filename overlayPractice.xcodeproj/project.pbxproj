@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		57F35472D4CE11C03821BE1C /* Pods_overlayPracticeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */; };
 		6CDE31A7BFEC749E9EF658F5 /* Pods_overlayPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */; };
+		9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
+		9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
+		9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
 		950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
 		950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
@@ -96,6 +99,7 @@
 		3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		950BCE981D576AB40055E04E /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -195,6 +199,7 @@
 				95ACFE2C1D60FDAC000E0E23 /* ChooseQuizMode.swift */,
 				95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */,
 				95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */,
+				9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -559,6 +564,7 @@
 				95ACFE3B1D635E9B000E0E23 /* ChallengeViewController.swift in Sources */,
 				950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				9512E7A01D649DBE005D8EAD /* Attempt.swift in Sources */,
+				9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +577,7 @@
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
+				9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */,
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
@@ -596,6 +603,7 @@
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
+				9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */,
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,

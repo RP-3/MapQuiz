@@ -26,6 +26,7 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var lifeTwo: UILabel!
     @IBOutlet weak var lifeOne: UILabel!
     
+    let Helpers = HelperFunctions.sharedInstance
     
     var totalCountries: Int = 0
     
@@ -137,11 +138,11 @@ class ChallengeViewController: CoreDataController {
             
             for landArea in coordinates[key]! {
                 //each thing is a land area of coordinates
-                if (self.contains(landArea, selectedPoint: tappedCoordinates)) {
+                if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                     if (toFind == key) {
                         self.label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                        self.delay(0.7) {
+                        Helpers.delay(0.7) {
                             self.setQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
@@ -162,7 +163,7 @@ class ChallengeViewController: CoreDataController {
                             print("No more lives!")
                         }
                         
-                        self.delay(0.7) {
+                        Helpers.delay(0.7) {
                             if self.lives == 0 {
                                 //segue to score page
                                 // show bomb  - present modally?
@@ -220,20 +221,6 @@ class ChallengeViewController: CoreDataController {
 
 extension ChallengeViewController {
     
-    // check if a point is in a polygon
-    func contains(polygon: [CLLocationCoordinate2D], selectedPoint: CLLocationCoordinate2D) -> Bool {
-        var pJ=polygon.last!
-        var contains = false
-        for pI in polygon {
-            if ( ((pI.latitude >= selectedPoint.latitude) != (pJ.latitude >= selectedPoint.latitude)) &&
-                (selectedPoint.longitude <= (pJ.longitude - pI.longitude) * (selectedPoint.latitude - pI.latitude) / (pJ.latitude - pI.latitude) + pI.longitude) ){
-                contains = !contains
-            }
-            pJ=pI
-        }
-        return contains
-    }
-    
     func setZoomForContinent () {
         // dictionary of points and zooms for the continents
         var midPoints = [
@@ -251,14 +238,6 @@ extension ChallengeViewController {
         let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
         worldMap.setRegion(region, animated: true)
-    }
-    
-    func delay (delay:Double, closure:()->()) {
-        //set the time to dispatch after
-        //dispatch_time: creates dispatch time relative to now then this is in a dispatch after this amount of time method
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(delay * Double(NSEC_PER_SEC))),
-                       //then run the closure fn in the main queue when delay over
-            dispatch_get_main_queue(), closure)
     }
     
     func updateTime () {

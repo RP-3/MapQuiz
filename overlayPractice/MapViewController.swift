@@ -24,6 +24,8 @@ class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
     
+    let Helpers = HelperFunctions.sharedInstance
+    
     var continent: String!
     
     var currentGame: Game!
@@ -33,9 +35,9 @@ class MapViewController: CoreDataController {
     
     var game = [
         "guessed": [String:String](),
-        "toPlay": [String:String](),
-        "revealed": [String: String]()
+        "toPlay": [String:String]()
     ]
+    var revealed = 0
     var misses = 0
     
     var toFind = ""
@@ -67,7 +69,7 @@ class MapViewController: CoreDataController {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
-        
+        print("entities: ", entities.count)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
@@ -82,14 +84,15 @@ class MapViewController: CoreDataController {
                 let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
-                setZoomForContinent()
+                let region = Helpers.setZoomForContinent(continent)
+                worldMap.setRegion(region, animated: true)
             }
         }
         totalCountries = createdPolygonOverlays.count
-        
         // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
         print("<><><><><>",game["toPlay"]!.count)
+        
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
@@ -108,7 +111,7 @@ class MapViewController: CoreDataController {
                             }
                         }
                     } else if (attempt as! Attempt).revealed == true {
-                        game["revealed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind!
+                        revealed += 1
                         game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
@@ -126,7 +129,7 @@ class MapViewController: CoreDataController {
             currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
             // use autosave to save it - else on exiting the core data entities are saved
         }
-        print("games to play 3 --->", game["toPlay"]!.count)
+        print("games to play --->", game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
     }
@@ -153,10 +156,10 @@ class MapViewController: CoreDataController {
         
         //loop through the countries in continent
         for (key, _) in coordinates {
-            
+
             for landArea in coordinates[key]! {
                 //each thing is a land area of coordinates
-                if (self.contains(landArea, selectedPoint: tappedCoordinates)) {
+                if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                     if (toFind == key) {
                         label.text = "Found!"
                         label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
@@ -165,7 +168,7 @@ class MapViewController: CoreDataController {
                         turn.game = currentGame
                         currentGame.attempt?.setByAddingObject(turn)
                         
-                        delay(0.7) {
+                        Helpers.delay(0.7) {
                             self.setQuestionLabel()
                         }
                         //then we can delete country overlay from map as correct selection
@@ -179,7 +182,7 @@ class MapViewController: CoreDataController {
                         turn.game = currentGame
                         currentGame.attempt?.setByAddingObject(turn)
                         
-                        delay(0.7) {
+                        Helpers.delay(0.7) {
                             self.label.text = "Find: \(self.toFind)"
                             self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
                         }
@@ -211,19 +214,18 @@ class MapViewController: CoreDataController {
             // save finish date to core data
             currentGame.finished_at = NSDate()
         }
-        self.title = String("\(game["guessed"]!.count + game["revealed"]!.count) / \(totalCountries)")
+        self.title = String("\(game["guessed"]!.count + revealed) / \(totalCountries)")
     }
     
-    // TODO:
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showScore" {
-            //let controller = segue.destinationViewController as! ScoreViewController
+            let controller = segue.destinationViewController as! ScoreViewController
             //get the id property on the annotation
-//            controller.score = game["guessed"]?.count
-//            controller.scoreTotal = totalCountries
-//            controller.revealed = game["revealed"]?.count
-//            controller.misses = misses
-            
+            controller.score = game["guessed"]?.count
+            controller.scoreTotal = totalCountries
+            controller.revealed = revealed
+            controller.misses = misses
         }
     }
     
@@ -245,7 +247,6 @@ class MapViewController: CoreDataController {
     }
 
     func addBoundary(countryShape: Country) {
-
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for var landArea in (countryShape.boundary) {
@@ -258,7 +259,6 @@ class MapViewController: CoreDataController {
         }
         createdPolygonOverlays[countryShape.country] = polygons
         coordinates[countryShape.country] = countryShape.boundary
-
     }
 
     
@@ -271,7 +271,8 @@ class MapViewController: CoreDataController {
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
-        setZoomForContinent()
+        let region = Helpers.setZoomForContinent(continent)
+        worldMap.setRegion(region, animated: true)
     }
     
     
@@ -286,18 +287,16 @@ class MapViewController: CoreDataController {
                 let turn = Attempt(toFind: toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
                 turn.game = currentGame
                 currentGame.attempt?.setByAddingObject(turn)
-                
                 continue
             }
         }
         print("polygons: ",createdPolygonOverlays.count)
         print("coordinates: ",coordinates.count)
         game["toPlay"]!.removeValueForKey(toFind)
-        game["revealed"]![toFind] = toFind
+        revealed += 1
         createdPolygonOverlays.removeValueForKey(toFind)
         coordinates.removeValueForKey(toFind)
         setQuestionLabel()
-        
     }
     
     func returnToMainMenue () {
@@ -308,9 +307,9 @@ class MapViewController: CoreDataController {
         } catch {
             print("error saving :(", error)
         }
-        
     }
     
+    // functions to deal with the restoring state
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         // save the continent as minimal source of data
         coder.encodeObject(continent as AnyObject, forKey: "continent")
@@ -326,7 +325,6 @@ class MapViewController: CoreDataController {
     
     // once the app has loaded again work out what to show on the screen
     override func applicationFinishedRestoringState() {
-        
         //grab the unfinished game and set to currrent game
         let moc = fetchedResultsController!.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -344,51 +342,7 @@ class MapViewController: CoreDataController {
     
 }
 
-extension MapViewController {
-    
-    // check if a point is in a polygon
-    func contains(polygon: [CLLocationCoordinate2D], selectedPoint: CLLocationCoordinate2D) -> Bool {
-        var pJ=polygon.last!
-        var contains = false
-        for pI in polygon {
-            if ( ((pI.latitude >= selectedPoint.latitude) != (pJ.latitude >= selectedPoint.latitude)) &&
-                (selectedPoint.longitude <= (pJ.longitude - pI.longitude) * (selectedPoint.latitude - pI.latitude) / (pJ.latitude - pI.latitude) + pI.longitude) ){
-                contains = !contains
-            }
-            pJ=pI
-        }
-        return contains
-    }
-    
-    func setZoomForContinent () {
-        // dictionary of points and zooms for the continents
-        var midPoints = [
-            "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
-            "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
-            "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
-            "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
-            "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 130.0],
-            "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
-        ]
-        
-        let latDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-        let longDelta:CLLocationDegrees = midPoints[continent!]!["scale"]!
-        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake(midPoints[continent!]!["lat"]!, midPoints[continent!]!["long"]!)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
-        worldMap.setRegion(region, animated: true)
-    }
-    
-    func delay (delay:Double, closure:()->()) {
-        //set the time to dispatch after
-        //dispatch_time: creates dispatch time relative to now then this is in a dispatch after this amount of time method
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(delay * Double(NSEC_PER_SEC))),
-        //then run the closure fn in the main queue when delay over
-        dispatch_get_main_queue(), closure)
-    }
 
-    
-}
 
 
 
