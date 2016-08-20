@@ -267,6 +267,7 @@ class MapViewController: CoreDataController {
         createdPolygonOverlays.removeAll()
         let region = Helpers.setZoomForContinent(continent)
         worldMap.setRegion(region, animated: true)
+        label.removeFromSuperview()
     }
     
     
