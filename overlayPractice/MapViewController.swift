@@ -260,6 +260,8 @@ class MapViewController: CoreDataController {
         for overlay: MKOverlay in worldMap.overlays {
             //TODO: show name of country
             worldMap.removeOverlay(overlay)
+            (overlay as! customPolygon).userGuessed = true
+            worldMap.addOverlay(overlay)
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
@@ -273,8 +275,11 @@ class MapViewController: CoreDataController {
         // get the name of the country being asked
         for overlay in worldMap.overlays {
             if overlay.title!! == toFind {
-                //remove reference to it in view
+                //update the mapview
                 worldMap.removeOverlay(overlay)
+                (overlay as! customPolygon).userGuessed = true
+                worldMap.addOverlay(overlay)
+
                 // add reveal to core data
                 let turn = Attempt(toFind: toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
                 turn.game = currentGame

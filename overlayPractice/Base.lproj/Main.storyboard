@@ -73,7 +73,7 @@
         <!--Challenge Score View Controller-->
         <scene sceneID="4WP-8H-eyQ">
             <objects>
-                <viewController storyboardIdentifier="challengeScoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eOy-0M-5nD" customClass="ChallengeScoreViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChallengeScoreViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eOy-0M-5nD" customClass="ChallengeScoreViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DLH-8C-A0D"/>
                         <viewControllerLayoutGuide type="bottom" id="9Ok-n5-I2u"/>
