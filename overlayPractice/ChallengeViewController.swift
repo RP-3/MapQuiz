@@ -169,65 +169,39 @@ class ChallengeViewController: CoreDataController {
     
      // work out if the click was on a country
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
-        
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-        //loop through the countries in continent
-        
-        for (key, _) in coordinates {
-            for landArea in coordinates[key]! {
-                //each thing is a land area of coordinates
-                if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
-                    if (toFind == key) {
-                        self.label.text = "Found!"
-                        label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                        
-                        // add guess to core data
-                        let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
-                        turn.game = currentGame
-                        currentGame.attempt?.setByAddingObject(turn)
-                        
-                        Helpers.delay(0.7) {
-                            self.setQuestionLabel()
-                        }
-                        updateMapOverlays(key)
-                    } else {
-                        //it was an incorrect guess
-                        label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-                        misses += 1
-                        lives -= 1
-                        
-                        //save attempt to core data
-                        let turn = Attempt(toFind: toFind, guessed: key, revealed: false, context: fetchedResultsController!.managedObjectContext)
-                        turn.game = currentGame
-                        currentGame.attempt?.setByAddingObject(turn)
-                        
-                        if lives == 2 {
-                           lifeThree.enabled = false
-                        } else if lives == 1 {
-                            lifeTwo.enabled = false
-                        } else {
-                            lifeOne.enabled = false
-                            //BOOM! No more lives segue to score page?
-                            print("No more lives!")
-                        }
-                        
-                        Helpers.delay(0.7) {
-                            if self.lives == 0 {
-                                //segue to score page
-                                // show bomb  - present modally?
-                                // show time taken and then number correct?
-                            } else {
-                                //reset the question label
-                                self.label.text = "Find: \(self.toFind)"
-                                self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-                            }
-                        }
-                    }
-                }
-                
+        // loop through the land areas in the current country to find and make sure that the tap was here - else error
+        var found = false
+        for landArea in coordinates[toFind]! {
+            //call function to retrun true or false, depending if the tap is in one of the land areas
+            if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
+                found = true
             }
-            
+        }
+        if found {
+            label.text = "Found!"
+            label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+            //save the attempt to coredata
+            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            turn.game = currentGame
+            currentGame.attempt?.setByAddingObject(turn)
+            Helpers.delay(0.7) {
+                self.setQuestionLabel()
+            }
+            updateMapOverlays(toFind)
+        } else {
+            //it was an incorrect guess
+            label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+            misses += 1
+            //save attempt to core data
+            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            turn.game = currentGame
+            currentGame.attempt?.setByAddingObject(turn)
+            Helpers.delay(0.7) {
+                self.label.text = "Find: \(self.toFind)"
+                self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+            }
         }
         
     }
