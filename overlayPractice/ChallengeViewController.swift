@@ -85,7 +85,7 @@ class ChallengeViewController: CoreDataController {
     override func viewWillAppear(animated: Bool) {
         for entity in entities {
             if (entity.continent == continent) {
-                let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
+                let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
             }
@@ -157,14 +157,14 @@ class ChallengeViewController: CoreDataController {
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for landArea in (countryShape.boundary) {
             // make custom polygon to be able to edit properties 
-            let overlay = customPolygon(guessed: false, coords: landArea, numberOfPoints: landArea.count)
-            overlay.title = countryShape.country
+            let overlay = customPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count)
+            overlay.title = countryShape.name
             polygons.append(overlay)
             worldMap.addOverlay(overlay)
             polygons.append(overlay)
         }
-        createdPolygonOverlays[countryShape.country] = polygons
-        coordinates[countryShape.country] = countryShape.boundary
+        createdPolygonOverlays[countryShape.name] = polygons
+        coordinates[countryShape.name] = countryShape.boundary
     }
     
      // work out if the click was on a country
@@ -318,10 +318,12 @@ class ChallengeViewController: CoreDataController {
 // TODO : move this elsewhere
 class customPolygon: MKPolygon {
     var userGuessed: Bool!
-    convenience init(guessed: Bool, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
+    var annotation_point: CLLocationCoordinate2D!
+    convenience init(guessed: Bool, lat_long: CLLocationCoordinate2D, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
         self.init()
         var coords = coords
         self.init(coordinates: &coords, count: numberOfPoints)
         userGuessed = guessed
+        annotation_point = lat_long
     }
 }

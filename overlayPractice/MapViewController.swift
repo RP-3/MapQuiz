@@ -74,7 +74,7 @@ class MapViewController: CoreDataController {
     override func viewWillAppear(animated: Bool) {
         for entity in entities {
             if (entity.continent == continent) {
-                let country = Country(name: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!)
+                let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
             }
@@ -121,7 +121,7 @@ class MapViewController: CoreDataController {
             let region = Helpers.setZoomForContinent(continent)
             worldMap.setRegion(region, animated: true)
         }
-        print("games to play --->", game["toPlay"]!.count)
+        print("countries to find --->", game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
     }
@@ -146,42 +146,36 @@ class MapViewController: CoreDataController {
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
-        //loop through the countries in continent
-        
-        // add new logic here to look just at the country want to look at and the point tapped - not all countres
-        /*
-        
-         var toCheck = coordinates[toFind]
-        if Helpers.contains(landArea, selectedPoint: tappedCoordinates)
-         
-         */
-    
-        for landArea in coordinates[toFind]! {            
-            //each thing is a land area of coordinates
+        // loop through the land areas in the current country to find and make sure that the tap was here - else error
+        var found = false
+        for landArea in coordinates[toFind]! {
+            //call function to retrun true or false, depending if the tap is in one of the land areas
             if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
-                label.text = "Found!"
-                label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                //save the attempt to coredata
-                let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
-                turn.game = currentGame
-                currentGame.attempt?.setByAddingObject(turn)
-                Helpers.delay(0.7) {
-                    self.setQuestionLabel()
-                }
-                updateMapOverlays(toFind)
-            } else {
-                //it was an incorrect guess
-                label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-                misses += 1
-                //save attempt to core data
-                let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
-                turn.game = currentGame
-                currentGame.attempt?.setByAddingObject(turn)
-                Helpers.delay(0.7) {
-                    self.label.text = "Find: \(self.toFind)"
-                    self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-                }
-
+                found = true
+            }
+        }
+        if found {
+            label.text = "Found!"
+            label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+            //save the attempt to coredata
+            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            turn.game = currentGame
+            currentGame.attempt?.setByAddingObject(turn)
+            Helpers.delay(0.7) {
+                self.setQuestionLabel()
+            }
+            updateMapOverlays(toFind)
+        } else {
+            //it was an incorrect guess
+            label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+            misses += 1
+            //save attempt to core data
+            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            turn.game = currentGame
+            currentGame.attempt?.setByAddingObject(turn)
+            Helpers.delay(0.7) {
+                self.label.text = "Find: \(self.toFind)"
+                self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
             }
         }
     
@@ -222,6 +216,10 @@ class MapViewController: CoreDataController {
     }
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
+        
+        //method 1: look at the capital city and get the coordinates for this (idealy store these in core data too and not comput each time - but for testing could try)
+        // 2. using all centeral coordinates generate center point
+        
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
                 //remove references to this polygon
@@ -231,7 +229,7 @@ class MapViewController: CoreDataController {
                 worldMap.addOverlay(overlay)
                 
                 let annotation = MKPointAnnotation()
-                annotation.coordinate = overlay.coordinate
+                annotation.coordinate = (overlay as! customPolygon).annotation_point
                 annotation.title = titleOfPolyToRemove
                 worldMap.addAnnotation(annotation)
             }
@@ -245,25 +243,30 @@ class MapViewController: CoreDataController {
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for landArea in (countryShape.boundary) {
             //let polygon = MKPolygon(coordinates: &landArea, count: landArea.count)
-            let overlay = customPolygon(guessed: false, coords: landArea, numberOfPoints: landArea.count )
-            overlay.title = countryShape.country
+            let overlay = customPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count )
+            overlay.title = countryShape.name
             polygons.append(overlay)
             worldMap.addOverlay(overlay)
             polygons.append(overlay)
         }
-        createdPolygonOverlays[countryShape.country] = polygons
-        coordinates[countryShape.country] = countryShape.boundary
+        createdPolygonOverlays[countryShape.name] = polygons
+        coordinates[countryShape.name] = countryShape.boundary
     }
 
     
     @IBAction func showAll(sender: AnyObject) {
         //TODO: more functionality??
         //delete all overlays off the map
-        for overlay: MKOverlay in worldMap.overlays {
+        for overlay in worldMap.overlays {
             //TODO: show name of country
             worldMap.removeOverlay(overlay)
             (overlay as! customPolygon).userGuessed = true
             worldMap.addOverlay(overlay)
+            //add annotation
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = (overlay as! customPolygon).annotation_point
+            annotation.title = overlay.title!
+            worldMap.addAnnotation(annotation)
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
@@ -339,6 +342,7 @@ class MapViewController: CoreDataController {
     }
     
 }
+
 
 
 

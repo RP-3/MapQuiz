@@ -15,6 +15,7 @@ import CoreData
 extension LandArea {
 
     @NSManaged var capital: String?
+    @NSManaged var annotation_point: String?
     @NSManaged var continent: String?
     @NSManaged var coordinates: String?
     @NSManaged var name: String?

@@ -12,16 +12,22 @@ import SwiftyJSON
 
 class Country {
     
-    var country: String
+    var name: String
     var boundary: [[CLLocationCoordinate2D]]
     var boundaryPointsCount: NSInteger
     var geojsonFormat: String
+    var annotation_point: CLLocationCoordinate2D
     
-    init (name: String, points: String, coordType: String) {
+    init (title: String, points: String, coordType: String, point: String) {
         
-        country = name
+        name = title
         geojsonFormat = coordType
-        //print("name------", name)
+        
+        //take the point string and make into two strings to store as lat and long
+        var latLong = point.componentsSeparatedByString(",")
+        
+        let coords = CLLocationCoordinate2DMake(Double(latLong[0])!, Double(latLong[1])!)
+        annotation_point = coords
         
         let data: NSData = points.dataUsingEncoding(NSUTF8StringEncoding)!
         let json = JSON(data: data)
