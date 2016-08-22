@@ -56,11 +56,6 @@ class MapViewController: CoreDataController {
     override func viewDidLoad() {
         super.viewDidLoad()
         worldMap.delegate = mapDelegate
-        //customize the navigation bar buttons
-//        self.navigationItem.hidesBackButton = true
-//        let newBackButton: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "back"), style: .Plain, target: self, action: #selector(self.returnToMainMenue))
-//        self.navigationItem.leftBarButtonItem = newBackButton
-        //1. load all the countries for the selected continent into createdPolygonOverlays dictionary
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
@@ -152,37 +147,44 @@ class MapViewController: CoreDataController {
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         //loop through the countries in continent
-        for (key, _) in coordinates {
-            for landArea in coordinates[key]! {
-                //each thing is a land area of coordinates
-                if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
-                    if (toFind == key) {
-                        label.text = "Found!"
-                        label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
-                        //save the attempt to coredata
-                        let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
-                        turn.game = currentGame
-                        currentGame.attempt?.setByAddingObject(turn)
-                        Helpers.delay(0.7) {
-                            self.setQuestionLabel()
-                        }
-                        updateMapOverlays(key)
-                    } else {
-                        //it was an incorrect guess
-                        label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-                        misses += 1
-                        //save attempt to core data
-                        let turn = Attempt(toFind: toFind, guessed: key, revealed: false, context: fetchedResultsController!.managedObjectContext)
-                        turn.game = currentGame
-                        currentGame.attempt?.setByAddingObject(turn)
-                        Helpers.delay(0.7) {
-                            self.label.text = "Find: \(self.toFind)"
-                            self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-                        }
-                    }
+        
+        // add new logic here to look just at the country want to look at and the point tapped - not all countres
+        /*
+        
+         var toCheck = coordinates[toFind]
+        if Helpers.contains(landArea, selectedPoint: tappedCoordinates)
+         
+         */
+    
+        for landArea in coordinates[toFind]! {            
+            //each thing is a land area of coordinates
+            if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
+                label.text = "Found!"
+                label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+                //save the attempt to coredata
+                let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+                turn.game = currentGame
+                currentGame.attempt?.setByAddingObject(turn)
+                Helpers.delay(0.7) {
+                    self.setQuestionLabel()
                 }
+                updateMapOverlays(toFind)
+            } else {
+                //it was an incorrect guess
+                label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+                misses += 1
+                //save attempt to core data
+                let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+                turn.game = currentGame
+                currentGame.attempt?.setByAddingObject(turn)
+                Helpers.delay(0.7) {
+                    self.label.text = "Find: \(self.toFind)"
+                    self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                }
+
             }
         }
+    
     }
     
     @IBAction func skip(sender: AnyObject) {
