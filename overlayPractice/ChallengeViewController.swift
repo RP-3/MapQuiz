@@ -257,7 +257,7 @@ class ChallengeViewController: CoreDataController {
                 worldMap.addOverlay(overlay)
                 
                 let annotation = MKPointAnnotation()
-                annotation.coordinate = overlay.coordinate
+                annotation.coordinate = (overlay as! customPolygon).annotation_point
                 annotation.title = titleOfPolyToRemove
                 worldMap.addAnnotation(annotation)
             }
