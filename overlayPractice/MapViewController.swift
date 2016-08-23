@@ -227,11 +227,7 @@ class MapViewController: CoreDataController {
                 worldMap.removeOverlay(overlay)
                 (overlay as! customPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
-                
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = (overlay as! customPolygon).annotation_point
-                annotation.title = titleOfPolyToRemove
-                worldMap.addAnnotation(annotation)
+                worldMap.addAnnotation(addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
         self.game["guessed"]![self.toFind] = self.toFind
@@ -242,7 +238,6 @@ class MapViewController: CoreDataController {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for landArea in (countryShape.boundary) {
-            //let polygon = MKPolygon(coordinates: &landArea, count: landArea.count)
             let overlay = customPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count )
             overlay.title = countryShape.name
             polygons.append(overlay)
@@ -262,12 +257,7 @@ class MapViewController: CoreDataController {
             worldMap.removeOverlay(overlay)
             (overlay as! customPolygon).userGuessed = true
             worldMap.addOverlay(overlay)
-            //add annotation
-            let annotation = MKPointAnnotation()
-            
-            annotation.coordinate = (overlay as! customPolygon).annotation_point
-            annotation.title = overlay.title!
-            worldMap.addAnnotation(annotation)
+            worldMap.addAnnotation(addCountryLabel(overlay.title!!, overlay: overlay))
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
@@ -286,7 +276,15 @@ class MapViewController: CoreDataController {
                 worldMap.removeOverlay(overlay)
                 (overlay as! customPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
-
+                worldMap.addAnnotation(addCountryLabel(overlay.title!!, overlay: overlay))
+                // center map on revealed point
+                let latDelta:CLLocationDegrees = 10.0
+                let longDelta:CLLocationDegrees = 10.0
+                let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+                let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake((overlay as! customPolygon).annotation_point.latitude, (overlay as! customPolygon).annotation_point.longitude)
+                let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
+                worldMap.setRegion(region, animated: true)
+                
                 // add reveal to core data
                 let turn = Attempt(toFind: toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
                 turn.game = currentGame
@@ -299,6 +297,14 @@ class MapViewController: CoreDataController {
         createdPolygonOverlays.removeValueForKey(toFind)
         coordinates.removeValueForKey(toFind)
         setQuestionLabel()
+    }
+    
+    // add country name label
+    func addCountryLabel (countryTitle: String, overlay: MKOverlay) -> MKAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = (overlay as! customPolygon).annotation_point
+        annotation.title = overlay.title!
+        return annotation
     }
     
     override func viewWillDisappear(animated: Bool) {

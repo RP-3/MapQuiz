@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func preloadData () {
         //1. read the json file
-        if let path = NSBundle.mainBundle().pathForResource("countries12Out", ofType: "json") {
+        if let path = NSBundle.mainBundle().pathForResource("countries4Out", ofType: "json") {
             do {
                 let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: NSDataReadingOptions.DataReadingMappedIfSafe)
                 let jsonObj = JSON(data: data)
