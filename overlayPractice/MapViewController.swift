@@ -264,6 +264,7 @@ class MapViewController: CoreDataController {
             worldMap.addOverlay(overlay)
             //add annotation
             let annotation = MKPointAnnotation()
+            
             annotation.coordinate = (overlay as! customPolygon).annotation_point
             annotation.title = overlay.title!
             worldMap.addAnnotation(annotation)

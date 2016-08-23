@@ -26,7 +26,10 @@ class Country {
         //take the point string and make into two strings to store as lat and long
         var latLong = point.componentsSeparatedByString(",")
         
-        let coords = CLLocationCoordinate2DMake(Double(latLong[0])!, Double(latLong[1])!)
+        let lat = Double(latLong[0])!
+        let long = Double(latLong[1])!
+        
+        let coords = CLLocationCoordinate2DMake(lat, long)
         annotation_point = coords
         
         let data: NSData = points.dataUsingEncoding(NSUTF8StringEncoding)!
