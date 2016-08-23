@@ -56,7 +56,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
         lbl.text = annotation.title!
         lbl.font = UIFont.systemFontOfSize(10)
         lbl.sizeToFit()
-        aView.canShowCallout = false
+//        aView.canShowCallout = true
         return aView
     }
     
