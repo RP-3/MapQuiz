@@ -57,7 +57,7 @@ class ChoiceViewController: CoreDataController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "pickGame" {
-            let controller = segue.destinationViewController as! ChooseQuizMode
+            let controller = segue.destinationViewController as! ChooseQuizModeViewController
             controller.continent = continentChoice
         }
     }

@@ -256,10 +256,10 @@
             </objects>
             <point key="canvasLocation" x="40" y="487"/>
         </scene>
-        <!--Choose Quiz Mode-->
+        <!--Choose Quiz Mode View Controller-->
         <scene sceneID="zk9-HW-YKC">
             <objects>
-                <viewController storyboardIdentifier="ChooseQuizModeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X10-jV-LcE" customClass="ChooseQuizMode" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChooseQuizModeViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="X10-jV-LcE" customClass="ChooseQuizModeViewController" customModule="overlayPractice" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RpZ-kT-OHM"/>
                         <viewControllerLayoutGuide type="bottom" id="Svr-af-yzF"/>

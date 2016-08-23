@@ -1,14 +1,14 @@
 //
-//  ChooseQuizMode.swift
+//  ChooseQuizModeViewController.swift
 //  overlayPractice
 //
-//  Created by Anna Rogers on 8/14/16.
+//  Created by Anna Rogers on 8/23/16.
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
 import UIKit
 
-class ChooseQuizMode: CoreDataController {
+class ChooseQuizModeViewController: UIViewController {
     
     var continent: String!
     
@@ -40,6 +40,5 @@ class ChooseQuizMode: CoreDataController {
         //grab the unfinished game and set to currrent game
         print("ready to keep going data")
     }
-
     
 }
