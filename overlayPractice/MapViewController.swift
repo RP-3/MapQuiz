@@ -261,8 +261,8 @@ class MapViewController: CoreDataController {
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
-        let region = Helpers.setZoomForContinent(continent)
-        worldMap.setRegion(region, animated: true)
+//        let region = Helpers.setZoomForContinent(continent)
+//        worldMap.setRegion(region, animated: true)
         label.removeFromSuperview()
     }
     
