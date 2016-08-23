@@ -268,8 +268,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="247" y="285" width="103" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
+                                <rect key="frame" x="249" y="285" width="103" height="30"/>
                                 <state key="normal" title="Learning Mode">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -379,7 +379,7 @@
                         <outlet property="lifeTwo" destination="Ooo-6P-4SX" id="J3M-w5-qVp"/>
                         <outlet property="timerLabel" destination="hYb-N5-KfP" id="pYb-Yt-mVa"/>
                         <outlet property="worldMap" destination="B82-If-DOD" id="KLj-8V-Ym6"/>
-                        <segue destination="eOy-0M-5nD" kind="show" id="TMX-ex-ICM"/>
+                        <segue destination="eOy-0M-5nD" kind="show" identifier="showChallengeScore" id="TMX-ex-ICM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRS-iy-mxH" userLabel="First Responder" sceneMemberID="firstResponder"/>

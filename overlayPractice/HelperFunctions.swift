@@ -9,7 +9,23 @@
 import UIKit
 import MapKit
 
+
+
 class HelperFunctions {
+    
+    let islands = [
+        "Marshall Islands": "Marshall Islands",
+        "Kiribati": "Kiribati",
+        "Maldives": "Maldives",
+        "Tonga": "Tonga",
+        "Micronesia": "Micronesia",
+        "Niue": "Niue",
+        "Nauru": "Nauru",
+        "Tuvalu": "Tuvalu",
+        "Samoa": "Samoa",
+        "Cook Islands": "Cook Islands",
+        "Palau": "Palau"
+    ]
     
     static let sharedInstance = HelperFunctions()
     private init() {}
@@ -57,7 +73,7 @@ class HelperFunctions {
     // add country name label
     func addCountryLabel (countryTitle: String, overlay: MKOverlay) -> MKAnnotation {
         let annotation = MKPointAnnotation()
-        annotation.coordinate = (overlay as! customPolygon).annotation_point
+        annotation.coordinate = (overlay as! CustomPolygon).annotation_point
         annotation.title = overlay.title!
         return annotation
     }

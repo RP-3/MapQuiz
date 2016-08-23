@@ -12,6 +12,9 @@
 		950175E31D6C85C0007B78E3 /* countries4Out.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175E21D6C85C0007B78E3 /* countries4Out.json */; };
 		950175E41D6C85C0007B78E3 /* countries4Out.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175E21D6C85C0007B78E3 /* countries4Out.json */; };
 		950175E51D6C85C0007B78E3 /* countries4Out.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175E21D6C85C0007B78E3 /* countries4Out.json */; };
+		950175E91D6CF476007B78E3 /* CustomPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950175E81D6CF476007B78E3 /* CustomPolygon.swift */; };
+		950175EA1D6CF492007B78E3 /* CustomPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950175E81D6CF476007B78E3 /* CustomPolygon.swift */; };
+		950175EB1D6CF493007B78E3 /* CustomPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950175E81D6CF476007B78E3 /* CustomPolygon.swift */; };
 		9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
@@ -103,6 +106,7 @@
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		950175E21D6C85C0007B78E3 /* countries4Out.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries4Out.json; sourceTree = "<group>"; };
+		950175E81D6CF476007B78E3 /* CustomPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPolygon.swift; sourceTree = "<group>"; };
 		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreViewController.swift; sourceTree = "<group>"; };
 		950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -206,6 +210,7 @@
 				95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */,
 				9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */,
 				9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */,
+				950175E81D6CF476007B78E3 /* CustomPolygon.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -566,6 +571,7 @@
 				950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				9512E79D1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
+				950175E91D6CF476007B78E3 /* CustomPolygon.swift in Sources */,
 				95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
 				95ACFE3B1D635E9B000E0E23 /* ChallengeViewController.swift in Sources */,
@@ -589,6 +595,7 @@
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				950175EA1D6CF492007B78E3 /* CustomPolygon.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
 				9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */,
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
@@ -616,6 +623,7 @@
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				950175EB1D6CF493007B78E3 /* CustomPolygon.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
 				9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */,
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,

@@ -6,10 +6,6 @@
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
-//next add in lives
-//add in score page
-//add in BOMB to finish
-
 import UIKit
 import MapKit
 import CoreData
@@ -45,7 +41,8 @@ class ChallengeViewController: CoreDataController {
     //question label
     let label = UILabel()
     
-    var stopwatch = 600
+    var stopwatch = 50
+    var timerScheduler: NSTimer!
     
     //dictionary keyed by country name with the values as an array of all the polygons for that country
     var createdPolygonOverlays = [String: [MKPolygon]]()
@@ -62,7 +59,7 @@ class ChallengeViewController: CoreDataController {
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
             print("start the timer")
-            _ = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
+            self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
             
         }
         alertController.addAction(OKAction)
@@ -131,7 +128,7 @@ class ChallengeViewController: CoreDataController {
             let region = Helpers.setZoomForContinent(continent)
             worldMap.setRegion(region, animated: true)
         }
-        print("games to play --->", game["toPlay"]!.count)
+        print("countries to play --->", game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
     }
@@ -157,7 +154,7 @@ class ChallengeViewController: CoreDataController {
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for landArea in (countryShape.boundary) {
             // make custom polygon to be able to edit properties 
-            let overlay = customPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count)
+            let overlay = CustomPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count)
             overlay.title = countryShape.name
             polygons.append(overlay)
             worldMap.addOverlay(overlay)
@@ -202,8 +199,29 @@ class ChallengeViewController: CoreDataController {
                 self.label.text = "Find: \(self.toFind)"
                 self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
             }
+            lives -= 1
+            // remove a life and fade out in UI
+            if lifeThree.enabled {
+                lifeThree.enabled = false
+            } else if lifeTwo.enabled {
+                lifeTwo.enabled = false
+            } else if lifeOne.enabled {
+                lifeOne.enabled = false
+                // all lives gone
+                currentGame.finished_at = NSDate()
+                performSegueWithIdentifier("showChallengeScore", sender: nil)
+            }
         }
         
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // pass the lives and total score and total countries and time
+        let controller = segue.destinationViewController as! ChallengeScoreViewController
+        controller.lives = lives
+        controller.correct = game["guessed"]!.count
+        controller.time = stopwatch
+        controller.totalCountriesInContinent = totalCountries
     }
     
     //ask new question
@@ -217,7 +235,8 @@ class ChallengeViewController: CoreDataController {
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //push to score screen
-            performSegueWithIdentifier("showScore", sender: nil)
+            currentGame.finished_at = NSDate()
+            performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
     
@@ -227,13 +246,9 @@ class ChallengeViewController: CoreDataController {
             if overlay.title! == titleOfPolyToRemove {
                 //update the polygon so it just has a white outline
                 worldMap.removeOverlay(overlay)
-                (overlay as! customPolygon).userGuessed = true
+                (overlay as! CustomPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
-                
-                let annotation = MKPointAnnotation()
-                annotation.coordinate = (overlay as! customPolygon).annotation_point
-                annotation.title = titleOfPolyToRemove
-                worldMap.addAnnotation(annotation)
+                worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
         self.game["guessed"]![self.toFind] = self.toFind
@@ -249,6 +264,11 @@ class ChallengeViewController: CoreDataController {
             }
             timerLabel.text = minutes + ":" + seconds
             stopwatch -= 1
+        } else {
+            // stop this function from being called after this condition has been met
+            timerScheduler.invalidate()
+            currentGame.finished_at = NSDate()
+            performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
     
@@ -282,22 +302,16 @@ class ChallengeViewController: CoreDataController {
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
-        // set the current game
-        currentGame = entities[0]
+        
+        // set the current game if needed else return to main menu
+        if entities[0].finished_at != nil {
+            print("have game to continue")
+            currentGame = entities[0]
+        } else {
+            //show the home page
+            print("return home")
+            navigationController?.popToRootViewControllerAnimated(true)
+        }
     }
     
-}
-
-
-// TODO : move this elsewhere
-class customPolygon: MKPolygon {
-    var userGuessed: Bool!
-    var annotation_point: CLLocationCoordinate2D!
-    convenience init(guessed: Bool, lat_long: CLLocationCoordinate2D, coords: [CLLocationCoordinate2D], numberOfPoints: Int) {
-        self.init()
-        var coords = coords
-        self.init(coordinates: &coords, count: numberOfPoints)
-        userGuessed = guessed
-        annotation_point = lat_long
-    }
 }

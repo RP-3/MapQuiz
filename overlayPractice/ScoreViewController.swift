@@ -37,6 +37,7 @@ class ScoreViewController: CoreDataController {
         
     }
     
+    //return to main menu
     func home () {
         navigationController?.popToRootViewControllerAnimated(true)
     }

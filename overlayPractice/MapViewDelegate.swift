@@ -12,7 +12,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
-            let custom = (overlay as! customPolygon)
+            let custom = (overlay as! CustomPolygon)
             let polygonView = MKPolygonRenderer(overlay: custom)
             polygonView.lineWidth = 0.75
             polygonView.alpha = 0.9

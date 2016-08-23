@@ -6,15 +6,6 @@
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
-//    let continentCodes = [
-//        "AF": "Africa",
-//        "AN": "Antarctica",
-//        "AS": "Asia",
-//        "EU": "Europe",
-//        "NA": "North America",
-//        "OC": "Oceania",
-//        "SA": "South America"
-//    ]
 
 import UIKit
 import MapKit
@@ -55,6 +46,7 @@ class MapViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load")
         worldMap.delegate = mapDelegate
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -62,7 +54,7 @@ class MapViewController: CoreDataController {
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
-        print("entities: ", entities.count)
+        print("entities in view did load: ", entities.count)
         // add tap recogniser
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
@@ -72,6 +64,7 @@ class MapViewController: CoreDataController {
     
     
     override func viewWillAppear(animated: Bool) {
+        print("will appear function")
         for entity in entities {
             if (entity.continent == continent) {
                 let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
@@ -149,8 +142,21 @@ class MapViewController: CoreDataController {
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
         for landArea in coordinates[toFind]! {
-            //call function to retrun true or false, depending if the tap is in one of the land areas
-            if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
+            if (Helpers.islands[toFind] != nil) {
+                // check it the tap is within a certain distance of the polygon
+                if createdPolygonOverlays[toFind] != nil {
+                    let lat: CLLocationDegrees = tappedCoordinates.latitude
+                    let lon: CLLocationDegrees = tappedCoordinates.longitude
+                    let locationPoint: CLLocation =  CLLocation(latitude: lat, longitude: lon)
+                    
+                    let lat2: CLLocationDegrees = (createdPolygonOverlays[toFind]![0] as! CustomPolygon).annotation_point.latitude
+                    let lon2: CLLocationDegrees = (createdPolygonOverlays[toFind]![0] as! CustomPolygon).annotation_point!.longitude
+                    let locationPoint2: CLLocation =  CLLocation(latitude: lat2, longitude: lon2)
+                    if locationPoint.distanceFromLocation(locationPoint2)/1000 < 700 {
+                        found = true
+                    }
+                }
+            } else if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                 found = true
             }
         }
@@ -225,7 +231,7 @@ class MapViewController: CoreDataController {
                 //remove references to this polygon
                 //now need to get this polygon re-rendered - remove and then add?
                 worldMap.removeOverlay(overlay)
-                (overlay as! customPolygon).userGuessed = true
+                (overlay as! CustomPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
@@ -238,7 +244,7 @@ class MapViewController: CoreDataController {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
         for landArea in (countryShape.boundary) {
-            let overlay = customPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count )
+            let overlay = CustomPolygon(guessed: false, lat_long: countryShape.annotation_point, coords: landArea, numberOfPoints: landArea.count )
             overlay.title = countryShape.name
             polygons.append(overlay)
             worldMap.addOverlay(overlay)
@@ -255,15 +261,14 @@ class MapViewController: CoreDataController {
         for overlay in worldMap.overlays {
             //TODO: show name of country
             worldMap.removeOverlay(overlay)
-            (overlay as! customPolygon).userGuessed = true
+            (overlay as! CustomPolygon).userGuessed = true
             worldMap.addOverlay(overlay)
             worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
-//        let region = Helpers.setZoomForContinent(continent)
-//        worldMap.setRegion(region, animated: true)
         label.removeFromSuperview()
+        currentGame.finished_at = NSDate()
     }
     
     
@@ -274,14 +279,14 @@ class MapViewController: CoreDataController {
             if overlay.title!! == toFind {
                 //update the mapview
                 worldMap.removeOverlay(overlay)
-                (overlay as! customPolygon).userGuessed = true
+                (overlay as! CustomPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
                 // center map on revealed point
                 let latDelta:CLLocationDegrees = 10.0
                 let longDelta:CLLocationDegrees = 10.0
                 let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-                let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake((overlay as! customPolygon).annotation_point.latitude, (overlay as! customPolygon).annotation_point.longitude)
+                let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake((overlay as! CustomPolygon).annotation_point.latitude, (overlay as! CustomPolygon).annotation_point.longitude)
                 let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
                 worldMap.setRegion(region, animated: true)
                 
@@ -294,8 +299,6 @@ class MapViewController: CoreDataController {
         }
         game["toPlay"]!.removeValueForKey(toFind)
         revealed += 1
-        createdPolygonOverlays.removeValueForKey(toFind)
-        coordinates.removeValueForKey(toFind)
         setQuestionLabel()
     }
     
@@ -313,10 +316,12 @@ class MapViewController: CoreDataController {
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         // save the continent as minimal source of data
         coder.encodeObject(continent as AnyObject, forKey: "continent")
+        print("continent saved")
         super.encodeRestorableStateWithCoder(coder)
     }
     
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
+        print("load stored state")
         let data = coder.decodeObjectForKey("continent")
         continent = String(data!)
         restoreOccur = true
@@ -325,6 +330,7 @@ class MapViewController: CoreDataController {
     
     // once the app has loaded again work out what to show on the screen
     override func applicationFinishedRestoringState() {
+        print("finished restoring state")
         //grab the unfinished game and set to currrent game
         let moc = fetchedResultsController!.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -336,8 +342,16 @@ class MapViewController: CoreDataController {
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
-        // set the current game
-        currentGame = entities[0]
+        // set the current game - if the finish date is nil
+        if entities[0].finished_at != nil {
+            print("have game to continue")
+            currentGame = entities[0]
+        } else {
+            //show the home page
+            print("return home")
+            navigationController?.popToRootViewControllerAnimated(true)
+        }
+        
     }
     
 }
