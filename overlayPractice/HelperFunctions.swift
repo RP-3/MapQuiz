@@ -53,6 +53,13 @@ class HelperFunctions {
         let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
         return region
     }
-
+    
+    // add country name label
+    func addCountryLabel (countryTitle: String, overlay: MKOverlay) -> MKAnnotation {
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = (overlay as! customPolygon).annotation_point
+        annotation.title = overlay.title!
+        return annotation
+    }
     
 }

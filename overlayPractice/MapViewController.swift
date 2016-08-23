@@ -227,7 +227,7 @@ class MapViewController: CoreDataController {
                 worldMap.removeOverlay(overlay)
                 (overlay as! customPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
-                worldMap.addAnnotation(addCountryLabel(overlay.title!!, overlay: overlay))
+                worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
         self.game["guessed"]![self.toFind] = self.toFind
@@ -257,7 +257,7 @@ class MapViewController: CoreDataController {
             worldMap.removeOverlay(overlay)
             (overlay as! customPolygon).userGuessed = true
             worldMap.addOverlay(overlay)
-            worldMap.addAnnotation(addCountryLabel(overlay.title!!, overlay: overlay))
+            worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
         }
         //delete the countries dictionary
         createdPolygonOverlays.removeAll()
@@ -276,7 +276,7 @@ class MapViewController: CoreDataController {
                 worldMap.removeOverlay(overlay)
                 (overlay as! customPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
-                worldMap.addAnnotation(addCountryLabel(overlay.title!!, overlay: overlay))
+                worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
                 // center map on revealed point
                 let latDelta:CLLocationDegrees = 10.0
                 let longDelta:CLLocationDegrees = 10.0
@@ -297,14 +297,6 @@ class MapViewController: CoreDataController {
         createdPolygonOverlays.removeValueForKey(toFind)
         coordinates.removeValueForKey(toFind)
         setQuestionLabel()
-    }
-    
-    // add country name label
-    func addCountryLabel (countryTitle: String, overlay: MKOverlay) -> MKAnnotation {
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = (overlay as! customPolygon).annotation_point
-        annotation.title = overlay.title!
-        return annotation
     }
     
     override func viewWillDisappear(animated: Bool) {
