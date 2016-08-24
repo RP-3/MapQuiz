@@ -10,17 +10,32 @@ import UIKit
 
 class ChoiceViewController: CoreDataController {
     
+    
+    @IBOutlet weak var NorthAmericaBtn: UIButton!
+    @IBOutlet weak var SouthAmericaBtn: UIButton!
+    @IBOutlet weak var AfricaBtn: UIButton!
+    @IBOutlet weak var AsiaBtn: UIButton!
+    @IBOutlet weak var EuropeBtn: UIButton!
+    @IBOutlet weak var OceaniaBtn: UIButton!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        NorthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        SouthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        AfricaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        AsiaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        EuropeBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        OceaniaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     var senderTag = [
-        1: "AS",
-        2: "OC",
+        1: "NA",
+        2: "SA",
         3: "AF",
-        4: "EU",
-        5: "NA",
-        6: "SA"
+        4: "AS",
+        5: "OC",
+        6: "EU"
     ]
     
     var continentChoice: String = ""
@@ -30,7 +45,7 @@ class ChoiceViewController: CoreDataController {
         performSegueWithIdentifier("pickGame", sender: nil)
     }
 
-    @IBAction func ocianiaButton(sender: AnyObject) {
+    @IBAction func oceaniaButton(sender: AnyObject) {
         continentChoice = senderTag[sender.tag]!
         performSegueWithIdentifier("pickGame", sender: nil)
     }
