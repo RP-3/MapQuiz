@@ -18,10 +18,9 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var worldMap: MKMapView!
     
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var lifeThree: UIButton!
-    @IBOutlet weak var lifeTwo: UIButton!
-    @IBOutlet weak var lifeOne: UIButton!
-    
+    @IBOutlet weak var lifeThree: UIImageView!
+    @IBOutlet weak var lifeTwo: UIImageView!
+    @IBOutlet weak var lifeOne: UIImageView!
     
     let Helpers = HelperFunctions.sharedInstance
     
@@ -206,12 +205,12 @@ class ChallengeViewController: CoreDataController {
             }
             lives -= 1
             // remove a life and fade out in UI
-            if lifeThree.enabled {
-                lifeThree.enabled = false
-            } else if lifeTwo.enabled {
-                lifeTwo.enabled = false
-            } else if lifeOne.enabled {
-                lifeOne.enabled = false
+            if lifeThree.alpha == 1.0 {
+                lifeThree.alpha = 0.5
+            } else if lifeTwo.alpha == 1.0 {
+                lifeTwo.alpha = 0.5
+            } else if lifeOne.alpha == 1.0 {
+                lifeOne.alpha = 0.5
                 // all lives gone
                 currentGame.finished_at = NSDate()
                 performSegueWithIdentifier("showChallengeScore", sender: nil)

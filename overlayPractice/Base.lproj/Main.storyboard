@@ -336,11 +336,52 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="HvO-Mt-LQJ">
+                                        <rect key="frame" x="552" y="0.0" width="40" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="6gB-n5-Crh"/>
+                                            <constraint firstAttribute="width" constant="40" id="u2W-bA-Mlp"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-CX-zj5">
+                                        <rect key="frame" x="488" y="0.0" width="40" height="45"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="45" id="Eii-kq-EtC"/>
+                                            <constraint firstAttribute="width" constant="40" id="LDW-PA-umL"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Eii-kq-EtC"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-Fv-isq">
+                                        <rect key="frame" x="423" y="-3" width="38" height="47"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="0ee-l1-RPt"/>
+                                            <constraint firstAttribute="width" constant="40" id="5Hb-kk-JO1"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstItem="Gfj-Fv-isq" firstAttribute="top" secondItem="f1r-Su-rrO" secondAttribute="top" id="2ZA-1i-XLK"/>
+                                    <constraint firstAttribute="trailing" secondItem="HvO-Mt-LQJ" secondAttribute="trailing" constant="8" id="3M1-fJ-xzI"/>
+                                    <constraint firstAttribute="bottom" secondItem="Gfj-Fv-isq" secondAttribute="bottom" id="KxH-Oe-65M"/>
+                                    <constraint firstItem="HvO-Mt-LQJ" firstAttribute="top" secondItem="f1r-Su-rrO" secondAttribute="top" id="NPW-rI-WWG"/>
+                                    <constraint firstAttribute="bottom" secondItem="eiJ-CX-zj5" secondAttribute="bottom" id="QUT-b7-Hoq"/>
+                                    <constraint firstItem="eiJ-CX-zj5" firstAttribute="top" secondItem="f1r-Su-rrO" secondAttribute="top" id="Rqr-k4-TvY"/>
+                                    <constraint firstAttribute="bottom" secondItem="HvO-Mt-LQJ" secondAttribute="bottom" id="a44-j1-dLf"/>
+                                    <constraint firstItem="eiJ-CX-zj5" firstAttribute="centerY" secondItem="f1r-Su-rrO" secondAttribute="centerY" id="e7Q-59-emP"/>
+                                    <constraint firstItem="HvO-Mt-LQJ" firstAttribute="leading" secondItem="eiJ-CX-zj5" secondAttribute="trailing" constant="20" id="g7d-Ou-91g"/>
+                                    <constraint firstItem="eiJ-CX-zj5" firstAttribute="leading" secondItem="Gfj-Fv-isq" secondAttribute="trailing" constant="20" id="qdS-ya-UAk"/>
                                     <constraint firstAttribute="height" constant="44" id="yYr-oi-j4x"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="e7Q-59-emP"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -356,9 +397,12 @@
                     </view>
                     <connections>
                         <outlet property="displayTimerLabel" destination="B82-If-DOD" id="mUS-IH-xTC"/>
+                        <outlet property="lifeOne" destination="Gfj-Fv-isq" id="leZ-zf-oLx"/>
+                        <outlet property="lifeThree" destination="HvO-Mt-LQJ" id="uIy-jT-NT2"/>
+                        <outlet property="lifeTwo" destination="eiJ-CX-zj5" id="7RO-UT-5AN"/>
                         <outlet property="timerLabel" destination="3NK-4o-D8U" id="nb2-yB-WTi"/>
                         <outlet property="worldMap" destination="B82-If-DOD" id="KLj-8V-Ym6"/>
-                        <segue destination="eOy-0M-5nD" kind="show" identifier="challengeScore" id="TMX-ex-ICM"/>
+                        <segue destination="eOy-0M-5nD" kind="show" identifier="showChallengeScore" id="TMX-ex-ICM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRS-iy-mxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -370,6 +414,7 @@
         <image name="africa" width="179" height="203"/>
         <image name="asia" width="179" height="203"/>
         <image name="europe" width="179" height="203"/>
+        <image name="life" width="113" height="147"/>
         <image name="northAmerica" width="179" height="203"/>
         <image name="oceania" width="179" height="203"/>
         <image name="southAmerica" width="179" height="203"/>
