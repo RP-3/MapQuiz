@@ -26,7 +26,6 @@ class ScoreViewController: CoreDataController {
         super.viewDidLoad()
         
         self.navigationItem.setHidesBackButton(true, animated:true);
-        
         let returnButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(self.home))
         self.navigationItem.rightBarButtonItem = returnButton
         

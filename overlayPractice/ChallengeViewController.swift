@@ -18,9 +18,9 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var worldMap: MKMapView!
     
     @IBOutlet weak var timerLabel: UILabel!
-    @IBOutlet weak var lifeThree: UILabel!
-    @IBOutlet weak var lifeTwo: UILabel!
-    @IBOutlet weak var lifeOne: UILabel!
+    @IBOutlet weak var lifeThree: UIButton!
+    @IBOutlet weak var lifeTwo: UIButton!
+    @IBOutlet weak var lifeOne: UIButton!
     
     let Helpers = HelperFunctions.sharedInstance
     
@@ -55,6 +55,10 @@ class ChallengeViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.setQuestionLabel))
+        self.navigationItem.rightBarButtonItem = skipButton
+        
         worldMap.delegate = mapDelegate
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
