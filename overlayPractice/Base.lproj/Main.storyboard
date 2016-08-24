@@ -280,8 +280,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="247" y="285" width="103" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
+                                <rect key="frame" x="249" y="285" width="103" height="30"/>
                                 <state key="normal" title="Learning Mode">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -343,8 +343,8 @@
                                             <constraint firstAttribute="width" constant="40" id="u2W-bA-Mlp"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-CX-zj5">
-                                        <rect key="frame" x="488" y="0.0" width="40" height="45"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-CX-zj5">
+                                        <rect key="frame" x="492" y="0.0" width="40" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Eii-kq-EtC"/>
                                             <constraint firstAttribute="width" constant="40" id="LDW-PA-umL"/>
@@ -355,8 +355,8 @@
                                             </mask>
                                         </variation>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-Fv-isq">
-                                        <rect key="frame" x="423" y="-3" width="38" height="47"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-Fv-isq">
+                                        <rect key="frame" x="432" y="0.0" width="40" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="0ee-l1-RPt"/>
                                             <constraint firstAttribute="width" constant="40" id="5Hb-kk-JO1"/>
