@@ -22,6 +22,7 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var lifeTwo: UIButton!
     @IBOutlet weak var lifeOne: UIButton!
     
+    
     let Helpers = HelperFunctions.sharedInstance
     
     var totalCountries: Int = 0
