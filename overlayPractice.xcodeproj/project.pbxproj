@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		57F35472D4CE11C03821BE1C /* Pods_overlayPracticeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */; };
 		6CDE31A7BFEC749E9EF658F5 /* Pods_overlayPracticeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */; };
-		950175E31D6C85C0007B78E3 /* countries4Out.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175E21D6C85C0007B78E3 /* countries4Out.json */; };
-		950175E41D6C85C0007B78E3 /* countries4Out.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175E21D6C85C0007B78E3 /* countries4Out.json */; };
-		950175E51D6C85C0007B78E3 /* countries4Out.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175E21D6C85C0007B78E3 /* countries4Out.json */; };
 		950175E91D6CF476007B78E3 /* CustomPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950175E81D6CF476007B78E3 /* CustomPolygon.swift */; };
 		950175EA1D6CF492007B78E3 /* CustomPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950175E81D6CF476007B78E3 /* CustomPolygon.swift */; };
 		950175EB1D6CF493007B78E3 /* CustomPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950175E81D6CF476007B78E3 /* CustomPolygon.swift */; };
@@ -105,7 +102,6 @@
 		3C8FAF029E1B54CA17456D06 /* Pods_overlayPracticeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		58FDDDCF00EF57ECEB23A5B1 /* Pods-overlayPracticeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		5EE678D4386B60706605731F /* Pods-overlayPracticeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeUITests/Pods-overlayPracticeUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		950175E21D6C85C0007B78E3 /* countries4Out.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries4Out.json; sourceTree = "<group>"; };
 		950175E81D6CF476007B78E3 /* CustomPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPolygon.swift; sourceTree = "<group>"; };
 		950175EC1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseQuizModeViewController.swift; sourceTree = "<group>"; };
 		950175F01D6D290C007B78E3 /* countriesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countriesData.json; sourceTree = "<group>"; };
@@ -247,7 +243,6 @@
 				950C361B1D56479E009710DD /* Assets.xcassets */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36201D56479E009710DD /* Info.plist */,
-				950175E21D6C85C0007B78E3 /* countries4Out.json */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
 			);
 			path = overlayPractice;
@@ -402,7 +397,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				950175E31D6C85C0007B78E3 /* countries4Out.json in Resources */,
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				950175F11D6D290C007B78E3 /* countriesData.json in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
@@ -415,7 +409,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				950175F21D6D290C007B78E3 /* countriesData.json in Resources */,
-				950175E41D6C85C0007B78E3 /* countries4Out.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,7 +417,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				950175F31D6D290C007B78E3 /* countriesData.json in Resources */,
-				950175E51D6C85C0007B78E3 /* countries4Out.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

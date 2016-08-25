@@ -62,16 +62,23 @@ class MapViewController: CoreDataController {
         worldMap.mapType = .Satellite
     }
     
-    
     override func viewWillAppear(animated: Bool) {
-        print("will appear function")
+
+        //only for use when the continent is EU
+        var andorra:LandArea?
         for entity in entities {
             if (entity.continent == continent) {
-                let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
-                game["toPlay"]![entity.name!] = entity.name
-                addBoundary(country)
+                if entity.name == "Andorra" {
+                    andorra = entity
+                }
+                makeCountryAndAddToMap(entity)
             }
         }
+        // add andorra later so not under spain and france
+        if continent == "EU" {
+            makeCountryAndAddToMap(andorra!)
+        }
+        
         totalCountries = createdPolygonOverlays.count
         // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
@@ -119,6 +126,11 @@ class MapViewController: CoreDataController {
         makeQuestionLabel()
     }
     
+    func makeCountryAndAddToMap (entity: LandArea) {
+        let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
+        game["toPlay"]![entity.name!] = entity.name
+        addBoundary(country)
+    }
     
     func makeQuestionLabel () {
         let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))

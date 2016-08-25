@@ -54,12 +54,12 @@ class HelperFunctions {
     func setZoomForContinent (continent: String) -> MKCoordinateRegion {
         // dictionary of points and zooms for the continents
         var midPoints = [
-            "EU": ["lat": 50.9630, "long": 10.1875, "scale": 70.0],
-            "AF": ["lat": 2.897318, "long": 18.105618, "scale": 110.0],
-            "OC": ["lat": -29.962515, "long": 172.562187, "scale": 130.0],
-            "AS": ["lat": 20.4507, "long": 85.8319, "scale": 130.0],
-            "NA": ["lat": 55.856794, "long":  -101.585755, "scale": 150.0],
-            "SA": ["lat": -25.643226, "long": -57.442726, "scale": 80.0]
+            "EU": ["lat": 60, "long": 10, "scale": 70.0],
+            "AF": ["lat": 10, "long": 18, "scale": 110.0],
+            "OC": ["lat": -14, "long": 160, "scale": 170.0],
+            "AS": ["lat": 35, "long": 85, "scale": 170.0],
+            "NA": ["lat": 55, "long":  -101, "scale": 170.0],
+            "SA": ["lat": -15, "long": -57, "scale": 120.0]
         ]
         
         let latDelta:CLLocationDegrees = midPoints[continent]!["scale"]!
