@@ -41,7 +41,7 @@ class ChallengeViewController: CoreDataController {
     //question label
     let label = UILabel()
     
-    var stopwatch = 50
+    var stopwatch = 100
     var timerScheduler: NSTimer!
     
     //dictionary keyed by country name with the values as an array of all the polygons for that country
@@ -71,7 +71,7 @@ class ChallengeViewController: CoreDataController {
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "coordinate_type", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)
@@ -84,6 +84,16 @@ class ChallengeViewController: CoreDataController {
     
     
     override func viewWillAppear(animated: Bool) {
+        
+        //if there are no games to play then show an alert/if no entities
+        if game["toPlay"]?.count > 0 && continent != nil {
+            let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+            alertController.addAction(Action)
+        }
+        
         for entity in entities {
             if (entity.continent == continent) {
                 let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
@@ -212,6 +222,7 @@ class ChallengeViewController: CoreDataController {
             } else if lifeOne.alpha == 1.0 {
                 lifeOne.alpha = 0.5
                 // all lives gone
+                timerScheduler.invalidate()
                 currentGame.finished_at = NSDate()
                 performSegueWithIdentifier("showChallengeScore", sender: nil)
             }
@@ -239,6 +250,7 @@ class ChallengeViewController: CoreDataController {
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //push to score screen
+            timerScheduler.invalidate()
             currentGame.finished_at = NSDate()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
@@ -263,8 +275,13 @@ class ChallengeViewController: CoreDataController {
         if(stopwatch > 0){
             let minutes = String(stopwatch / 60)
             var seconds = String(stopwatch % 60)
+            // pad on whole minute
+            if String(seconds) == "0" {
+                seconds = String("0") + seconds
+            }
+            // pad with zero
             if String(seconds).characters.count == 1 {
-                seconds = seconds + String("0")
+                seconds = String("0") + seconds
             }
             timerLabel.text = minutes + ":" + seconds
             stopwatch -= 1
@@ -276,6 +293,15 @@ class ChallengeViewController: CoreDataController {
         }
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        timerScheduler.invalidate()
+        currentGame.finished_at = NSDate()
+        do {
+            try fetchedResultsController!.managedObjectContext.save()
+        } catch {
+            print("error saving :(", error)
+        }
+    }
     
     // functions to deal with the restoring state
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
