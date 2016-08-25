@@ -308,12 +308,11 @@ class ChallengeViewController: CoreDataController {
         }
         
         // set the current game if needed else return to main menu
-        if entities[0].finished_at != nil {
+        if entities[0].finished_at == nil {
             print("have game to continue")
             currentGame = entities[0]
         } else {
             //show the home page
-            print("return home")
             navigationController?.popToRootViewControllerAnimated(true)
         }
     }

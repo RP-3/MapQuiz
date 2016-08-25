@@ -24,7 +24,10 @@ class HelperFunctions {
         "Tuvalu": "Tuvalu",
         "Samoa": "Samoa",
         "Cook Islands": "Cook Islands",
-        "Palau": "Palau"
+        "Palau": "Palau",
+        "Mauritius": "Mauritius",
+        "Comoros": "Comoros",
+        "Seychelles": "Seychelles"
     ]
     
     static let sharedInstance = HelperFunctions()
@@ -55,7 +58,7 @@ class HelperFunctions {
         // dictionary of points and zooms for the continents
         var midPoints = [
             "EU": ["lat": 60, "long": 10, "scale": 70.0],
-            "AF": ["lat": 10, "long": 18, "scale": 110.0],
+            "AF": ["lat": 10, "long": 22, "scale": 110.0],
             "OC": ["lat": -14, "long": 160, "scale": 170.0],
             "AS": ["lat": 35, "long": 85, "scale": 170.0],
             "NA": ["lat": 55, "long":  -101, "scale": 170.0],

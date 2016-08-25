@@ -63,6 +63,15 @@ class MapViewController: CoreDataController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        
+        //if there are no games to play then show an alert/if no entities
+        if game["toPlay"]?.count > 0 && continent != nil {
+            let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+            alertController.addAction(Action)
+        }
 
         //only for use when the continent is EU
         var andorra:LandArea?
@@ -82,7 +91,7 @@ class MapViewController: CoreDataController {
         totalCountries = createdPolygonOverlays.count
         // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
-        print("<><><><><>",game["toPlay"]!.count)
+        
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
@@ -355,12 +364,11 @@ class MapViewController: CoreDataController {
             fatalError("Failed to fetch employees: \(error)")
         }
         // set the current game - if the finish date is nil
-        if entities[0].finished_at != nil {
+        if entities[0].finished_at == nil {
             print("have game to continue")
             currentGame = entities[0]
         } else {
             //show the home page
-            print("return home")
             navigationController?.popToRootViewControllerAnimated(true)
         }
         
