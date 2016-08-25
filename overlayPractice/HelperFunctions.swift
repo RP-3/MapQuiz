@@ -62,7 +62,7 @@ class HelperFunctions {
             "OC": ["lat": -14, "long": 160, "scale": 170.0],
             "AS": ["lat": 35, "long": 85, "scale": 170.0],
             "NA": ["lat": 55, "long":  -101, "scale": 170.0],
-            "SA": ["lat": -15, "long": -57, "scale": 120.0]
+            "SA": ["lat": -19, "long": -53, "scale": 100.0]
         ]
         
         let latDelta:CLLocationDegrees = midPoints[continent]!["scale"]!

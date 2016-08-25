@@ -51,7 +51,8 @@ class MapViewController: CoreDataController {
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        // order this way so andorra is ontop in europe
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "coordinate_type", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities in view did load: ", entities.count)
@@ -74,18 +75,10 @@ class MapViewController: CoreDataController {
         }
 
         //only for use when the continent is EU
-        var andorra:LandArea?
         for entity in entities {
             if (entity.continent == continent) {
-                if entity.name == "Andorra" {
-                    andorra = entity
-                }
                 makeCountryAndAddToMap(entity)
             }
-        }
-        // add andorra later so not under spain and france
-        if continent == "EU" {
-            makeCountryAndAddToMap(andorra!)
         }
         
         totalCountries = createdPolygonOverlays.count
