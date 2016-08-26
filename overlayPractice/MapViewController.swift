@@ -10,6 +10,7 @@
 import UIKit
 import MapKit
 import CoreData
+import AVFoundation
 
 class MapViewController: CoreDataController {
 
@@ -42,11 +43,9 @@ class MapViewController: CoreDataController {
     
     var mapDelegate = MapViewDelegate()
     var entities: [LandArea]!
-    
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         worldMap.delegate = mapDelegate
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -151,6 +150,7 @@ class MapViewController: CoreDataController {
     
     // work out if the click was on a country
     func overlaySelected (gestureRecognizer: UIGestureRecognizer) {
+        
         let pointTapped = gestureRecognizer.locationInView(worldMap)
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
@@ -166,7 +166,7 @@ class MapViewController: CoreDataController {
                     let lat2: CLLocationDegrees = (createdPolygonOverlays[toFind]![0] as! CustomPolygon).annotation_point.latitude
                     let lon2: CLLocationDegrees = (createdPolygonOverlays[toFind]![0] as! CustomPolygon).annotation_point!.longitude
                     let locationPoint2: CLLocation =  CLLocation(latitude: lat2, longitude: lon2)
-                    if locationPoint.distanceFromLocation(locationPoint2)/1000 < 700 {
+                    if locationPoint.distanceFromLocation(locationPoint2)/1000 < 500 {
                         found = true
                     }
                 }
@@ -175,6 +175,10 @@ class MapViewController: CoreDataController {
             }
         }
         if found {
+            // play correct sound
+            let audioPlayer = Helpers.playSound("yep")
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
             label.text = "Found!"
             label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
             //save the attempt to coredata
@@ -186,7 +190,11 @@ class MapViewController: CoreDataController {
             }
             updateMapOverlays(toFind)
         } else {
-            //it was an incorrect guess
+            //it was an incorrect guess play nope sound
+            let audioPlayer = Helpers.playSound("nope")
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+            
             label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
             misses += 1
             //save attempt to core data
@@ -202,6 +210,10 @@ class MapViewController: CoreDataController {
     }
     
     @IBAction func skip(sender: AnyObject) {
+        // play skip sound
+        let audioPlayer = Helpers.playSound("skip")
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
         setQuestionLabel()
     }
     

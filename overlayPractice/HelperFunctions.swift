@@ -8,10 +8,12 @@
 
 import UIKit
 import MapKit
-
+import AVFoundation
 
 
 class HelperFunctions {
+    
+    var audioPlayer = AVAudioPlayer()
     
     let islands = [
         "Marshall Islands": "Marshall Islands",
@@ -79,6 +81,38 @@ class HelperFunctions {
         annotation.coordinate = (overlay as! CustomPolygon).annotation_point
         annotation.title = overlay.title!
         return annotation
+    }
+    
+    func playSound (soundType: String) -> AVAudioPlayer {
+        
+        var soundFile: NSURL!
+        if soundType == "yep" {
+            soundFile = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "wav")!)
+        } else if soundType == "nope" {
+            soundFile = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "wav")!)
+        } else if soundType == "skip" {
+            soundFile = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
+        }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+        } catch {
+            print("error",error)
+        }
+        do {
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print("error",error)
+        }
+        
+        do {
+            try audioPlayer = AVAudioPlayer(contentsOfURL: soundFile)
+        } catch {
+            print("error",error)
+            //throw alert? or silently not work?
+        }
+        
+        return audioPlayer
     }
     
 }
