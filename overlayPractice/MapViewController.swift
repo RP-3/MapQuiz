@@ -46,7 +46,7 @@ class MapViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
+        
         worldMap.delegate = mapDelegate
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas

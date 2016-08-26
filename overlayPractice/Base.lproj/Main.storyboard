@@ -5,6 +5,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="AmaticSC-Regular.ttf">
+            <string>AmaticSC-Regular</string>
+            <string>AmaticSC-Regular</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--Score:-->
         <scene sceneID="tne-QT-ifu">
@@ -281,21 +287,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="249" y="285" width="103" height="30"/>
+                                <rect key="frame" x="239" y="274" width="123" height="52"/>
+                                <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="31"/>
                                 <state key="normal" title="Learning Mode">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="FC7-yq-MxI"/>
+                                    <action selector="practiceClicked:" destination="X10-jV-LcE" eventType="touchUpInside" id="EQD-oA-C9K"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
-                                <rect key="frame" x="247" y="210" width="107" height="30"/>
+                                <rect key="frame" x="235" y="176" width="131" height="53"/>
+                                <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="32"/>
                                 <state key="normal" title="Challenge Time">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.17798479948288359" green="0.11348448591426641" blue="0.058141421284838804" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <segue destination="G5K-E1-s6u" kind="show" identifier="showChallenge" id="LHz-gq-eC8"/>
+                                    <action selector="challengeClicked:" destination="X10-jV-LcE" eventType="touchUpInside" id="C78-lp-lo7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -307,6 +315,10 @@
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="G5K-E1-s6u" kind="show" identifier="showChallenge" id="Ej5-pY-dnf"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="ePz-kg-owN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -10,8 +10,6 @@ import MapKit
 
 class MapViewDelegate: NSObject, MKMapViewDelegate {
     
-    var activitySpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
-    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let custom = (overlay as! CustomPolygon)

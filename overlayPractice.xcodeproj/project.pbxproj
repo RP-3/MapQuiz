@@ -70,6 +70,11 @@
 		95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */; };
 		95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */; };
 		95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
+		95F5C5441D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */; };
+		95F5C5451D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */; };
+		95F5C5461D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */; };
+		95F5C5471D6FBBB6002FE39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C361D1D56479E009710DD /* LaunchScreen.storyboard */; };
+		95F5C5481D6FBBB7002FE39D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C361D1D56479E009710DD /* LaunchScreen.storyboard */; };
 		95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
 		95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */; };
@@ -135,6 +140,7 @@
 		95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		95B7BF531D5F585B004B1760 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv3.xcdatamodel; sourceTree = "<group>"; };
+		95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
 		95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPractice.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 				950C361B1D56479E009710DD /* Assets.xcassets */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36201D56479E009710DD /* Info.plist */,
+				95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
 			);
 			path = overlayPractice;
@@ -397,6 +404,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F5C5441D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				950175F11D6D290C007B78E3 /* countriesData.json in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
@@ -408,6 +416,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F5C5471D6FBBB6002FE39D /* LaunchScreen.storyboard in Resources */,
+				95F5C5451D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
 				950175F21D6D290C007B78E3 /* countriesData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -416,6 +426,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95F5C5481D6FBBB7002FE39D /* LaunchScreen.storyboard in Resources */,
+				95F5C5461D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
 				950175F31D6D290C007B78E3 /* countriesData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

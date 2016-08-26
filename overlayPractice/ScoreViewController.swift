@@ -34,6 +34,8 @@ class ScoreViewController: CoreDataController {
         wrong.text = "\(misses) wrong"
         uncovered.text = "and \(revealed) misses"
         
+        titleLabel.font = UIFont(name: "Amatic SC", size: 40)
+        
     }
     
     //return to main menu
