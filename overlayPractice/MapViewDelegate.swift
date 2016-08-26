@@ -10,15 +10,17 @@ import MapKit
 
 class MapViewDelegate: NSObject, MKMapViewDelegate {
     
+    let beigeColor = UIColor(red: 0.99, green: 0.93, blue: 0.9, alpha: 1.0)
+    
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let custom = (overlay as! CustomPolygon)
             let polygonView = MKPolygonRenderer(overlay: custom)
             polygonView.lineWidth = 0.75
             polygonView.alpha = 0.9
-            polygonView.strokeColor = UIColor.whiteColor()
+            polygonView.strokeColor = UIColor(red: 0.15, green: 0.1, blue: 0.01, alpha: 1.0)
             if custom.userGuessed == false {
-                polygonView.fillColor = UIColor.orangeColor()
+                polygonView.fillColor = beigeColor
             } else {
                 polygonView.fillColor = UIColor.clearColor()
             }
@@ -39,13 +41,11 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
             let av = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             
             let lbl = UILabel()
-            lbl.backgroundColor = UIColor.whiteColor()
+            lbl.tag = 20
             lbl.layer.masksToBounds = true
             lbl.layer.cornerRadius = 4
             lbl.textAlignment = .Center
-            lbl.textColor = UIColor.blackColor()
-            
-            lbl.tag = 20
+            lbl.sizeToFit()
             av.addSubview(lbl)
             
             //Following lets the callout still work if you tap on the label...
@@ -53,10 +53,14 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
             aView = av
         }
         let lbl: UILabel = (aView.viewWithTag(20) as! UILabel)
-        lbl.text = annotation.title!
-        lbl.font = UIFont.systemFontOfSize(10)
+        lbl.layer.masksToBounds = true
+        lbl.layer.cornerRadius = 4
+        lbl.textAlignment = .Center
+        lbl.text = " " + annotation.title!! + "  "
+        lbl.font = UIFont(name: "AmaticSC-Regular", size: 16)
+        lbl.backgroundColor = beigeColor
+        
         lbl.sizeToFit()
-//        aView.canShowCallout = true
         return aView
     }
     
