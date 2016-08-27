@@ -22,6 +22,8 @@ class HelperFunctions {
     var revealed = 0
     var misses = 0
     
+    var toFind = ""
+    
     var audioPlayer = AVAudioPlayer()
 
     

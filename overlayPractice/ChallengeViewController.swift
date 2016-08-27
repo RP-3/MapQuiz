@@ -27,7 +27,6 @@ class ChallengeViewController: CoreDataController {
     
     var lives = 3
     
-    var toFind = ""
     //question label
     let label = UILabel()
     
@@ -144,7 +143,7 @@ class ChallengeViewController: CoreDataController {
     func makeQuestionLabel () {
         let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
         let countryToFind = Array(Helpers.game["toPlay"]!.values)[index]
-        toFind = countryToFind
+        Helpers.toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         label.frame = CGRectMake(0, 0, (screenSize.width + 5), 35)
         label.textAlignment = NSTextAlignment.Center
@@ -178,7 +177,7 @@ class ChallengeViewController: CoreDataController {
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
-        for landArea in coordinates[toFind]! {
+        for landArea in coordinates[Helpers.toFind]! {
             //call function to retrun true or false, depending if the tap is in one of the land areas
             if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                 found = true
@@ -191,13 +190,13 @@ class ChallengeViewController: CoreDataController {
             label.text = "Found!"
             label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
             //save the attempt to coredata
-            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
             Helpers.delay(0.7) {
                 self.setQuestionLabel()
             }
-            updateMapOverlays(toFind)
+            updateMapOverlays(Helpers.toFind)
         } else {
             let audioPlayer = Helpers.playSound("nope")
             audioPlayer.prepareToPlay()
@@ -206,11 +205,11 @@ class ChallengeViewController: CoreDataController {
             label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
             Helpers.misses += 1
             //save attempt to core data
-            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
             Helpers.delay(0.7) {
-                self.label.text = "Find: \(self.toFind)"
+                self.label.text = "Find: \(self.Helpers.toFind)"
                 self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
             }
             lives -= 1
@@ -261,7 +260,7 @@ class ChallengeViewController: CoreDataController {
         if Helpers.game["toPlay"]?.count > 0 {
             let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
             let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
-            toFind = randomVal
+            Helpers.toFind = randomVal
             label.text = "Find: \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
@@ -283,8 +282,8 @@ class ChallengeViewController: CoreDataController {
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
-        Helpers.game["guessed"]![self.toFind] = self.toFind
-        Helpers.game["toPlay"]!.removeValueForKey(self.toFind)
+        Helpers.game["guessed"]![Helpers.toFind] = Helpers.toFind
+        Helpers.game["toPlay"]!.removeValueForKey(Helpers.toFind)
     }
     
     func updateTime () {

@@ -24,7 +24,6 @@ class MapViewController: CoreDataController {
     var currentGame: Game!
     var restoreOccur: Bool?
     
-    var toFind = ""
     //question label
     let label = UILabel()
     
@@ -134,7 +133,7 @@ class MapViewController: CoreDataController {
     func makeQuestionLabel () {
         let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
         let countryToFind = Array(Helpers.game["toPlay"]!.values)[index]
-        toFind = countryToFind
+        Helpers.toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         label.frame = CGRectMake(0, 0 + 44, (screenSize.width + 5), 35)
         label.textAlignment = NSTextAlignment.Center
@@ -153,16 +152,16 @@ class MapViewController: CoreDataController {
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
-        for landArea in coordinates[toFind]! {
-            if (Helpers.islands[toFind] != nil) {
+        for landArea in coordinates[Helpers.toFind]! {
+            if (Helpers.islands[Helpers.toFind] != nil) {
                 // check it the tap is within a certain distance of the polygon
-                if createdPolygonOverlays[toFind] != nil {
+                if createdPolygonOverlays[Helpers.toFind] != nil {
                     let lat: CLLocationDegrees = tappedCoordinates.latitude
                     let lon: CLLocationDegrees = tappedCoordinates.longitude
                     let locationPoint: CLLocation =  CLLocation(latitude: lat, longitude: lon)
                     
-                    let lat2: CLLocationDegrees = (createdPolygonOverlays[toFind]![0] as! CustomPolygon).annotation_point.latitude
-                    let lon2: CLLocationDegrees = (createdPolygonOverlays[toFind]![0] as! CustomPolygon).annotation_point!.longitude
+                    let lat2: CLLocationDegrees = (createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point.latitude
+                    let lon2: CLLocationDegrees = (createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point!.longitude
                     let locationPoint2: CLLocation =  CLLocation(latitude: lat2, longitude: lon2)
                     if locationPoint.distanceFromLocation(locationPoint2)/1000 < 500 {
                         found = true
@@ -180,13 +179,13 @@ class MapViewController: CoreDataController {
             label.text = "Found!"
             label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
             //save the attempt to coredata
-            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
             Helpers.delay(0.7) {
                 self.setQuestionLabel()
             }
-            updateMapOverlays(toFind)
+            updateMapOverlays(Helpers.toFind)
         } else {
             //it was an incorrect guess play nope sound
             let audioPlayer = Helpers.playSound("nope")
@@ -196,11 +195,11 @@ class MapViewController: CoreDataController {
             label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
             Helpers.misses += 1
             //save attempt to core data
-            let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
+            let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
             Helpers.delay(0.7) {
-                self.label.text = "Find: \(self.toFind)"
+                self.label.text = "Find: \(self.Helpers.toFind)"
                 self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
             }
         }
@@ -220,7 +219,7 @@ class MapViewController: CoreDataController {
         if Helpers.game["toPlay"]?.count > 0 {
             let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
             let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
-            toFind = randomVal
+            Helpers.toFind = randomVal
             label.text = "Find: \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
@@ -260,8 +259,8 @@ class MapViewController: CoreDataController {
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
-        Helpers.game["guessed"]![self.toFind] = self.toFind
-        Helpers.game["toPlay"]!.removeValueForKey(self.toFind)
+        Helpers.game["guessed"]![Helpers.toFind] = Helpers.toFind
+        Helpers.game["toPlay"]!.removeValueForKey(Helpers.toFind)
     }
 
     func addBoundary(countryShape: Country) {
@@ -303,7 +302,7 @@ class MapViewController: CoreDataController {
         audioPlayer.prepareToPlay()
         audioPlayer.play()
         for overlay in worldMap.overlays {
-            if overlay.title!! == toFind {
+            if overlay.title!! == Helpers.toFind {
                 //update the mapview
                 worldMap.removeOverlay(overlay)
                 (overlay as! CustomPolygon).userGuessed = true
@@ -318,13 +317,13 @@ class MapViewController: CoreDataController {
                 worldMap.setRegion(region, animated: true)
                 
                 // add reveal to core data
-                let turn = Attempt(toFind: toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
+                let turn = Attempt(toFind: Helpers.toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
                 turn.game = currentGame
                 currentGame.attempt?.setByAddingObject(turn)
                 continue
             }
         }
-        Helpers.game["toPlay"]!.removeValueForKey(toFind)
+        Helpers.game["toPlay"]!.removeValueForKey(Helpers.toFind)
         Helpers.revealed += 1
         setQuestionLabel()
     }
