@@ -25,13 +25,6 @@ class ChallengeViewController: CoreDataController {
     var currentGame: Game!
     var restoreOccur: Bool?
     
-    var game = [
-        "guessed": [String:String](),
-        "toPlay": [String:String]()
-    ]
-    var revealed = 0
-    var misses = 0
-    
     var lives = 3
     
     var toFind = ""
@@ -84,7 +77,7 @@ class ChallengeViewController: CoreDataController {
     override func viewWillAppear(animated: Bool) {
         
         //if there are no games to play then show an alert/if no entities
-        if game["toPlay"]?.count > 0 && Helpers.continent != nil {
+        if Helpers.game["toPlay"]?.count > 0 && Helpers.continent != nil {
             let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
                 self.navigationController?.popToRootViewControllerAnimated(true)
@@ -95,7 +88,7 @@ class ChallengeViewController: CoreDataController {
         for entity in entities {
             if (entity.continent == Helpers.continent) {
                 let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
-                game["toPlay"]![entity.name!] = entity.name
+                Helpers.game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
             }
         }
@@ -105,7 +98,7 @@ class ChallengeViewController: CoreDataController {
         
         // show countries guessed count to user
         self.title = String("0 / \(Helpers.totalCountries)")
-        print("<><><><><>",game["toPlay"]!.count)
+        print("<><><><><>",Helpers.game["toPlay"]!.count)
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
@@ -115,8 +108,8 @@ class ChallengeViewController: CoreDataController {
                 //1. loop through the attempts and adjust overlays and score to match
                 for attempt in currentGame.attempt! {
                     if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
-                        game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
-                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        Helpers.game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
+                        Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
                                 worldMap.removeOverlay(overlay)
@@ -124,8 +117,8 @@ class ChallengeViewController: CoreDataController {
                             }
                         }
                     } else if (attempt as! Attempt).revealed == true {
-                        revealed += 1
-                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        Helpers.revealed += 1
+                        Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
                                 worldMap.removeOverlay(overlay)
@@ -133,7 +126,7 @@ class ChallengeViewController: CoreDataController {
                             }
                         }
                     } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
-                        misses += 1
+                        Helpers.misses += 1
                     }
                 }
             }
@@ -143,14 +136,14 @@ class ChallengeViewController: CoreDataController {
             let region = Helpers.setZoomForContinent(Helpers.continent)
             worldMap.setRegion(region, animated: true)
         }
-        print("countries to play --->", game["toPlay"]!.count)
+        print("countries to play --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
     }
     
     func makeQuestionLabel () {
-        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-        let countryToFind = Array(game["toPlay"]!.values)[index]
+        let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
+        let countryToFind = Array(Helpers.game["toPlay"]!.values)[index]
         toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         label.frame = CGRectMake(0, 0, (screenSize.width + 5), 35)
@@ -211,7 +204,7 @@ class ChallengeViewController: CoreDataController {
             audioPlayer.play()
             //it was an incorrect guess
             label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-            misses += 1
+            Helpers.misses += 1
             //save attempt to core data
             let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
@@ -241,7 +234,7 @@ class ChallengeViewController: CoreDataController {
         // pass the lives and total score and total countries and time
         let controller = segue.destinationViewController as! ChallengeScoreViewController
         controller.lives = lives
-        controller.correct = game["guessed"]!.count
+        controller.correct = Helpers.game["guessed"]!.count
         let minsTaken = ((Helpers.totalCountries*10) - stopwatch)/60
         var secsTaken = String(((Helpers.totalCountries*10) - stopwatch)%60)
         if String(secsTaken) == "0" {
@@ -264,10 +257,10 @@ class ChallengeViewController: CoreDataController {
     
     //ask new question
     func setQuestionLabel () {
-        self.title = String("\(game["guessed"]!.count + revealed) / \(Helpers.totalCountries)")
-        if game["toPlay"]?.count > 0 {
-            let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-            let randomVal = Array(game["toPlay"]!.values)[index]
+        self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
+        if Helpers.game["toPlay"]?.count > 0 {
+            let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
+            let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
             toFind = randomVal
             label.text = "Find: \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
@@ -290,8 +283,8 @@ class ChallengeViewController: CoreDataController {
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
-        self.game["guessed"]![self.toFind] = self.toFind
-        self.game["toPlay"]!.removeValueForKey(self.toFind)
+        Helpers.game["guessed"]![self.toFind] = self.toFind
+        Helpers.game["toPlay"]!.removeValueForKey(self.toFind)
     }
     
     func updateTime () {

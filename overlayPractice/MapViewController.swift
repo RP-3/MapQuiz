@@ -24,13 +24,6 @@ class MapViewController: CoreDataController {
     var currentGame: Game!
     var restoreOccur: Bool?
     
-    var game = [
-        "guessed": [String:String](),
-        "toPlay": [String:String]()
-    ]
-    var revealed = 0
-    var misses = 0
-    
     var toFind = ""
     //question label
     let label = UILabel()
@@ -70,7 +63,7 @@ class MapViewController: CoreDataController {
     override func viewWillAppear(animated: Bool) {
         
         //if there are no games to play then show an alert/if no entities
-        if game["toPlay"]?.count > 0 && Helpers.continent != nil {
+        if Helpers.game["toPlay"]?.count > 0 && Helpers.continent != nil {
             let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
                 self.navigationController?.popToRootViewControllerAnimated(true)
@@ -98,8 +91,8 @@ class MapViewController: CoreDataController {
                 //1. loop through the attempts and adjust overlays and score to match
                 for attempt in currentGame.attempt! {
                     if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
-                        game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
-                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        Helpers.game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
+                        Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
                                 worldMap.removeOverlay(overlay)
@@ -107,8 +100,8 @@ class MapViewController: CoreDataController {
                             }
                         }
                     } else if (attempt as! Attempt).revealed == true {
-                        revealed += 1
-                        game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
+                        Helpers.revealed += 1
+                        Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
                                 worldMap.removeOverlay(overlay)
@@ -116,7 +109,7 @@ class MapViewController: CoreDataController {
                             }
                         }
                     } else if (attempt as! Attempt).countryToFind != (attempt as! Attempt).countryGuessed {
-                        misses += 1
+                        Helpers.misses += 1
                     }
                 }
             }
@@ -127,20 +120,20 @@ class MapViewController: CoreDataController {
             let region = Helpers.setZoomForContinent(Helpers.continent)
             worldMap.setRegion(region, animated: true)
         }
-        print("countries to find --->", game["toPlay"]!.count)
+        print("countries to find --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         makeQuestionLabel()
     }
     
     func makeCountryAndAddToMap (entity: LandArea) {
         let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
-        game["toPlay"]![entity.name!] = entity.name
+        Helpers.game["toPlay"]![entity.name!] = entity.name
         addBoundary(country)
     }
     
     func makeQuestionLabel () {
-        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-        let countryToFind = Array(game["toPlay"]!.values)[index]
+        let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
+        let countryToFind = Array(Helpers.game["toPlay"]!.values)[index]
         toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         label.frame = CGRectMake(0, 0 + 44, (screenSize.width + 5), 35)
@@ -201,7 +194,7 @@ class MapViewController: CoreDataController {
             audioPlayer.play()
             
             label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
-            misses += 1
+            Helpers.misses += 1
             //save attempt to core data
             let turn = Attempt(toFind: toFind, guessed: toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
@@ -224,9 +217,9 @@ class MapViewController: CoreDataController {
     
     //ask new question
     func setQuestionLabel () {
-        if game["toPlay"]?.count > 0 {
-            let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
-            let randomVal = Array(game["toPlay"]!.values)[index]
+        if Helpers.game["toPlay"]?.count > 0 {
+            let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
+            let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
             toFind = randomVal
             label.text = "Find: \(randomVal)"
             label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
@@ -237,7 +230,7 @@ class MapViewController: CoreDataController {
             // save finish date to core data
             currentGame.finished_at = NSDate()
         }
-        self.title = String("\(game["guessed"]!.count + revealed) / \(Helpers.totalCountries)")
+        self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
     }
     
 
@@ -245,10 +238,10 @@ class MapViewController: CoreDataController {
         if segue.identifier == "showScore" {
             let controller = segue.destinationViewController as! ScoreViewController
             //get the id property on the annotation
-            controller.score = game["guessed"]?.count
+            controller.score = Helpers.game["guessed"]?.count
             controller.scoreTotal = Helpers.totalCountries
-            controller.revealed = revealed
-            controller.incorrect = misses
+            controller.revealed = Helpers.revealed
+            controller.incorrect = Helpers.misses
         }
     }
     
@@ -267,8 +260,8 @@ class MapViewController: CoreDataController {
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
-        self.game["guessed"]![self.toFind] = self.toFind
-        self.game["toPlay"]!.removeValueForKey(self.toFind)
+        Helpers.game["guessed"]![self.toFind] = self.toFind
+        Helpers.game["toPlay"]!.removeValueForKey(self.toFind)
     }
 
     func addBoundary(countryShape: Country) {
@@ -331,8 +324,8 @@ class MapViewController: CoreDataController {
                 continue
             }
         }
-        game["toPlay"]!.removeValueForKey(toFind)
-        revealed += 1
+        Helpers.game["toPlay"]!.removeValueForKey(toFind)
+        Helpers.revealed += 1
         setQuestionLabel()
     }
     

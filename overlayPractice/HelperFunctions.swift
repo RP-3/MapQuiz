@@ -15,6 +15,12 @@ class HelperFunctions {
     
     var continent:String!
     var totalCountries: Int = 0
+    var game = [
+        "guessed": [String:String](),
+        "toPlay": [String:String]()
+    ]
+    var revealed = 0
+    var misses = 0
     
     var audioPlayer = AVAudioPlayer()
 
