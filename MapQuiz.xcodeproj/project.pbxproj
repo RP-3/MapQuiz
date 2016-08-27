@@ -129,17 +129,17 @@
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		950BD3841D569A8E001C5893 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		950BD3891D569B09001C5893 /* CoreDataController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataController.swift; sourceTree = "<group>"; };
-		950C36111D56479E009710DD /* overlayPractice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = overlayPractice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		950C36111D56479E009710DD /* MapQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapQuiz.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36141D56479E009710DD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		950C36161D56479E009710DD /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		950C36191D56479E009710DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		950C361B1D56479E009710DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		950C361E1D56479E009710DD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		950C36201D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		950C36251D56479E009710DD /* overlayPracticeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = overlayPracticeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		950C36251D56479E009710DD /* MapQuiz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapQuiz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36291D56479E009710DD /* overlayPracticeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeTests.swift; sourceTree = "<group>"; };
 		950C362B1D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		950C36301D56479E009710DD /* overlayPracticeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = overlayPracticeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		950C36301D56479E009710DD /* MapQuiz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapQuiz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -248,9 +248,9 @@
 		950C36121D56479E009710DD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				950C36111D56479E009710DD /* overlayPractice.app */,
-				950C36251D56479E009710DD /* overlayPracticeTests.xctest */,
-				950C36301D56479E009710DD /* overlayPracticeUITests.xctest */,
+				950C36111D56479E009710DD /* MapQuiz.app */,
+				950C36251D56479E009710DD /* MapQuiz.xctest */,
+				950C36301D56479E009710DD /* MapQuiz.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -320,9 +320,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		950C36101D56479E009710DD /* overlayPractice */ = {
+		950C36101D56479E009710DD /* MapQuiz */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 950C36391D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPractice" */;
+			buildConfigurationList = 950C36391D56479E009710DD /* Build configuration list for PBXNativeTarget "MapQuiz" */;
 			buildPhases = (
 				EE199D3F92946C645026C36D /* [CP] Check Pods Manifest.lock */,
 				950C360D1D56479E009710DD /* Sources */,
@@ -335,14 +335,14 @@
 			);
 			dependencies = (
 			);
-			name = overlayPractice;
+			name = MapQuiz;
 			productName = overlayPractice;
-			productReference = 950C36111D56479E009710DD /* overlayPractice.app */;
+			productReference = 950C36111D56479E009710DD /* MapQuiz.app */;
 			productType = "com.apple.product-type.application";
 		};
-		950C36241D56479E009710DD /* overlayPracticeTests */ = {
+		950C36241D56479E009710DD /* MapQuizTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 950C363C1D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPracticeTests" */;
+			buildConfigurationList = 950C363C1D56479E009710DD /* Build configuration list for PBXNativeTarget "MapQuizTests" */;
 			buildPhases = (
 				FD461CB23D3ECC554FA6A076 /* [CP] Check Pods Manifest.lock */,
 				950C36211D56479E009710DD /* Sources */,
@@ -356,14 +356,14 @@
 			dependencies = (
 				950C36271D56479E009710DD /* PBXTargetDependency */,
 			);
-			name = overlayPracticeTests;
+			name = MapQuizTests;
 			productName = overlayPracticeTests;
-			productReference = 950C36251D56479E009710DD /* overlayPracticeTests.xctest */;
+			productReference = 950C36251D56479E009710DD /* MapQuiz.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		950C362F1D56479E009710DD /* overlayPracticeUITests */ = {
+		950C362F1D56479E009710DD /* MapQuizUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 950C363F1D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPracticeUITests" */;
+			buildConfigurationList = 950C363F1D56479E009710DD /* Build configuration list for PBXNativeTarget "MapQuizUITests" */;
 			buildPhases = (
 				8953F61F2E75B7C28BC8CEEF /* [CP] Check Pods Manifest.lock */,
 				950C362C1D56479E009710DD /* Sources */,
@@ -376,9 +376,9 @@
 			dependencies = (
 				950C36321D56479E009710DD /* PBXTargetDependency */,
 			);
-			name = overlayPracticeUITests;
+			name = MapQuizUITests;
 			productName = overlayPracticeUITests;
-			productReference = 950C36301D56479E009710DD /* overlayPracticeUITests.xctest */;
+			productReference = 950C36301D56479E009710DD /* MapQuiz.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -407,7 +407,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 950C360C1D56479D009710DD /* Build configuration list for PBXProject "overlayPractice" */;
+			buildConfigurationList = 950C360C1D56479D009710DD /* Build configuration list for PBXProject "MapQuiz" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -420,9 +420,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				950C36101D56479E009710DD /* overlayPractice */,
-				950C36241D56479E009710DD /* overlayPracticeTests */,
-				950C362F1D56479E009710DD /* overlayPracticeUITests */,
+				950C36101D56479E009710DD /* MapQuiz */,
+				950C36241D56479E009710DD /* MapQuizTests */,
+				950C362F1D56479E009710DD /* MapQuizUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -686,12 +686,12 @@
 /* Begin PBXTargetDependency section */
 		950C36271D56479E009710DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 950C36101D56479E009710DD /* overlayPractice */;
+			target = 950C36101D56479E009710DD /* MapQuiz */;
 			targetProxy = 950C36261D56479E009710DD /* PBXContainerItemProxy */;
 		};
 		950C36321D56479E009710DD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 950C36101D56479E009710DD /* overlayPractice */;
+			target = 950C36101D56479E009710DD /* MapQuiz */;
 			targetProxy = 950C36311D56479E009710DD /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -810,7 +810,7 @@
 				INFOPLIST_FILE = overlayPractice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPractice";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MapQuiz;
 			};
 			name = Debug;
 		};
@@ -823,7 +823,7 @@
 				INFOPLIST_FILE = overlayPractice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPractice";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MapQuiz;
 			};
 			name = Release;
 		};
@@ -835,8 +835,8 @@
 				INFOPLIST_FILE = overlayPracticeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPracticeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/overlayPractice.app/overlayPractice";
+				PRODUCT_NAME = MapQuiz;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MapQuiz.app/MapQuiz";
 			};
 			name = Debug;
 		};
@@ -848,8 +848,8 @@
 				INFOPLIST_FILE = overlayPracticeTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPracticeTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/overlayPractice.app/overlayPractice";
+				PRODUCT_NAME = MapQuiz;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MapQuiz.app/MapQuiz";
 			};
 			name = Release;
 		};
@@ -860,7 +860,7 @@
 				INFOPLIST_FILE = overlayPracticeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPracticeUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MapQuiz;
 				TEST_TARGET_NAME = overlayPractice;
 			};
 			name = Debug;
@@ -872,7 +872,7 @@
 				INFOPLIST_FILE = overlayPracticeUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPracticeUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MapQuiz;
 				TEST_TARGET_NAME = overlayPractice;
 			};
 			name = Release;
@@ -880,7 +880,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		950C360C1D56479D009710DD /* Build configuration list for PBXProject "overlayPractice" */ = {
+		950C360C1D56479D009710DD /* Build configuration list for PBXProject "MapQuiz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				950C36371D56479E009710DD /* Debug */,
@@ -889,7 +889,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		950C36391D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPractice" */ = {
+		950C36391D56479E009710DD /* Build configuration list for PBXNativeTarget "MapQuiz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				950C363A1D56479E009710DD /* Debug */,
@@ -898,7 +898,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		950C363C1D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPracticeTests" */ = {
+		950C363C1D56479E009710DD /* Build configuration list for PBXNativeTarget "MapQuizTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				950C363D1D56479E009710DD /* Debug */,
@@ -907,7 +907,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		950C363F1D56479E009710DD /* Build configuration list for PBXNativeTarget "overlayPracticeUITests" */ = {
+		950C363F1D56479E009710DD /* Build configuration list for PBXNativeTarget "MapQuizUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				950C36401D56479E009710DD /* Debug */,

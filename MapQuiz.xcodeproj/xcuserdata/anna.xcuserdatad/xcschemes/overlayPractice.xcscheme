@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "950C36101D56479E009710DD"
-               BuildableName = "overlayPractice.app"
-               BlueprintName = "overlayPractice"
-               ReferencedContainer = "container:overlayPractice.xcodeproj">
+               BuildableName = "MapQuiz.app"
+               BlueprintName = "MapQuiz"
+               ReferencedContainer = "container:MapQuiz.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "950C36241D56479E009710DD"
-               BuildableName = "overlayPracticeTests.xctest"
-               BlueprintName = "overlayPracticeTests"
-               ReferencedContainer = "container:overlayPractice.xcodeproj">
+               BuildableName = "MapQuiz.xctest"
+               BlueprintName = "MapQuizTests"
+               ReferencedContainer = "container:MapQuiz.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "950C362F1D56479E009710DD"
-               BuildableName = "overlayPracticeUITests.xctest"
-               BlueprintName = "overlayPracticeUITests"
-               ReferencedContainer = "container:overlayPractice.xcodeproj">
+               BuildableName = "MapQuiz.xctest"
+               BlueprintName = "MapQuizUITests"
+               ReferencedContainer = "container:MapQuiz.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "950C36101D56479E009710DD"
-            BuildableName = "overlayPractice.app"
-            BlueprintName = "overlayPractice"
-            ReferencedContainer = "container:overlayPractice.xcodeproj">
+            BuildableName = "MapQuiz.app"
+            BlueprintName = "MapQuiz"
+            ReferencedContainer = "container:MapQuiz.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "950C36101D56479E009710DD"
-            BuildableName = "overlayPractice.app"
-            BlueprintName = "overlayPractice"
-            ReferencedContainer = "container:overlayPractice.xcodeproj">
+            BuildableName = "MapQuiz.app"
+            BlueprintName = "MapQuiz"
+            ReferencedContainer = "container:MapQuiz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "950C36101D56479E009710DD"
-            BuildableName = "overlayPractice.app"
-            BlueprintName = "overlayPractice"
-            ReferencedContainer = "container:overlayPractice.xcodeproj">
+            BuildableName = "MapQuiz.app"
+            BlueprintName = "MapQuiz"
+            ReferencedContainer = "container:MapQuiz.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
