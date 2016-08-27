@@ -121,13 +121,14 @@ class HelperFunctions {
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print("error",error)
+            //silently not work as not a be all or end all for the app to work
         }
         
         do {
             try audioPlayer = AVAudioPlayer(contentsOfURL: soundFile)
         } catch {
             print("error",error)
-            //throw alert? or silently not work?
+            //silently not work as not a be all or end all for the app to work
         }
         
         return audioPlayer

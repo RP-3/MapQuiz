@@ -36,10 +36,10 @@ class ChooseQuizModeViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == "showPractice" {
-            let controller = segue.destinationViewController as! MapViewController
+            _ = segue.destinationViewController as! MapViewController
             Helpers.continent = continent
         } else if segue.identifier == "showChallenge" {
-            let controller = segue.destinationViewController as! ChallengeViewController
+            _ = segue.destinationViewController as! ChallengeViewController
             Helpers.continent = continent
         }
     }

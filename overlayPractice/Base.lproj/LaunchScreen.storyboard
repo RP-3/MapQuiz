@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="worldImage" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-bJ-IA3">
-                                <rect key="frame" x="40" y="174" width="520" height="252"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worldImage" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-bJ-IA3">
+                                <rect key="frame" x="40" y="57" width="520" height="486"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.8982092814" green="0.83771728479999996" blue="0.77847169189999998" alpha="1" colorSpace="calibratedRGB"/>
