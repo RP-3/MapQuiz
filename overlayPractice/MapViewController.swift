@@ -274,6 +274,9 @@ class MapViewController: CoreDataController {
         //delete the countries dictionary
         Helpers.createdPolygonOverlays.removeAll()
         label!.removeFromSuperview()
+        revealButton.enabled = false
+        navigationItem.rightBarButtonItem?.enabled = false
+        showAllButton.enabled = false
         currentGame.finished_at = NSDate()
         Helpers.finishGame()
     }
