@@ -26,7 +26,6 @@ class HelperFunctions {
     
     var audioPlayer = AVAudioPlayer()
 
-    
     let islands = [
         "Marshall Islands": "Marshall Islands",
         "Kiribati": "Kiribati",
@@ -128,5 +127,25 @@ class HelperFunctions {
         
         return audioPlayer
     }
+    
+    func makeQuestionLabel (sender: String) -> UILabel {
+        let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
+        let countryToFind = Array(game["toPlay"]!.values)[index]
+        toFind = countryToFind
+        let label = UILabel()
+        let screenSize = UIScreen.mainScreen().bounds.size
+        if sender == "challenge" {
+            label.frame = CGRectMake(0, 0, (screenSize.width + 5), 35)
+        } else {
+            label.frame = CGRectMake(0, 0 + 44, (screenSize.width + 5), 35)
+        }
+        label.textAlignment = NSTextAlignment.Center
+        label.text = "Find: \(countryToFind)"
+        label.font = UIFont(name: "AmaticSC-Bold", size: 28)
+        label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+        label.textColor = UIColor.whiteColor()
+        return label
+    }
+
     
 }

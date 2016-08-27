@@ -137,22 +137,7 @@ class ChallengeViewController: CoreDataController {
         }
         print("countries to play --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
-        makeQuestionLabel()
-    }
-    
-    func makeQuestionLabel () {
-        let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
-        let countryToFind = Array(Helpers.game["toPlay"]!.values)[index]
-        Helpers.toFind = countryToFind
-        let screenSize = UIScreen.mainScreen().bounds.size
-        label.frame = CGRectMake(0, 0, (screenSize.width + 5), 35)
-        label.textAlignment = NSTextAlignment.Center
-        label.text = "Find: \(countryToFind)"
-        label.font = UIFont(name: "AmaticSC-Bold", size: 28)
-        label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
-        label.textColor = UIColor.whiteColor()
-        view.frame.origin.y = 44 * (-1)
-        worldMap.addSubview(label)
+        worldMap.addSubview(Helpers.makeQuestionLabel("challenge"))
     }
     
     
