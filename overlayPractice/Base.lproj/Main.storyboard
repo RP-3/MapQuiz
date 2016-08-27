@@ -390,7 +390,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="239" y="274" width="123" height="52"/>
+                                <rect key="frame" x="231" y="193" width="123" height="52"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="31"/>
                                 <state key="normal" title="Learning Mode">
                                     <color key="titleColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -400,7 +400,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
-                                <rect key="frame" x="235" y="176" width="131" height="53"/>
+                                <rect key="frame" x="227" y="273" width="131" height="53"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="32"/>
                                 <state key="normal" title="Challenge Time">
                                     <color key="titleColor" red="0.17798479948288359" green="0.11348448591426641" blue="0.058141421284838804" alpha="1" colorSpace="calibratedRGB"/>
@@ -412,10 +412,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.8982092814" green="0.83771728479999996" blue="0.77847169189999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="9c9-0V-Weg" firstAttribute="top" secondItem="Sxn-Bc-Ym6" secondAttribute="bottom" constant="45" id="677-FL-zLS"/>
-                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="i74-SO-DjM"/>
-                            <constraint firstItem="Sxn-Bc-Ym6" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="nVx-nW-nEO"/>
-                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" id="zrf-Yh-WaC"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="top" secondItem="Sxn-Bc-Ym6" secondAttribute="bottom" constant="-133" id="677-FL-zLS"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" constant="-7.5" id="i74-SO-DjM"/>
+                            <constraint firstItem="Sxn-Bc-Ym6" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" constant="-7.5" id="nVx-nW-nEO"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" constant="-81" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
                     <connections>
