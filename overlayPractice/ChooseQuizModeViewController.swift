@@ -11,23 +11,25 @@ import UIKit
 class ChooseQuizModeViewController: UIViewController {
     
     var continent: String!
-    var activitySpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    //var activitySpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    
+    let Helpers = HelperFunctions.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        activitySpinner.center = view.center
+        //activitySpinner.center = view.center
     }
 
     @IBAction func challengeClicked(sender: AnyObject) {
-        activitySpinner.startAnimating()
-        view.addSubview(activitySpinner)
+//        activitySpinner.startAnimating()
+//        view.addSubview(activitySpinner)
         performSegueWithIdentifier("showChallenge", sender: nil)
     }
     
     
     @IBAction func practiceClicked(sender: AnyObject) {
-        activitySpinner.startAnimating()
-        view.addSubview(activitySpinner)
+//        activitySpinner.startAnimating()
+//        view.addSubview(activitySpinner)
         performSegueWithIdentifier("showPractice", sender: nil)
     }
     
@@ -35,10 +37,10 @@ class ChooseQuizModeViewController: UIViewController {
         
         if segue.identifier == "showPractice" {
             let controller = segue.destinationViewController as! MapViewController
-            controller.continent = continent
+            Helpers.continent = continent
         } else if segue.identifier == "showChallenge" {
             let controller = segue.destinationViewController as! ChallengeViewController
-            controller.continent = continent
+            Helpers.continent = continent
         }
     }
     
@@ -62,8 +64,8 @@ class ChooseQuizModeViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        activitySpinner.stopAnimating()
-        view.willRemoveSubview(activitySpinner)
+//        activitySpinner.stopAnimating()
+//        view.willRemoveSubview(activitySpinner)
     }
     
 }

@@ -70,21 +70,21 @@
 		95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */; };
 		95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */; };
 		95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
-		95BBB41B1D721546005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */; };
-		95BBB41C1D721546005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */; };
-		95BBB41D1D721546005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */; };
-		95BBB41F1D722A6A005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41E1D722A6A005B243A /* plop.wav */; };
-		95BBB4201D722A6A005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41E1D722A6A005B243A /* plop.wav */; };
-		95BBB4211D722A6A005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41E1D722A6A005B243A /* plop.wav */; };
-		95C69ACF1D70846500D0523E /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ACE1D70846500D0523E /* bounce.wav */; };
-		95C69AD01D70846500D0523E /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ACE1D70846500D0523E /* bounce.wav */; };
-		95C69AD11D70846500D0523E /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ACE1D70846500D0523E /* bounce.wav */; };
-		95C69AD31D708E3C00D0523E /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69AD21D708E3C00D0523E /* wrong.wav */; };
-		95C69AD41D708E3C00D0523E /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69AD21D708E3C00D0523E /* wrong.wav */; };
-		95C69AD51D708E3C00D0523E /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69AD21D708E3C00D0523E /* wrong.wav */; };
-		95C69ADB1D708FBC00D0523E /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ADA1D708FBC00D0523E /* right.wav */; };
-		95C69ADC1D708FBC00D0523E /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ADA1D708FBC00D0523E /* right.wav */; };
-		95C69ADD1D708FBC00D0523E /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ADA1D708FBC00D0523E /* right.wav */; };
+		95BBB4231D723638005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4221D723637005B243A /* AmaticSC-Bold.ttf */; };
+		95BBB4241D723638005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4221D723637005B243A /* AmaticSC-Bold.ttf */; };
+		95BBB4251D723638005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4221D723637005B243A /* AmaticSC-Bold.ttf */; };
+		95BBB4271D72367B005B243A /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4261D72367B005B243A /* right.wav */; };
+		95BBB4281D72367B005B243A /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4261D72367B005B243A /* right.wav */; };
+		95BBB4291D72367B005B243A /* right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4261D72367B005B243A /* right.wav */; };
+		95BBB42B1D72368F005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB42A1D72368F005B243A /* plop.wav */; };
+		95BBB42C1D72368F005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB42A1D72368F005B243A /* plop.wav */; };
+		95BBB42D1D72368F005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB42A1D72368F005B243A /* plop.wav */; };
+		95BBB42F1D723693005B243A /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB42E1D723693005B243A /* bounce.wav */; };
+		95BBB4301D723693005B243A /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB42E1D723693005B243A /* bounce.wav */; };
+		95BBB4311D723693005B243A /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB42E1D723693005B243A /* bounce.wav */; };
+		95BBB4331D723696005B243A /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4321D723696005B243A /* wrong.wav */; };
+		95BBB4341D723696005B243A /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4321D723696005B243A /* wrong.wav */; };
+		95BBB4351D723696005B243A /* wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB4321D723696005B243A /* wrong.wav */; };
 		95F5C5441D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */; };
 		95F5C5451D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */; };
 		95F5C5461D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */; };
@@ -154,12 +154,12 @@
 		95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		95B7BF531D5F585B004B1760 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
-		95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AmaticSC-Bold.ttf"; path = "../../../../../Desktop/amatic_sc/AmaticSC-Bold.ttf"; sourceTree = "<group>"; };
-		95BBB41E1D722A6A005B243A /* plop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = plop.wav; path = ../../../../../Desktop/plop.wav; sourceTree = "<group>"; };
+		95BBB4221D723637005B243A /* AmaticSC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Bold.ttf"; sourceTree = "<group>"; };
+		95BBB4261D72367B005B243A /* right.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = right.wav; sourceTree = "<group>"; };
+		95BBB42A1D72368F005B243A /* plop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = plop.wav; sourceTree = "<group>"; };
+		95BBB42E1D723693005B243A /* bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = bounce.wav; sourceTree = "<group>"; };
+		95BBB4321D723696005B243A /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wrong.wav; sourceTree = "<group>"; };
 		95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv3.xcdatamodel; sourceTree = "<group>"; };
-		95C69ACE1D70846500D0523E /* bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bounce.wav; path = ../../../../../Desktop/bounce.wav; sourceTree = "<group>"; };
-		95C69AD21D708E3C00D0523E /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wrong.wav; path = ../../../../../Desktop/wrong.wav; sourceTree = "<group>"; };
-		95C69ADA1D708FBC00D0523E /* right.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = right.wav; path = ../../../../../Desktop/right.wav; sourceTree = "<group>"; };
 		95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
 		95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
 		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -309,12 +309,12 @@
 			isa = PBXGroup;
 			children = (
 				950C361B1D56479E009710DD /* Assets.xcassets */,
-				95C69ACE1D70846500D0523E /* bounce.wav */,
-				95C69AD21D708E3C00D0523E /* wrong.wav */,
-				95C69ADA1D708FBC00D0523E /* right.wav */,
-				95BBB41E1D722A6A005B243A /* plop.wav */,
+				95BBB4261D72367B005B243A /* right.wav */,
+				95BBB4321D723696005B243A /* wrong.wav */,
+				95BBB42E1D723693005B243A /* bounce.wav */,
+				95BBB4221D723637005B243A /* AmaticSC-Bold.ttf */,
+				95BBB42A1D72368F005B243A /* plop.wav */,
 				95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */,
-				95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
 				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950C36181D56479E009710DD /* Main.storyboard */,
@@ -437,16 +437,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				95C69ACF1D70846500D0523E /* bounce.wav in Resources */,
 				95F5C5441D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
-				95C69ADB1D708FBC00D0523E /* right.wav in Resources */,
-				95C69AD31D708E3C00D0523E /* wrong.wav in Resources */,
-				95BBB41F1D722A6A005B243A /* plop.wav in Resources */,
+				95BBB4231D723638005B243A /* AmaticSC-Bold.ttf in Resources */,
 				950175F11D6D290C007B78E3 /* countriesData.json in Resources */,
+				95BBB4271D72367B005B243A /* right.wav in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
-				95BBB41B1D721546005B243A /* AmaticSC-Bold.ttf in Resources */,
+				95BBB4331D723696005B243A /* wrong.wav in Resources */,
 				950C361A1D56479E009710DD /* Main.storyboard in Resources */,
+				95BBB42F1D723693005B243A /* bounce.wav in Resources */,
+				95BBB42B1D72368F005B243A /* plop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,14 +454,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95BBB4241D723638005B243A /* AmaticSC-Bold.ttf in Resources */,
+				95BBB4301D723693005B243A /* bounce.wav in Resources */,
+				95BBB4341D723696005B243A /* wrong.wav in Resources */,
+				95BBB4281D72367B005B243A /* right.wav in Resources */,
 				95F5C5471D6FBBB6002FE39D /* LaunchScreen.storyboard in Resources */,
-				95C69AD41D708E3C00D0523E /* wrong.wav in Resources */,
-				95BBB41C1D721546005B243A /* AmaticSC-Bold.ttf in Resources */,
+				95BBB42C1D72368F005B243A /* plop.wav in Resources */,
 				95F5C5451D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
-				95C69ADC1D708FBC00D0523E /* right.wav in Resources */,
-				95C69AD01D70846500D0523E /* bounce.wav in Resources */,
 				950175F21D6D290C007B78E3 /* countriesData.json in Resources */,
-				95BBB4201D722A6A005B243A /* plop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,14 +469,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95BBB4251D723638005B243A /* AmaticSC-Bold.ttf in Resources */,
+				95BBB4311D723693005B243A /* bounce.wav in Resources */,
+				95BBB4351D723696005B243A /* wrong.wav in Resources */,
+				95BBB4291D72367B005B243A /* right.wav in Resources */,
 				95F5C5481D6FBBB7002FE39D /* LaunchScreen.storyboard in Resources */,
-				95C69AD51D708E3C00D0523E /* wrong.wav in Resources */,
-				95BBB41D1D721546005B243A /* AmaticSC-Bold.ttf in Resources */,
+				95BBB42D1D72368F005B243A /* plop.wav in Resources */,
 				95F5C5461D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
-				95C69ADD1D708FBC00D0523E /* right.wav in Resources */,
-				95C69AD11D70846500D0523E /* bounce.wav in Resources */,
 				950175F31D6D290C007B78E3 /* countriesData.json in Resources */,
-				95BBB4211D722A6A005B243A /* plop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

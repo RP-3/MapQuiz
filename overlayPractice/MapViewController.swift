@@ -19,10 +19,7 @@ class MapViewController: CoreDataController {
     @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var showAllButton: UIBarButtonItem!
     
-    
     let Helpers = HelperFunctions.sharedInstance
-    
-    var continent: String!
     
     var currentGame: Game!
     var restoreOccur: Bool?
@@ -75,7 +72,7 @@ class MapViewController: CoreDataController {
     override func viewWillAppear(animated: Bool) {
         
         //if there are no games to play then show an alert/if no entities
-        if game["toPlay"]?.count > 0 && continent != nil {
+        if game["toPlay"]?.count > 0 && Helpers.continent != nil {
             let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
                 self.navigationController?.popToRootViewControllerAnimated(true)
@@ -85,7 +82,7 @@ class MapViewController: CoreDataController {
 
         //only for use when the continent is EU
         for entity in entities {
-            if (entity.continent == continent) {
+            if (entity.continent == Helpers.continent) {
                 makeCountryAndAddToMap(entity)
             }
         }
@@ -127,9 +124,9 @@ class MapViewController: CoreDataController {
             }
         } else {
             //make a new game in core data and set as current
-            currentGame = Game(continent: continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
+            currentGame = Game(continent: Helpers.continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
             // use autosave to save it - else on exiting the core data entities are saved
-            let region = Helpers.setZoomForContinent(continent)
+            let region = Helpers.setZoomForContinent(Helpers.continent)
             worldMap.setRegion(region, animated: true)
         }
         print("countries to find --->", game["toPlay"]!.count)
@@ -354,13 +351,13 @@ class MapViewController: CoreDataController {
     // functions to deal with the restoring state
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         // save the continent as minimal source of data
-        coder.encodeObject(continent as AnyObject, forKey: "continent")
+        coder.encodeObject(Helpers.continent as AnyObject, forKey: "continent")
         super.encodeRestorableStateWithCoder(coder)
     }
     
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         let data = coder.decodeObjectForKey("continent")
-        continent = String(data!)
+        Helpers.continent = String(data!)
         restoreOccur = true
         super.decodeRestorableStateWithCoder(coder)
     }

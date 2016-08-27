@@ -13,6 +13,8 @@ import AVFoundation
 
 class HelperFunctions {
     
+    var continent:String!
+    
     var audioPlayer = AVAudioPlayer()
 
     

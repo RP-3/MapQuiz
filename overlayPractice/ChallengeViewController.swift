@@ -12,8 +12,6 @@ import CoreData
 
 class ChallengeViewController: CoreDataController {
     
-    var continent: String!
-    
     @IBOutlet weak var displayTimerLabel: MKMapView!
     @IBOutlet weak var worldMap: MKMapView!
     
@@ -87,7 +85,7 @@ class ChallengeViewController: CoreDataController {
     override func viewWillAppear(animated: Bool) {
         
         //if there are no games to play then show an alert/if no entities
-        if game["toPlay"]?.count > 0 && continent != nil {
+        if game["toPlay"]?.count > 0 && Helpers.continent != nil {
             let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
                 self.navigationController?.popToRootViewControllerAnimated(true)
@@ -96,7 +94,7 @@ class ChallengeViewController: CoreDataController {
         }
         
         for entity in entities {
-            if (entity.continent == continent) {
+            if (entity.continent == Helpers.continent) {
                 let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
                 game["toPlay"]![entity.name!] = entity.name
                 addBoundary(country)
@@ -142,8 +140,8 @@ class ChallengeViewController: CoreDataController {
             }
         } else {
             //make a new game in core data and set as current
-            currentGame = Game(continent: continent, mode: "challenge", context: fetchedResultsController!.managedObjectContext)
-            let region = Helpers.setZoomForContinent(continent)
+            currentGame = Game(continent: Helpers.continent, mode: "challenge", context: fetchedResultsController!.managedObjectContext)
+            let region = Helpers.setZoomForContinent(Helpers.continent)
             worldMap.setRegion(region, animated: true)
         }
         print("countries to play --->", game["toPlay"]!.count)
@@ -335,14 +333,14 @@ class ChallengeViewController: CoreDataController {
     // functions to deal with the restoring state
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         // save the continent as minimal source of data
-        coder.encodeObject(continent as AnyObject, forKey: "continent")
+        coder.encodeObject(Helpers.continent as AnyObject, forKey: "continent")
         coder.encodeInteger(stopwatch, forKey: "stoppedTime")
         super.encodeRestorableStateWithCoder(coder)
     }
     
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         let data = coder.decodeObjectForKey("continent")
-        continent = String(data!)
+        Helpers.continent = String(data!)
         stopwatch = coder.decodeIntegerForKey("stoppedTime")
         restoreOccur = true
         super.decodeRestorableStateWithCoder(coder)
