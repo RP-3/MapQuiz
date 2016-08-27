@@ -73,6 +73,9 @@
 		95BBB41B1D721546005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */; };
 		95BBB41C1D721546005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */; };
 		95BBB41D1D721546005B243A /* AmaticSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */; };
+		95BBB41F1D722A6A005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41E1D722A6A005B243A /* plop.wav */; };
+		95BBB4201D722A6A005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41E1D722A6A005B243A /* plop.wav */; };
+		95BBB4211D722A6A005B243A /* plop.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95BBB41E1D722A6A005B243A /* plop.wav */; };
 		95C69ACF1D70846500D0523E /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ACE1D70846500D0523E /* bounce.wav */; };
 		95C69AD01D70846500D0523E /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ACE1D70846500D0523E /* bounce.wav */; };
 		95C69AD11D70846500D0523E /* bounce.wav in Resources */ = {isa = PBXBuildFile; fileRef = 95C69ACE1D70846500D0523E /* bounce.wav */; };
@@ -152,6 +155,7 @@
 		95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		95B7BF531D5F585B004B1760 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
 		95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "AmaticSC-Bold.ttf"; path = "../../../../../Desktop/amatic_sc/AmaticSC-Bold.ttf"; sourceTree = "<group>"; };
+		95BBB41E1D722A6A005B243A /* plop.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = plop.wav; path = ../../../../../Desktop/plop.wav; sourceTree = "<group>"; };
 		95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv3.xcdatamodel; sourceTree = "<group>"; };
 		95C69ACE1D70846500D0523E /* bounce.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = bounce.wav; path = ../../../../../Desktop/bounce.wav; sourceTree = "<group>"; };
 		95C69AD21D708E3C00D0523E /* wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = wrong.wav; path = ../../../../../Desktop/wrong.wav; sourceTree = "<group>"; };
@@ -308,6 +312,7 @@
 				95C69ACE1D70846500D0523E /* bounce.wav */,
 				95C69AD21D708E3C00D0523E /* wrong.wav */,
 				95C69ADA1D708FBC00D0523E /* right.wav */,
+				95BBB41E1D722A6A005B243A /* plop.wav */,
 				95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */,
 				95BBB41A1D721546005B243A /* AmaticSC-Bold.ttf */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
@@ -437,6 +442,7 @@
 				950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */,
 				95C69ADB1D708FBC00D0523E /* right.wav in Resources */,
 				95C69AD31D708E3C00D0523E /* wrong.wav in Resources */,
+				95BBB41F1D722A6A005B243A /* plop.wav in Resources */,
 				950175F11D6D290C007B78E3 /* countriesData.json in Resources */,
 				950C361C1D56479E009710DD /* Assets.xcassets in Resources */,
 				95BBB41B1D721546005B243A /* AmaticSC-Bold.ttf in Resources */,
@@ -455,6 +461,7 @@
 				95C69ADC1D708FBC00D0523E /* right.wav in Resources */,
 				95C69AD01D70846500D0523E /* bounce.wav in Resources */,
 				950175F21D6D290C007B78E3 /* countriesData.json in Resources */,
+				95BBB4201D722A6A005B243A /* plop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,6 +476,7 @@
 				95C69ADD1D708FBC00D0523E /* right.wav in Resources */,
 				95C69AD11D70846500D0523E /* bounce.wav in Resources */,
 				950175F31D6D290C007B78E3 /* countriesData.json in Resources */,
+				95BBB4211D722A6A005B243A /* plop.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

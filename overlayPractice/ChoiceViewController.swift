@@ -21,7 +21,7 @@ class ChoiceViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!]
+        navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!]
         title = "Pick a continent"
     }
     

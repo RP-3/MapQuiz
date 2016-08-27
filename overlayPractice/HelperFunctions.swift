@@ -14,6 +14,7 @@ import AVFoundation
 class HelperFunctions {
     
     var audioPlayer = AVAudioPlayer()
+
     
     let islands = [
         "Marshall Islands": "Marshall Islands",
@@ -86,13 +87,15 @@ class HelperFunctions {
     func playSound (soundType: String) -> AVAudioPlayer {
         
         var soundFile: NSURL!
-        if soundType == "yep" {
-            soundFile = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "wav")!)
-        } else if soundType == "nope" {
-            soundFile = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "wav")!)
-        } else if soundType == "skip" {
-            soundFile = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!)
-        }
+        
+        var sounds = [
+            "yep":NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("right", ofType: "wav")!),
+            "nope":NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("wrong", ofType: "wav")!),
+            "skip":NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("bounce", ofType: "wav")!),
+            "reveal":NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("plop", ofType: "wav")!)
+        ]
+        
+        soundFile = sounds[soundType]
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

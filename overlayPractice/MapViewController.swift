@@ -311,6 +311,9 @@ class MapViewController: CoreDataController {
     // this button shows the uncovers the current courty being asked
     @IBAction func reveal(sender: AnyObject) {
         // get the name of the country being asked
+        let audioPlayer = Helpers.playSound("reveal")
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
         for overlay in worldMap.overlays {
             if overlay.title!! == toFind {
                 //update the mapview
