@@ -32,7 +32,7 @@ class ScoreViewController: CoreDataController {
         titleLabel.text = "Out of \(scoreTotal) countries you got:"
         correct.text = "\(score) correct"
         wrong.text = "\(misses) wrong"
-        uncovered.text = "and \(revealed) misses"
+        uncovered.text = "and \(revealed) uncovered"
         
         titleLabel.font = UIFont(name: "Amatic SC", size: 40)
         

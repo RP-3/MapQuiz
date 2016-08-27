@@ -12,8 +12,11 @@ class ChallengeScoreViewController: UIViewController {
     
     var lives: Int!
     var correct: Int!
-    var time: Int!
+    var time: String!
     var totalCountriesInContinent: Int!
+    
+    @IBOutlet weak var scoreText: UILabel!
+    @IBOutlet weak var scoreImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +30,14 @@ class ChallengeScoreViewController: UIViewController {
         // if no lives then dead
         // if no time then dead
         if correct == totalCountriesInContinent {
-            print("won!")
-        } else if time == 0 {
-            print("no time")
+            scoreImage.image = UIImage(named: "mountain")
+            scoreText.text = "You made it!! All \(totalCountriesInContinent) countries were guessed in \(time)!"
+        } else if time == "0:00" {
+            scoreImage.image = UIImage(named: "wrong")
+            scoreText.text = "Time up! You got \(correct) countries out of \(totalCountriesInContinent)"
         } else if lives == 0 {
-            print("no lives")
+            scoreImage.image = UIImage(named: "wrong")
+            scoreText.text = "All your lives are gone! You got \(correct) countries out of \(totalCountriesInContinent) in \(time)"
         }
         
     }

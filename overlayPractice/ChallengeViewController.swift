@@ -41,14 +41,7 @@ class ChallengeViewController: CoreDataController {
     //question label
     let label = UILabel()
     
-    var stopwatch = 600
-    
-    //europe 5 minutes
-    //oc 2 minutes
-    //na = 4mins
-    //sa = 2 minutes
-    //as = 4 1/2 minutes
-    //af = 6 minutes
+    var stopwatch = 0
     
     var timerScheduler: NSTimer!
     
@@ -109,6 +102,9 @@ class ChallengeViewController: CoreDataController {
             }
         }
         totalCountries = createdPolygonOverlays.count
+        //make the this time the number of countries * 10 /60 (10 secs per country)
+        stopwatch = totalCountries*10
+        
         // show countries guessed count to user
         self.title = String("0 / \(totalCountries)")
         print("<><><><><>",game["toPlay"]!.count)
@@ -247,7 +243,16 @@ class ChallengeViewController: CoreDataController {
         let controller = segue.destinationViewController as! ChallengeScoreViewController
         controller.lives = lives
         controller.correct = game["guessed"]!.count
-        controller.time = stopwatch
+        let minsTaken = ((totalCountries*10) - stopwatch)/60
+        var secsTaken = String(((totalCountries*10) - stopwatch)%60)
+        if String(secsTaken) == "0" {
+            secsTaken = "0" + secsTaken
+        }
+        // pad with zero
+        if String(secsTaken).characters.count == 1 {
+            secsTaken = "0" + secsTaken
+        }
+        controller.time = String(minsTaken) + ":" + String(secsTaken)
         controller.totalCountriesInContinent = totalCountries
     }
     
@@ -292,17 +297,7 @@ class ChallengeViewController: CoreDataController {
     
     func updateTime () {
         if(stopwatch > 0){
-            let minutes = String(stopwatch / 60)
-            var seconds = String(stopwatch % 60)
-            // pad on whole minute
-            if String(seconds) == "0" {
-                seconds = String("0") + seconds
-            }
-            // pad with zero
-            if String(seconds).characters.count == 1 {
-                seconds = String("0") + seconds
-            }
-            timerLabel.text = minutes + ":" + seconds
+            timerLabel.text = getTime()
             stopwatch -= 1
         } else {
             // stop this function from being called after this condition has been met
@@ -310,6 +305,19 @@ class ChallengeViewController: CoreDataController {
             currentGame.finished_at = NSDate()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
+    }
+    
+    func getTime () -> String {
+        let minutes = String(stopwatch / 60)
+        var seconds = String(stopwatch % 60)
+        if String(seconds) == "0" {
+            seconds = "0" + seconds
+        }
+        if String(seconds).characters.count == 1 {
+            seconds = "0" + seconds
+        }
+        let time = minutes + ":" + seconds
+        return time
     }
     
     override func viewWillDisappear(animated: Bool) {

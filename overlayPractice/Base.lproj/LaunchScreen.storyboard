@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="worldImage" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-bJ-IA3">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="worldImage" translatesAutoresizingMaskIntoConstraints="NO" id="tsS-bJ-IA3">
                                 <rect key="frame" x="40" y="174" width="520" height="252"/>
                             </imageView>
                         </subviews>
@@ -37,6 +37,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="worldImage" width="432" height="252"/>
+        <image name="worldImage" width="833" height="486"/>
     </resources>
 </document>
