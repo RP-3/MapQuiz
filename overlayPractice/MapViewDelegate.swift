@@ -59,7 +59,6 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
         lbl.text = " " + annotation.title!! + "  "
         lbl.font = UIFont(name: "AmaticSC-Regular", size: 16)
         lbl.backgroundColor = beigeColor
-        
         lbl.sizeToFit()
         return aView
     }

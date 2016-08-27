@@ -41,7 +41,15 @@ class ChallengeViewController: CoreDataController {
     //question label
     let label = UILabel()
     
-    var stopwatch = 100
+    var stopwatch = 600
+    
+    //europe 5 minutes
+    //oc 2 minutes
+    //na = 4mins
+    //sa = 2 minutes
+    //as = 4 1/2 minutes
+    //af = 6 minutes
+    
     var timerScheduler: NSTimer!
     
     //dictionary keyed by country name with the values as an array of all the polygons for that country
@@ -56,7 +64,7 @@ class ChallengeViewController: CoreDataController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.setQuestionLabel))
+        let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
         self.navigationItem.rightBarButtonItem = skipButton
         
         worldMap.delegate = mapDelegate
@@ -64,7 +72,6 @@ class ChallengeViewController: CoreDataController {
         let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
             print("start the timer")
             self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
-            
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
@@ -147,7 +154,6 @@ class ChallengeViewController: CoreDataController {
         makeQuestionLabel()
     }
     
-    
     func makeQuestionLabel () {
         let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
         let countryToFind = Array(game["toPlay"]!.values)[index]
@@ -191,6 +197,9 @@ class ChallengeViewController: CoreDataController {
             }
         }
         if found {
+            let audioPlayer = Helpers.playSound("yep")
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
             label.text = "Found!"
             label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
             //save the attempt to coredata
@@ -202,6 +211,9 @@ class ChallengeViewController: CoreDataController {
             }
             updateMapOverlays(toFind)
         } else {
+            let audioPlayer = Helpers.playSound("nope")
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
             //it was an incorrect guess
             label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
             misses += 1
@@ -237,6 +249,13 @@ class ChallengeViewController: CoreDataController {
         controller.correct = game["guessed"]!.count
         controller.time = stopwatch
         controller.totalCountriesInContinent = totalCountries
+    }
+    
+    func skip () {
+        let audioPlayer = Helpers.playSound("skip")
+        audioPlayer.prepareToPlay()
+        audioPlayer.play()
+        setQuestionLabel()
     }
     
     //ask new question
