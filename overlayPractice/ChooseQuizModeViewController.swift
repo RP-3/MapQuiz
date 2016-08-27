@@ -58,7 +58,7 @@ class ChooseQuizModeViewController: UIViewController {
     // once the app has loaded again work out what to show on the screen
     override func applicationFinishedRestoringState() {
         //grab the unfinished game and set to currrent game
-        print("ready to keep going data")
+        print("ready to keep going data choose mode")
     }
     
     override func viewWillDisappear(animated: Bool) {

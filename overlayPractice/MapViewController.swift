@@ -253,7 +253,7 @@ class MapViewController: CoreDataController {
             controller.score = game["guessed"]?.count
             controller.scoreTotal = totalCountries
             controller.revealed = revealed
-            controller.misses = misses
+            controller.incorrect = misses
         }
     }
     
@@ -352,12 +352,10 @@ class MapViewController: CoreDataController {
     override func encodeRestorableStateWithCoder(coder: NSCoder) {
         // save the continent as minimal source of data
         coder.encodeObject(continent as AnyObject, forKey: "continent")
-        print("continent saved")
         super.encodeRestorableStateWithCoder(coder)
     }
     
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
-        print("load stored state")
         let data = coder.decodeObjectForKey("continent")
         continent = String(data!)
         restoreOccur = true
@@ -366,7 +364,7 @@ class MapViewController: CoreDataController {
     
     // once the app has loaded again work out what to show on the screen
     override func applicationFinishedRestoringState() {
-        print("finished restoring state")
+        print("finished restoring state map view")
         //grab the unfinished game and set to currrent game
         let moc = fetchedResultsController!.managedObjectContext
         let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -379,7 +377,7 @@ class MapViewController: CoreDataController {
             fatalError("Failed to fetch employees: \(error)")
         }
         // set the current game - if the finish date is nil
-        if entities[0].finished_at == nil {
+        if entities.count > 0 && entities[0].finished_at == nil {
             print("have game to continue")
             currentGame = entities[0]
         } else {

@@ -26,18 +26,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        resetData()
-        preloadData ()
+        //resetData()
+        //preloadData ()
         //Override point for customization after application launch.
-//        let defaults = NSUserDefaults.standardUserDefaults()
-//        let isPreloaded = defaults.boolForKey("dataPreloaded")
-//        if !isPreloaded {
-//            print("data not preloaded yet ...")
-//            preloadData()
-//            defaults.setBool(true, forKey: "dataPreloaded")
-//        } else {
-//            print("data is already loaded into core data")
-//        }
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let isPreloaded = defaults.boolForKey("dataPreloaded")
+        if !isPreloaded {
+            print("data not preloaded yet ...")
+            preloadData()
+            defaults.setBool(true, forKey: "dataPreloaded")
+        } else {
+            print("data is already loaded into core data")
+        }
         landAreas.autoSave(60)
         return true
     }
