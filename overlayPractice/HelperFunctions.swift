@@ -14,6 +14,7 @@ import AVFoundation
 class HelperFunctions {
     
     var continent:String!
+    var totalCountries: Int = 0
     
     var audioPlayer = AVAudioPlayer()
 

@@ -22,7 +22,6 @@ class ChallengeViewController: CoreDataController {
     
     let Helpers = HelperFunctions.sharedInstance
     
-    var totalCountries: Int = 0
     var currentGame: Game!
     var restoreOccur: Bool?
     
@@ -100,12 +99,12 @@ class ChallengeViewController: CoreDataController {
                 addBoundary(country)
             }
         }
-        totalCountries = createdPolygonOverlays.count
+        Helpers.totalCountries = createdPolygonOverlays.count
         //make the this time the number of countries * 10 /60 (10 secs per country)
-        stopwatch = totalCountries*10
+        stopwatch = Helpers.totalCountries*10
         
         // show countries guessed count to user
-        self.title = String("0 / \(totalCountries)")
+        self.title = String("0 / \(Helpers.totalCountries)")
         print("<><><><><>",game["toPlay"]!.count)
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
@@ -243,8 +242,8 @@ class ChallengeViewController: CoreDataController {
         let controller = segue.destinationViewController as! ChallengeScoreViewController
         controller.lives = lives
         controller.correct = game["guessed"]!.count
-        let minsTaken = ((totalCountries*10) - stopwatch)/60
-        var secsTaken = String(((totalCountries*10) - stopwatch)%60)
+        let minsTaken = ((Helpers.totalCountries*10) - stopwatch)/60
+        var secsTaken = String(((Helpers.totalCountries*10) - stopwatch)%60)
         if String(secsTaken) == "0" {
             secsTaken = "0" + secsTaken
         }
@@ -253,7 +252,7 @@ class ChallengeViewController: CoreDataController {
             secsTaken = "0" + secsTaken
         }
         controller.time = String(minsTaken) + ":" + String(secsTaken)
-        controller.totalCountriesInContinent = totalCountries
+        controller.totalCountriesInContinent = Helpers.totalCountries
     }
     
     func skip () {
@@ -265,7 +264,7 @@ class ChallengeViewController: CoreDataController {
     
     //ask new question
     func setQuestionLabel () {
-        self.title = String("\(game["guessed"]!.count + revealed) / \(totalCountries)")
+        self.title = String("\(game["guessed"]!.count + revealed) / \(Helpers.totalCountries)")
         if game["toPlay"]?.count > 0 {
             let index: Int = Int(arc4random_uniform(UInt32(game["toPlay"]!.count)))
             let randomVal = Array(game["toPlay"]!.values)[index]

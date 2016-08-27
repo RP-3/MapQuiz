@@ -24,8 +24,6 @@ class MapViewController: CoreDataController {
     var currentGame: Game!
     var restoreOccur: Bool?
     
-    var totalCountries: Int = 0
-    
     var game = [
         "guessed": [String:String](),
         "toPlay": [String:String]()
@@ -87,9 +85,9 @@ class MapViewController: CoreDataController {
             }
         }
         
-        totalCountries = createdPolygonOverlays.count
+        Helpers.totalCountries = createdPolygonOverlays.count
         // show countries guessed count to user
-        self.title = String("0 / \(totalCountries)")
+        self.title = String("0 / \(Helpers.totalCountries)")
         
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
@@ -239,7 +237,7 @@ class MapViewController: CoreDataController {
             // save finish date to core data
             currentGame.finished_at = NSDate()
         }
-        self.title = String("\(game["guessed"]!.count + revealed) / \(totalCountries)")
+        self.title = String("\(game["guessed"]!.count + revealed) / \(Helpers.totalCountries)")
     }
     
 
@@ -248,7 +246,7 @@ class MapViewController: CoreDataController {
             let controller = segue.destinationViewController as! ScoreViewController
             //get the id property on the annotation
             controller.score = game["guessed"]?.count
-            controller.scoreTotal = totalCountries
+            controller.scoreTotal = Helpers.totalCountries
             controller.revealed = revealed
             controller.incorrect = misses
         }
