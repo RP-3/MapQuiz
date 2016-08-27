@@ -58,7 +58,8 @@ class ChallengeViewController: CoreDataController {
         super.viewDidLoad()
         
         let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
-        self.navigationItem.rightBarButtonItem = skipButton
+        navigationItem.rightBarButtonItem = skipButton
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
         
         worldMap.delegate = mapDelegate
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
@@ -158,6 +159,7 @@ class ChallengeViewController: CoreDataController {
         label.frame = CGRectMake(0, 0, (screenSize.width + 5), 35)
         label.textAlignment = NSTextAlignment.Center
         label.text = "Find: \(countryToFind)"
+        label.font = UIFont(name: "AmaticSC-Bold", size: 28)
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)

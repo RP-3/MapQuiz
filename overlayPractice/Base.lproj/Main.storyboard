@@ -6,10 +6,12 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <mutableArray key="AmaticSC-Bold.ttf">
+            <string>AmaticSC-Bold</string>
+            <string>AmaticSC-Bold</string>
+            <string>AmaticSC-Bold</string>
+        </mutableArray>
         <mutableArray key="AmaticSC-Regular.ttf">
-            <string>AmaticSC-Regular</string>
-            <string>AmaticSC-Regular</string>
-            <string>AmaticSC-Regular</string>
             <string>AmaticSC-Regular</string>
             <string>AmaticSC-Regular</string>
             <string>AmaticSC-Regular</string>
@@ -74,6 +76,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="revealButton" destination="jCr-3q-gxM" id="WVb-pJ-oKg"/>
+                        <outlet property="showAllButton" destination="FDV-bM-1nN" id="xG3-bP-y2d"/>
+                        <outlet property="skipButton" destination="b97-5y-DDv" id="hDK-um-wha"/>
                         <outlet property="worldMap" destination="l8A-8g-QZk" id="24k-eT-7ts"/>
                         <segue destination="bSz-hd-KAs" kind="show" identifier="showScore" id="BNX-qd-wIf"/>
                     </connections>
@@ -106,7 +111,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="jJv-Nr-mAJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="28"/>
+                                <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -149,7 +154,7 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out of X countries you got:" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r61-1N-0Jb">
                                                 <rect key="frame" x="0.0" y="0.0" width="520" height="129"/>
                                                 <color key="backgroundColor" red="0.8982092814" green="0.83771728479999996" blue="0.77847169189999998" alpha="1" colorSpace="calibratedRGB"/>
-                                                <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="32"/>
+                                                <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="32"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -447,12 +452,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f1r-Su-rrO">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-4o-D8U">
-                                        <rect key="frame" x="17" y="8" width="64" height="28"/>
-                                        <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="32"/>
-                                        <color key="textColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-CX-zj5">
+                                        <rect key="frame" x="489" y="8" width="24" height="28"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Eii-kq-EtC"/>
+                                            <constraint firstAttribute="width" constant="24" id="LDW-PA-umL"/>
+                                        </constraints>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="Eii-kq-EtC"/>
+                                            </mask>
+                                        </variation>
+                                    </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-Fv-isq">
                                         <rect key="frame" x="427" y="8" width="24" height="28"/>
                                         <constraints>
@@ -467,18 +478,12 @@
                                             <constraint firstAttribute="width" constant="24" id="u2W-bA-Mlp"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-CX-zj5">
-                                        <rect key="frame" x="489" y="8" width="24" height="28"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Eii-kq-EtC"/>
-                                            <constraint firstAttribute="width" constant="24" id="LDW-PA-umL"/>
-                                        </constraints>
-                                        <variation key="default">
-                                            <mask key="constraints">
-                                                <exclude reference="Eii-kq-EtC"/>
-                                            </mask>
-                                        </variation>
-                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NK-4o-D8U">
+                                        <rect key="frame" x="17" y="8" width="64" height="28"/>
+                                        <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="32"/>
+                                        <color key="textColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97550080130000005" green="0.97550080130000005" blue="0.97550080130000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>

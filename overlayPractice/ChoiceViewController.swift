@@ -21,12 +21,8 @@ class ChoiceViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NorthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        SouthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        AfricaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        AsiaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        EuropeBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
-        OceaniaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!]
+        title = "Pick a continent"
     }
     
     var senderTag = [

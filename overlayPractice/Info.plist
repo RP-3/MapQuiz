@@ -4,6 +4,7 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
+		<string>AmaticSC-Bold.ttf</string>
 		<string>AmaticSC-Regular.ttf</string>
 	</array>
 	<key>LSApplicationCategoryType</key>

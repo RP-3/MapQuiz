@@ -15,6 +15,10 @@ import AVFoundation
 class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
+    @IBOutlet weak var revealButton: UIBarButtonItem!
+    @IBOutlet weak var skipButton: UIBarButtonItem!
+    @IBOutlet weak var showAllButton: UIBarButtonItem!
+    
     
     let Helpers = HelperFunctions.sharedInstance
     
@@ -46,6 +50,7 @@ class MapViewController: CoreDataController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         worldMap.delegate = mapDelegate
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -60,6 +65,11 @@ class MapViewController: CoreDataController {
         view.addGestureRecognizer(gestureRecognizer)
         // set map type
         worldMap.mapType = .Satellite
+        
+        //set fonts
+        revealButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
+        skipButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
+        showAllButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -139,9 +149,9 @@ class MapViewController: CoreDataController {
         toFind = countryToFind
         let screenSize = UIScreen.mainScreen().bounds.size
         label.frame = CGRectMake(0, 0 + 44, (screenSize.width + 5), 35)
-        
         label.textAlignment = NSTextAlignment.Center
         label.text = "Find: \(countryToFind)"
+        label.font = UIFont(name: "AmaticSC-Bold", size: 28)
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         label.textColor = UIColor.whiteColor()
         view.frame.origin.y = 44 * (-1)
