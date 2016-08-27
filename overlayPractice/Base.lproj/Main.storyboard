@@ -47,12 +47,6 @@
                                             <action selector="reveal:" destination="BYZ-38-t0r" id="nEi-de-vwl"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="95c-ha-6RB"/>
-                                    <barButtonItem title="Skip" id="b97-5y-DDv">
-                                        <connections>
-                                            <action selector="skip:" destination="BYZ-38-t0r" id="13N-42-Dpx"/>
-                                        </connections>
-                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="fiC-nJ-RxD"/>
                                     <barButtonItem title="Show All" id="FDV-bM-1nN">
                                         <connections>
@@ -78,7 +72,6 @@
                     <connections>
                         <outlet property="revealButton" destination="jCr-3q-gxM" id="WVb-pJ-oKg"/>
                         <outlet property="showAllButton" destination="FDV-bM-1nN" id="xG3-bP-y2d"/>
-                        <outlet property="skipButton" destination="b97-5y-DDv" id="hDK-um-wha"/>
                         <outlet property="worldMap" destination="l8A-8g-QZk" id="24k-eT-7ts"/>
                         <segue destination="bSz-hd-KAs" kind="show" identifier="showScore" id="BNX-qd-wIf"/>
                     </connections>
@@ -106,7 +99,7 @@
                                     <constraint firstAttribute="width" constant="180" id="YIp-WN-QGl"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Win/Loose Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89E-BM-erw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Win/Loose Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89E-BM-erw">
                                 <rect key="frame" x="200" y="104" width="200" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="jJv-Nr-mAJ"/>

@@ -21,8 +21,13 @@ class HelperFunctions {
     ]
     var revealed = 0
     var misses = 0
-    
     var toFind = ""
+    //dictionary keyed by country name with the values as an array of all the polygons for that country
+    var createdPolygonOverlays = [String: [MKPolygon]]()
+    //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
+    var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
+    
+    let labelFont = UIFont(name: "AmaticSC-Bold", size: 28)!
     
     var audioPlayer = AVAudioPlayer()
 
@@ -145,6 +150,18 @@ class HelperFunctions {
         label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         label.textColor = UIColor.whiteColor()
         return label
+    }
+    
+    func finishGame () {
+        continent = nil
+        totalCountries = 0
+        game["guessed"]?.removeAll()
+        game["toPlay"]?.removeAll()
+        revealed = 0
+        misses = 0
+        toFind = ""
+        createdPolygonOverlays.removeAll()
+        coordinates.removeAll()
     }
 
     

@@ -28,16 +28,11 @@ class ChallengeViewController: CoreDataController {
     var lives = 3
     
     //question label
-    let label = UILabel()
+    var label: UILabel?
     
     var stopwatch = 0
-    
     var timerScheduler: NSTimer!
     
-    //dictionary keyed by country name with the values as an array of all the polygons for that country
-    var createdPolygonOverlays = [String: [MKPolygon]]()
-    //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
-    var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
     var entities: [LandArea]!
     
     var mapDelegate = MapViewDelegate()
@@ -48,7 +43,7 @@ class ChallengeViewController: CoreDataController {
         
         let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
         navigationItem.rightBarButtonItem = skipButton
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
@@ -91,7 +86,7 @@ class ChallengeViewController: CoreDataController {
                 addBoundary(country)
             }
         }
-        Helpers.totalCountries = createdPolygonOverlays.count
+        Helpers.totalCountries = Helpers.createdPolygonOverlays.count
         //make the this time the number of countries * 10 /60 (10 secs per country)
         stopwatch = Helpers.totalCountries*10
         
@@ -137,7 +132,8 @@ class ChallengeViewController: CoreDataController {
         }
         print("countries to play --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
-        worldMap.addSubview(Helpers.makeQuestionLabel("challenge"))
+        label = Helpers.makeQuestionLabel("challenge")
+        worldMap.addSubview(label!)
     }
     
     
@@ -152,8 +148,8 @@ class ChallengeViewController: CoreDataController {
             worldMap.addOverlay(overlay)
             polygons.append(overlay)
         }
-        createdPolygonOverlays[countryShape.name] = polygons
-        coordinates[countryShape.name] = countryShape.boundary
+        Helpers.createdPolygonOverlays[countryShape.name] = polygons
+        Helpers.coordinates[countryShape.name] = countryShape.boundary
     }
     
      // work out if the click was on a country
@@ -162,7 +158,7 @@ class ChallengeViewController: CoreDataController {
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
-        for landArea in coordinates[Helpers.toFind]! {
+        for landArea in Helpers.coordinates[Helpers.toFind]! {
             //call function to retrun true or false, depending if the tap is in one of the land areas
             if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                 found = true
@@ -172,8 +168,8 @@ class ChallengeViewController: CoreDataController {
             let audioPlayer = Helpers.playSound("yep")
             audioPlayer.prepareToPlay()
             audioPlayer.play()
-            label.text = "Found!"
-            label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+            label!.text = "Found!"
+            label!.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
             //save the attempt to coredata
             let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
@@ -187,15 +183,15 @@ class ChallengeViewController: CoreDataController {
             audioPlayer.prepareToPlay()
             audioPlayer.play()
             //it was an incorrect guess
-            label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+            label!.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
             Helpers.misses += 1
             //save attempt to core data
             let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
             Helpers.delay(0.7) {
-                self.label.text = "Find: \(self.Helpers.toFind)"
-                self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                self.label!.text = "Find: \(self.Helpers.toFind)"
+                self.label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
             }
             lives -= 1
             // remove a life and fade out in UI
@@ -208,6 +204,7 @@ class ChallengeViewController: CoreDataController {
                 // all lives gone
                 timerScheduler.invalidate()
                 currentGame.finished_at = NSDate()
+                Helpers.finishGame()
                 performSegueWithIdentifier("showChallengeScore", sender: nil)
             }
         }
@@ -246,12 +243,13 @@ class ChallengeViewController: CoreDataController {
             let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
             let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
             Helpers.toFind = randomVal
-            label.text = "Find: \(randomVal)"
-            label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+            label!.text = "Find: \(randomVal)"
+            label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //push to score screen
             timerScheduler.invalidate()
             currentGame.finished_at = NSDate()
+            Helpers.finishGame()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
@@ -279,6 +277,7 @@ class ChallengeViewController: CoreDataController {
             // stop this function from being called after this condition has been met
             timerScheduler.invalidate()
             currentGame.finished_at = NSDate()
+            Helpers.finishGame()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
@@ -299,6 +298,7 @@ class ChallengeViewController: CoreDataController {
     override func viewWillDisappear(animated: Bool) {
         timerScheduler.invalidate()
         currentGame.finished_at = NSDate()
+        Helpers.finishGame()
         do {
             try fetchedResultsController!.managedObjectContext.save()
         } catch {

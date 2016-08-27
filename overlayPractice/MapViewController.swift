@@ -16,7 +16,7 @@ class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
     @IBOutlet weak var revealButton: UIBarButtonItem!
-    @IBOutlet weak var skipButton: UIBarButtonItem!
+//    @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var showAllButton: UIBarButtonItem!
     
     let Helpers = HelperFunctions.sharedInstance
@@ -25,18 +25,17 @@ class MapViewController: CoreDataController {
     var restoreOccur: Bool?
     
     //question label
-    let label = UILabel()
-    
-    //dictionary keyed by country name with the values as an array of all the polygons for that country
-    var createdPolygonOverlays = [String: [MKPolygon]]()
-    //dictionary keyed by country name with values of the coordinates of each country (for the contains method to use to check if clicked point is within one of the overlays)
-    var coordinates = [ String: [[CLLocationCoordinate2D]] ]()
-    
+    var label:UILabel?
+        
     var mapDelegate = MapViewDelegate()
     var entities: [LandArea]!
         
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
+        navigationItem.rightBarButtonItem = skipButton
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -54,9 +53,8 @@ class MapViewController: CoreDataController {
         worldMap.mapType = .Satellite
         
         //set fonts
-        revealButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
-        skipButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
-        showAllButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!], forState: .Normal)
+        revealButton.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
+        showAllButton.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -77,7 +75,7 @@ class MapViewController: CoreDataController {
             }
         }
         
-        Helpers.totalCountries = createdPolygonOverlays.count
+        Helpers.totalCountries = Helpers.createdPolygonOverlays.count
         // show countries guessed count to user
         self.title = String("0 / \(Helpers.totalCountries)")
         
@@ -121,7 +119,8 @@ class MapViewController: CoreDataController {
         }
         print("countries to find --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
-        worldMap.addSubview(Helpers.makeQuestionLabel("practice"))
+        label = Helpers.makeQuestionLabel("practice")
+        worldMap.addSubview(label!)
     }
     
     func makeCountryAndAddToMap (entity: LandArea) {
@@ -137,16 +136,16 @@ class MapViewController: CoreDataController {
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
-        for landArea in coordinates[Helpers.toFind]! {
+        for landArea in Helpers.coordinates[Helpers.toFind]! {
             if (Helpers.islands[Helpers.toFind] != nil) {
                 // check it the tap is within a certain distance of the polygon
-                if createdPolygonOverlays[Helpers.toFind] != nil {
+                if Helpers.createdPolygonOverlays[Helpers.toFind] != nil {
                     let lat: CLLocationDegrees = tappedCoordinates.latitude
                     let lon: CLLocationDegrees = tappedCoordinates.longitude
                     let locationPoint: CLLocation =  CLLocation(latitude: lat, longitude: lon)
                     
-                    let lat2: CLLocationDegrees = (createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point.latitude
-                    let lon2: CLLocationDegrees = (createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point!.longitude
+                    let lat2: CLLocationDegrees = (Helpers.createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point.latitude
+                    let lon2: CLLocationDegrees = (Helpers.createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point!.longitude
                     let locationPoint2: CLLocation =  CLLocation(latitude: lat2, longitude: lon2)
                     if locationPoint.distanceFromLocation(locationPoint2)/1000 < 500 {
                         found = true
@@ -161,8 +160,8 @@ class MapViewController: CoreDataController {
             let audioPlayer = Helpers.playSound("yep")
             audioPlayer.prepareToPlay()
             audioPlayer.play()
-            label.text = "Found!"
-            label.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+            label!.text = "Found!"
+            label!.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
             //save the attempt to coredata
             let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
@@ -177,15 +176,15 @@ class MapViewController: CoreDataController {
             audioPlayer.prepareToPlay()
             audioPlayer.play()
             
-            label.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+            label!.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
             Helpers.misses += 1
             //save attempt to core data
             let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
             Helpers.delay(0.7) {
-                self.label.text = "Find: \(self.Helpers.toFind)"
-                self.label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+                self.label!.text = "Find: \(self.Helpers.toFind)"
+                self.label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
             }
         }
     
@@ -205,14 +204,15 @@ class MapViewController: CoreDataController {
             let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
             let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
             Helpers.toFind = randomVal
-            label.text = "Find: \(randomVal)"
-            label.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
+            label!.text = "Find: \(randomVal)"
+            label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //nothing left to play - all countries have been guessed
             //push to score screen
             performSegueWithIdentifier("showScore", sender: nil)
             // save finish date to core data
             currentGame.finished_at = NSDate()
+            Helpers.finishGame()
         }
         self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
     }
@@ -230,10 +230,8 @@ class MapViewController: CoreDataController {
     }
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
-        
         //method 1: look at the capital city and get the coordinates for this (idealy store these in core data too and not comput each time - but for testing could try)
         // 2. using all centeral coordinates generate center point
-        
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
                 //remove references to this polygon
@@ -258,8 +256,8 @@ class MapViewController: CoreDataController {
             worldMap.addOverlay(overlay)
             polygons.append(overlay)
         }
-        createdPolygonOverlays[countryShape.name] = polygons
-        coordinates[countryShape.name] = countryShape.boundary
+        Helpers.createdPolygonOverlays[countryShape.name] = polygons
+        Helpers.coordinates[countryShape.name] = countryShape.boundary
     }
 
     
@@ -274,9 +272,10 @@ class MapViewController: CoreDataController {
             worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
         }
         //delete the countries dictionary
-        createdPolygonOverlays.removeAll()
-        label.removeFromSuperview()
+        Helpers.createdPolygonOverlays.removeAll()
+        label!.removeFromSuperview()
         currentGame.finished_at = NSDate()
+        Helpers.finishGame()
     }
     
     
@@ -315,6 +314,7 @@ class MapViewController: CoreDataController {
     
     override func viewWillDisappear(animated: Bool) {
         currentGame.finished_at = NSDate()
+        Helpers.finishGame()
         do {
             try fetchedResultsController!.managedObjectContext.save()
         } catch {
