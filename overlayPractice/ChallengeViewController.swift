@@ -247,9 +247,11 @@ class ChallengeViewController: CoreDataController {
             label!.text = "Find: \(randomVal)"
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
-            //push to score screen
-            timerScheduler.invalidate()
+            //set the time on the current game and finished at
+            //game length stored in seconds to easy to compare
+            currentGame.match_length = (Helpers.totalCountries*10) - stopwatch
             currentGame.finished_at = NSDate()
+            timerScheduler.invalidate()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
