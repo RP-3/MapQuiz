@@ -21,6 +21,7 @@ class ChallengeScoreViewController: UIViewController {
     var restored = false
     
     override func viewWillAppear(animated: Bool) {
+        print("lines etc: ", lives, correct, time,totalCountriesInContinent)
         if restored == true {
             restored = false
             navigationController?.popToRootViewControllerAnimated(true)
@@ -51,31 +52,8 @@ class ChallengeScoreViewController: UIViewController {
         navigationController?.popToRootViewControllerAnimated(true)
     }
     
-//    override func encodeRestorableStateWithCoder(coder: NSCoder) {
-//        // save the continent as minimal source of data
-//        coder.encodeInteger(lives, forKey: "lives")
-//        coder.encodeInteger(correct, forKey: "correct")
-//        coder.encodeObject(time as AnyObject, forKey: "time")
-//        coder.encodeInteger(totalCountriesInContinent, forKey: "totalCountriesInContinent")
-//        super.encodeRestorableStateWithCoder(coder)
-//    }
-    
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         restored = true
-//        let data = coder.decodeIntForKey("lives")
-//        lives = Int(data)
-//        let data2 = coder.decodeIntForKey("correct")
-//        correct = Int(data2)
-//        let data3 = coder.decodeObjectForKey("time")
-//        time = String(data3!)
-//        let data4 = coder.decodeIntForKey("totalCountriesInContinent")
-//        totalCountriesInContinent = Int(data4)
-//        super.decodeRestorableStateWithCoder(coder)
     }
-    
-//    // once the app has loaded again
-//    override func applicationFinishedRestoringState() {
-//        print("view restored")
-//    }
-    
+
 }

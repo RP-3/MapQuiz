@@ -87,6 +87,7 @@ class ChallengeViewController: CoreDataController {
             }
         }
         Helpers.totalCountries = Helpers.createdPolygonOverlays.count
+        print("total countries", Helpers.totalCountries)
         //make the this time the number of countries * 10 /60 (10 secs per country)
         stopwatch = Helpers.totalCountries*10
         
@@ -204,7 +205,6 @@ class ChallengeViewController: CoreDataController {
                 // all lives gone
                 timerScheduler.invalidate()
                 currentGame.finished_at = NSDate()
-                Helpers.finishGame()
                 performSegueWithIdentifier("showChallengeScore", sender: nil)
             }
         }
@@ -227,6 +227,7 @@ class ChallengeViewController: CoreDataController {
         }
         controller.time = String(minsTaken) + ":" + String(secsTaken)
         controller.totalCountriesInContinent = Helpers.totalCountries
+        Helpers.finishGame()
     }
     
     func skip () {
@@ -249,7 +250,6 @@ class ChallengeViewController: CoreDataController {
             //push to score screen
             timerScheduler.invalidate()
             currentGame.finished_at = NSDate()
-            Helpers.finishGame()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
@@ -277,7 +277,6 @@ class ChallengeViewController: CoreDataController {
             // stop this function from being called after this condition has been met
             timerScheduler.invalidate()
             currentGame.finished_at = NSDate()
-            Helpers.finishGame()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }

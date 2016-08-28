@@ -212,7 +212,6 @@ class MapViewController: CoreDataController {
             performSegueWithIdentifier("showScore", sender: nil)
             // save finish date to core data
             currentGame.finished_at = NSDate()
-            Helpers.finishGame()
         }
         self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
     }
@@ -226,6 +225,7 @@ class MapViewController: CoreDataController {
             controller.scoreTotal = Helpers.totalCountries
             controller.revealed = Helpers.revealed
             controller.incorrect = Helpers.misses
+            Helpers.finishGame()
         }
     }
     
