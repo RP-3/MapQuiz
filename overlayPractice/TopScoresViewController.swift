@@ -17,7 +17,7 @@ class TopScoresViewController: CoreDataTableViewController {
         super.viewDidLoad()
         print("loading ......")
         //get each game
-        //sort by time - NEED to add this feature!!
+        //sort by time
         //get top 5 returned
         //display to table
         

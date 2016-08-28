@@ -278,7 +278,7 @@
         <scene sceneID="mDb-gt-cyA">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bU-04-PLM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableViewController storyboardIdentifier="TopScores" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qwq-tF-03e" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="TopScores" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Qwq-tF-03e" customClass="TopScoresViewController" customModule="MapQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="nR0-2A-65q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
