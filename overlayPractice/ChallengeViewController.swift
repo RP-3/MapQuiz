@@ -56,7 +56,7 @@ class ChallengeViewController: CoreDataController {
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "coordinate_type", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)

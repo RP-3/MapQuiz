@@ -16,7 +16,6 @@ class MapViewController: CoreDataController {
 
     @IBOutlet weak var worldMap: MKMapView!
     @IBOutlet weak var revealButton: UIBarButtonItem!
-//    @IBOutlet weak var skipButton: UIBarButtonItem!
     @IBOutlet weak var showAllButton: UIBarButtonItem!
     
     let Helpers = HelperFunctions.sharedInstance
@@ -38,11 +37,11 @@ class MapViewController: CoreDataController {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
+        
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        // order this way so andorra is ontop in europe
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "coordinate_type", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities in view did load: ", entities.count)

@@ -30,26 +30,17 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        let reuseId: String = "reuseid"
         
+        let reuseId: String = "countryAnnotation"
         var aView: MKAnnotationView
-        
         if let av = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) {
             av.annotation = annotation
             aView = av
         } else {
             let av = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            
             let lbl = UILabel()
             lbl.tag = 20
-            lbl.layer.masksToBounds = true
-            lbl.layer.cornerRadius = 4
-            lbl.textAlignment = .Center
-            lbl.sizeToFit()
             av.addSubview(lbl)
-            
-            //Following lets the callout still work if you tap on the label...
-            av.frame = lbl.frame
             aView = av
         }
         let lbl: UILabel = (aView.viewWithTag(20) as! UILabel)

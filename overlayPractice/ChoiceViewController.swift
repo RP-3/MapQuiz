@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChoiceViewController: CoreDataController {
+class ChoiceViewController: UIViewController {
     
     
     @IBOutlet weak var NorthAmericaBtn: UIButton!
@@ -21,8 +21,8 @@ class ChoiceViewController: CoreDataController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!]
-        title = "Pick a continent"
+        navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!]
+        //title = "Pick a continent"
         NorthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         SouthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         AfricaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit

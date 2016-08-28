@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class ScoreViewController: CoreDataController {
+class ScoreViewController: UIViewController {
     
     var score: Int!
     var scoreTotal: Int!

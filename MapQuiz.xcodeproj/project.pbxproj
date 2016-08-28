@@ -61,6 +61,9 @@
 		9512E7A01D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
 		9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
 		9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9512E7961D649DBE005D8EAD /* Attempt.swift */; };
+		9548F02C1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */; };
+		9548F02D1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */; };
+		9548F02E1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */; };
 		95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95ACFE3B1D635E9B000E0E23 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */; };
@@ -151,6 +154,7 @@
 		9512E7941D649DBE005D8EAD /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attempt+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9512E7961D649DBE005D8EAD /* Attempt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attempt.swift; sourceTree = "<group>"; };
+		9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScoresViewController.swift; sourceTree = "<group>"; };
 		95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		95B7BF531D5F585B004B1760 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -233,6 +237,7 @@
 				9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */,
 				950175E81D6CF476007B78E3 /* CustomPolygon.swift */,
 				950175EC1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift */,
+				9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -620,6 +625,7 @@
 				950C36171D56479E009710DD /* MapViewController.swift in Sources */,
 				950BD38A1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				9512E7971D649DBE005D8EAD /* Game+CoreDataProperties.swift in Sources */,
+				9548F02C1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
 				950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				9512E79D1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
@@ -644,6 +650,7 @@
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */,
+				9548F02D1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
@@ -672,6 +679,7 @@
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
 				9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */,
+				9548F02E1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
