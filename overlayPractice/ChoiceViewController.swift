@@ -23,6 +23,12 @@ class ChoiceViewController: CoreDataController {
         super.viewDidLoad()
         navigationController!.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!]
         title = "Pick a continent"
+//        NorthAmericaBtn.contentMode = UIViewContentMode.ScaleAspectFit
+//        SouthAmericaBtn.contentMode = UIViewContentMode.ScaleAspectFit
+//        AfricaBtn.contentMode = UIViewContentMode.ScaleAspectFit
+//        AsiaBtn.contentMode = UIViewContentMode.ScaleAspectFit
+//        EuropeBtn.contentMode = UIViewContentMode.ScaleAspectFit
+//        OceaniaBtn.contentMode = UIViewContentMode.ScaleAspectFit
     }
     
     var senderTag = [

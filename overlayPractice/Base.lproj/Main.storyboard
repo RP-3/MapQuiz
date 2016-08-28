@@ -293,6 +293,7 @@
                                         <subviews>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wgl-ms-WqH" userLabel="NorthAmerica">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="179"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                 <state key="normal" image="northAmerica"/>
                                                 <connections>
@@ -301,6 +302,7 @@
                                             </button>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dty-is-2aK" userLabel="SouthAmerica">
                                                 <rect key="frame" x="280" y="0.0" width="280" height="179"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                 <state key="normal" image="southAmerica"/>
                                                 <connections>
@@ -314,6 +316,7 @@
                                         <subviews>
                                             <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcY-Aa-gC0" userLabel="Africa">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="178"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                 <state key="normal" image="africa"/>
                                                 <connections>
@@ -322,6 +325,7 @@
                                             </button>
                                             <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IY1-cx-lB0" userLabel="Asia">
                                                 <rect key="frame" x="280" y="0.0" width="280" height="178"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                 <state key="normal" image="asia"/>
                                                 <connections>
@@ -335,6 +339,7 @@
                                         <subviews>
                                             <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfH-V6-AJI" userLabel="Oceania">
                                                 <rect key="frame" x="0.0" y="0.0" width="280" height="179"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                 <state key="normal" image="oceania"/>
                                                 <connections>
@@ -343,6 +348,7 @@
                                             </button>
                                             <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7aw-xZ-RA2" userLabel="Europe">
                                                 <rect key="frame" x="280" y="0.0" width="280" height="179"/>
+                                                <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <inset key="imageEdgeInsets" minX="15" minY="20" maxX="15" maxY="20"/>
                                                 <state key="normal" image="europe"/>
                                                 <connections>
