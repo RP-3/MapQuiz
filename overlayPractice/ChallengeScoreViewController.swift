@@ -36,13 +36,13 @@ class ChallengeScoreViewController: UIViewController {
         // if no time then dead
         if correct == totalCountriesInContinent {
             scoreImage.image = UIImage(named: "mountain")
-            scoreText.text = "You made it!! All \(totalCountriesInContinent) countries were guessed in \(time)!"
+            scoreText.text = "You made it!! All \(totalCountriesInContinent) countries were guessed in \(time) minutes!"
         } else if time == "0:00" {
             scoreImage.image = UIImage(named: "wrong")
             scoreText.text = "Time up! You got \(correct) countries out of \(totalCountriesInContinent)"
         } else if lives == 0 {
             scoreImage.image = UIImage(named: "wrong")
-            scoreText.text = "All your lives are gone! You got \(correct) countries out of \(totalCountriesInContinent) in \(time)"
+            scoreText.text = "All your lives are gone! You got \(correct) countries out of \(totalCountriesInContinent) in \(time) minutes!"
         }
         
     }

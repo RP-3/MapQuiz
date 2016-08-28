@@ -93,16 +93,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSm-1l-GzU">
-                                <rect key="frame" x="210" y="250" width="180" height="180"/>
+                                <rect key="frame" x="210" y="260" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="VnI-it-3IX"/>
                                     <constraint firstAttribute="width" constant="180" id="YIp-WN-QGl"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Win/Loose Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89E-BM-erw">
-                                <rect key="frame" x="200" y="104" width="200" height="36"/>
+                                <rect key="frame" x="175" y="104" width="250" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="jJv-Nr-mAJ"/>
+                                    <constraint firstAttribute="width" constant="250" id="jJv-Nr-mAJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="28"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -114,7 +114,7 @@
                             <constraint firstItem="89E-BM-erw" firstAttribute="centerX" secondItem="xAr-wL-aR4" secondAttribute="centerX" id="TcR-eZ-R5b"/>
                             <constraint firstItem="89E-BM-erw" firstAttribute="top" secondItem="DLH-8C-A0D" secondAttribute="bottom" constant="40" id="VJq-54-TQG"/>
                             <constraint firstItem="aSm-1l-GzU" firstAttribute="centerX" secondItem="xAr-wL-aR4" secondAttribute="centerX" id="jAz-WX-RiZ"/>
-                            <constraint firstItem="aSm-1l-GzU" firstAttribute="centerY" secondItem="xAr-wL-aR4" secondAttribute="centerY" constant="40" id="ueU-i9-SSB"/>
+                            <constraint firstItem="aSm-1l-GzU" firstAttribute="centerY" secondItem="xAr-wL-aR4" secondAttribute="centerY" constant="50" id="ueU-i9-SSB"/>
                         </constraints>
                     </view>
                     <connections>
@@ -396,7 +396,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="231" y="193" width="123" height="52"/>
+                                <rect key="frame" x="239" y="193" width="123" height="52"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="31"/>
                                 <state key="normal" title="Learning Mode">
                                     <color key="titleColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -406,7 +406,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
-                                <rect key="frame" x="227" y="273" width="131" height="53"/>
+                                <rect key="frame" x="235" y="273" width="131" height="53"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="32"/>
                                 <state key="normal" title="Challenge Time">
                                     <color key="titleColor" red="0.17798479948288359" green="0.11348448591426641" blue="0.058141421284838804" alpha="1" colorSpace="calibratedRGB"/>
@@ -419,8 +419,8 @@
                         <color key="backgroundColor" red="0.8982092814" green="0.83771728479999996" blue="0.77847169189999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="top" secondItem="Sxn-Bc-Ym6" secondAttribute="bottom" constant="-133" id="677-FL-zLS"/>
-                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" constant="-7.5" id="i74-SO-DjM"/>
-                            <constraint firstItem="Sxn-Bc-Ym6" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" constant="-7.5" id="nVx-nW-nEO"/>
+                            <constraint firstItem="9c9-0V-Weg" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="i74-SO-DjM"/>
+                            <constraint firstItem="Sxn-Bc-Ym6" firstAttribute="centerX" secondItem="dxO-6u-vVA" secondAttribute="centerX" id="nVx-nW-nEO"/>
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" constant="-81" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
