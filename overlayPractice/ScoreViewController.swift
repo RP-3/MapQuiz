@@ -28,7 +28,7 @@ class ScoreViewController: UIViewController {
             restored = false
             navigationController?.popToRootViewControllerAnimated(true)
         }
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        self.navigationItem.setHidesBackButton(true, animated:true)
         let returnButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(self.home))
         self.navigationItem.rightBarButtonItem = returnButton
         

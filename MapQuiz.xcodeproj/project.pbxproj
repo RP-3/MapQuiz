@@ -64,12 +64,12 @@
 		9548F03B1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */; };
 		9548F03C1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */; };
 		9548F03D1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */; };
-		9548F03F1D732C1100DD3BF2 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03E1D732C1100DD3BF2 /* TableViewDelegate.swift */; };
-		9548F0401D732C1100DD3BF2 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03E1D732C1100DD3BF2 /* TableViewDelegate.swift */; };
-		9548F0411D732C1100DD3BF2 /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03E1D732C1100DD3BF2 /* TableViewDelegate.swift */; };
 		9548F0431D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */; };
 		9548F0441D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */; };
 		9548F0451D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */; };
+		95A96AB91D73B32700B3CBF4 /* CustomRowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A96AB81D73B32700B3CBF4 /* CustomRowViewController.swift */; };
+		95A96ABA1D73B5B700B3CBF4 /* CustomRowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A96AB81D73B32700B3CBF4 /* CustomRowViewController.swift */; };
+		95A96ABB1D73B5B700B3CBF4 /* CustomRowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A96AB81D73B32700B3CBF4 /* CustomRowViewController.swift */; };
 		95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95B7BF531D5F585B004B1760 /* ScoreViewController.swift */; };
 		95ACFE3B1D635E9B000E0E23 /* ChallengeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */; };
@@ -161,8 +161,8 @@
 		9512E7961D649DBE005D8EAD /* Attempt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attempt.swift; sourceTree = "<group>"; };
 		9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScoresViewController.swift; sourceTree = "<group>"; };
 		9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		9548F03E1D732C1100DD3BF2 /* TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
+		95A96AB81D73B32700B3CBF4 /* CustomRowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRowViewController.swift; sourceTree = "<group>"; };
 		95ACFE3A1D635E9B000E0E23 /* ChallengeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeViewController.swift; sourceTree = "<group>"; };
 		95ACFE3E1D63629B000E0E23 /* MapViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		95B7BF531D5F585B004B1760 /* ScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreViewController.swift; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 				950175E81D6CF476007B78E3 /* CustomPolygon.swift */,
 				950175EC1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift */,
 				9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */,
-				9548F03E1D732C1100DD3BF2 /* TableViewDelegate.swift */,
 				9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */,
+				95A96AB81D73B32700B3CBF4 /* CustomRowViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -637,6 +637,7 @@
 				9548F02C1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
 				950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
 				9512E79D1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
+				95A96AB91D73B32700B3CBF4 /* CustomRowViewController.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
 				950175E91D6CF476007B78E3 /* CustomPolygon.swift in Sources */,
 				9548F03B1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
@@ -646,7 +647,6 @@
 				95ACFE3B1D635E9B000E0E23 /* ChallengeViewController.swift in Sources */,
 				950BD3751D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				9512E7A01D649DBE005D8EAD /* Attempt.swift in Sources */,
-				9548F03F1D732C1100DD3BF2 /* TableViewDelegate.swift in Sources */,
 				9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -657,6 +657,7 @@
 			files = (
 				950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */,
 				950175EE1D6D06A3007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
+				95A96ABA1D73B5B700B3CBF4 /* CustomRowViewController.swift in Sources */,
 				9548F0441D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */,
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				9504F2501D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */,
@@ -678,7 +679,6 @@
 				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
 				9512E79B1D649DBE005D8EAD /* Game.swift in Sources */,
 				9512E79E1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
-				9548F0401D732C1100DD3BF2 /* TableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,6 +688,7 @@
 			files = (
 				950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */,
 				950175EF1D6D06A3007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
+				95A96ABB1D73B5B700B3CBF4 /* CustomRowViewController.swift in Sources */,
 				9548F0451D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */,
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				9504F2511D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */,
@@ -709,7 +710,6 @@
 				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
 				9512E79C1D649DBE005D8EAD /* Game.swift in Sources */,
 				9512E79F1D649DBE005D8EAD /* Attempt+CoreDataProperties.swift in Sources */,
-				9548F0411D732C1100DD3BF2 /* TableViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
