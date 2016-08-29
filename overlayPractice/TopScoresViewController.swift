@@ -24,24 +24,33 @@ class TopScoresViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.navigationItem.setHidesBackButton(true, animated:true)
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
         print("loading ......")
         title = "Top Challenge Scores"
-        //get each game
-        //sort by time
-        //get top 5 returned
-        //display to table
+        
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "Game")
+        
+        // not nil match_length
+        // challenge mode
+        let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
+        let modePredicate = NSPredicate(format: "mode = %@", "challenge")
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+        fetchRequest.predicate = andPredicate
+        
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "match_length", ascending: true)]
         
-        let predicate = NSPredicate(format: "mode = %@", "challenge")
-        fetchRequest.predicate = predicate
-        
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
+        
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        //countEntities()
     }
     
     //TableView Data Source
@@ -49,21 +58,18 @@ class TopScoresViewController: CoreDataTableViewController {
 
         // Find the right notebook for this indexpath
         let game = fetchedResultsController!.objectAtIndexPath(indexPath) as! Game
+        
+        // Create the cell
         let cell = tableView.dequeueReusableCellWithIdentifier("TopScoreCell", forIndexPath: indexPath)
-        if game.match_length != nil && Int(game.match_length!) > 0 {
-            // Create the cell
-            
-            print("TIME: ", game.match_length!,  convertSecondsToTime(Int(game.match_length!)), "for:", continents[game.continent!])
-            //add text to the cell
-            cell.textLabel?.text = continents[game.continent!]
-            cell.detailTextLabel?.text = convertSecondsToTime(Int(game.match_length!))
-            
-            return cell
-        } else {
-           cell.textLabel?.text = "BAD"
-            cell.detailTextLabel?.text = convertSecondsToTime(Int(game.match_length!))
-            return cell
-        }
+        
+        print("TIME: ", game.match_length!,  convertSecondsToTime(Int(game.match_length!)), "for:", continents[game.continent!])
+        //add text to the cell
+        cell.textLabel?.text = convertSecondsToTime(Int(game.match_length!))
+        cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 20)
+        cell.detailTextLabel?.text = continents[game.continent!]
+        
+        return cell
+        
         
         
     }

@@ -35,6 +35,7 @@ class ChoiceViewController: UIViewController {
         AsiaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         EuropeBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         OceaniaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
+        
     }
     
     var senderTag = [

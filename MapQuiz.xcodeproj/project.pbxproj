@@ -281,6 +281,7 @@
 				950BD3881D569AE9001C5893 /* Controllers */,
 				950D9AA31D565DE800159227 /* Models */,
 				950C36201D56479E009710DD /* Info.plist */,
+				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
 			);
 			path = overlayPractice;
@@ -331,7 +332,6 @@
 				95BBB42A1D72368F005B243A /* plop.wav */,
 				95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */,
 				950C361D1D56479E009710DD /* LaunchScreen.storyboard */,
-				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950C36181D56479E009710DD /* Main.storyboard */,
 			);
 			name = Assets;

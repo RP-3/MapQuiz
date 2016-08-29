@@ -159,9 +159,23 @@ class ChallengeViewController: CoreDataController {
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
+        
         for landArea in Helpers.coordinates[Helpers.toFind]! {
-            //call function to retrun true or false, depending if the tap is in one of the land areas
-            if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
+            if (Helpers.islands[Helpers.toFind] != nil) {
+                // check it the tap is within a certain distance of the polygon
+                if Helpers.createdPolygonOverlays[Helpers.toFind] != nil {
+                    let lat: CLLocationDegrees = tappedCoordinates.latitude
+                    let lon: CLLocationDegrees = tappedCoordinates.longitude
+                    let locationPoint: CLLocation =  CLLocation(latitude: lat, longitude: lon)
+                    
+                    let lat2: CLLocationDegrees = (Helpers.createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point.latitude
+                    let lon2: CLLocationDegrees = (Helpers.createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point!.longitude
+                    let locationPoint2: CLLocation =  CLLocation(latitude: lat2, longitude: lon2)
+                    if locationPoint.distanceFromLocation(locationPoint2)/1000 < 500 {
+                        found = true
+                    }
+                }
+            } else if (Helpers.contains(landArea, selectedPoint: tappedCoordinates)) {
                 found = true
             }
         }
@@ -250,11 +264,36 @@ class ChallengeViewController: CoreDataController {
             //set the time on the current game and finished at
             //game length stored in seconds to easy to compare
             currentGame.match_length = (Helpers.totalCountries*10) - stopwatch
-            currentGame.finished_at = NSDate()
+            currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
+    
+    func countEntities () {
+        print("count entities called")
+        let moc = fetchedResultsController!.managedObjectContext
+        let fetchRequest = NSFetchRequest(entityName: "Game")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+        
+        var entities: [Game]
+        do {
+            entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        // set the current game - if the finish date is nil
+        print("entities.count", entities.count)
+        if entities.count > 0 {
+            for entity in entities {
+                print(entity.continent)
+                if entity.match_length != nil {
+                    print("length",entity.match_length)
+                }
+            }
+        }
+    }
+
     
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
