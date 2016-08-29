@@ -93,7 +93,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSm-1l-GzU">
-                                <rect key="frame" x="210" y="260" width="180" height="180"/>
+                                <rect key="frame" x="210" y="275" width="180" height="180"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="180" id="VnI-it-3IX"/>
                                     <constraint firstAttribute="width" constant="180" id="YIp-WN-QGl"/>
@@ -114,7 +114,7 @@
                             <constraint firstItem="89E-BM-erw" firstAttribute="centerX" secondItem="xAr-wL-aR4" secondAttribute="centerX" id="TcR-eZ-R5b"/>
                             <constraint firstItem="89E-BM-erw" firstAttribute="top" secondItem="DLH-8C-A0D" secondAttribute="bottom" constant="40" id="VJq-54-TQG"/>
                             <constraint firstItem="aSm-1l-GzU" firstAttribute="centerX" secondItem="xAr-wL-aR4" secondAttribute="centerX" id="jAz-WX-RiZ"/>
-                            <constraint firstItem="aSm-1l-GzU" firstAttribute="centerY" secondItem="xAr-wL-aR4" secondAttribute="centerY" constant="50" id="ueU-i9-SSB"/>
+                            <constraint firstItem="aSm-1l-GzU" firstAttribute="centerY" secondItem="xAr-wL-aR4" secondAttribute="centerY" constant="65" id="ueU-i9-SSB"/>
                         </constraints>
                     </view>
                     <connections>
@@ -395,28 +395,29 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopScoreCell" id="mgT-8Y-YtQ" customClass="CustomRowViewController" customModule="MapQuiz" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopScoreCell" textLabel="B4u-SU-jLg" detailTextLabel="jc9-g3-88o" style="IBUITableViewCellStyleSubtitle" id="mgT-8Y-YtQ" customClass="CustomRowViewController" customModule="MapQuiz" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mgT-8Y-YtQ" id="UNd-Q6-slV">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6ww-Fg-fx8">
-                                            <rect key="frame" x="8" y="0.0" width="43" height="43"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Continent - time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOV-Mu-kEj">
-                                            <rect key="frame" x="59" y="11" width="125" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B4u-SU-jLg">
+                                            <rect key="frame" x="15" y="5" width="32" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="jc9-g3-88o">
+                                            <rect key="frame" x="15" y="25" width="41" height="14"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="cellImage" destination="6ww-Fg-fx8" id="cfe-ZW-0or"/>
-                                    <outlet property="cellLabel" destination="SOV-Mu-kEj" id="Zx1-fW-Uh4"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
