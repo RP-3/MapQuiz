@@ -35,23 +35,19 @@ class TopScoresViewController: CoreDataTableViewController {
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "Game")
         
-        // not nil match_length
-        // challenge mode
-        let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
-        let modePredicate = NSPredicate(format: "mode = %@", "challenge")
-        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
-        fetchRequest.predicate = andPredicate
+        // not nil match_length and mode is challenge
+//        let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
+//        let modePredicate = NSPredicate(format: "mode = %@", "challenge")
+//        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+//        fetchRequest.predicate = andPredicate
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "match_length", ascending: true)]
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "continent", ascending: true)]
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
         
         
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        //countEntities()
-    }
+
     
     //TableView Data Source
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -63,6 +59,10 @@ class TopScoresViewController: CoreDataTableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("TopScoreCell", forIndexPath: indexPath)
         
         print("TIME: ", game.match_length!,  convertSecondsToTime(Int(game.match_length!)), "for:", continents[game.continent!])
+        
+        if let finished = game.finished_at {
+            print("finishedat------>", finished)
+        }
         //add text to the cell
         cell.textLabel?.text = convertSecondsToTime(Int(game.match_length!))
         cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 20)

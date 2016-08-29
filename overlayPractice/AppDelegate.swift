@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftyJSON
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -86,10 +87,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("opening the app")
+        //save
+        landAreas.countEntities()
     }
 
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        print("saving on terminate")
+        //save
+        landAreas.save()
+        landAreas.countEntities()
     }
     
     // tell the app to save state on leaving the app

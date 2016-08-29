@@ -86,6 +86,30 @@ struct CoreDataStack {
         try coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: dbURL, options: nil)
         
     }
+    
+    func countEntities () {
+        print("count entities called")
+        let moc = context
+        let fetchRequest = NSFetchRequest(entityName: "Game")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+        
+        var entities: [Game]
+        do {
+            entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+        } catch {
+            fatalError("Failed to fetch employees: \(error)")
+        }
+        // set the current game - if the finish date is nil
+        print("entities.count", entities.count)
+        if entities.count > 0 {
+            for entity in entities {
+                print(entity.continent)
+                if entity.match_length != nil {
+                    print("length",entity.match_length)
+                }
+            }
+        }
+    }
 }
 
 
@@ -125,8 +149,12 @@ extension CoreDataStack{
 extension CoreDataStack {
     
     func save() {
+        print("save has been called and in Core Stack!!")
         context.performBlockAndWait(){
+            print("in perform and wait")
             if self.context.hasChanges{
+                print("has changes")
+                print("------------->",self.context.insertedObjects)
                 do {
                     try self.context.save()
                 } catch {
@@ -141,6 +169,8 @@ extension CoreDataStack {
                         fatalError("Error while saving persisting context: \(error)")
                     }
                 }
+            } else {
+                print("has no changes in save changes")
             }
         }
     }
