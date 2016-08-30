@@ -266,7 +266,9 @@ class ChallengeViewController: CoreDataController {
             timerScheduler.invalidate()
             //save the game on finish
             app.landAreas.save()
-            performSegueWithIdentifier("showChallengeScore", sender: nil)
+            Helpers.delay(2.0) {
+                self.performSegueWithIdentifier("showChallengeScore", sender: nil)
+            }
         }
     }
     
