@@ -36,6 +36,7 @@ class ChallengeViewController: CoreDataController {
     var entities: [LandArea]!
     
     var mapDelegate = MapViewDelegate()
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     
     override func viewDidLoad() {
@@ -53,7 +54,7 @@ class ChallengeViewController: CoreDataController {
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        //let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
@@ -131,8 +132,6 @@ class ChallengeViewController: CoreDataController {
             let region = Helpers.setZoomForContinent(Helpers.continent)
             worldMap.setRegion(region, animated: true)
         }
-        print("save the game that has just been made --------------")
-        saveEntities()
         print("countries to play --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         label = Helpers.makeQuestionLabel("challenge")
@@ -268,45 +267,14 @@ class ChallengeViewController: CoreDataController {
             currentGame.match_length = (Helpers.totalCountries*10) - stopwatch
             currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
-            saveEntities()
+            //save the game on finish
+            let land = app.landAreas
+            land.save()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
     
-    func saveEntities () {
-        //save
-        print("saving ..........")
-        do {
-            try fetchedResultsController!.managedObjectContext.save()
-        } catch {
-            print("error saving :(", error)
-        }
-        
-//        print("count entities called")
-//        let moc = fetchedResultsController!.managedObjectContext
-//        let fetchRequest = NSFetchRequest(entityName: "Game")
-//        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
-//        
-//        var entities: [Game]
-//        do {
-//            entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
-//        } catch {
-//            fatalError("Failed to fetch employees: \(error)")
-//        }
-//        // set the current game - if the finish date is nil
-//        print("entities.count", entities.count)
-//        if entities.count > 0 {
-//            for entity in entities {
-//                print(entity.continent)
-//                if entity.match_length != nil {
-//                    print("length",entity.match_length)
-//                }
-//            }
-//        }
-    }
 
-    
-    
     func updateMapOverlays(titleOfPolyToRemove: String) {
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
@@ -350,11 +318,9 @@ class ChallengeViewController: CoreDataController {
         timerScheduler.invalidate()
         currentGame.finished_at = NSDate()
         Helpers.finishGame()
-        do {
-            try fetchedResultsController!.managedObjectContext.save()
-        } catch {
-            print("error saving :(", error)
-        }
+        //get context and then save
+        let land = app.landAreas
+        land.save()
     }
     
     // functions to deal with the restoring state
