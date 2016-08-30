@@ -46,13 +46,19 @@ class TopScoresViewController: CoreDataTableViewController {
         let game = fetchedResultsController!.objectAtIndexPath(indexPath) as! Game
         
         // Create the cell
-        let cell = tableView.dequeueReusableCellWithIdentifier("TopScoreCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("TopScoreCell") as! CustomTableCell
         
         //add text to the cell
-        cell.textLabel?.text = convertSecondsToTime(Int(game.match_length!))
-        cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 20)
+        cell.timeLabel?.text = convertSecondsToTime(Int(game.match_length!))
+//        cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 25)
         //make this the number of lives left/number wrong
-        cell.detailTextLabel?.text = continents[game.continent!]
+        //cell.detailTextLabel?.text = "Wrong: " + String(calculateWrongGuesses(Int(game.lives_left!)))
+        if game.lives_left! == 2 {
+            cell.liftThree.alpha = 0.5
+        } else if game.lives_left! == 1 {
+            cell.liftThree.alpha = 0.5
+            cell.lifeTwo.alpha = 0.5
+        }
         
         return cell  
     }
@@ -60,10 +66,10 @@ class TopScoresViewController: CoreDataTableViewController {
     func convertSecondsToTime (seconds: Int) -> String {
         let minutes = String(seconds / 60)
         var secs = String(seconds % 60)
+        // pad with zero
         if String(secs) == "0" {
             secs = "0" + secs
         }
-        // pad with zero
         if String(secs).characters.count == 1 {
             secs = "0" + secs
         }

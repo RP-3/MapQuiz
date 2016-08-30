@@ -259,9 +259,9 @@ class ChallengeViewController: CoreDataController {
             label!.text = "Find: \(randomVal)"
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
-            //set the time on the current game and finished at
-            //game length stored in seconds to easy to compare
+            // only set the lives left and match_length for when the user completes the game as these are only used by the top scores table
             currentGame.match_length = (Helpers.totalCountries*10) - stopwatch
+            currentGame.lives_left = lives
             currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
             //save the game on finish

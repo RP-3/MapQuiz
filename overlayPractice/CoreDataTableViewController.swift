@@ -50,7 +50,7 @@ class CoreDataTableViewController: UITableViewController {
     
 }
 
-// MARK:  - Table Data Source
+//Table Data Source
 extension CoreDataTableViewController{
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -85,6 +85,7 @@ extension CoreDataTableViewController{
         }
     }
     
+    // add custom table cell
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let fc = fetchedResultsController{
             let shortHand = fc.sections![section].name
@@ -116,18 +117,5 @@ extension CoreDataTableViewController{
     
     
 }
-//
-//// MARK:  - Fetches
-//extension CoreDataTableViewController{
-//    
-//    func executeSearch(){
-//        if let fc = fetchedResultsController{
-//            do{
-//                try fc.performFetch()
-//            }catch let e as NSError{
-//                print("Error while trying to perform a search: \n\(e)\n\(fetchedResultsController)")
-//            }
-//        }
-//    }
-//}
+
 

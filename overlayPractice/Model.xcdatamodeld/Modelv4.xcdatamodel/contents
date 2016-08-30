@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10174" systemVersion="15F34" minimumToolsVersion="Xcode 7.0">
+    <entity name="Attempt" representedClassName=".Attempt" syncable="YES">
+        <attribute name="countryGuessed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryToFind" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="revealed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <relationship name="game" maxCount="1" deletionRule="Nullify" destinationEntity="Game" inverseName="attempt" inverseEntity="Game" syncable="YES"/>
+    </entity>
+    <entity name="Game" representedClassName=".Game" syncable="YES">
+        <attribute name="continent" attributeType="String" syncable="YES"/>
+        <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="finished_at" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="lives_left" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="match_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mode" attributeType="String" syncable="YES"/>
+        <relationship name="attempt" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Attempt" inverseName="game" inverseEntity="Attempt" syncable="YES"/>
+    </entity>
+    <entity name="LandArea" representedClassName=".LandArea" syncable="YES">
+        <attribute name="annotation_point" attributeType="String" syncable="YES"/>
+        <attribute name="capital" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="continent" attributeType="String" syncable="YES"/>
+        <attribute name="coordinate_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="coordinates" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Attempt" positionX="-36" positionY="45" width="128" height="120"/>
+        <element name="Game" positionX="-18" positionY="63" width="128" height="150"/>
+        <element name="LandArea" positionX="-54" positionY="-9" width="128" height="135"/>
+    </elements>
+</model>
