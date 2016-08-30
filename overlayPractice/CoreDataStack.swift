@@ -149,12 +149,9 @@ extension CoreDataStack{
 extension CoreDataStack {
     
     func save() {
-        print("save has been called and in Core Stack!!")
         context.performBlockAndWait(){
-            print("in perform and wait")
             if self.context.hasChanges{
                 print("has changes")
-                print("------------->",self.context.insertedObjects)
                 do {
                     try self.context.save()
                 } catch {
@@ -169,8 +166,6 @@ extension CoreDataStack {
                         fatalError("Error while saving persisting context: \(error)")
                     }
                 }
-            } else {
-                print("has no changes in save changes")
             }
         }
     }

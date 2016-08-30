@@ -39,6 +39,15 @@ class CoreDataTableViewController: UITableViewController {
         fatalError("This method MUST be implemented by a subclass of CoreDataTableViewController")
     }
     
+    let continents = [
+        "NA":"North America",
+        "SA":"South America",
+        "AF":"Africa",
+        "AS":"Asia",
+        "OC":"Oceania",
+        "EU":"Europe"
+    ]
+    
 }
 
 // MARK:  - Table Data Source
@@ -54,7 +63,13 @@ extension CoreDataTableViewController{
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let fc = fetchedResultsController{
-            return fc.sections![section].numberOfObjects;
+            // limit number of scores show to the user to three
+            if fc.sections![section].numberOfObjects < 3 {
+                return fc.sections![section].numberOfObjects
+            } else {
+                return 3
+            }
+            
         }else{
             return 0
         }
@@ -62,11 +77,22 @@ extension CoreDataTableViewController{
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let fc = fetchedResultsController{
-            return fc.sections![section].name;
+            let shortHand = fc.sections![section].name
+            let title = continents[shortHand]
+            return title;
         }else{
             return nil
         }
     }
+    
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("HeaderCell") as! CustomHeaderCell
+//        
+//        headerView.titleOfSection.text = "Hi there"
+////        headerView.sectionNumber = section
+//        
+//        return headerView
+//    }
     
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         if let fc = fetchedResultsController{

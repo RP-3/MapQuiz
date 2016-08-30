@@ -13,22 +13,12 @@ class TopScoresViewController: CoreDataTableViewController {
     
     // this controller is to show the last 5 or 10 gmaes played and show: time, contintnet and lives left
     
-    let continents = [
-        "NA":"North America",
-        "SA":"South America",
-        "AF":"Africa",
-        "AS":"Asia",
-        "OC":"Oceania",
-        "EU":"Europe"
-    ]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.navigationItem.setHidesBackButton(true, animated:true)
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
-        print("loading ......")
         title = "Top Challenge Scores"
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -36,14 +26,14 @@ class TopScoresViewController: CoreDataTableViewController {
         let fetchRequest = NSFetchRequest(entityName: "Game")
         
         // not nil match_length and mode is challenge
-//        let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
-//        let modePredicate = NSPredicate(format: "mode = %@", "challenge")
-//        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
-//        fetchRequest.predicate = andPredicate
+        let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
+        let modePredicate = NSPredicate(format: "mode = %@", "challenge")
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+        fetchRequest.predicate = andPredicate
         
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "continent", ascending: true)]
         
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
         
         
     }
@@ -58,20 +48,12 @@ class TopScoresViewController: CoreDataTableViewController {
         // Create the cell
         let cell = tableView.dequeueReusableCellWithIdentifier("TopScoreCell", forIndexPath: indexPath)
         
-        print("TIME: ", game.match_length!,  convertSecondsToTime(Int(game.match_length!)), "for:", continents[game.continent!])
-        
-        if let finished = game.finished_at {
-            print("finishedat------>", finished)
-        }
         //add text to the cell
         cell.textLabel?.text = convertSecondsToTime(Int(game.match_length!))
         cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 20)
         cell.detailTextLabel?.text = continents[game.continent!]
         
-        return cell
-        
-        
-        
+        return cell  
     }
     
     func convertSecondsToTime (seconds: Int) -> String {
