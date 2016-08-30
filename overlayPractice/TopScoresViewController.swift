@@ -51,6 +51,7 @@ class TopScoresViewController: CoreDataTableViewController {
         //add text to the cell
         cell.textLabel?.text = convertSecondsToTime(Int(game.match_length!))
         cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 20)
+        //make this the number of lives left/number wrong
         cell.detailTextLabel?.text = continents[game.continent!]
         
         return cell  

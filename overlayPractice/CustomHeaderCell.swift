@@ -6,4 +6,10 @@
 //  Copyright © 2016 Anna Rogers. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class CustomHeaderCell: UITableViewCell {
+    
+    @IBOutlet weak var titleOfSection: UILabel!
+    
+}

@@ -85,14 +85,18 @@ extension CoreDataTableViewController{
         }
     }
     
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = tableView.dequeueReusableHeaderFooterViewWithIdentifier("HeaderCell") as! CustomHeaderCell
-//        
-//        headerView.titleOfSection.text = "Hi there"
-////        headerView.sectionNumber = section
-//        
-//        return headerView
-//    }
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if let fc = fetchedResultsController{
+            let shortHand = fc.sections![section].name
+            let title = continents[shortHand]
+            let headerView = tableView.dequeueReusableCellWithIdentifier("HeaderCell") as! CustomHeaderCell
+            headerView.titleOfSection.text = title
+            return headerView
+        }else{
+            return nil
+        }
+        
+    }
     
     override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
         if let fc = fetchedResultsController{

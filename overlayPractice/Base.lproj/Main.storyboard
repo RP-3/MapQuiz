@@ -395,7 +395,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopScoreCell" textLabel="B4u-SU-jLg" detailTextLabel="jc9-g3-88o" style="IBUITableViewCellStyleSubtitle" id="mgT-8Y-YtQ" customClass="CustomRowViewController" customModule="MapQuiz" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopScoreCell" textLabel="B4u-SU-jLg" detailTextLabel="jc9-g3-88o" style="IBUITableViewCellStyleSubtitle" id="mgT-8Y-YtQ">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mgT-8Y-YtQ" id="UNd-Q6-slV">
@@ -418,6 +418,30 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" id="gyY-mO-Lm3" customClass="CustomHeaderCell" customModule="MapQuiz" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyY-mO-Lm3" id="rqf-q9-qCT">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ds2-sH-6LS">
+                                            <rect key="frame" x="287" y="13" width="27" height="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <color key="textColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Ds2-sH-6LS" firstAttribute="centerX" secondItem="rqf-q9-qCT" secondAttribute="centerX" id="37N-VN-JqL"/>
+                                        <constraint firstItem="Ds2-sH-6LS" firstAttribute="centerY" secondItem="rqf-q9-qCT" secondAttribute="centerY" id="T2G-o6-xzp"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" red="0.8982092814" green="0.83771728479999996" blue="0.77847169189999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <outlet property="titleOfSection" destination="Ds2-sH-6LS" id="zYG-g7-LT0"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
