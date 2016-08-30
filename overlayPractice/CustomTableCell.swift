@@ -14,7 +14,6 @@ class CustomTableCell: UITableViewCell {
     @IBOutlet weak var lifeOne: UIImageView!
     @IBOutlet weak var lifeTwo: UIImageView!
     @IBOutlet weak var liftThree: UIImageView!
-    
     @IBOutlet weak var timeLabel: UILabel!
     
 }

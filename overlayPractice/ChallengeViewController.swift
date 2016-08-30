@@ -265,8 +265,7 @@ class ChallengeViewController: CoreDataController {
             currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
             //save the game on finish
-            let land = app.landAreas
-            land.save()
+            app.landAreas.save()
             performSegueWithIdentifier("showChallengeScore", sender: nil)
         }
     }
@@ -316,8 +315,7 @@ class ChallengeViewController: CoreDataController {
         currentGame.finished_at = NSDate()
         Helpers.finishGame()
         //get context and then save
-        let land = app.landAreas
-        land.save()
+        app.landAreas.save()
     }
     
     // functions to deal with the restoring state

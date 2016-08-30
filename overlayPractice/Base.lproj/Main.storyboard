@@ -411,14 +411,14 @@
                                             </constraints>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="S8p-Lq-GIu">
-                                            <rect key="frame" x="544" y="14" width="14" height="16"/>
+                                            <rect key="frame" x="549" y="14" width="14" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="16" id="MI3-ch-AW3"/>
                                                 <constraint firstAttribute="width" constant="14" id="asR-fI-vp5"/>
                                             </constraints>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="168-Tg-ppt">
-                                            <rect key="frame" x="504" y="14" width="14" height="16"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="168-Tg-ppt">
+                                            <rect key="frame" x="520" y="14" width="14" height="16"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="14" id="0lh-R8-2UF"/>
                                                 <constraint firstAttribute="height" constant="16" id="ajb-Bq-Sc8"/>
@@ -434,10 +434,10 @@
                                     <constraints>
                                         <constraint firstItem="ue4-Lh-xb7" firstAttribute="trailing" secondItem="UNd-Q6-slV" secondAttribute="trailingMargin" id="Azx-zw-phM"/>
                                         <constraint firstItem="S8p-Lq-GIu" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="HmT-7G-l8e"/>
-                                        <constraint firstItem="S8p-Lq-GIu" firstAttribute="leading" secondItem="168-Tg-ppt" secondAttribute="trailing" constant="20" id="Qbw-Q8-Eap"/>
+                                        <constraint firstItem="S8p-Lq-GIu" firstAttribute="leading" secondItem="168-Tg-ppt" secondAttribute="trailing" constant="15" id="Qbw-Q8-Eap"/>
                                         <constraint firstItem="lUj-85-kjc" firstAttribute="leading" secondItem="UNd-Q6-slV" secondAttribute="leadingMargin" constant="10" id="YOr-oI-ye5"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="lUj-85-kjc" secondAttribute="bottom" constant="3" id="kTC-Ix-rAN"/>
-                                        <constraint firstItem="ue4-Lh-xb7" firstAttribute="leading" secondItem="S8p-Lq-GIu" secondAttribute="trailing" constant="20" id="p4V-zL-0oe"/>
+                                        <constraint firstItem="ue4-Lh-xb7" firstAttribute="leading" secondItem="S8p-Lq-GIu" secondAttribute="trailing" constant="15" id="p4V-zL-0oe"/>
                                         <constraint firstItem="lUj-85-kjc" firstAttribute="top" secondItem="UNd-Q6-slV" secondAttribute="topMargin" constant="3" id="sfv-Qa-EIU"/>
                                         <constraint firstItem="ue4-Lh-xb7" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="v8M-xh-1Hz"/>
                                         <constraint firstItem="168-Tg-ppt" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="woC-Po-xM8"/>
@@ -446,6 +446,7 @@
                                 <connections>
                                     <outlet property="lifeOne" destination="ue4-Lh-xb7" id="iJg-J7-dnn"/>
                                     <outlet property="lifeTwo" destination="S8p-Lq-GIu" id="JOi-K0-Z9k"/>
+                                    <outlet property="liftThree" destination="168-Tg-ppt" id="lrT-PX-zxJ"/>
                                     <outlet property="timeLabel" destination="lUj-85-kjc" id="ulC-2d-C1e"/>
                                 </connections>
                             </tableViewCell>

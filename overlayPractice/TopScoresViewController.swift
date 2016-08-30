@@ -50,9 +50,7 @@ class TopScoresViewController: CoreDataTableViewController {
         
         //add text to the cell
         cell.timeLabel?.text = convertSecondsToTime(Int(game.match_length!))
-//        cell.textLabel?.font = UIFont(name: "AmaticSC-Bold", size: 25)
         //make this the number of lives left/number wrong
-        //cell.detailTextLabel?.text = "Wrong: " + String(calculateWrongGuesses(Int(game.lives_left!)))
         if game.lives_left! == 2 {
             cell.liftThree.alpha = 0.5
         } else if game.lives_left! == 1 {
