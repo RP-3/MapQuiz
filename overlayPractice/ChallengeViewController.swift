@@ -184,16 +184,13 @@ class ChallengeViewController: CoreDataController {
             let audioPlayer = Helpers.playSound("yep")
             audioPlayer.prepareToPlay()
             audioPlayer.play()
-            label!.text = "Found!"
-            label!.backgroundColor = UIColor(red: 0.3, green: 0.9, blue: 0.5, alpha: 1.0)
+            updateMapOverlays(Helpers.toFind)
             //save the attempt to coredata
             let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
             turn.game = currentGame
             currentGame.attempt?.setByAddingObject(turn)
-            Helpers.delay(0.7) {
-                self.setQuestionLabel()
-            }
-            updateMapOverlays(Helpers.toFind)
+            //set question label after updated overlays - dont bother with green label
+            setQuestionLabel()
         } else {
             let audioPlayer = Helpers.playSound("nope")
             audioPlayer.prepareToPlay()
