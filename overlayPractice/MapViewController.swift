@@ -126,9 +126,9 @@ class MapViewController: CoreDataController {
             //make a new game in core data and set as current
             currentGame = Game(continent: Helpers.continent, mode: "practice", context: fetchedResultsController!.managedObjectContext)
             // use autosave to save it - else on exiting the core data entities are saved
-            let region = Helpers.setZoomForContinent(Helpers.continent)
-            worldMap.setRegion(region, animated: true)
         }
+        let region = Helpers.setZoomForContinent(Helpers.continent)
+        worldMap.setRegion(region, animated: true)
         print("countries to find --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         label = Helpers.makeQuestionLabel("practice")
@@ -355,7 +355,7 @@ class MapViewController: CoreDataController {
     override func applicationFinishedRestoringState() {
         print("finished restoring state map view")
         //grab the unfinished game and set to currrent game
-        let moc = fetchedResultsController!.managedObjectContext
+        let moc = app.landAreas.context
         let fetchRequest = NSFetchRequest(entityName: "Game")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
         

@@ -390,7 +390,7 @@
         <!--Top Challenge Scores-->
         <scene sceneID="CVj-1g-GSI">
             <objects>
-                <tableViewController id="aTO-0J-IZX" customClass="TopScoresViewController" customModule="MapQuiz" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="topScoreView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="aTO-0J-IZX" customClass="TopScoresViewController" customModule="MapQuiz" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="9wn-KB-3If">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

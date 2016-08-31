@@ -48,13 +48,6 @@ class ChallengeViewController: CoreDataController {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
-        //user message to okay when the user is ready to play
-        let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
-        let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
-            self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
-        }
-        alertController.addAction(OKAction)
-        self.presentViewController(alertController, animated: true, completion:nil)
         
         //make an array of country models - loop through core data for all with desired continent code and make to model
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
@@ -109,6 +102,7 @@ class ChallengeViewController: CoreDataController {
         
         // if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
+            
             restoreOccur = false
             // if the game has already been partially played then set up old scores
             if currentGame.attempt?.count > 0 {
@@ -128,12 +122,27 @@ class ChallengeViewController: CoreDataController {
                     }
                 }
             }
+//            //user message to okay when the user is ready to play
+//            let alertController = UIAlertController(title: "Ready?", message: "Hit go to start to continue the game", preferredStyle: UIAlertControllerStyle.Alert)
+//            let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
+//                self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
+//            }
+//            alertController.addAction(OKAction)
+//            self.presentViewController(alertController, animated: true, completion:nil)
+            
         } else {
+            //user message to okay when the user is ready to play
+            let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
+            let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
+                self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
+            }
+            alertController.addAction(OKAction)
+            self.presentViewController(alertController, animated: true, completion:nil)
             //make a new game in core data and set as current
             currentGame = Game(continent: Helpers.continent, mode: "challenge", context: fetchedResultsController!.managedObjectContext)
-            let region = Helpers.setZoomForContinent(Helpers.continent)
-            worldMap.setRegion(region, animated: true)
         }
+        let region = Helpers.setZoomForContinent(Helpers.continent)
+        worldMap.setRegion(region, animated: true)
         print("countries to play --->", Helpers.game["toPlay"]!.count)
         //make label to show the user and pick random index to grab country name with
         label = Helpers.makeQuestionLabel("challenge")
@@ -341,7 +350,7 @@ class ChallengeViewController: CoreDataController {
     // once the app has loaded again work out what to show on the screen
     override func applicationFinishedRestoringState() {
         //grab the unfinished game and set to currrent game
-        let moc = fetchedResultsController!.managedObjectContext
+        let moc = app.landAreas.context
         let fetchRequest = NSFetchRequest(entityName: "Game")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
         
@@ -361,4 +370,11 @@ class ChallengeViewController: CoreDataController {
         }
     }
     
+}
+
+class AlertHelper {
+    func showAlert(fromController controller: UIViewController) {
+        var alert = UIAlertController(title: "Ready?", message: "Hit go to start to continue the game", preferredStyle: UIAlertControllerStyle.Alert)
+        controller.presentViewController(alert, animated: true, completion: nil)
+    }
 }
