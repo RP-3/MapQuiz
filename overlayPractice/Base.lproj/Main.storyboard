@@ -371,7 +371,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Continent" id="2Oj-Rt-NwJ"/>
-                    <navigationItem key="navigationItem" id="YCI-IH-Zwp"/>
+                    <navigationItem key="navigationItem" id="YCI-IH-Zwp">
+                        <barButtonItem key="rightBarButtonItem" title="Top Scores" id="Q6h-IM-FRr">
+                            <connections>
+                                <segue destination="19g-nQ-AGL" kind="presentation" id="Pxh-xm-4Ke"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="AfricaBtn" destination="CcY-Aa-gC0" id="vue-hi-jJl"/>
                         <outlet property="AsiaBtn" destination="IY1-cx-lB0" id="DCJ-oN-IVw"/>
@@ -380,12 +386,58 @@
                         <outlet property="OceaniaBtn" destination="TfH-V6-AJI" id="nXe-Jb-5bT"/>
                         <outlet property="SouthAmericaBtn" destination="dty-is-2aK" id="Cno-Jr-cEd"/>
                         <segue destination="X10-jV-LcE" kind="show" identifier="pickGame" id="jjm-L2-doL"/>
-                        <segue destination="aTO-0J-IZX" kind="show" identifier="topScores" id="LOp-ma-xdv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="40" y="487"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="IAY-Ka-jIF">
+            <objects>
+                <tabBarController id="19g-nQ-AGL" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="dPK-aJ-MuE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="aTO-0J-IZX" kind="relationship" relationship="viewControllers" id="4ls-cK-7ey"/>
+                        <segue destination="2NU-fZ-itW" kind="relationship" relationship="viewControllers" id="Tnx-ZO-8Pd"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yY1-E8-Tkb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-110" y="-582"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="ypv-Lb-o5x">
+            <objects>
+                <tableViewController id="2NU-fZ-itW" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3eC-Sl-VDu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="q31-Mp-vqj">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="q31-Mp-vqj" id="DrJ-hn-3ve">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="2NU-fZ-itW" id="YeM-AA-XL1"/>
+                            <outlet property="delegate" destination="2NU-fZ-itW" id="xTK-TP-npm"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="d8p-XX-SEd"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mYH-C4-F6C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="630" y="-1367"/>
         </scene>
         <!--Top Challenge Scores-->
         <scene sceneID="CVj-1g-GSI">
@@ -397,7 +449,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopScoreCell" id="mgT-8Y-YtQ" customClass="CustomTableCell" customModule="MapQuiz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mgT-8Y-YtQ" id="UNd-Q6-slV">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -451,7 +503,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" id="gyY-mO-Lm3" customClass="CustomHeaderCell" customModule="MapQuiz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyY-mO-Lm3" id="rqf-q9-qCT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -480,6 +532,7 @@
                             <outlet property="delegate" destination="aTO-0J-IZX" id="T24-d2-opn"/>
                         </connections>
                     </tableView>
+                    <tabBarItem key="tabBarItem" title="Item" id="31b-6w-BXB"/>
                     <navigationItem key="navigationItem" title="Top Challenge Scores" id="KH0-3P-Lt4">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="vbX-FC-Cpy">
                             <connections>
