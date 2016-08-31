@@ -40,12 +40,6 @@ class MapViewController: CoreDataController {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
-        //get the needed entities out of core data
-        let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: app.landAreas.context, sectionNameKeyPath: nil, cacheName: nil)
-        entities = fetchedResultsController!.fetchedObjects as! [LandArea]
-        print("entities in view did load: ", entities.count)
         // add tap recogniser to allow user to select country
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
@@ -68,10 +62,20 @@ class MapViewController: CoreDataController {
             alertController.addAction(Action)
         }
         
+        //get the needed entities out of core data for the chosen continent
+        let fetchRequest = NSFetchRequest(entityName: "LandArea")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let pred = NSPredicate(format: "continent = %@", Helpers.continent)
+        fetchRequest.predicate = pred
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: app.landAreas.context, sectionNameKeyPath: nil, cacheName: nil)
+        entities = fetchedResultsController!.fetchedObjects as! [LandArea]
+        print("entities in view did load: ", entities.count)
+        
         //check that there are entities to add to the view
         if entities.count == 0 {
             let alertController = UIAlertController(title: "Alert", message: "There was a problem loading the countries.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                // if none then return the user to the main menu
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
             alertController.addAction(Action)

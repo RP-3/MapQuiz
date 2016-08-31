@@ -12,6 +12,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
     
     let beigeColor = UIColor(red: 0.99, green: 0.93, blue: 0.9, alpha: 1.0)
     
+    //render the polygon to the map
     func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
         if overlay is MKPolygon {
             let custom = (overlay as! CustomPolygon)
@@ -29,6 +30,7 @@ class MapViewDelegate: NSObject, MKMapViewDelegate {
         return MKOverlayRenderer()
     }
     
+    //show labels instead of annotations on the page
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId: String = "countryAnnotation"

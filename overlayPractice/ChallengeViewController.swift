@@ -30,6 +30,7 @@ class ChallengeViewController: CoreDataController {
     //question label
     var label: UILabel?
     
+    //timer
     var stopwatch = 0
     var timerScheduler: NSTimer!
     
@@ -38,27 +39,23 @@ class ChallengeViewController: CoreDataController {
     var mapDelegate = MapViewDelegate()
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //skip button on the top bar
         let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
         navigationItem.rightBarButtonItem = skipButton
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
+        //user message to okay when the user is ready to play
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
             self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
-
-        let fetchRequest = NSFetchRequest(entityName: "LandArea")
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: app.landAreas.context, sectionNameKeyPath: nil, cacheName: nil)
-        entities = fetchedResultsController!.fetchedObjects as! [LandArea]
-        print("entities", entities.count)
+        
         //make an array of country models - loop through core data for all with desired continent code and make to model
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
@@ -78,15 +75,26 @@ class ChallengeViewController: CoreDataController {
             alertController.addAction(Action)
         }
         
+        // load the contries needed for the continent from core data
+        let fetchRequest = NSFetchRequest(entityName: "LandArea")
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        let pred = NSPredicate(format: "continent = %@", Helpers.continent)
+        fetchRequest.predicate = pred
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: app.landAreas.context, sectionNameKeyPath: nil, cacheName: nil)
+        entities = fetchedResultsController!.fetchedObjects as! [LandArea]
+        print("entities", entities.count)
+        
         //check that there are entities to add to the view
         if entities.count == 0 {
             let alertController = UIAlertController(title: "Alert", message: "There was a problem loading the countries.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                //return the user to the main menu
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
             alertController.addAction(Action)
         }
         
+        //loop through the loaded data and add to the map and into the game dictionary
         for entity in entities {
             if (entity.continent == Helpers.continent) {
                 let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
@@ -94,11 +102,12 @@ class ChallengeViewController: CoreDataController {
                 addBoundary(country)
             }
         }
+        
         Helpers.totalCountries = Helpers.createdPolygonOverlays.count
         //make the this time the number of countries * 10 /60 (10 secs per country)
-        stopwatch = Helpers.totalCountries*10
+        stopwatch = Helpers.totalCountries*8
         
-        // 2. if restore then get the existing game else if not restore then make a new game
+        // if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
             // if the game has already been partially played then set up old scores
@@ -107,15 +116,6 @@ class ChallengeViewController: CoreDataController {
                 for attempt in currentGame.attempt! {
                     if (attempt as! Attempt).countryToFind == (attempt as! Attempt).countryGuessed {
                         Helpers.game["guessed"]![(attempt as! Attempt).countryToFind!] = (attempt as! Attempt).countryToFind
-                        Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
-                        for overlay in worldMap.overlays {
-                            if overlay.title! == (attempt as! Attempt).countryToFind {
-                                worldMap.removeOverlay(overlay)
-                                continue
-                            }
-                        }
-                    } else if (attempt as! Attempt).revealed == true {
-                        Helpers.revealed += 1
                         Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
@@ -230,8 +230,8 @@ class ChallengeViewController: CoreDataController {
         let controller = segue.destinationViewController as! ChallengeScoreViewController
         controller.lives = lives
         controller.correct = Helpers.game["guessed"]!.count
-        let minsTaken = ((Helpers.totalCountries*10) - stopwatch)/60
-        var secsTaken = String(((Helpers.totalCountries*10) - stopwatch)%60)
+        let minsTaken = ((Helpers.totalCountries*8) - stopwatch)/60
+        var secsTaken = String(((Helpers.totalCountries*8) - stopwatch)%60)
         if String(secsTaken) == "0" {
             secsTaken = "0" + secsTaken
         }
@@ -253,7 +253,7 @@ class ChallengeViewController: CoreDataController {
     
     //ask new question
     func setQuestionLabel () {
-        self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
+        self.title = String("\(Helpers.game["guessed"]!.count) / \(Helpers.totalCountries)")
         if Helpers.game["toPlay"]?.count > 0 {
             let index: Int = Int(arc4random_uniform(UInt32(Helpers.game["toPlay"]!.count)))
             let randomVal = Array(Helpers.game["toPlay"]!.values)[index]
@@ -262,7 +262,7 @@ class ChallengeViewController: CoreDataController {
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             // only set the lives left and match_length for when the user completes the game as these are only used by the top scores table
-            currentGame.match_length = (Helpers.totalCountries*10) - stopwatch
+            currentGame.match_length = (Helpers.totalCountries*8) - stopwatch
             currentGame.lives_left = lives
             currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
