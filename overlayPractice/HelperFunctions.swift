@@ -116,6 +116,7 @@ class HelperFunctions {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         } catch {
             print("error",error)
+            //silently not work as not a be all or end all for the app to work
         }
         do {
             try AVAudioSession.sharedInstance().setActive(true)
