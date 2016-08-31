@@ -23,29 +23,30 @@ class MapViewController: CoreDataController {
     var currentGame: Game!
     var restoreOccur: Bool?
     
-    //question label
+    //question label to ask user to find a country
     var label:UILabel?
         
     var mapDelegate = MapViewDelegate()
+    //entities from core data for the current continent
     var entities: [LandArea]!
-        
+    
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //add a skip button to the nav bar
         let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
         navigationItem.rightBarButtonItem = skipButton
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
-        
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        let land = app.landAreas
+        //get the needed entities out of core data
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: app.landAreas.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities in view did load: ", entities.count)
-        // add tap recogniser
+        // add tap recogniser to allow user to select country
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
         view.addGestureRecognizer(gestureRecognizer)
         // set map type
@@ -58,7 +59,7 @@ class MapViewController: CoreDataController {
     
     override func viewWillAppear(animated: Bool) {
         
-        //if if the contient is not set throw error
+        //if if the contient is not set throw error - for view restore
         if  Helpers.continent == nil {
             let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
@@ -76,18 +77,17 @@ class MapViewController: CoreDataController {
             alertController.addAction(Action)
         }
         
-        //only for use when the continent is EU
         for entity in entities {
             if (entity.continent == Helpers.continent) {
                 makeCountryAndAddToMap(entity)
             }
         }
-        
+        //set a total value for all the countries in the continent
         Helpers.totalCountries = Helpers.createdPolygonOverlays.count
-        // show countries guessed count to user
+        // show count of countries got at top of screen
         self.title = String("0 / \(Helpers.totalCountries)")
         
-        // 2. if restore then get the existing game else if not restore then make a new game
+        // if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
             print("data is saved go get it")
@@ -131,6 +131,7 @@ class MapViewController: CoreDataController {
         worldMap.addSubview(label!)
     }
     
+    //set up games to play in dictionary and make country model
     func makeCountryAndAddToMap (entity: LandArea) {
         let country = Country(title: entity.name!, points: entity.coordinates!, coordType: entity.coordinate_type!, point: entity.annotation_point!)
         Helpers.game["toPlay"]![entity.name!] = entity.name
@@ -144,14 +145,15 @@ class MapViewController: CoreDataController {
         let tappedCoordinates = worldMap.convertPoint(pointTapped, toCoordinateFromView: worldMap)
         // loop through the land areas in the current country to find and make sure that the tap was here - else error
         var found = false
+        
         for landArea in Helpers.coordinates[Helpers.toFind]! {
+            //for the small islands allow tap to not be totally accurate
             if (Helpers.islands[Helpers.toFind] != nil) {
                 // check it the tap is within a certain distance of the polygon
                 if Helpers.createdPolygonOverlays[Helpers.toFind] != nil {
                     let lat: CLLocationDegrees = tappedCoordinates.latitude
                     let lon: CLLocationDegrees = tappedCoordinates.longitude
                     let locationPoint: CLLocation =  CLLocation(latitude: lat, longitude: lon)
-                    
                     let lat2: CLLocationDegrees = (Helpers.createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point.latitude
                     let lon2: CLLocationDegrees = (Helpers.createdPolygonOverlays[Helpers.toFind]![0] as! CustomPolygon).annotation_point!.longitude
                     let locationPoint2: CLLocation =  CLLocation(latitude: lat2, longitude: lon2)
@@ -163,6 +165,7 @@ class MapViewController: CoreDataController {
                 found = true
             }
         }
+        //logic for tapped correct/incorrect country
         if found {
             // play correct sound
             let audioPlayer = Helpers.playSound("yep")
@@ -183,8 +186,8 @@ class MapViewController: CoreDataController {
             let audioPlayer = Helpers.playSound("nope")
             audioPlayer.prepareToPlay()
             audioPlayer.play()
-            
             label!.backgroundColor = UIColor(red: 0.8, green: 0.2, blue: 0.5, alpha: 1.0)
+            //increase wrong count
             Helpers.misses += 1
             //save attempt to core data
             let turn = Attempt(toFind: Helpers.toFind, guessed: Helpers.toFind, revealed: false, context: fetchedResultsController!.managedObjectContext)
@@ -198,6 +201,7 @@ class MapViewController: CoreDataController {
     
     }
     
+    //show new country to find
     @IBAction func skip(sender: AnyObject) {
         // play skip sound
         let audioPlayer = Helpers.playSound("skip")
@@ -230,7 +234,6 @@ class MapViewController: CoreDataController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showScore" {
             let controller = segue.destinationViewController as! ScoreViewController
-            //get the id property on the annotation
             controller.score = Helpers.game["guessed"]?.count
             controller.scoreTotal = Helpers.totalCountries
             controller.revealed = Helpers.revealed
@@ -240,22 +243,21 @@ class MapViewController: CoreDataController {
     }
     
     func updateMapOverlays(titleOfPolyToRemove: String) {
-        //method 1: look at the capital city and get the coordinates for this (idealy store these in core data too and not comput each time - but for testing could try)
-        // 2. using all centeral coordinates generate center point
         for overlay: MKOverlay in worldMap.overlays {
             if overlay.title! == titleOfPolyToRemove {
-                //remove references to this polygon
-                //now need to get this polygon re-rendered - remove and then add?
+                //remove the overlay and then add it again with the the userGuessed property as true (tell render method just to show overlay outline and not the fill)
                 worldMap.removeOverlay(overlay)
                 (overlay as! CustomPolygon).userGuessed = true
                 worldMap.addOverlay(overlay)
                 worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
             }
         }
+        //update game dictionary
         Helpers.game["guessed"]![Helpers.toFind] = Helpers.toFind
         Helpers.game["toPlay"]!.removeValueForKey(Helpers.toFind)
     }
-
+    
+    //add a polygon to a map
     func addBoundary(countryShape: Country) {
         var polygons = [MKPolygon]()
         //then need to loop through each boundary and make each a polygon and calculate the number of points
@@ -270,7 +272,7 @@ class MapViewController: CoreDataController {
         Helpers.coordinates[countryShape.name] = countryShape.boundary
     }
 
-    
+    //show all of the countries and their annotations
     @IBAction func showAll(sender: AnyObject) {
         //TODO: more functionality??
         //delete all overlays off the map
@@ -312,7 +314,6 @@ class MapViewController: CoreDataController {
                 let pointLocation:CLLocationCoordinate2D = CLLocationCoordinate2DMake((overlay as! CustomPolygon).annotation_point.latitude, (overlay as! CustomPolygon).annotation_point.longitude)
                 let region:MKCoordinateRegion = MKCoordinateRegionMake(pointLocation, theSpan)
                 worldMap.setRegion(region, animated: true)
-                
                 // add reveal to core data
                 let turn = Attempt(toFind: Helpers.toFind, guessed: "", revealed: true, context: fetchedResultsController!.managedObjectContext)
                 turn.game = currentGame
@@ -328,11 +329,7 @@ class MapViewController: CoreDataController {
     override func viewWillDisappear(animated: Bool) {
         currentGame.finished_at = NSDate()
         Helpers.finishGame()
-        do {
-            try fetchedResultsController!.managedObjectContext.save()
-        } catch {
-            print("error saving :(", error)
-        }
+        app.landAreas.save()
     }
     
     

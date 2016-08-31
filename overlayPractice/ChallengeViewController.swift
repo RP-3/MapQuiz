@@ -53,11 +53,10 @@ class ChallengeViewController: CoreDataController {
         }
         alertController.addAction(OKAction)
         self.presentViewController(alertController, animated: true, completion:nil)
-        //let app = UIApplication.sharedApplication().delegate as! AppDelegate
-        let land = app.landAreas
+
         let fetchRequest = NSFetchRequest(entityName: "LandArea")
         fetchRequest.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: app.landAreas.context, sectionNameKeyPath: nil, cacheName: nil)
         entities = fetchedResultsController!.fetchedObjects as! [LandArea]
         print("entities", entities.count)
         //make an array of country models - loop through core data for all with desired continent code and make to model
@@ -102,7 +101,6 @@ class ChallengeViewController: CoreDataController {
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false
-            print("data is saved go get it")
             // if the game has already been partially played then set up old scores
             if currentGame.attempt?.count > 0 {
                 //1. loop through the attempts and adjust overlays and score to match
@@ -356,7 +354,6 @@ class ChallengeViewController: CoreDataController {
         
         // set the current game if needed else return to main menu
         if entities.count > 0 && entities[0].finished_at == nil {
-            print("have game to continue")
             currentGame = entities[0]
         } else {
             //show the home page
