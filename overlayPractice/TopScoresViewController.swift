@@ -15,6 +15,14 @@ class TopScoresViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //make a button and place at top of the view
+        let button = UIButton(frame: CGRectMake(20, 120, 100, 100))
+        button.titleLabel?.text = "Done"
+        self.view.insertSubview(button, aboveSubview: self.tableView)
+        
+        //dont let the top bar be over the tableview
+        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);
 
         navigationItem.setHidesBackButton(true, animated:true)
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)

@@ -109,6 +109,9 @@
 		95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36161D56479E009710DD /* MapViewController.swift */; };
 		95FD93041D596347007E98E1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		95FD93051D596348007E98E1 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
+		95FE019B1D7789C90054A33D /* WorldRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE019A1D7789C90054A33D /* WorldRankViewController.swift */; };
+		95FE019C1D7789CC0054A33D /* WorldRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE019A1D7789C90054A33D /* WorldRankViewController.swift */; };
+		95FE019D1D7789CC0054A33D /* WorldRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE019A1D7789C90054A33D /* WorldRankViewController.swift */; };
 		F006B2B9764F3AA91CCF6C4E /* Pods_overlayPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -179,6 +182,7 @@
 		95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv3.xcdatamodel; sourceTree = "<group>"; };
 		95F5C5431D6FB8CC002FE39D /* AmaticSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AmaticSC-Regular.ttf"; sourceTree = "<group>"; };
 		95FD92FE1D5959EF007E98E1 /* ChoiceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
+		95FE019A1D7789C90054A33D /* WorldRankViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WorldRankViewController.swift; sourceTree = "<group>"; };
 		9CCABEC3D61A35A42CEB3695 /* Pods-overlayPracticeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPracticeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPracticeTests/Pods-overlayPracticeTests.release.xcconfig"; sourceTree = "<group>"; };
 		A2D7765BB4E865B467BED6FC /* Pods-overlayPractice.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-overlayPractice.release.xcconfig"; path = "Pods/Target Support Files/Pods-overlayPractice/Pods-overlayPractice.release.xcconfig"; sourceTree = "<group>"; };
 		A75792F993BA48FA4F3B1C0E /* Pods_overlayPracticeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_overlayPracticeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +258,7 @@
 				9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */,
 				95A96ABC1D75BB6A00B3CBF4 /* CustomHeaderCell.swift */,
 				95100F1B1D75DA1400203EFB /* CustomTableCell.swift */,
+				95FE019A1D7789C90054A33D /* WorldRankViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -632,6 +637,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				95FE019B1D7789C90054A33D /* WorldRankViewController.swift in Sources */,
 				950175ED1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
 				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
 				95ACFE3F1D63629B000E0E23 /* MapViewDelegate.swift in Sources */,
@@ -671,6 +677,7 @@
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				9548F03C1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
 				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
+				95FE019C1D7789CC0054A33D /* WorldRankViewController.swift in Sources */,
 				9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */,
 				9548F02D1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
@@ -703,6 +710,7 @@
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				9548F03D1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
 				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
+				95FE019D1D7789CC0054A33D /* WorldRankViewController.swift in Sources */,
 				9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */,
 				9548F02E1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
