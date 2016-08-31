@@ -71,9 +71,18 @@ class ChallengeViewController: CoreDataController {
     
     override func viewWillAppear(animated: Bool) {
         
-        //if there are no games to play then show an alert/if no entities
-        if Helpers.game["toPlay"]?.count > 0 && Helpers.continent != nil {
+        //if there is no set continent
+        if Helpers.continent == nil {
             let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+            alertController.addAction(Action)
+        }
+        
+        //check that there are entities to add to the view
+        if entities.count == 0 {
+            let alertController = UIAlertController(title: "Alert", message: "There was a problem loading the countries.", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
@@ -88,7 +97,6 @@ class ChallengeViewController: CoreDataController {
             }
         }
         Helpers.totalCountries = Helpers.createdPolygonOverlays.count
-        print("total countries", Helpers.totalCountries)
         //make the this time the number of countries * 10 /60 (10 secs per country)
         stopwatch = Helpers.totalCountries*10
         
