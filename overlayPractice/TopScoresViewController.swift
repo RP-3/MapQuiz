@@ -15,6 +15,8 @@ class TopScoresViewController: CoreDataTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
 
         navigationItem.setHidesBackButton(true, animated:true)
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)

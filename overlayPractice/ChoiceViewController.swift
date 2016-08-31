@@ -24,11 +24,7 @@ class ChoiceViewController: UIViewController {
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!]
         self.title = "Pick a continent"
-        
-        let topScoreButton: UIBarButtonItem = UIBarButtonItem(title: "Top Scores", style: .Plain, target: self, action: #selector(self.topScores))
-        navigationItem.rightBarButtonItem = topScoreButton
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
-        
+                
         NorthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         SouthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         AfricaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
