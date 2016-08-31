@@ -55,17 +55,19 @@ class ChallengeViewController: CoreDataController {
         // set map
         worldMap.mapType = .Satellite
     }
-    
+
     
     override func viewWillAppear(animated: Bool) {
         
         //if there is no set continent
         if Helpers.continent == nil {
-            let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
-            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
-                self.navigationController?.popToRootViewControllerAnimated(true)
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
+                let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                    self.navigationController?.popToRootViewControllerAnimated(true)
+                }
+                alertController.addAction(Action)
             }
-            alertController.addAction(Action)
         }
         
         // load the contries needed for the continent from core data
@@ -122,13 +124,16 @@ class ChallengeViewController: CoreDataController {
                     }
                 }
             }
-//            //user message to okay when the user is ready to play
-//            let alertController = UIAlertController(title: "Ready?", message: "Hit go to start to continue the game", preferredStyle: UIAlertControllerStyle.Alert)
-//            let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
-//                self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
-//            }
-//            alertController.addAction(OKAction)
-//            self.presentViewController(alertController, animated: true, completion:nil)
+            //timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
+            //user message to okay when the user is ready to play
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                let alertController = UIAlertController(title: "Ready?", message: "Hit go to continue the game", preferredStyle: UIAlertControllerStyle.Alert)
+                let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
+                    self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
+                }
+                alertController.addAction(OKAction)
+                self.presentViewController(alertController, animated: true, completion:nil)
+            }
             
         } else {
             //user message to okay when the user is ready to play
@@ -141,6 +146,7 @@ class ChallengeViewController: CoreDataController {
             //make a new game in core data and set as current
             currentGame = Game(continent: Helpers.continent, mode: "challenge", context: fetchedResultsController!.managedObjectContext)
         }
+        
         let region = Helpers.setZoomForContinent(Helpers.continent)
         worldMap.setRegion(region, animated: true)
         print("countries to play --->", Helpers.game["toPlay"]!.count)
@@ -372,9 +378,3 @@ class ChallengeViewController: CoreDataController {
     
 }
 
-class AlertHelper {
-    func showAlert(fromController controller: UIViewController) {
-        var alert = UIAlertController(title: "Ready?", message: "Hit go to start to continue the game", preferredStyle: UIAlertControllerStyle.Alert)
-        controller.presentViewController(alert, animated: true, completion: nil)
-    }
-}
