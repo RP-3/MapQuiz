@@ -49,7 +49,6 @@ class ChallengeViewController: CoreDataController {
         worldMap.delegate = mapDelegate
         let alertController = UIAlertController(title: "Ready?", message: "Hit go to start the game", preferredStyle: UIAlertControllerStyle.Alert)
         let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
-            print("start the timer")
             self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
         }
         alertController.addAction(OKAction)
@@ -100,9 +99,6 @@ class ChallengeViewController: CoreDataController {
         //make the this time the number of countries * 10 /60 (10 secs per country)
         stopwatch = Helpers.totalCountries*10
         
-        // show countries guessed count to user
-        self.title = String("0 / \(Helpers.totalCountries)")
-        print("<><><><><>",Helpers.game["toPlay"]!.count)
         // 2. if restore then get the existing game else if not restore then make a new game
         if (restoreOccur == true) {
             restoreOccur = false

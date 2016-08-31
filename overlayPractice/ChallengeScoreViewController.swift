@@ -21,7 +21,6 @@ class ChallengeScoreViewController: UIViewController {
     var restored = false
     
     override func viewWillAppear(animated: Bool) {
-        print("lines etc: ", lives, correct, time,totalCountriesInContinent)
         if restored == true {
             restored = false
             navigationController?.popToRootViewControllerAnimated(true)
