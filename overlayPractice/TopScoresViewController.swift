@@ -11,12 +11,12 @@ import CoreData
 
 class TopScoresViewController: CoreDataTableViewController {
     
-    // this controller is to show the last 5 or 10 gmaes played and show: time, contintnet and lives left
+    // this controller is to show the top 3 scores for each continent
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationItem.setHidesBackButton(true, animated:true)
+        navigationItem.setHidesBackButton(true, animated:true)
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
         title = "Top Challenge Scores"
@@ -35,6 +35,8 @@ class TopScoresViewController: CoreDataTableViewController {
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
         
+        tableView.showsHorizontalScrollIndicator = false
+        tableView.showsVerticalScrollIndicator = false
         
     }
 

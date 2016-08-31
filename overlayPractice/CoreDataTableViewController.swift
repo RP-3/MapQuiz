@@ -74,17 +74,7 @@ extension CoreDataTableViewController{
             return 0
         }
     }
-    
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if let fc = fetchedResultsController{
-            let shortHand = fc.sections![section].name
-            let title = continents[shortHand]
-            return title;
-        }else{
-            return nil
-        }
-    }
-    
+      
     // add custom table cell
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let fc = fetchedResultsController{
@@ -96,25 +86,7 @@ extension CoreDataTableViewController{
         }else{
             return nil
         }
-        
     }
-    
-    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
-        if let fc = fetchedResultsController{
-            return fc.sectionForSectionIndexTitle(title, atIndex: index)
-        }else{
-            return 0
-        }
-    }
-    
-    override func sectionIndexTitlesForTableView(tableView: UITableView) -> [String]? {
-        if let fc = fetchedResultsController{
-            return  fc.sectionIndexTitles
-        }else{
-            return nil
-        }
-    }
-    
     
 }
 

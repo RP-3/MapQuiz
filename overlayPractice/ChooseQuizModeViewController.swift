@@ -11,30 +11,14 @@ import UIKit
 class ChooseQuizModeViewController: UIViewController {
     
     var continent: String!
-    //var activitySpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     let Helpers = HelperFunctions.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //activitySpinner.center = view.center
-    }
-
-    @IBAction func challengeClicked(sender: AnyObject) {
-//        activitySpinner.startAnimating()
-//        view.addSubview(activitySpinner)
-        performSegueWithIdentifier("showChallenge", sender: nil)
-    }
-    
-    
-    @IBAction func practiceClicked(sender: AnyObject) {
-//        activitySpinner.startAnimating()
-//        view.addSubview(activitySpinner)
-        performSegueWithIdentifier("showPractice", sender: nil)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         if segue.identifier == "showPractice" {
             _ = segue.destinationViewController as! MapViewController
             Helpers.continent = continent
@@ -61,11 +45,6 @@ class ChooseQuizModeViewController: UIViewController {
     override func applicationFinishedRestoringState() {
         //grab the unfinished game and set to currrent game
         print("ready to keep going data choose mode")
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-//        activitySpinner.stopAnimating()
-//        view.willRemoveSubview(activitySpinner)
     }
     
 }

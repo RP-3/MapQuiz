@@ -208,7 +208,9 @@ class MapViewController: CoreDataController {
         } else {
             //nothing left to play - all countries have been guessed
             //push to score screen
-            performSegueWithIdentifier("showScore", sender: nil)
+            Helpers.delay(2.0) {
+                self.performSegueWithIdentifier("showScore", sender: nil)
+            }
             // save finish date to core data
             currentGame.finished_at = NSDate()
         }

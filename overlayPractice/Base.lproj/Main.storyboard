@@ -79,7 +79,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="907"/>
+            <point key="canvasLocation" x="1636" y="-33"/>
         </scene>
         <!--Challenge Score View Controller-->
         <scene sceneID="4WP-8H-eyQ">
@@ -125,7 +125,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5F-2d-ndN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2457" y="1"/>
+            <point key="canvasLocation" x="2541" y="1013"/>
         </scene>
         <!--Score View Controller-->
         <scene sceneID="JGY-Yt-J9A">
@@ -256,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bob-r1-aZ4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2562" y="907"/>
+            <point key="canvasLocation" x="2570" y="-33"/>
         </scene>
         <!--Continents-->
         <scene sceneID="roh-m0-3kG">
@@ -505,23 +505,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
-                                <rect key="frame" x="239" y="193" width="123" height="52"/>
+                                <rect key="frame" x="266" y="193" width="68" height="52"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="31"/>
-                                <state key="normal" title="Learning Mode">
+                                <state key="normal" title="Practice">
                                     <color key="titleColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="practiceClicked:" destination="X10-jV-LcE" eventType="touchUpInside" id="EQD-oA-C9K"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="R5b-EE-tPZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
-                                <rect key="frame" x="235" y="273" width="131" height="53"/>
+                                <rect key="frame" x="258" y="273" width="85" height="53"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Regular" family="Amatic SC" pointSize="32"/>
-                                <state key="normal" title="Challenge Time">
+                                <state key="normal" title="Challenge">
                                     <color key="titleColor" red="0.17798479948288359" green="0.11348448591426641" blue="0.058141421284838804" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="challengeClicked:" destination="X10-jV-LcE" eventType="touchUpInside" id="C78-lp-lo7"/>
+                                    <segue destination="G5K-E1-s6u" kind="show" identifier="showChallenge" id="UxJ-vA-2uW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -533,10 +533,6 @@
                             <constraint firstItem="9c9-0V-Weg" firstAttribute="centerY" secondItem="dxO-6u-vVA" secondAttribute="centerY" constant="-81" id="zrf-Yh-WaC"/>
                         </constraints>
                     </view>
-                    <connections>
-                        <segue destination="G5K-E1-s6u" kind="show" identifier="showChallenge" id="Ej5-pY-dnf"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="ePz-kg-owN"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -637,7 +633,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bRS-iy-mxH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1500" y="1"/>
+            <point key="canvasLocation" x="1652" y="1013"/>
         </scene>
     </scenes>
     <resources>
