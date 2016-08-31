@@ -127,12 +127,7 @@ class ChallengeViewController: CoreDataController {
             //timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
             //user message to okay when the user is ready to play
             NSOperationQueue.mainQueue().addOperationWithBlock {
-                let alertController = UIAlertController(title: "Ready?", message: "Hit go to continue the game", preferredStyle: UIAlertControllerStyle.Alert)
-                let OKAction = UIAlertAction(title: "GO", style: .Default) { (action:UIAlertAction!) in
-                    self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
-                }
-                alertController.addAction(OKAction)
-                self.presentViewController(alertController, animated: true, completion:nil)
+                self.timerScheduler = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: #selector(ChallengeViewController.updateTime), userInfo: nil, repeats: true)
             }
             
         } else {
@@ -146,7 +141,7 @@ class ChallengeViewController: CoreDataController {
             //make a new game in core data and set as current
             currentGame = Game(continent: Helpers.continent, mode: "challenge", context: fetchedResultsController!.managedObjectContext)
         }
-        
+        self.title = String("\(Helpers.game["guessed"]!.count) / \(Helpers.totalCountries)")
         let region = Helpers.setZoomForContinent(Helpers.continent)
         worldMap.setRegion(region, animated: true)
         print("countries to play --->", Helpers.game["toPlay"]!.count)
