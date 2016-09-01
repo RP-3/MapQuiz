@@ -112,6 +112,8 @@
 		95FE019B1D7789C90054A33D /* WorldRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE019A1D7789C90054A33D /* WorldRankViewController.swift */; };
 		95FE019C1D7789CC0054A33D /* WorldRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE019A1D7789C90054A33D /* WorldRankViewController.swift */; };
 		95FE019D1D7789CC0054A33D /* WorldRankViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FE019A1D7789C90054A33D /* WorldRankViewController.swift */; };
+		95FE01A21D78771F0054A33D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C36181D56479E009710DD /* Main.storyboard */; };
+		95FE01A31D7877200054A33D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C36181D56479E009710DD /* Main.storyboard */; };
 		F006B2B9764F3AA91CCF6C4E /* Pods_overlayPractice.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F0C24DEA3112A8625AB578 /* Pods_overlayPractice.framework */; };
 /* End PBXBuildFile section */
 
@@ -486,6 +488,7 @@
 				95BBB4281D72367B005B243A /* right.wav in Resources */,
 				95F5C5471D6FBBB6002FE39D /* LaunchScreen.storyboard in Resources */,
 				95BBB42C1D72368F005B243A /* plop.wav in Resources */,
+				95FE01A21D78771F0054A33D /* Main.storyboard in Resources */,
 				95F5C5451D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
 				950175F21D6D290C007B78E3 /* countriesData.json in Resources */,
 			);
@@ -501,6 +504,7 @@
 				95BBB4291D72367B005B243A /* right.wav in Resources */,
 				95F5C5481D6FBBB7002FE39D /* LaunchScreen.storyboard in Resources */,
 				95BBB42D1D72368F005B243A /* plop.wav in Resources */,
+				95FE01A31D7877200054A33D /* Main.storyboard in Resources */,
 				95F5C5461D6FB8CC002FE39D /* AmaticSC-Regular.ttf in Resources */,
 				950175F31D6D290C007B78E3 /* countriesData.json in Resources */,
 			);

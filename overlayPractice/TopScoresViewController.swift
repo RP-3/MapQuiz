@@ -13,21 +13,15 @@ class TopScoresViewController: CoreDataTableViewController {
     
     // this controller is to show the top 3 scores for each continent
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //make a button and place at top of the view
-        let button = UIButton(frame: CGRectMake(20, 120, 100, 100))
-        button.titleLabel?.text = "Done"
-        self.view.insertSubview(button, aboveSubview: self.tableView)
-        
         //dont let the top bar be over the tableview
-        self.tableView.contentInset = UIEdgeInsetsMake(64.0, 0.0, 0.0, 0.0);
-
-        navigationItem.setHidesBackButton(true, animated:true)
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
-        
-        title = "Top Challenge Scores"
+        self.tableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
+        doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 20)!], forState: .Normal)
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
@@ -85,8 +79,9 @@ class TopScoresViewController: CoreDataTableViewController {
         return time + secs
     }
     
+
     @IBAction func done(sender: AnyObject) {
-        navigationController?.popToRootViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
