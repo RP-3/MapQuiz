@@ -10,6 +10,7 @@ Installation:
 
 Fork the repo to your account
 
+`pod install`
 `git clone git@github.com:muddybarefeet/mapkit-overlays.git`
 
 Open the app and hit build
@@ -17,3 +18,4 @@ Open the app and hit build
 Requirements:
 * XCode 7.3.1
 * Swift 2.2
+* Cocoa Pods 1.0.1
