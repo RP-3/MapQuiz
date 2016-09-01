@@ -93,15 +93,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSm-1l-GzU">
-                                <rect key="frame" x="210" y="275" width="180" height="180"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="180" id="VnI-it-3IX"/>
-                                    <constraint firstAttribute="width" constant="180" id="YIp-WN-QGl"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Win/Loose Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89E-BM-erw">
-                                <rect key="frame" x="175" y="104" width="250" height="36"/>
+                                <rect key="frame" x="175" y="144" width="250" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="jJv-Nr-mAJ"/>
                                 </constraints>
@@ -109,13 +102,20 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aSm-1l-GzU">
+                                <rect key="frame" x="210" y="210" width="180" height="180"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="VnI-it-3IX"/>
+                                    <constraint firstAttribute="width" constant="180" id="YIp-WN-QGl"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.8982092814" green="0.83771728479999996" blue="0.77847169189999998" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="89E-BM-erw" firstAttribute="centerX" secondItem="xAr-wL-aR4" secondAttribute="centerX" id="TcR-eZ-R5b"/>
-                            <constraint firstItem="89E-BM-erw" firstAttribute="top" secondItem="DLH-8C-A0D" secondAttribute="bottom" constant="40" id="VJq-54-TQG"/>
+                            <constraint firstItem="aSm-1l-GzU" firstAttribute="centerY" secondItem="xAr-wL-aR4" secondAttribute="centerY" id="cVO-Ft-9ji"/>
                             <constraint firstItem="aSm-1l-GzU" firstAttribute="centerX" secondItem="xAr-wL-aR4" secondAttribute="centerX" id="jAz-WX-RiZ"/>
-                            <constraint firstItem="aSm-1l-GzU" firstAttribute="centerY" secondItem="xAr-wL-aR4" secondAttribute="centerY" constant="65" id="ueU-i9-SSB"/>
+                            <constraint firstItem="aSm-1l-GzU" firstAttribute="top" secondItem="89E-BM-erw" secondAttribute="bottom" constant="30" id="ynn-uN-duE"/>
                         </constraints>
                     </view>
                     <connections>
@@ -371,7 +371,13 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Continent" id="2Oj-Rt-NwJ"/>
-                    <navigationItem key="navigationItem" id="YCI-IH-Zwp"/>
+                    <navigationItem key="navigationItem" id="YCI-IH-Zwp">
+                        <barButtonItem key="rightBarButtonItem" image="star" id="633-Hb-QXH">
+                            <connections>
+                                <segue destination="aTO-0J-IZX" kind="show" id="RBY-eV-L1B"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="AfricaBtn" destination="CcY-Aa-gC0" id="vue-hi-jJl"/>
                         <outlet property="AsiaBtn" destination="IY1-cx-lB0" id="DCJ-oN-IVw"/>
@@ -380,7 +386,6 @@
                         <outlet property="OceaniaBtn" destination="TfH-V6-AJI" id="nXe-Jb-5bT"/>
                         <outlet property="SouthAmericaBtn" destination="dty-is-2aK" id="Cno-Jr-cEd"/>
                         <segue destination="X10-jV-LcE" kind="show" identifier="pickGame" id="jjm-L2-doL"/>
-                        <segue destination="aTO-0J-IZX" kind="show" identifier="topScores" id="LOp-ma-xdv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -536,7 +541,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D76-Ug-VFK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="762" y="487"/>
+            <point key="canvasLocation" x="788" y="508"/>
         </scene>
         <!--Challenge View Controller-->
         <scene sceneID="g3a-J1-8en">
@@ -646,6 +651,7 @@
         <image name="oceania" width="179" height="203"/>
         <image name="revealed" width="126" height="126"/>
         <image name="southAmerica" width="179" height="203"/>
+        <image name="star" width="23" height="23"/>
         <image name="wrong" width="126" height="126"/>
     </resources>
 </document>

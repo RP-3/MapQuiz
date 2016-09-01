@@ -25,10 +25,11 @@ class ChallengeScoreViewController: UIViewController {
             restored = false
             navigationController?.popToRootViewControllerAnimated(true)
         }
-        self.navigationItem.setHidesBackButton(true, animated:true);
+        self.navigationItem.setHidesBackButton(true, animated:true)
         
         let returnButton: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .Plain, target: self, action: #selector(self.home))
         self.navigationItem.rightBarButtonItem = returnButton
+        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
         // if the score is the same as the total then WON!
         // if no lives then dead

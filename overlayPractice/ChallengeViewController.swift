@@ -277,15 +277,9 @@ class ChallengeViewController: CoreDataController {
             currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
             //save the game on finish
-            //app.landAreas.save()
+            app.landAreas.save()
             
-            do {
-                try currentGame.managedObjectContext?.save()
-            } catch {
-                print("error saving")
-            }
-            
-            Helpers.delay(2.0) {
+            Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
             }
         }

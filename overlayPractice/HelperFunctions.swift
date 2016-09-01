@@ -124,7 +124,6 @@ class HelperFunctions {
             print("error",error)
             //silently not work as not a be all or end all for the app to work
         }
-        
         do {
             try audioPlayer = AVAudioPlayer(contentsOfURL: soundFile)
         } catch {

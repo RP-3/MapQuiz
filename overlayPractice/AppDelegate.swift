@@ -89,6 +89,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     
+    func application(application: UIApplication, willFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+        return true
+    }
+    
     // tell the app to save state on leaving the app
     func application(application: UIApplication, shouldSaveApplicationState coder: NSCoder) -> Bool {
         return true
