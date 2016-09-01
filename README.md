@@ -10,8 +10,9 @@ Want to know where all 197 countries in the world are? Use this app to learn and
 
 * Fork the repo to your account
 * `git clone git@github.com:muddybarefeet/mapkit-overlays.git`
+* `cd mapkit-overlays`
 * `pod install`
-* Open the app and hit build
+* Open the `overlayPractice.xcworkspace` file in xcode and hit build
 
 ###Requirements:
 * XCode 7.3.1
