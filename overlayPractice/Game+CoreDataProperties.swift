@@ -2,7 +2,7 @@
 //  Game+CoreDataProperties.swift
 //  
 //
-//  Created by Anna Rogers on 8/28/16.
+//  Created by Anna Rogers on 9/1/16.
 //
 //
 //  Choose "Create NSManagedObject Subclass…" from the Core Data editor menu
@@ -17,9 +17,11 @@ extension Game {
     @NSManaged var continent: String?
     @NSManaged var created_at: NSDate?
     @NSManaged var finished_at: NSDate?
+    @NSManaged var lives_left: NSNumber?
     @NSManaged var match_length: NSNumber?
     @NSManaged var mode: String?
-    @NSManaged var lives_left: NSNumber?
+    @NSManaged var game_id: String?
+    @NSManaged var rank: NSNumber?
     @NSManaged var attempt: NSSet?
 
 }

@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="AmaticSC-Bold.ttf">
@@ -412,11 +413,18 @@
                                     </constraints>
                                     <items>
                                         <navigationItem id="tGv-WK-KtM">
-                                            <barButtonItem key="rightBarButtonItem" systemItem="done" id="ZsL-vv-mBI">
-                                                <connections>
-                                                    <action selector="done:" destination="aTO-0J-IZX" id="dte-bK-fn6"/>
-                                                </connections>
-                                            </barButtonItem>
+                                            <rightBarButtonItems>
+                                                <barButtonItem systemItem="done" id="ZsL-vv-mBI">
+                                                    <connections>
+                                                        <action selector="done:" destination="aTO-0J-IZX" id="dte-bK-fn6"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem style="plain" systemItem="refresh" id="8sX-Q2-SAJ">
+                                                    <connections>
+                                                        <action selector="refresh:" destination="aTO-0J-IZX" id="Ygg-li-MoO"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                            </rightBarButtonItems>
                                         </navigationItem>
                                     </items>
                                 </navigationBar>

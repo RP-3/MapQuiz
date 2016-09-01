@@ -277,7 +277,20 @@ class ChallengeViewController: CoreDataController {
             currentGame.finished_at = NSDate()            
             timerScheduler.invalidate()
             //save the game on finish
+            
+            //take the game and send it up to the server
+            //take all games that have not been saved(due to down time this might occur)
+            //and send them up to the server
+            //will get back a rank and match_id that can be added to the game core data model
+            
             app.landAreas.save()
+            
+//            do {
+//                try fetchedResultsController?.managedObjectContext.save()
+//            } catch {
+//                print("error")
+//            }
+//            
             Helpers.delay(2.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
             }

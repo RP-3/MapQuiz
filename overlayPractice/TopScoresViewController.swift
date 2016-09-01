@@ -11,10 +11,10 @@ import CoreData
 
 class TopScoresViewController: CoreDataTableViewController {
     
-    // this controller is to show the top 3 scores for each continent
-    
+    // this controller is to show the top 3 scores for each continent as well as a users ranking against others playing
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
+    // have a dictionary of match ids and ranks so that on refresh this can be filled and the table view can update the data shown to the user
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,6 +63,13 @@ class TopScoresViewController: CoreDataTableViewController {
         }
         
         return cell  
+    }
+    
+    @IBAction func refresh(sender: AnyObject) {
+        //send a get request to the server for any new rankings if needed
+        //refresh the table view
+        //send back game ID and rank
+        //store these somewhere and then on reload get them to look at this and ckeck not need updating
     }
     
     func convertSecondsToTime (seconds: Int) -> String {

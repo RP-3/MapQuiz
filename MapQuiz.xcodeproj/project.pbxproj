@@ -46,6 +46,12 @@
 		950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C361D1D56479E009710DD /* LaunchScreen.storyboard */; };
 		950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36291D56479E009710DD /* overlayPracticeTests.swift */; };
 		950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36341D56479E009710DD /* overlayPracticeUITests.swift */; };
+		950CBC4A1D787BDE00DFA276 /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950CBC491D787BDE00DFA276 /* GameAPIClient.swift */; };
+		950CBC4B1D787BDE00DFA276 /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950CBC491D787BDE00DFA276 /* GameAPIClient.swift */; };
+		950CBC4C1D787BDE00DFA276 /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950CBC491D787BDE00DFA276 /* GameAPIClient.swift */; };
+		950CBC4F1D78827300DFA276 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950CBC4E1D78827300DFA276 /* Game+CoreDataProperties.swift */; };
+		950CBC501D78827300DFA276 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950CBC4E1D78827300DFA276 /* Game+CoreDataProperties.swift */; };
+		950CBC511D78827300DFA276 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950CBC4E1D78827300DFA276 /* Game+CoreDataProperties.swift */; };
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
@@ -64,9 +70,6 @@
 		9548F02C1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */; };
 		9548F02D1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */; };
 		9548F02E1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */; };
-		9548F03B1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */; };
-		9548F03C1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */; };
-		9548F03D1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */; };
 		9548F0431D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */; };
 		9548F0441D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */; };
 		9548F0451D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */; };
@@ -162,6 +165,9 @@
 		950C36301D56479E009710DD /* MapQuiz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapQuiz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		950CBC491D787BDE00DFA276 /* GameAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAPIClient.swift; sourceTree = "<group>"; };
+		950CBC4D1D78821800DFA276 /* Modelv5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv5.xcdatamodel; sourceTree = "<group>"; };
+		950CBC4E1D78827300DFA276 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		95100F1B1D75DA1400203EFB /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
 		9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv2.xcdatamodel; sourceTree = "<group>"; };
@@ -169,7 +175,6 @@
 		9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Attempt+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9512E7961D649DBE005D8EAD /* Attempt.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Attempt.swift; sourceTree = "<group>"; };
 		9548F02B1D73204800DD3BF2 /* TopScoresViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopScoresViewController.swift; sourceTree = "<group>"; };
-		9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Game+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		95A96ABC1D75BB6A00B3CBF4 /* CustomHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomHeaderCell.swift; sourceTree = "<group>"; };
 		95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv4.xcdatamodel; sourceTree = "<group>"; };
@@ -296,6 +301,7 @@
 				950C36201D56479E009710DD /* Info.plist */,
 				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
+				950CBC491D787BDE00DFA276 /* GameAPIClient.swift */,
 			);
 			path = overlayPractice;
 			sourceTree = "<group>";
@@ -323,7 +329,7 @@
 			children = (
 				950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */,
 				950BCE981D576AB40055E04E /* LandArea.swift */,
-				9548F03A1D7326C500DD3BF2 /* Game+CoreDataProperties.swift */,
+				950CBC4E1D78827300DFA276 /* Game+CoreDataProperties.swift */,
 				9512E7941D649DBE005D8EAD /* Game.swift */,
 				9512E7951D649DBE005D8EAD /* Attempt+CoreDataProperties.swift */,
 				9512E7961D649DBE005D8EAD /* Attempt.swift */,
@@ -641,6 +647,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				950CBC4F1D78827300DFA276 /* Game+CoreDataProperties.swift in Sources */,
+				950CBC4A1D787BDE00DFA276 /* GameAPIClient.swift in Sources */,
 				95FE019B1D7789C90054A33D /* WorldRankViewController.swift in Sources */,
 				950175ED1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
 				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
@@ -657,7 +665,6 @@
 				95A96ABD1D75BB6A00B3CBF4 /* CustomHeaderCell.swift in Sources */,
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
 				950175E91D6CF476007B78E3 /* CustomPolygon.swift in Sources */,
-				9548F03B1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
 				9548F0431D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */,
 				95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
@@ -679,8 +686,8 @@
 				950BD38B1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				9504F2501D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3861D569A8E001C5893 /* CoreDataStack.swift in Sources */,
-				9548F03C1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
 				95FD93021D5962D1007E98E1 /* MapViewController.swift in Sources */,
+				950CBC501D78827300DFA276 /* Game+CoreDataProperties.swift in Sources */,
 				95FE019C1D7789CC0054A33D /* WorldRankViewController.swift in Sources */,
 				9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */,
 				9548F02D1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
@@ -693,6 +700,7 @@
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				950CBC4B1D787BDE00DFA276 /* GameAPIClient.swift in Sources */,
 				95ACFE3C1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95100F1D1D75DA1400203EFB /* CustomTableCell.swift in Sources */,
 				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
@@ -712,8 +720,8 @@
 				950BD38C1D569B09001C5893 /* CoreDataController.swift in Sources */,
 				9504F2511D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3871D569A8E001C5893 /* CoreDataStack.swift in Sources */,
-				9548F03D1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
 				95FD93031D5962D1007E98E1 /* MapViewController.swift in Sources */,
+				950CBC511D78827300DFA276 /* Game+CoreDataProperties.swift in Sources */,
 				95FE019D1D7789CC0054A33D /* WorldRankViewController.swift in Sources */,
 				9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */,
 				9548F02E1D73204800DD3BF2 /* TopScoresViewController.swift in Sources */,
@@ -726,6 +734,7 @@
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				950CBC4C1D787BDE00DFA276 /* GameAPIClient.swift in Sources */,
 				95ACFE3D1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95100F1E1D75DA1400203EFB /* CustomTableCell.swift in Sources */,
 				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
@@ -975,12 +984,13 @@
 		950BD3731D569838001C5893 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				950CBC4D1D78821800DFA276 /* Modelv5.xcdatamodel */,
 				95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */,
 				95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */,
 				9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */,
 				950BD3741D569838001C5893 /* Model.xcdatamodel */,
 			);
-			currentVersion = 95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */;
+			currentVersion = 950CBC4D1D78821800DFA276 /* Modelv5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

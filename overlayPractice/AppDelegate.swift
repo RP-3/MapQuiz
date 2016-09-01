@@ -15,19 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    let Client = GameAPIClient.sharedInstance
+    
     let landAreas = CoreDataStack(modelName: "Model")!
     
+    // Remove previous stuff (if any) - for development
     func resetData () {
-        // Remove previous stuff (if any)
         do{
             try landAreas.dropAllData()
         }catch{
             print("Error droping all objects in DB")
         }
     }
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        //Override point for customization after application launch.
+        //add in countries data to core data if not already there
         let defaults = NSUserDefaults.standardUserDefaults()
         let isPreloaded = defaults.boolForKey("preloaded")
         if !isPreloaded {
@@ -37,6 +40,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("data is already loaded into core data")
         }
+        if defaults.objectForKey("ApplicationUniqueIdentifier") == nil {
+            //https://possiblemobile.com/2013/04/unique-identifiers/
+            //let UUID = UIDevice.currentDevice().identifierForVendor().UUIDString()
+            //defaults.setObject(UUID, forKey: "ApplicationUniqueIdentifier")
+            //send this id in the request to the server and then save the response to the userDefaults store
+            //Client.postUserId () { (data,error) in
+            //  if error == nil {
+                    //print("error", error)
+                //} else {print("yay!")}
+            //
+            //}
+        }
+        
         landAreas.autoSave(60)
         return true
     }
