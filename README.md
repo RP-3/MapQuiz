@@ -1,5 +1,9 @@
 #MapQuiz
 
+[](./screenshots/home.png)
+[](./screenshots/practice.png)
+[](./screenshots/challenge.png)
+
 Learn all 197 countries in the world! Use this app to learn and test your skills.
 
 ###What is included:
