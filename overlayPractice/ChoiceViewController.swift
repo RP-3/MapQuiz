@@ -42,7 +42,7 @@ class ChoiceViewController: UIViewController {
         5: "OC",
         6: "EU"
     ]
-    
+        
     var continentChoice: String = ""
     
     func topScores () {
@@ -88,3 +88,4 @@ class ChoiceViewController: UIViewController {
 
 
 }
+

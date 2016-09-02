@@ -48,5 +48,5 @@ class ScoreViewController: UIViewController {
     override func decodeRestorableStateWithCoder(coder: NSCoder) {
         restored = true
     }
-
+    
 }
