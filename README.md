@@ -1,6 +1,6 @@
 #MapQuiz
 
-![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/home.png?raw=true)
+![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/home.png?raw=true|width=200)
 ![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/practice.png?raw=true)
 ![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/challenge.png?raw=true)
 
