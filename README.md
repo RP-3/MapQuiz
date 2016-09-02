@@ -1,8 +1,8 @@
 #MapQuiz
 
-[](/screenshots/home.png?raw=true "Pick a continent")
-[](/screenshots/practice.png?raw=true "Practice Mode")
-[](/screenshots/challenge.png?raw=true "Challenge Mode")
+[](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/home.png?raw=true "Pick a continent")
+[](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/practice.png?raw=true "Practice Mode")
+[](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/challenge.png?raw=true "Challenge Mode")
 
 Learn all 197 countries in the world! Use this app to learn and test your skills.
 
