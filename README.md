@@ -1,8 +1,8 @@
 #MapQuiz
 
-[](./screenshots/home.png)
-[](./screenshots/practice.png)
-[](./screenshots/challenge.png)
+[](/screenshots/home.png?raw=true "Pick a continent")
+[](/screenshots/practice.png?raw=true "Practice Mode")
+[](/screenshots/challenge.png?raw=true "Challenge Mode")
 
 Learn all 197 countries in the world! Use this app to learn and test your skills.
 
