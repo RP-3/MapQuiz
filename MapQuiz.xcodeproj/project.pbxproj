@@ -24,6 +24,9 @@
 		9504F24F1D67BDB8009F8C24 /* ChallengeScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */; };
 		9504F2501D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */; };
 		9504F2511D67BDEB009F8C24 /* ChallengeScoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */; };
+		9509F39A1D79028000E9144F /* NavigationContollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509F3991D79028000E9144F /* NavigationContollerExtension.swift */; };
+		9509F39B1D79028500E9144F /* NavigationContollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509F3991D79028000E9144F /* NavigationContollerExtension.swift */; };
+		9509F39C1D79028500E9144F /* NavigationContollerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9509F3991D79028000E9144F /* NavigationContollerExtension.swift */; };
 		950BCE991D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
 		950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
 		950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */; };
@@ -139,6 +142,7 @@
 		950175F01D6D290C007B78E3 /* countriesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countriesData.json; sourceTree = "<group>"; };
 		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreViewController.swift; sourceTree = "<group>"; };
+		9509F3991D79028000E9144F /* NavigationContollerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContollerExtension.swift; sourceTree = "<group>"; };
 		950BCE971D576AB40055E04E /* LandArea+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LandArea+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		950BCE981D576AB40055E04E /* LandArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LandArea.swift; sourceTree = "<group>"; };
 		950BD3741D569838001C5893 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 				9548F0421D732E3700DD3BF2 /* CoreDataTableViewController.swift */,
 				95A96ABC1D75BB6A00B3CBF4 /* CustomHeaderCell.swift */,
 				95100F1B1D75DA1400203EFB /* CustomTableCell.swift */,
+				9509F3991D79028000E9144F /* NavigationContollerExtension.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -419,7 +424,7 @@
 				TargetAttributes = {
 					950C36101D56479E009710DD = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XZGNRQX4CK;
+						DevelopmentTeam = JN2ENE2DRJ;
 					};
 					950C36241D56479E009710DD = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -521,7 +526,7 @@
 		};
 		390915ED4F87BBAD7A585BC0 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			files = (
 			);
 			inputPaths = (
@@ -648,6 +653,7 @@
 				950D9AA51D565DFA00159227 /* Country.swift in Sources */,
 				950175E91D6CF476007B78E3 /* CustomPolygon.swift in Sources */,
 				9548F03B1D7326C500DD3BF2 /* Game+CoreDataProperties.swift in Sources */,
+				9509F39A1D79028000E9144F /* NavigationContollerExtension.swift in Sources */,
 				9548F0431D732E3700DD3BF2 /* CoreDataTableViewController.swift in Sources */,
 				95B7BF541D5F585B004B1760 /* ScoreViewController.swift in Sources */,
 				950C36151D56479E009710DD /* AppDelegate.swift in Sources */,
@@ -680,6 +686,7 @@
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
 				9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */,
 				950BD3761D569838001C5893 /* Model.xcdatamodeld in Sources */,
+				9509F39B1D79028500E9144F /* NavigationContollerExtension.swift in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				95ACFE3C1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
@@ -712,6 +719,7 @@
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
 				9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */,
 				950BD3771D569838001C5893 /* Model.xcdatamodeld in Sources */,
+				9509F39C1D79028500E9144F /* NavigationContollerExtension.swift in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
 				95ACFE3D1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
@@ -798,6 +806,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -837,6 +846,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -850,9 +860,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = overlayPractice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPractice";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anna-rogers.overlayPractice";
 				PRODUCT_NAME = MapQuiz;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "50640c2f-71a7-4c44-8e99-8b05a7868b6b";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -864,9 +875,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = overlayPractice/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "anna-rogers.overlayPractice";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anna-rogers.overlayPractice";
 				PRODUCT_NAME = MapQuiz;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "50640c2f-71a7-4c44-8e99-8b05a7868b6b";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
