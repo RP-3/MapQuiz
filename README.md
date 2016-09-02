@@ -1,8 +1,8 @@
 #MapQuiz
 
-![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/home.png?raw=true | width=100)
-![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/practice.png?raw=true | width=100)
-![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/challenge.png?raw=true | width=100)
+![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/home.png?raw=true){: width=50px}
+![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/practice.png?raw=true | width=50)
+![](https://raw.github.com/muddybarefeet/mapkit-overlays/master/screenshots/challenge.png?raw=true | width=50)
 
 Learn all 197 countries in the world! Use this app to learn and test your skills.
 
