@@ -18,6 +18,9 @@
 		950175F11D6D290C007B78E3 /* countriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175F01D6D290C007B78E3 /* countriesData.json */; };
 		950175F21D6D290C007B78E3 /* countriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175F01D6D290C007B78E3 /* countriesData.json */; };
 		950175F31D6D290C007B78E3 /* countriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175F01D6D290C007B78E3 /* countriesData.json */; };
+		9504DED21D7B7D0200C68FAE /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */; };
+		9504DED31D7B7D0200C68FAE /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */; };
+		9504DED41D7B7D0200C68FAE /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */; };
 		9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
@@ -140,6 +143,7 @@
 		950175E81D6CF476007B78E3 /* CustomPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPolygon.swift; sourceTree = "<group>"; };
 		950175EC1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseQuizModeViewController.swift; sourceTree = "<group>"; };
 		950175F01D6D290C007B78E3 /* countriesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countriesData.json; sourceTree = "<group>"; };
+		9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAPIClient.swift; sourceTree = "<group>"; };
 		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreViewController.swift; sourceTree = "<group>"; };
 		9509F3991D79028000E9144F /* NavigationContollerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContollerExtension.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 				950C36201D56479E009710DD /* Info.plist */,
 				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
+				9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */,
 			);
 			path = overlayPractice;
 			sourceTree = "<group>";
@@ -637,6 +642,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9504DED21D7B7D0200C68FAE /* GameAPIClient.swift in Sources */,
 				950175ED1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
 				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
 				95ACFE3F1D63629B000E0E23 /* MapViewDelegate.swift in Sources */,
@@ -689,6 +695,7 @@
 				9509F39B1D79028500E9144F /* NavigationContollerExtension.swift in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9504DED31D7B7D0200C68FAE /* GameAPIClient.swift in Sources */,
 				95ACFE3C1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95100F1D1D75DA1400203EFB /* CustomTableCell.swift in Sources */,
 				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
@@ -722,6 +729,7 @@
 				9509F39C1D79028500E9144F /* NavigationContollerExtension.swift in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9504DED41D7B7D0200C68FAE /* GameAPIClient.swift in Sources */,
 				95ACFE3D1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95100F1E1D75DA1400203EFB /* CustomTableCell.swift in Sources */,
 				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
