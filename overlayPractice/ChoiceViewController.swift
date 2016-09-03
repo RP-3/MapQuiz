@@ -23,7 +23,9 @@ class ChoiceViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 28)!]
-        self.title = "Pick a continent"
+        title = "Pick a continent"
+//        navBar.setTitleVerticalPositionAdjustment(CGFloat(7), forBarMetrics: UIBarMetrics.Default)
+
         
         NorthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit
         SouthAmericaBtn.imageView?.contentMode = UIViewContentMode.ScaleAspectFit

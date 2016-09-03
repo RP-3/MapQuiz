@@ -37,6 +37,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("data is already loaded into core data")
         }
+        if defaults.objectForKey("ApplicationUniqueIdentifier") == nil {
+            //https://possiblemobile.com/2013/04/unique-identifiers/
+            //let UUID = UIDevice.currentDevice().identifierForVendor().UUIDString()
+            //defaults.setObject(UUID, forKey: "ApplicationUniqueIdentifier")
+            //send this id in the request to the server and then save the response to the userDefaults store
+            //Client.postUserId () { (data,error) in
+            //  if error == nil {
+            //print("error", error)
+            //} else {print("yay!")}
+            //
+            //}
+        }
         landAreas.autoSave(60)
         return true
     }
