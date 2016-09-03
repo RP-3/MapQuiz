@@ -23,27 +23,30 @@ class GameAPIClient {
         sendRequest(request) { (data, response, error) in
             if error == nil {
                 print("no error", data)
-//                guard let data = data!["contents"]! else {
-//                    completionHandlerForQuote(data: nil, error: "Not have content key on response")
-//                    return
-//                }
-//                completionHandlerForQuote(data: quoteObj, error: nil)
+                if data!.count == 2 {
+                    if let dataReturned = data!["user_secret"]  {
+                        completionHandlerUserId(data: dataReturned, error: nil)
+                    } else {
+                        completionHandlerUserId(data: nil, error: "The data returned did not contain the correct information")
+                    }
+                } else {
+                    completionHandlerUserId(data: nil, error: "Wrong data returned")
+                }
             } else {
                 print("bad request", error)
-                completionHandlerUserId(data: nil, error: "No user data")
+                completionHandlerUserId(data: nil, error: error)
             }
         }
     }
     
 //    func postNewGame (game:Dictionary, user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
-//        print("sending request")
 //        let request = NSMutableURLRequest(URL: NSURL(string: "/games")!)
 //        let body = [
 //            "game" : game,
 //            "user_id": user_id,
 //            "user_secret": user_secret
 //        ]
-//        request.HTTPMethod = "POST"
+//        let request = makeRequest("http://192.168.1.65:5000", method: "POST", jsonBody: body)
 //        //send back rank and game id to add to models
 //        sendRequest(request) { (data, response, error) in
 //            if error == nil {
@@ -57,13 +60,12 @@ class GameAPIClient {
 //    }
     
     func getLatestRanking (user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
-        //PUT
-        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
+//        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
         let body = [
             "user_id": user_id,
             "user_secret": user_secret
         ]
-        request.HTTPMethod = "PUT"
+        let request = makeRequest("http://192.168.1.65:5000", method: "PUT", jsonBody: body)
         //updated games returned - update core data
         sendRequest(request) { (data, response, error) in
             if error == nil {
