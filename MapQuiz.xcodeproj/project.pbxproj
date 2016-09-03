@@ -144,6 +144,7 @@
 		950175EC1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseQuizModeViewController.swift; sourceTree = "<group>"; };
 		950175F01D6D290C007B78E3 /* countriesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countriesData.json; sourceTree = "<group>"; };
 		9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAPIClient.swift; sourceTree = "<group>"; };
+		9504DED51D7B800500C68FAE /* Modelv5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv5.xcdatamodel; sourceTree = "<group>"; };
 		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreViewController.swift; sourceTree = "<group>"; };
 		9509F3991D79028000E9144F /* NavigationContollerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContollerExtension.swift; sourceTree = "<group>"; };
@@ -985,12 +986,13 @@
 		950BD3731D569838001C5893 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9504DED51D7B800500C68FAE /* Modelv5.xcdatamodel */,
 				95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */,
 				95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */,
 				9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */,
 				950BD3741D569838001C5893 /* Model.xcdatamodel */,
 			);
-			currentVersion = 95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */;
+			currentVersion = 9504DED51D7B800500C68FAE /* Modelv5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
