@@ -15,6 +15,8 @@ class TopScoresViewController: CoreDataTableViewController {
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
+    let Client = GameAPIClient.sharedInstance
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

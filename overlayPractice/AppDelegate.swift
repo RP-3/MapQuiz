@@ -14,6 +14,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let Client = GameAPIClient.sharedInstance
     
     let landAreas = CoreDataStack(modelName: "Model")!
     

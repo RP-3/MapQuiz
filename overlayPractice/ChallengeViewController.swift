@@ -20,6 +20,7 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var lifeTwo: UIImageView!
     @IBOutlet weak var lifeOne: UIImageView!
     
+    let Client = GameAPIClient.sharedInstance
     let Helpers = HelperFunctions.sharedInstance
     
     var currentGame: Game!
