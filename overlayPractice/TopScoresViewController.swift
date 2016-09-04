@@ -16,10 +16,13 @@ class TopScoresViewController: CoreDataTableViewController {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     let Client = GameAPIClient.sharedInstance
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        refreshRanks()
+        self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -60,7 +63,7 @@ class TopScoresViewController: CoreDataTableViewController {
             cell.liftThree.alpha = 0.5
             cell.lifeTwo.alpha = 0.5
         }
-        
+        cell.rankLabel.text = "rank: \(String(game.rank!))"
         return cell  
     }
     
@@ -79,12 +82,52 @@ class TopScoresViewController: CoreDataTableViewController {
     }
     
     @IBAction func refresh(sender: AnyObject) {
+        refreshRanks()
+    }
+    
+    func refreshRanks () {
         Client.getLatestRanking() { (data,error) in
             if error == nil {
                 print("no error",data)
-                //expect an array of game ids and ranks
+                //returns all game ids and their ranks
+//                let newData = Array(arrayLiteral:data)
+                //make array of data into hash of data
+                
+                var matches:[String:AnyObject] = [:]
+                
+                for datum in data! {
+                    matches[String(datum!["identifier"])] = datum!["identifier"]
+                    matches[String(datum!["rank"])] = datum!["rank"]
+                }
+                
                 //get all games from core data and update the ranks for all of them where the id matches
-                //reload the tables data IN THE MAIN THREAD!!
+                let moc = self.app.landAreas.context
+                let fetchRequest = NSFetchRequest(entityName: "Game")
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+                let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
+                let modePredicate = NSPredicate(format: "mode = %@", "challenge")
+                let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+                fetchRequest.predicate = andPredicate
+                
+                var entities: [Game]
+                do {
+                    entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+                } catch {
+                    fatalError("Failed to fetch employees: \(error)")
+                }
+                
+                //loop through the entities and update
+                for entity in entities {
+                    print("ENTITY pre",entity)
+                    if (matches[entity.identifier!] != nil) {
+                        entity.rank = Int(matches["identifier"] as! String)
+                    }
+                    print("ENTITY post",entity)
+                }
+
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.tableView.reloadData()
+                }
             }
         }
     }

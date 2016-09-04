@@ -57,7 +57,7 @@ class GameAPIClient {
         }
     }
     
-    func getLatestRanking (completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
+    func getLatestRanking (completionHandlerForRank: (data: AnyObject?, error: String?) -> Void) {
         let body = [
             "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
             "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
@@ -68,9 +68,10 @@ class GameAPIClient {
             if error == nil {
                 print("not error", data)
                 //expect the game_ids and the updated ranks
+                completionHandlerForRank(data: data, error: nil)
             } else {
                 print("bad request", error)
-                completionHandlerForQuote(data: nil, error: "Count not get latest ranking")
+                completionHandlerForRank(data: nil, error: "Count not get latest ranking")
             }
         }
     }

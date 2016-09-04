@@ -19,6 +19,7 @@ class MapViewController: CoreDataController {
     @IBOutlet weak var showAllButton: UIBarButtonItem!
     
     let Helpers = HelperFunctions.sharedInstance
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var currentGame: Game!
     var restoreOccur: Bool?
@@ -29,8 +30,6 @@ class MapViewController: CoreDataController {
     var mapDelegate = MapViewDelegate()
     //entities from core data for the current continent
     var entities: [LandArea]!
-    
-    let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
