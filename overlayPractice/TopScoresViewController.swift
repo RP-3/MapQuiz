@@ -83,23 +83,23 @@ class TopScoresViewController: CoreDataTableViewController {
     
     @IBAction func refresh(sender: AnyObject) {
         refreshRanks()
+        print("refresh")
     }
     
     func refreshRanks () {
         Client.getLatestRanking() { (data,error) in
             if error == nil {
-                print("no error",data)
                 //returns all game ids and their ranks
-//                let newData = Array(arrayLiteral:data)
                 //make array of data into hash of data
                 
                 var matches:[String:AnyObject] = [:]
                 
-                for datum in data! {
-                    matches[String(datum!["identifier"])] = datum!["identifier"]
-                    matches[String(datum!["rank"])] = datum!["rank"]
+                for i in 0..<data!.count {
+                    let key = data![i]["identifier"]!
+                    matches[String(key)] = data![i]["rank"]
                 }
                 
+                print("matches",matches)
                 //get all games from core data and update the ranks for all of them where the id matches
                 let moc = self.app.landAreas.context
                 let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -118,14 +118,15 @@ class TopScoresViewController: CoreDataTableViewController {
                 
                 //loop through the entities and update
                 for entity in entities {
-                    print("ENTITY pre",entity)
-                    if (matches[entity.identifier!] != nil) {
-                        entity.rank = Int(matches["identifier"] as! String)
+                    if entity.identifier != nil {
+                        if (matches[entity.identifier!] != nil) {
+                            entity.rank = Int(matches["identifier"] as! String)
+                        }
                     }
-                    print("ENTITY post",entity)
                 }
 
                 NSOperationQueue.mainQueue().addOperationWithBlock {
+                    print("reload data")
                     self.tableView.reloadData()
                 }
             }
