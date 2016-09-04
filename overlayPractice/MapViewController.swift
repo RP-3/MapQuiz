@@ -226,9 +226,8 @@ class MapViewController: CoreDataController {
             //nothing left to play - all countries have been guessed
             // save finish date to core data
             currentGame.finished_at = NSDate()
-            
-            //Helpers.sendGameToClient(currentGame)
-                        
+            //send current finished game to the client file to send to server
+            Helpers.sendGameToClient(currentGame)
             Helpers.delay(2.0) {
                 self.performSegueWithIdentifier("showScore", sender: nil)
             }

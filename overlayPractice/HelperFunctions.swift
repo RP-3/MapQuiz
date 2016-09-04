@@ -194,22 +194,23 @@ class HelperFunctions {
         ]
         
         Client.postNewGame(curGame) { (data, error) in
-
-            print("yay in helper",data)
-            let moc = self.app.landAreas.context
-            let fetchRequest = NSFetchRequest(entityName: "Game")
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
-            
-            var entities: [Game]
-            do {
-                entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
-            } catch {
-                fatalError("Failed to fetch data: \(error)")
+            if error == nil {
+                let moc = self.app.landAreas.context
+                let fetchRequest = NSFetchRequest(entityName: "Game")
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+                var entities: [Game]
+                do {
+                    entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+                } catch {
+                    fatalError("Failed to fetch data: \(error)")
+                }
+                (entities[0] as! Game).rank = Int(data!["rank"]! as! String)!
+                (entities[0] as! Game).identifier = data!["identifier"]! as! String
+                self.app.landAreas.save()
+            } else {
+                print("error",error)
+                //alert the error??
             }
-            
-            (entities[0] as! Game).rank = Int(data!["rank"]! as! String)!
-            (entities[0] as! Game).identifier = data!["identifier"]! as! String
-            print("---->",entities[0])
         }
     }
     

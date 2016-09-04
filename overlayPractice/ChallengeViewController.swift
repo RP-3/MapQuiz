@@ -278,7 +278,7 @@ class ChallengeViewController: CoreDataController {
             timerScheduler.invalidate()
             //save the game on finish
             app.landAreas.save()
-            //save the game on finish
+            //send current finished game to the client file to send to server
             Helpers.sendGameToClient(currentGame)
             Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
