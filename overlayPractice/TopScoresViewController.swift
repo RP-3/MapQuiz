@@ -78,6 +78,16 @@ class TopScoresViewController: CoreDataTableViewController {
         return time + secs
     }
     
+    @IBAction func refresh(sender: AnyObject) {
+        Client.getLatestRanking() { (data,error) in
+            if error == nil {
+                print("no error",data)
+                //expect an array of game ids and ranks
+                //get all games from core data and update the ranks for all of them where the id matches
+                //reload the tables data IN THE MAIN THREAD!!
+            }
+        }
+    }
     
     @IBAction func done(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)

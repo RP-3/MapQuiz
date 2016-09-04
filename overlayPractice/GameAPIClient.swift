@@ -59,23 +59,24 @@ class GameAPIClient {
         }
     }
     
-//    func getLatestRanking (user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
-////        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
-//        let body = [
-//            "user_id": user_id,
-//            "user_secret": user_secret
-//        ]
-//        let request = makeRequest("http://192.168.1.65:5000", method: "PUT", jsonBody: body)
-//        //updated games returned - update core data
-//        sendRequest(request) { (data, response, error) in
-//            if error == nil {
-//                print("not error", data)
-//            } else {
-//                print("bad request", error)
-//                completionHandlerForQuote(data: nil, error: "Count not get latest ranking")
-//            }
-//        }
-//    }
+    func getLatestRanking (user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
+//        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
+        let body = [
+            "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
+            "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
+        ]
+        let request = makeRequest("http://192.168.1.65:5000", method: "PUT", jsonBody: body)
+        //updated games returned - update core data
+        sendRequest(request) { (data, response, error) in
+            if error == nil {
+                print("not error", data)
+                //expect the game_ids and the updated ranks
+            } else {
+                print("bad request", error)
+                completionHandlerForQuote(data: nil, error: "Count not get latest ranking")
+            }
+        }
+    }
     
     func makeRequest (url: String, method: String, jsonBody: [String : AnyObject]) -> NSURLRequest  {
         //format the url

@@ -413,6 +413,11 @@
                                     </constraints>
                                     <items>
                                         <navigationItem id="1Y9-Eq-dUl">
+                                            <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="rLG-lK-dvZ">
+                                                <connections>
+                                                    <action selector="refresh:" destination="aTO-0J-IZX" id="YBI-xJ-OL4"/>
+                                                </connections>
+                                            </barButtonItem>
                                             <rightBarButtonItems>
                                                 <barButtonItem title="Done" id="U8R-d0-2cb">
                                                     <connections>
