@@ -13,6 +13,8 @@ import AVFoundation
 
 class HelperFunctions {
     
+    let Client = GameAPIClient.sharedInstance
+    
     var continent:String!
     var totalCountries: Int = 0
     var game = [
@@ -164,6 +166,41 @@ class HelperFunctions {
         createdPolygonOverlays.removeAll()
         coordinates.removeAll()
     }
-
+    
+    func sendGameToClient (currentGame:Game) {
+        
+        var attempts:[[String:AnyObject]] = []
+        print("in helpers sned")
+        for a in currentGame.attempt! {
+            let attempt = a as! Attempt
+            let newAttempt:[String:AnyObject] = [
+                "countryGuessed": attempt.countryGuessed!,
+                "countryToFind": attempt.countryToFind!,
+                "revealed":attempt.revealed!,
+                "created_at":String(attempt.created_at!)
+            ]
+            attempts.append(newAttempt)
+        }
+        
+        let game:[String:AnyObject] = [
+            "continent":currentGame.continent!,
+            "created_at":String(currentGame.created_at!),
+            "finished_at":String(currentGame.finished_at!),
+            "lives_left":currentGame.lives_left!,
+            "match_length":currentGame.match_length!,
+            "mode":currentGame.mode!,
+            "attempts":attempts
+        ]
+        
+        Client.postNewGame(game) { (data, error) in
+            if error == nil {
+                print("yay",data)
+                //save game_id to game and the rank
+                
+            } else {
+                print("error",error)
+            }
+        }
+    }
     
 }

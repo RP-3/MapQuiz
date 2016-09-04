@@ -224,12 +224,14 @@ class MapViewController: CoreDataController {
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //nothing left to play - all countries have been guessed
-            //push to score screen
+            // save finish date to core data
+            currentGame.finished_at = NSDate()
+            
+            Helpers.sendGameToClient(currentGame)
+                        
             Helpers.delay(2.0) {
                 self.performSegueWithIdentifier("showScore", sender: nil)
             }
-            // save finish date to core data
-            currentGame.finished_at = NSDate()
         }
         self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
     }

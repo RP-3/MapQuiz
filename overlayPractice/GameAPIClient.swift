@@ -39,7 +39,7 @@ class GameAPIClient {
         }
     }
     
-    func postNewGame (game:[String:AnyObject], completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
+    func postNewGame (game:[String:AnyObject], completionHandlerForGame: (data: AnyObject?, error: String?) -> Void) {
 //        let request = NSMutableURLRequest(URL: NSURL(string: "/games")!)
         let body:[String : AnyObject] = [
             "game" : game,
@@ -51,10 +51,10 @@ class GameAPIClient {
         sendRequest(request) { (data, response, error) in
             if error == nil {
                 print("not error", data)
-                //completionHandlerForQuote(data: quoteObj, error: nil)
+                
+                //completionHandlerForGame(data: data, error: nil)
             } else {
-                print("bad request", error)
-                completionHandlerForQuote(data: nil, error: "Game data not posted")
+                completionHandlerForGame(data: nil, error: error)
             }
         }
     }
