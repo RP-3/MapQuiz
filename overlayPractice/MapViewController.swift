@@ -227,7 +227,7 @@ class MapViewController: CoreDataController {
             // save finish date to core data
             currentGame.finished_at = NSDate()
             
-            Helpers.sendGameToClient(currentGame)
+            //Helpers.sendGameToClient(currentGame)
                         
             Helpers.delay(2.0) {
                 self.performSegueWithIdentifier("showScore", sender: nil)

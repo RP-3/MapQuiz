@@ -279,14 +279,7 @@ class ChallengeViewController: CoreDataController {
             //save the game on finish
             app.landAreas.save()
             //save the game on finish
-            Helpers.sendGameToClient(currentGame) //{ (data,error) in
-//                if error == nil {
-//                    print("data",data)
-//                    //now add the rank and match_id to the game and save
-//                } else {
-//                    print("error",error)
-//                }
-//            }
+            Helpers.sendGameToClient(currentGame)
             Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
             }
@@ -368,7 +361,7 @@ class ChallengeViewController: CoreDataController {
         do {
             entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
         } catch {
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch data: \(error)")
         }
         
         // set the current game if needed else return to main menu

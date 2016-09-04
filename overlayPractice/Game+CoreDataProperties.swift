@@ -13,13 +13,16 @@ import Foundation
 import CoreData
 
 extension Game {
-
+    
     @NSManaged var continent: String?
     @NSManaged var created_at: NSDate?
     @NSManaged var finished_at: NSDate?
+    @NSManaged var identifier: String?
+    @NSManaged var lives_left: NSNumber?
     @NSManaged var match_length: NSNumber?
     @NSManaged var mode: String?
-    @NSManaged var lives_left: NSNumber?
+    @NSManaged var rank: NSNumber?
     @NSManaged var attempt: NSSet?
-
+    
 }
+

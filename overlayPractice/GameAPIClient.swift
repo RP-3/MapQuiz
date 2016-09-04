@@ -17,8 +17,7 @@ class GameAPIClient {
         let body:[String : AnyObject] = [
             "user_id" : user_id
         ]
-        let request = makeRequest("http://192.168.1.65:5000", method: "POST", jsonBody: body)
-        
+        let request = makeRequest("http://localhost:5000/api/users", method: "POST", jsonBody: body)
         //send back user_secret to include in all future requests
         sendRequest(request) { (data, response, error) in
             if error == nil {
@@ -40,32 +39,30 @@ class GameAPIClient {
     }
     
     func postNewGame (game:[String:AnyObject], completionHandlerForGame: (data: AnyObject?, error: String?) -> Void) {
-//        let request = NSMutableURLRequest(URL: NSURL(string: "/games")!)
         let body:[String : AnyObject] = [
             "game" : game,
             "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
             "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
         ]
-        let request = makeRequest("http://192.168.1.65:5000", method: "POST", jsonBody: body)
+        let request = makeRequest("http://localhost:5000/api/users/games", method: "POST", jsonBody: body)
         //send back rank and game id to add to models
         sendRequest(request) { (data, response, error) in
             if error == nil {
-                print("not error", data)
-                
-                //completionHandlerForGame(data: data, error: nil)
+                if data!.count == 2  {
+                    completionHandlerForGame(data: data, error: nil)
+                }
             } else {
                 completionHandlerForGame(data: nil, error: error)
             }
         }
     }
     
-    func getLatestRanking (user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
-//        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
+    func getLatestRanking (completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
         let body = [
             "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
             "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
         ]
-        let request = makeRequest("http://192.168.1.65:5000", method: "PUT", jsonBody: body)
+        let request = makeRequest("http://localhost:5000/api/users/games", method: "PUT", jsonBody: body)
         //updated games returned - update core data
         sendRequest(request) { (data, response, error) in
             if error == nil {
@@ -107,7 +104,7 @@ class GameAPIClient {
                 let statusCode = (response as? NSHTTPURLResponse)?.statusCode
                 print("Status code", statusCode)
                 if statusCode >= 400 && statusCode <= 499 {
-                    completionHandlerForRequest(data: nil, response: nil, error: "There was an error in the inforamtion sent to the server. Please check your credentials.")
+                    completionHandlerForRequest(data: nil, response: nil, error: "There was an error in the inforamtion sent to the server.")
                     return
                 }
                 if statusCode >= 500 && statusCode <= 599 {

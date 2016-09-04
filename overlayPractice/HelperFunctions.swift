@@ -9,12 +9,13 @@
 import UIKit
 import MapKit
 import AVFoundation
-
+import CoreData
 
 class HelperFunctions {
     
     let Client = GameAPIClient.sharedInstance
-    
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+
     var continent:String!
     var totalCountries: Int = 0
     var game = [
@@ -182,7 +183,7 @@ class HelperFunctions {
             attempts.append(newAttempt)
         }
         
-        let game:[String:AnyObject] = [
+        let curGame:[String:AnyObject] = [
             "continent":currentGame.continent!,
             "created_at":String(currentGame.created_at!),
             "finished_at":String(currentGame.finished_at!),
@@ -192,14 +193,23 @@ class HelperFunctions {
             "attempts":attempts
         ]
         
-        Client.postNewGame(game) { (data, error) in
-            if error == nil {
-                print("yay",data)
-                //save game_id to game and the rank
-                
-            } else {
-                print("error",error)
+        Client.postNewGame(curGame) { (data, error) in
+
+            print("yay in helper",data)
+            let moc = self.app.landAreas.context
+            let fetchRequest = NSFetchRequest(entityName: "Game")
+            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+            
+            var entities: [Game]
+            do {
+                entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+            } catch {
+                fatalError("Failed to fetch data: \(error)")
             }
+            
+            (entities[0] as! Game).rank = Int(data!["rank"]! as! String)!
+            (entities[0] as! Game).identifier = data!["identifier"]! as! String
+            print("---->",entities[0])
         }
     }
     

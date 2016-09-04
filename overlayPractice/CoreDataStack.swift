@@ -151,6 +151,7 @@ extension CoreDataStack {
     func save() {
         context.performBlockAndWait(){
             if self.context.hasChanges{
+                print("saving changes")
                 do {
                     try self.context.save()
                 } catch {

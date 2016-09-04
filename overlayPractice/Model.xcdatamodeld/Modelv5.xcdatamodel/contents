@@ -11,7 +11,7 @@
         <attribute name="continent" attributeType="String" syncable="YES"/>
         <attribute name="created_at" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="finished_at" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="game_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="lives_left" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="match_length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="mode" attributeType="String" syncable="YES"/>
