@@ -281,10 +281,41 @@ class ChallengeViewController: CoreDataController {
             app.landAreas.save()
             //save the game on finish
             
-            //take the game and send it up to the server
-            //take all games that have not been saved(due to down time this might occur)
-            //and send them up to the server
-            //will get back a rank and match_id that can be added to the game core data model
+            var attempts:[[String:AnyObject]] = []
+            
+            print(currentGame.attempt?.count)
+            var count = 0
+            for a in currentGame.attempt! {
+                let attempt = a as! Attempt
+                count+=1
+                print("count",count)
+                let newAttempt:[String:AnyObject] = [
+                    "countryGuessed": attempt.countryGuessed!,
+                    "countryToFind": attempt.countryToFind!,
+                    "revealed":attempt.revealed!,
+                    "created_at":String(attempt.created_at!)
+                ]
+                attempts.append(newAttempt)
+            }
+            
+            //Client.postNewGame(
+            let game:[String:AnyObject] = [
+                "continent":currentGame.continent!,
+                "created_at":String(currentGame.created_at!),
+                "finished_at":String(currentGame.finished_at!),
+                "lives_left":currentGame.lives_left!,
+                "match_length":currentGame.match_length!,
+                "mode":currentGame.mode!,
+                "attempts":attempts
+            ]
+            
+            Client.postNewGame(game) { (data, error) in
+                if error == nil {
+                    print("yay",data)
+                } else {
+                    print("error",error)
+                }
+            }
             
             Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)

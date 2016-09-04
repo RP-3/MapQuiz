@@ -14,7 +14,7 @@ class GameAPIClient {
     private init() {}
     
     func postUserId (user_id:String, completionHandlerUserId: (data: AnyObject?, error: String?) -> Void) {
-        let body = [
+        let body:[String : AnyObject] = [
             "user_id" : user_id
         ]
         let request = makeRequest("http://192.168.1.65:5000", method: "POST", jsonBody: body)
@@ -39,45 +39,45 @@ class GameAPIClient {
         }
     }
     
-//    func postNewGame (game:Dictionary, user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
+    func postNewGame (game:[String:AnyObject], completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
 //        let request = NSMutableURLRequest(URL: NSURL(string: "/games")!)
-//        let body = [
-//            "game" : game,
-//            "user_id": user_id,
-//            "user_secret": user_secret
-//        ]
-//        let request = makeRequest("http://192.168.1.65:5000", method: "POST", jsonBody: body)
-//        //send back rank and game id to add to models
-//        sendRequest(request) { (data, response, error) in
-//            if error == nil {
-//                print("not error", data)
-//                //completionHandlerForQuote(data: quoteObj, error: nil)
-//            } else {
-//                print("bad request", error)
-//                completionHandlerForQuote(data: nil, error: "Game data not posted")
-//            }
-//        }
-//    }
-    
-    func getLatestRanking (user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
-//        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
-        let body = [
-            "user_id": user_id,
-            "user_secret": user_secret
+        let body:[String : AnyObject] = [
+            "game" : game,
+            "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
+            "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
         ]
-        let request = makeRequest("http://192.168.1.65:5000", method: "PUT", jsonBody: body)
-        //updated games returned - update core data
+        let request = makeRequest("http://192.168.1.65:5000", method: "POST", jsonBody: body)
+        //send back rank and game id to add to models
         sendRequest(request) { (data, response, error) in
             if error == nil {
                 print("not error", data)
+                //completionHandlerForQuote(data: quoteObj, error: nil)
             } else {
                 print("bad request", error)
-                completionHandlerForQuote(data: nil, error: "Count not get latest ranking")
+                completionHandlerForQuote(data: nil, error: "Game data not posted")
             }
         }
     }
     
-    func makeRequest (url: String, method: String, jsonBody: [String : AnyObject]?) -> NSURLRequest  {
+//    func getLatestRanking (user_id:String, user_secret:String, completionHandlerForQuote: (data: AnyObject?, error: String?) -> Void) {
+////        let request = NSMutableURLRequest(URL: NSURL(string: "/users/games")!)
+//        let body = [
+//            "user_id": user_id,
+//            "user_secret": user_secret
+//        ]
+//        let request = makeRequest("http://192.168.1.65:5000", method: "PUT", jsonBody: body)
+//        //updated games returned - update core data
+//        sendRequest(request) { (data, response, error) in
+//            if error == nil {
+//                print("not error", data)
+//            } else {
+//                print("bad request", error)
+//                completionHandlerForQuote(data: nil, error: "Count not get latest ranking")
+//            }
+//        }
+//    }
+    
+    func makeRequest (url: String, method: String, jsonBody: [String : AnyObject]) -> NSURLRequest  {
         //format the url
         let request = NSMutableURLRequest(URL: NSURL(string: url)!)
         //format headers if there are any
@@ -85,7 +85,7 @@ class GameAPIClient {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         let serealisedBody: NSData?
         do {
-            serealisedBody = try NSJSONSerialization.dataWithJSONObject(jsonBody!, options: [])
+            serealisedBody = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
         } catch {
             serealisedBody = nil
         }

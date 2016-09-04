@@ -38,17 +38,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("data is already loaded into core data")
         }
-        if defaults.objectForKey("srtfg") == nil {
+        if defaults.objectForKey("user_id") == nil {
             //https://possiblemobile.com/2013/04/unique-identifiers/
             let uniqueUserId = UIDevice.currentDevice().identifierForVendor!.UUIDString
-            
-            defaults.setObject(uniqueUserId, forKey: "srtfg")
             //send this id in the request to the server and then save the response to the userDefaults store
             print("sending")
             Client.postUserId (uniqueUserId) { (data, error) in
                 if error == nil {
                     print("yay",data)
-                    //defaults.setObject(data["user_secret"], forKey: "user_secret")
+                    defaults.setObject(data, forKey: "user_secret")
+                    defaults.setObject(uniqueUserId, forKey: "user_id")
                 } else {
                     print("error", error)
                 }
