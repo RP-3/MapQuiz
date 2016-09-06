@@ -43,6 +43,7 @@ class GameAPIClient {
             "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
             "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
         ]
+        print("body",body)
         let request = makeRequest("http://52.53.164.87/api/users/games", method: "POST", jsonBody: body)
         //send back rank and game id to add to models
         sendRequest(request) { (data, response, error) in
@@ -101,15 +102,15 @@ class GameAPIClient {
                     return
                 }
                 let statusCode = (response as? NSHTTPURLResponse)?.statusCode
-                print("Status code", statusCode)
-                if statusCode >= 400 && statusCode <= 499 {
-                    completionHandlerForRequest(data: nil, response: nil, error: "There was an error in the inforamtion sent to the server.")
-                    return
-                }
-                if statusCode >= 500 && statusCode <= 599 {
-                    completionHandlerForRequest(data: nil, response: nil, error: "This service is unavailable. Please try again later.")
-                    return
-                }
+                print("Status code", statusCode,error,data)
+//                if statusCode >= 400 && statusCode <= 499 {
+//                    completionHandlerForRequest(data: nil, response: nil, error: "There was an error in the inforamtion sent to the server.")
+//                    return
+//                }
+//                if statusCode >= 500 && statusCode <= 599 {
+//                    completionHandlerForRequest(data: nil, response: nil, error: "This service is unavailable. Please try again later.")
+//                    return
+//                }
                 guard let data = data else {
                     completionHandlerForRequest(data: nil, response: (response as! NSHTTPURLResponse), error: "No data returned from the API")
                     return
