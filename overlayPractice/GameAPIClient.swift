@@ -17,7 +17,7 @@ class GameAPIClient {
         let body:[String : AnyObject] = [
             "user_id" : user_id
         ]
-        let request = makeRequest("http://localhost:5000/api/users", method: "POST", jsonBody: body)
+        let request = makeRequest("http://52.53.164.87/api/users", method: "POST", jsonBody: body)
         //send back user_secret to include in all future requests
         sendRequest(request) { (data, response, error) in
             if error == nil {
@@ -43,7 +43,7 @@ class GameAPIClient {
             "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
             "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
         ]
-        let request = makeRequest("http://localhost:5000/api/users/games", method: "POST", jsonBody: body)
+        let request = makeRequest("http://52.53.164.87/api/users/games", method: "POST", jsonBody: body)
         //send back rank and game id to add to models
         sendRequest(request) { (data, response, error) in
             if error == nil {
@@ -61,7 +61,7 @@ class GameAPIClient {
             "user_id": NSUserDefaults.standardUserDefaults().objectForKey("user_id")!,
             "user_secret": NSUserDefaults.standardUserDefaults().objectForKey("user_secret")!
         ]
-        let request = makeRequest("http://localhost:5000/api/users/games", method: "PUT", jsonBody: body)
+        let request = makeRequest("http://52.53.164.87/api/users/games", method: "PUT", jsonBody: body)
         //updated games returned - update core data
         sendRequest(request) { (data, response, error) in
             if error == nil {
