@@ -31,7 +31,10 @@ class TopScoresViewController: CoreDataTableViewController {
         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
         fetchRequest.predicate = andPredicate
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "match_length", ascending: true)]
+        let s1 = NSSortDescriptor(key: "continent", ascending: true)
+        let s2 = NSSortDescriptor(key: "match_length", ascending: true)
+        let descriptors = [s1, s2]
+        fetchRequest.sortDescriptors = descriptors
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
         
