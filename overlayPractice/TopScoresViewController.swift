@@ -36,7 +36,8 @@ class TopScoresViewController: CoreDataTableViewController {
         // not nil match_length and mode is challenge
         let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
         let modePredicate = NSPredicate(format: "mode = %@", "challenge")
-        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+        let rankPredicate = NSPredicate(format: "rank!=0")
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate,rankPredicate])
         fetchRequest.predicate = andPredicate
         
         let s1 = NSSortDescriptor(key: "continent", ascending: true)
@@ -111,6 +112,7 @@ class TopScoresViewController: CoreDataTableViewController {
 
         Client.getLatestRanking() { (data,error) in
             if error == nil {
+                print("data",data)
                 //returns all game ids and their ranks
                 //make array of data into hash of data
                 var matches:[String:AnyObject] = [:]
@@ -144,7 +146,6 @@ class TopScoresViewController: CoreDataTableViewController {
                         }
                     }
                 }
-                
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock {
                     self.app.landAreas.save()
