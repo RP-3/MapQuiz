@@ -279,7 +279,13 @@ class ChallengeViewController: CoreDataController {
             //save the game on finish
             app.landAreas.save()
             //send current finished game to the client file to send to server
-            Helpers.sendGameToClient(currentGame)
+            if NSUserDefaults.standardUserDefaults().objectForKey("user_id") != nil {
+                if NSUserDefaults.standardUserDefaults().objectForKey("user_secret") != nil {
+                    Helpers.sendGameToClient(currentGame)
+                }
+            }
+            //if both/one not defined no alert needed - have minutly function to check and update
+            
             Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
             }

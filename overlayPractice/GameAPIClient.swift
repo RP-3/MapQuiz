@@ -94,8 +94,8 @@ class GameAPIClient {
     
     private func sendRequest (request: NSURLRequest, completionHandlerForRequest: (data: AnyObject?, response: NSHTTPURLResponse?, error: String?) -> Void) {
         
-        //if Reachability.isConnectedToNetwork() == true {
-            //print("Internet connection OK")
+        if Reachability.isConnectedToNetwork() == true {
+            print("Internet connection OK")
             let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { (data, response, error) in
                 if error != nil {
                     print("error", error)
@@ -127,10 +127,10 @@ class GameAPIClient {
                 completionHandlerForRequest(data: parsedResult, response: (response as! NSHTTPURLResponse), error: nil)
             }
             task.resume()
-//        }  else {
-//            print("No internet connection")
-//            completionHandlerForRequest(data: nil, response: nil, error: "There was no internet connection found")
-//        }
+        }  else {
+            print("No internet connection")
+            completionHandlerForRequest(data: nil, response: nil, error: "There is no interenet connection")
+        }
         
     }
 }

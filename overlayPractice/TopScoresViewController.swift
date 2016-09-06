@@ -25,6 +25,10 @@ class TopScoresViewController: CoreDataTableViewController {
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        print("hi")
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -35,13 +39,15 @@ class TopScoresViewController: CoreDataTableViewController {
         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
         fetchRequest.predicate = andPredicate
         
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "match_length", ascending: true)]
+        let s1 = NSSortDescriptor(key: "continent", ascending: true)
+        let s2 = NSSortDescriptor(key: "match_length", ascending: true)
+        let descriptors = [s1, s2]
+        fetchRequest.sortDescriptors = descriptors
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
         
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
-        
     }
 
     
@@ -81,6 +87,7 @@ class TopScoresViewController: CoreDataTableViewController {
         return time + secs
     }
     
+    
     @IBAction func refresh(sender: AnyObject) {
         refreshRanks()
         print("refresh")
@@ -96,10 +103,9 @@ class TopScoresViewController: CoreDataTableViewController {
                 
                 for i in 0..<data!.count {
                     let key = data![i]["identifier"]!
-                    matches[String(key)] = data![i]["rank"]
+                    matches[key as! String] = data![i]["rank"]
                 }
                 
-                print("matches",matches)
                 //get all games from core data and update the ranks for all of them where the id matches
                 let moc = self.app.landAreas.context
                 let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -119,13 +125,19 @@ class TopScoresViewController: CoreDataTableViewController {
                 //loop through the entities and update
                 for entity in entities {
                     if entity.identifier != nil {
+                        print("update",entity.identifier!)
                         if (matches[entity.identifier!] != nil) {
-                            entity.rank = Int(matches["identifier"] as! String)
+                            print("update",matches[entity.identifier!],entity.identifier!)
+                            entity.rank = Int(matches[entity.identifier!] as! String)!
                         }
                     }
                 }
-
+                
+                
                 NSOperationQueue.mainQueue().addOperationWithBlock {
+                    
+                    self.app.landAreas.save()
+                    
                     print("reload data")
                     self.tableView.reloadData()
                 }

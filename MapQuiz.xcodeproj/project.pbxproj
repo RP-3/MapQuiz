@@ -52,6 +52,9 @@
 		950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C361D1D56479E009710DD /* LaunchScreen.storyboard */; };
 		950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36291D56479E009710DD /* overlayPracticeTests.swift */; };
 		950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36341D56479E009710DD /* overlayPracticeUITests.swift */; };
+		950C6AAA1D7CD173006B57E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C6AA91D7CD173006B57E6 /* Reachability.swift */; };
+		950C6AAB1D7CD19A006B57E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C6AA91D7CD173006B57E6 /* Reachability.swift */; };
+		950C6AAC1D7CD19A006B57E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C6AA91D7CD173006B57E6 /* Reachability.swift */; };
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
@@ -166,6 +169,7 @@
 		950C36301D56479E009710DD /* MapQuiz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapQuiz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		950C6AA91D7CD173006B57E6 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../Reachability.swift; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		95100F1B1D75DA1400203EFB /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
 		9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv2.xcdatamodel; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 				950C36201D56479E009710DD /* Info.plist */,
 				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
+				950C6AA91D7CD173006B57E6 /* Reachability.swift */,
 				9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */,
 			);
 			path = overlayPractice;
@@ -647,6 +652,7 @@
 				950175ED1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
 				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
 				95ACFE3F1D63629B000E0E23 /* MapViewDelegate.swift in Sources */,
+				950C6AAA1D7CD173006B57E6 /* Reachability.swift in Sources */,
 				9504F24F1D67BDB8009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
@@ -689,6 +695,7 @@
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				950C6AAB1D7CD19A006B57E6 /* Reachability.swift in Sources */,
 				950175EA1D6CF492007B78E3 /* CustomPolygon.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
 				9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */,
@@ -723,6 +730,7 @@
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				950C6AAC1D7CD19A006B57E6 /* Reachability.swift in Sources */,
 				950175EB1D6CF493007B78E3 /* CustomPolygon.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
 				9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */,
