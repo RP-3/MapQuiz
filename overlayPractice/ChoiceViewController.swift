@@ -45,8 +45,34 @@ class ChoiceViewController: UIViewController {
         
     var continentChoice: String = ""
     
-    func topScores () {
-        performSegueWithIdentifier("topScores", sender: nil)
+    @IBAction func showScorePage(sender: AnyObject) {
+        //check there is internet - if there is then show the page else show alert that there is no internet connection
+        if Reachability.isConnectedToNetwork() {
+            //if the user_id and user_secret is stored
+            if NSUserDefaults.standardUserDefaults().objectForKey("user_id") !== nil {
+                if NSUserDefaults.standardUserDefaults().objectForKey("user_secret") !== nil {
+                    performSegueWithIdentifier("TopScores", sender: nil)
+                } else {
+                    throwAlert("There is no user_id regestered with this phone. To view this page, terminate and restart the app in an area with internet.")
+                }
+            } else {
+                throwAlert("There is no user_id regestered with this phone. To view this page, terminate and restart the app in an area with internet.")
+            }
+        } else {
+            //throw alert that the interenet is not connected
+            throwAlert("There is no internet connection. Please connect to the interenet to view this page.")
+        }
+        
+    }
+    
+    func throwAlert (message:String) {
+        let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(Action)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
     }
     
     @IBAction func asiaButton(sender: AnyObject) {
