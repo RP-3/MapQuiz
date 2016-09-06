@@ -31,12 +31,22 @@ class TopScoresViewController: CoreDataTableViewController {
         let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
         fetchRequest.predicate = andPredicate
         
-        let s1 = NSSortDescriptor(key: "continent", ascending: true)
-        let s2 = NSSortDescriptor(key: "match_length", ascending: true)
-        let descriptors = [s1, s2]
+        let sort1 = NSSortDescriptor(key: "continent", ascending: true)
+        let sort2 = NSSortDescriptor(key: "match_length", ascending: true)
+        let descriptors = [sort1, sort2]
         fetchRequest.sortDescriptors = descriptors
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
+        
+        if fetchedResultsController!.sections!.count == 0 {
+            let alertController = UIAlertController(title: "Notice", message: "You have not yet played and finished any challenges yet. One you have they will be shown here", preferredStyle: UIAlertControllerStyle.Alert)
+            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+            }
+            alertController.addAction(Action)
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.presentViewController(alertController, animated: true, completion:nil)
+            }
+        }
         
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false

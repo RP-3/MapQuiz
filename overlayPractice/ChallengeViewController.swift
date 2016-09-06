@@ -61,12 +61,13 @@ class ChallengeViewController: CoreDataController {
         
         //if there is no set continent
         if Helpers.continent == nil {
+            let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+            alertController.addAction(Action)
             NSOperationQueue.mainQueue().addOperationWithBlock {
-                let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
-                let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
-                    self.navigationController?.popToRootViewControllerAnimated(true)
-                }
-                alertController.addAction(Action)
+                self.presentViewController(alertController, animated: true, completion:nil)
             }
         }
         
@@ -116,6 +117,9 @@ class ChallengeViewController: CoreDataController {
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
                                 worldMap.removeOverlay(overlay)
+                                (overlay as! CustomPolygon).userGuessed = true
+                                worldMap.addOverlay(overlay)
+                                worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
                                 continue
                             }
                         }

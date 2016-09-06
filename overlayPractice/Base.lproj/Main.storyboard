@@ -374,7 +374,7 @@
                     <navigationItem key="navigationItem" id="YCI-IH-Zwp">
                         <barButtonItem key="rightBarButtonItem" image="star" id="633-Hb-QXH">
                             <connections>
-                                <segue destination="aTO-0J-IZX" kind="show" id="RBY-eV-L1B"/>
+                                <action selector="showScores:" destination="Tvf-Cl-yWk" id="hXf-ch-sUS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -386,6 +386,7 @@
                         <outlet property="OceaniaBtn" destination="TfH-V6-AJI" id="nXe-Jb-5bT"/>
                         <outlet property="SouthAmericaBtn" destination="dty-is-2aK" id="Cno-Jr-cEd"/>
                         <segue destination="X10-jV-LcE" kind="show" identifier="pickGame" id="jjm-L2-doL"/>
+                        <segue destination="aTO-0J-IZX" kind="show" identifier="ShowScores" id="5d2-u1-wEJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>

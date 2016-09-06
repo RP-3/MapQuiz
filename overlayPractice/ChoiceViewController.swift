@@ -45,8 +45,8 @@ class ChoiceViewController: UIViewController {
         
     var continentChoice: String = ""
     
-    func topScores () {
-        performSegueWithIdentifier("topScores", sender: nil)
+    @IBAction func showScores(sender: AnyObject) {
+        performSegueWithIdentifier("ShowScores", sender: nil)
     }
     
     @IBAction func asiaButton(sender: AnyObject) {

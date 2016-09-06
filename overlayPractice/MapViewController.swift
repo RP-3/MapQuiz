@@ -60,6 +60,9 @@ class MapViewController: CoreDataController {
                 self.navigationController?.popToRootViewControllerAnimated(true)
             }
             alertController.addAction(Action)
+            NSOperationQueue.mainQueue().addOperationWithBlock {
+                self.presentViewController(alertController, animated: true, completion:nil)
+            }
         }
         
         //get the needed entities out of core data for the chosen continent
@@ -104,7 +107,11 @@ class MapViewController: CoreDataController {
                         Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
+                                // not remove overlay here just reset so there is an outline and an annotation
                                 worldMap.removeOverlay(overlay)
+                                (overlay as! CustomPolygon).userGuessed = true
+                                worldMap.addOverlay(overlay)
+                                worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
                                 continue
                             }
                         }
@@ -113,7 +120,11 @@ class MapViewController: CoreDataController {
                         Helpers.game["toPlay"]!.removeValueForKey((attempt as! Attempt).countryToFind!)
                         for overlay in worldMap.overlays {
                             if overlay.title! == (attempt as! Attempt).countryToFind {
+                                // not remove overlay here just reset so there is an outline and an annotation
                                 worldMap.removeOverlay(overlay)
+                                (overlay as! CustomPolygon).userGuessed = true
+                                worldMap.addOverlay(overlay)
+                                worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
                                 continue
                             }
                         }
