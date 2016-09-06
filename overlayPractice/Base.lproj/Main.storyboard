@@ -15,7 +15,6 @@
             <string>AmaticSC-Bold</string>
             <string>AmaticSC-Bold</string>
             <string>AmaticSC-Bold</string>
-            <string>AmaticSC-Bold</string>
         </mutableArray>
         <mutableArray key="AmaticSC-Regular.ttf">
             <string>AmaticSC-Regular</string>
@@ -436,13 +435,13 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IC5-tA-Lnr">
                                     <rect key="frame" x="592" y="23" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Top Challenge Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2q-GW-iDA">
                                     <rect key="frame" x="223" y="4" width="154" height="36"/>
                                     <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="28"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -490,10 +489,10 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljO-R9-Fme">
-                                            <rect key="frame" x="284" y="6" width="33" height="31"/>
-                                            <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="20"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljO-R9-Fme">
+                                            <rect key="frame" x="284" y="13" width="33" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -586,8 +585,8 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="R5b-EE-tPZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
-                                <rect key="frame" x="258" y="273" width="86" height="53"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
+                                <rect key="frame" x="257" y="273" width="86" height="53"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="32"/>
                                 <state key="normal" title="Challenge">
                                     <color key="titleColor" red="0.17798479948288359" green="0.11348448591426641" blue="0.058141421284838804" alpha="1" colorSpace="calibratedRGB"/>
