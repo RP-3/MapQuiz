@@ -61,12 +61,13 @@ class ChallengeViewController: CoreDataController {
         
         //if there is no set continent
         if Helpers.continent == nil {
+            let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+                self.navigationController?.popToRootViewControllerAnimated(true)
+            }
+            alertController.addAction(Action)
             NSOperationQueue.mainQueue().addOperationWithBlock {
-                let alertController = UIAlertController(title: "Alert", message: "You left the game for too long. Please return to the menu to start again.", preferredStyle: UIAlertControllerStyle.Alert)
-                let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
-                    self.navigationController?.popToRootViewControllerAnimated(true)
-                }
-                alertController.addAction(Action)
+                self.presentViewController(alertController, animated: true, completion:nil)
             }
         }
         
@@ -279,12 +280,20 @@ class ChallengeViewController: CoreDataController {
             //save the game on finish
             app.landAreas.save()
             //send current finished game to the client file to send to server
-            if NSUserDefaults.standardUserDefaults().objectForKey("user_id") != nil {
-                if NSUserDefaults.standardUserDefaults().objectForKey("user_secret") != nil {
-                    Helpers.sendGameToClient(currentGame)
+            if Reachability.isConnectedToNetwork() {
+                if NSUserDefaults.standardUserDefaults().objectForKey("user_id") != nil {
+                    if NSUserDefaults.standardUserDefaults().objectForKey("user_secret") != nil {
+                        Helpers.sendGameToClient(currentGame)
+                    } else {
+                        throwAlert("The game cannot be saved",message: "There is no user_id regestered with this phone. To save a game, terminate and restart the app in an area with internet.")
+                    }
+                } else {
+                    throwAlert("The game cannot be saved",message: "There is no user_id regestered with this phone. To save a game, terminate and restart the app in an area with internet.")
                 }
+            } else {
+                throwAlert("Alert",message: "There is no internet connection. Please connect to the interenet to view this page.")
             }
-            //if both/one not defined no alert needed - have minutly function to check and update
+            //if the game not saved then alert the user that it was not saved
             
             Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
@@ -292,6 +301,15 @@ class ChallengeViewController: CoreDataController {
         }
     }
     
+    func throwAlert (title:String,message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(Action)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
+    }
 
     func updateMapOverlays(titleOfPolyToRemove: String) {
         for overlay: MKOverlay in worldMap.overlays {

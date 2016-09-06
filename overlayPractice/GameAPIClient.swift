@@ -21,7 +21,6 @@ class GameAPIClient {
         //send back user_secret to include in all future requests
         sendRequest(request) { (data, response, error) in
             if error == nil {
-                print("no error", data)
                 if data!.count == 2 {
                     if let dataReturned = data!["user_secret"]  {
                         completionHandlerUserId(data: dataReturned, error: nil)
@@ -66,7 +65,6 @@ class GameAPIClient {
         //updated games returned - update core data
         sendRequest(request) { (data, response, error) in
             if error == nil {
-                print("not error", data)
                 //expect the game_ids and the updated ranks
                 completionHandlerForRank(data: data, error: nil)
             } else {

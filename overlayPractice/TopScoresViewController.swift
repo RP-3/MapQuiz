@@ -89,16 +89,30 @@ class TopScoresViewController: CoreDataTableViewController {
     
     
     @IBAction func refresh(sender: AnyObject) {
-        refreshRanks()
-        print("refresh")
+        if Reachability.isConnectedToNetwork() {
+            refreshRanks()
+        } else {
+            //throw alert that the interenet is not connected
+            throwAlert("There is no internet connection. Please connect to the interenet to refresh.")
+        }
+    }
+    
+    func throwAlert (message:String) {
+        let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(Action)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
     }
     
     func refreshRanks () {
+
         Client.getLatestRanking() { (data,error) in
             if error == nil {
                 //returns all game ids and their ranks
                 //make array of data into hash of data
-                
                 var matches:[String:AnyObject] = [:]
                 
                 for i in 0..<data!.count {
@@ -125,9 +139,7 @@ class TopScoresViewController: CoreDataTableViewController {
                 //loop through the entities and update
                 for entity in entities {
                     if entity.identifier != nil {
-                        print("update",entity.identifier!)
                         if (matches[entity.identifier!] != nil) {
-                            print("update",matches[entity.identifier!],entity.identifier!)
                             entity.rank = Int(matches[entity.identifier!] as! String)!
                         }
                     }
@@ -135,9 +147,7 @@ class TopScoresViewController: CoreDataTableViewController {
                 
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock {
-                    
                     self.app.landAreas.save()
-                    
                     print("reload data")
                     self.tableView.reloadData()
                 }

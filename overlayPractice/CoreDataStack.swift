@@ -183,33 +183,6 @@ extension CoreDataStack {
                 self.autoSave(delayInSeconds)
             })
             
-            
-            //programatically check all games and save any that have a match_length but no rank or identifier
-            //get all matches - filter only challenge,match_length
-            
-            let fetchRequest = NSFetchRequest(entityName: "Game")
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
-            let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
-            let modePredicate = NSPredicate(format: "mode = %@", "challenge")
-            let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
-            fetchRequest.predicate = andPredicate
-            
-            var entities: [Game]
-            do {
-                entities = try context.executeFetchRequest(fetchRequest) as! [Game]
-            } catch {
-                fatalError("Failed to fetch employees: \(error)")
-            }
-
-            //loop through and send up any that have not got the correct details
-            for entity in entities {
-                if entity.rank == nil || entity.rank == 0 {
-                    //save the game
-                    Helpers.sendGameToClient(entity)
-                }
-            }
-            
-            
         }
     }
 }

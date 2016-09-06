@@ -14,7 +14,6 @@ import CoreData
 class HelperFunctions {
     
     let Client = GameAPIClient.sharedInstance
-    let app = UIApplication.sharedApplication().delegate as! AppDelegate
 
     var continent:String!
     var totalCountries: Int = 0
@@ -169,7 +168,7 @@ class HelperFunctions {
     }
     
     func sendGameToClient (currentGame:Game) {
-        
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
         var attempts:[[String:AnyObject]] = []
         print("in helpers sned")
         for a in currentGame.attempt! {
@@ -195,7 +194,7 @@ class HelperFunctions {
         
         Client.postNewGame(curGame) { (data, error) in
             if error == nil {
-                let moc = self.app.landAreas.context
+                let moc = app.landAreas.context
                 let fetchRequest = NSFetchRequest(entityName: "Game")
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
                 var entities: [Game]
@@ -206,69 +205,13 @@ class HelperFunctions {
                 }
                 (entities[0] ).rank = Int(data!["rank"]! as! String)!
                 (entities[0] ).identifier = data!["identifier"]! as? String
-                self.app.landAreas.save()
+                app.landAreas.save()
             } else {
                 print("error",error)
                 //alert the error??
             }
         }
         
-    }
-    
-    //post one game
-    func postSpecificGame (currentGame: Game) {
-        //take a game and get the created at
-        var created_at:String?
-        
-        var attempts:[[String:AnyObject]] = []
-        print("in helpers sned")
-        for a in currentGame.attempt! {
-            let attempt = a as! Attempt
-            let newAttempt:[String:AnyObject] = [
-                "countryGuessed": attempt.countryGuessed!,
-                "countryToFind": attempt.countryToFind!,
-                "revealed":attempt.revealed!,
-                "created_at":String(attempt.created_at!)
-            ]
-            created_at = String(attempt.created_at!)
-            attempts.append(newAttempt)
-        }
-        
-        let curGame:[String:AnyObject] = [
-            "continent":currentGame.continent!,
-            "created_at":String(currentGame.created_at!),
-            "finished_at":String(currentGame.finished_at!),
-            "lives_left":currentGame.lives_left!,
-            "match_length":currentGame.match_length!,
-            "mode":currentGame.mode!,
-            "attempts":attempts
-        ]
-        
-        Client.postNewGame(curGame) { (data, error) in
-            if error == nil {
-                let moc = self.app.landAreas.context
-                let fetchRequest = NSFetchRequest(entityName: "Game")
-                let pred = NSPredicate(format: "created_at = %@", created_at!)
-                fetchRequest.predicate = pred
-                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
-                var entities: [Game]
-                
-                //ONLY ONE ITEM should be returned -  the one to update
-                
-//                do {
-//                    entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
-//                } catch {
-//                    fatalError("Failed to fetch data: \(error)")
-//                }
-//                (entities[0] ).rank = Int(data!["rank"]! as! String)!
-//                (entities[0] ).identifier = data!["identifier"]! as? String
-//                self.app.landAreas.save()
-            } else {
-                print("error",error)
-                //alert the error??
-            }
-        }
-
     }
     
 }
