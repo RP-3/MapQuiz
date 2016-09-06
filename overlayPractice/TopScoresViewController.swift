@@ -28,7 +28,6 @@ class TopScoresViewController: CoreDataTableViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("hi")
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "Game")

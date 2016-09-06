@@ -170,7 +170,6 @@ class HelperFunctions {
     func sendGameToClient (currentGame:Game) {
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         var attempts:[[String:AnyObject]] = []
-        print("in helpers sned")
         for a in currentGame.attempt! {
             let attempt = a as! Attempt
             let newAttempt:[String:AnyObject] = [
@@ -194,6 +193,7 @@ class HelperFunctions {
         
         Client.postNewGame(curGame) { (data, error) in
             if error == nil {
+                print("data",data)
                 let moc = app.landAreas.context
                 let fetchRequest = NSFetchRequest(entityName: "Game")
                 fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
