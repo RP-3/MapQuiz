@@ -19,6 +19,7 @@ struct CoreDataStack {
     private let backgroundContext : NSManagedObjectContext
     let context : NSManagedObjectContext
     
+    let Helpers = HelperFunctions.sharedInstance
     
     // MARK:  - Initializers
     init?(modelName: String){
@@ -151,6 +152,7 @@ extension CoreDataStack {
     func save() {
         context.performBlockAndWait(){
             if self.context.hasChanges{
+                print("saving changes")
                 do {
                     try self.context.save()
                 } catch {
@@ -180,6 +182,7 @@ extension CoreDataStack {
             dispatch_after(time, dispatch_get_main_queue(), {
                 self.autoSave(delayInSeconds)
             })
+            
         }
     }
 }

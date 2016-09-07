@@ -13,14 +13,21 @@ class TopScoresViewController: CoreDataTableViewController {
     
     // this controller is to show the top 3 scores for each continent
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    
+    let Client = GameAPIClient.sharedInstance
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        navigationItem.setHidesBackButton(true, animated:true)
-        navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
-        title = "Top Challenge Scores"
+        refreshRanks()
+        self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
+        doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
         let app = UIApplication.sharedApplication().delegate as! AppDelegate
         let land = app.landAreas
         let fetchRequest = NSFetchRequest(entityName: "Game")
@@ -28,12 +35,13 @@ class TopScoresViewController: CoreDataTableViewController {
         // not nil match_length and mode is challenge
         let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
         let modePredicate = NSPredicate(format: "mode = %@", "challenge")
-        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+        let rankPredicate = NSPredicate(format: "rank!=0")
+        let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate,rankPredicate])
         fetchRequest.predicate = andPredicate
         
-        let sort1 = NSSortDescriptor(key: "continent", ascending: true)
-        let sort2 = NSSortDescriptor(key: "match_length", ascending: true)
-        let descriptors = [sort1, sort2]
+        let s1 = NSSortDescriptor(key: "continent", ascending: true)
+        let s2 = NSSortDescriptor(key: "match_length", ascending: true)
+        let descriptors = [s1, s2]
         fetchRequest.sortDescriptors = descriptors
         
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
@@ -50,7 +58,6 @@ class TopScoresViewController: CoreDataTableViewController {
         
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
-        
     }
 
     
@@ -72,7 +79,7 @@ class TopScoresViewController: CoreDataTableViewController {
             cell.liftThree.alpha = 0.5
             cell.lifeTwo.alpha = 0.5
         }
-        
+        cell.rankLabel.text = "rank: \(String(game.rank!))"
         return cell  
     }
     
@@ -90,8 +97,76 @@ class TopScoresViewController: CoreDataTableViewController {
         return time + secs
     }
     
+    
+    @IBAction func refresh(sender: AnyObject) {
+        if Reachability.isConnectedToNetwork() {
+            refreshRanks()
+        } else {
+            //throw alert that the interenet is not connected
+            throwAlert("There is no internet connection. Please connect to the interenet to refresh.")
+        }
+    }
+    
+    func throwAlert (message:String) {
+        let alertController = UIAlertController(title: "Alert", message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(Action)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
+    }
+    
+    func refreshRanks () {
+
+        Client.getLatestRanking() { (data,error) in
+            if error == nil {
+                print("data",data)
+                //returns all game ids and their ranks
+                //make array of data into hash of data
+                var matches:[String:AnyObject] = [:]
+                
+                for i in 0..<data!.count {
+                    let key = data![i]["identifier"]!
+                    matches[key as! String] = data![i]["rank"]
+                }
+                
+                //get all games from core data and update the ranks for all of them where the id matches
+                let moc = self.app.landAreas.context
+                let fetchRequest = NSFetchRequest(entityName: "Game")
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+                let timePredicate = NSPredicate(format: "match_length!=nil AND match_length!=0")
+                let modePredicate = NSPredicate(format: "mode = %@", "challenge")
+                let andPredicate = NSCompoundPredicate(type: NSCompoundPredicateType.AndPredicateType, subpredicates: [timePredicate, modePredicate])
+                fetchRequest.predicate = andPredicate
+                
+                var entities: [Game]
+                do {
+                    entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+                } catch {
+                    fatalError("Failed to fetch employees: \(error)")
+                }
+                
+                //loop through the entities and update
+                for entity in entities {
+                    if entity.identifier != nil {
+                        if (matches[entity.identifier!] != nil) {
+                            entity.rank = Int(matches[entity.identifier!] as! String)!
+                        }
+                    }
+                }
+                
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.app.landAreas.save()
+                    print("reload data")
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+    
     @IBAction func done(sender: AnyObject) {
-        navigationController?.popToRootViewControllerAnimated(true)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }

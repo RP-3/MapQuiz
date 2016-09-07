@@ -9,10 +9,12 @@
 import UIKit
 import MapKit
 import AVFoundation
-
+import CoreData
 
 class HelperFunctions {
     
+    let Client = GameAPIClient.sharedInstance
+
     var continent:String!
     var totalCountries: Int = 0
     var game = [
@@ -164,6 +166,52 @@ class HelperFunctions {
         createdPolygonOverlays.removeAll()
         coordinates.removeAll()
     }
-
+    
+    func sendGameToClient (currentGame:Game) {
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
+        var attempts:[[String:AnyObject]] = []
+        for a in currentGame.attempt! {
+            let attempt = a as! Attempt
+            let newAttempt:[String:AnyObject] = [
+                "countryGuessed": attempt.countryGuessed!,
+                "countryToFind": attempt.countryToFind!,
+                "revealed":attempt.revealed!,
+                "created_at":String(attempt.created_at!)
+            ]
+            attempts.append(newAttempt)
+        }
+        
+        let curGame:[String:AnyObject] = [
+            "continent":currentGame.continent!,
+            "created_at":String(currentGame.created_at!),
+            "finished_at":String(currentGame.finished_at!),
+            "lives_left":currentGame.lives_left!,
+            "match_length":currentGame.match_length!,
+            "mode":currentGame.mode!,
+            "attempts":attempts
+        ]
+        
+        Client.postNewGame(curGame) { (data, error) in
+            if error == nil {
+                print("data",data)
+                let moc = app.landAreas.context
+                let fetchRequest = NSFetchRequest(entityName: "Game")
+                fetchRequest.sortDescriptors = [NSSortDescriptor(key: "created_at", ascending: false)]
+                var entities: [Game]
+                do {
+                    entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
+                } catch {
+                    fatalError("Failed to fetch data: \(error)")
+                }
+                (entities[0] ).rank = Int(data!["rank"]! as! String)!
+                (entities[0] ).identifier = data!["identifier"]! as? String
+                app.landAreas.save()
+            } else {
+                print("error",error)
+                //alert the error??
+            }
+        }
+        
+    }
     
 }

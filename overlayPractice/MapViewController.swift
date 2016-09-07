@@ -19,6 +19,7 @@ class MapViewController: CoreDataController {
     @IBOutlet weak var showAllButton: UIBarButtonItem!
     
     let Helpers = HelperFunctions.sharedInstance
+    let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     var currentGame: Game!
     var restoreOccur: Bool?
@@ -29,8 +30,6 @@ class MapViewController: CoreDataController {
     var mapDelegate = MapViewDelegate()
     //entities from core data for the current continent
     var entities: [LandArea]!
-    
-    let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -235,16 +234,39 @@ class MapViewController: CoreDataController {
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
             //nothing left to play - all countries have been guessed
-            //push to score screen
+            // save finish date to core data
+            currentGame.finished_at = NSDate()
+            //send current finished game to the client file to send to server
+            if Reachability.isConnectedToNetwork() {
+                if NSUserDefaults.standardUserDefaults().objectForKey("user_id") != nil {
+                    if NSUserDefaults.standardUserDefaults().objectForKey("user_secret") != nil {
+                        Helpers.sendGameToClient(currentGame)
+                    } else {
+                        throwAlert("The game cannot be saved",message: "There is no user_id regestered with this phone. To save a game, terminate and restart the app in an area with internet.")
+                    }
+                } else {
+                    throwAlert("The game cannot be saved",message: "There is no user_id regestered with this phone. To save a game, terminate and restart the app in an area with internet.")
+                }
+            } else {
+                throwAlert("Alert",message: "There is no internet connection. Please connect to the interenet to view this page.")
+            }
+            //if the game not saved then alert the user that it was not saved
             Helpers.delay(2.0) {
                 self.performSegueWithIdentifier("showScore", sender: nil)
             }
-            // save finish date to core data
-            currentGame.finished_at = NSDate()
         }
         self.title = String("\(Helpers.game["guessed"]!.count + Helpers.revealed) / \(Helpers.totalCountries)")
     }
     
+    func throwAlert (title:String,message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(Action)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
+    }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showScore" {

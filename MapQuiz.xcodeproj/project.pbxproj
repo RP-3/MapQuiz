@@ -18,6 +18,9 @@
 		950175F11D6D290C007B78E3 /* countriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175F01D6D290C007B78E3 /* countriesData.json */; };
 		950175F21D6D290C007B78E3 /* countriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175F01D6D290C007B78E3 /* countriesData.json */; };
 		950175F31D6D290C007B78E3 /* countriesData.json in Resources */ = {isa = PBXBuildFile; fileRef = 950175F01D6D290C007B78E3 /* countriesData.json */; };
+		9504DED21D7B7D0200C68FAE /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */; };
+		9504DED31D7B7D0200C68FAE /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */; };
+		9504DED41D7B7D0200C68FAE /* GameAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */; };
 		9504F24B1D674FB4009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24C1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
 		9504F24D1D675011009F8C24 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */; };
@@ -49,6 +52,9 @@
 		950C361F1D56479E009710DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 950C361D1D56479E009710DD /* LaunchScreen.storyboard */; };
 		950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36291D56479E009710DD /* overlayPracticeTests.swift */; };
 		950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36341D56479E009710DD /* overlayPracticeUITests.swift */; };
+		950C6AAA1D7CD173006B57E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C6AA91D7CD173006B57E6 /* Reachability.swift */; };
+		950C6AAB1D7CD19A006B57E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C6AA91D7CD173006B57E6 /* Reachability.swift */; };
+		950C6AAC1D7CD19A006B57E6 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C6AA91D7CD173006B57E6 /* Reachability.swift */; };
 		950D9AA51D565DFA00159227 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950D9AA41D565DFA00159227 /* Country.swift */; };
 		950D9AA61D56647B00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
 		950D9AA71D56647C00159227 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950C36141D56479E009710DD /* AppDelegate.swift */; };
@@ -140,6 +146,8 @@
 		950175E81D6CF476007B78E3 /* CustomPolygon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPolygon.swift; sourceTree = "<group>"; };
 		950175EC1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChooseQuizModeViewController.swift; sourceTree = "<group>"; };
 		950175F01D6D290C007B78E3 /* countriesData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countriesData.json; sourceTree = "<group>"; };
+		9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAPIClient.swift; sourceTree = "<group>"; };
+		9504DED51D7B800500C68FAE /* Modelv5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv5.xcdatamodel; sourceTree = "<group>"; };
 		9504F24A1D674FB4009F8C24 /* HelperFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		9504F24E1D67BDB8009F8C24 /* ChallengeScoreViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChallengeScoreViewController.swift; sourceTree = "<group>"; };
 		9509F3991D79028000E9144F /* NavigationContollerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationContollerExtension.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 		950C36301D56479E009710DD /* MapQuiz.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapQuiz.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		950C36341D56479E009710DD /* overlayPracticeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = overlayPracticeUITests.swift; sourceTree = "<group>"; };
 		950C36361D56479E009710DD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		950C6AA91D7CD173006B57E6 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Reachability.swift; path = ../Reachability.swift; sourceTree = "<group>"; };
 		950D9AA41D565DFA00159227 /* Country.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		95100F1B1D75DA1400203EFB /* CustomTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableCell.swift; sourceTree = "<group>"; };
 		9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Modelv2.xcdatamodel; sourceTree = "<group>"; };
@@ -294,6 +303,8 @@
 				950C36201D56479E009710DD /* Info.plist */,
 				950C36141D56479E009710DD /* AppDelegate.swift */,
 				950175F01D6D290C007B78E3 /* countriesData.json */,
+				950C6AA91D7CD173006B57E6 /* Reachability.swift */,
+				9504DED11D7B7D0200C68FAE /* GameAPIClient.swift */,
 			);
 			path = overlayPractice;
 			sourceTree = "<group>";
@@ -637,9 +648,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				95FD92FF1D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9504DED21D7B7D0200C68FAE /* GameAPIClient.swift in Sources */,
 				950175ED1D6D06A0007B78E3 /* ChooseQuizModeViewController.swift in Sources */,
 				9512E79A1D649DBE005D8EAD /* Game.swift in Sources */,
 				95ACFE3F1D63629B000E0E23 /* MapViewDelegate.swift in Sources */,
+				950C6AAA1D7CD173006B57E6 /* Reachability.swift in Sources */,
 				9504F24F1D67BDB8009F8C24 /* ChallengeScoreViewController.swift in Sources */,
 				950BD3851D569A8E001C5893 /* CoreDataStack.swift in Sources */,
 				950BCE9C1D576AB40055E04E /* LandArea.swift in Sources */,
@@ -682,6 +695,7 @@
 				950BCE9D1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE401D636312000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9A1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				950C6AAB1D7CD19A006B57E6 /* Reachability.swift in Sources */,
 				950175EA1D6CF492007B78E3 /* CustomPolygon.swift in Sources */,
 				950C362A1D56479E009710DD /* overlayPracticeTests.swift in Sources */,
 				9512E7A11D649DBE005D8EAD /* Attempt.swift in Sources */,
@@ -689,6 +703,7 @@
 				9509F39B1D79028500E9144F /* NavigationContollerExtension.swift in Sources */,
 				95FD93041D596347007E98E1 /* Country.swift in Sources */,
 				95FD93001D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9504DED31D7B7D0200C68FAE /* GameAPIClient.swift in Sources */,
 				95ACFE3C1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95100F1D1D75DA1400203EFB /* CustomTableCell.swift in Sources */,
 				95ACFE301D628384000E0E23 /* ScoreViewController.swift in Sources */,
@@ -715,6 +730,7 @@
 				950BCE9E1D576AB40055E04E /* LandArea.swift in Sources */,
 				95ACFE411D636313000E0E23 /* MapViewDelegate.swift in Sources */,
 				950BCE9B1D576AB40055E04E /* LandArea+CoreDataProperties.swift in Sources */,
+				950C6AAC1D7CD19A006B57E6 /* Reachability.swift in Sources */,
 				950175EB1D6CF493007B78E3 /* CustomPolygon.swift in Sources */,
 				950C36351D56479E009710DD /* overlayPracticeUITests.swift in Sources */,
 				9512E7A21D649DBE005D8EAD /* Attempt.swift in Sources */,
@@ -722,6 +738,7 @@
 				9509F39C1D79028500E9144F /* NavigationContollerExtension.swift in Sources */,
 				95FD93051D596348007E98E1 /* Country.swift in Sources */,
 				95FD93011D5959EF007E98E1 /* ChoiceViewController.swift in Sources */,
+				9504DED41D7B7D0200C68FAE /* GameAPIClient.swift in Sources */,
 				95ACFE3D1D635E9F000E0E23 /* ChallengeViewController.swift in Sources */,
 				95100F1E1D75DA1400203EFB /* CustomTableCell.swift in Sources */,
 				95ACFE311D628385000E0E23 /* ScoreViewController.swift in Sources */,
@@ -977,12 +994,13 @@
 		950BD3731D569838001C5893 /* Model.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				9504DED51D7B800500C68FAE /* Modelv5.xcdatamodel */,
 				95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */,
 				95BEE6791D6BAA7E002A92CC /* Modelv3.xcdatamodel */,
 				9512E7921D6496DA005D8EAD /* Modelv2.xcdatamodel */,
 				950BD3741D569838001C5893 /* Model.xcdatamodel */,
 			);
-			currentVersion = 95A96AC01D75D27600B3CBF4 /* Modelv4.xcdatamodel */;
+			currentVersion = 9504DED51D7B800500C68FAE /* Modelv5.xcdatamodel */;
 			path = Model.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

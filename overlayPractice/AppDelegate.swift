@@ -14,6 +14,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let Client = GameAPIClient.sharedInstance
     
     let landAreas = CoreDataStack(modelName: "Model")!
     
@@ -36,6 +37,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             defaults.setBool(true, forKey: "preloaded")
         } else {
             print("data is already loaded into core data")
+        }
+        if defaults.objectForKey("user_id") == nil {
+            //https://possiblemobile.com/2013/04/unique-identifiers/
+            let uniqueUserId = UIDevice.currentDevice().identifierForVendor!.UUIDString
+            //send this id in the request to the server and then save the response to the userDefaults store
+            print("sending")
+            Client.postUserId (uniqueUserId) { (data, error) in
+                if error == nil {
+                    print("yay",data)
+                    defaults.setObject(data, forKey: "user_secret")
+                    defaults.setObject(uniqueUserId, forKey: "user_id")
+                } else {
+                    print("error", error)
+                }
+            }
+        } else {
+            print("already saved")
         }
         landAreas.autoSave(60)
         return true

@@ -4,9 +4,11 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <mutableArray key="AmaticSC-Bold.ttf">
+            <string>AmaticSC-Bold</string>
             <string>AmaticSC-Bold</string>
             <string>AmaticSC-Bold</string>
             <string>AmaticSC-Bold</string>
@@ -93,7 +95,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Win/Loose Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89E-BM-erw">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Win/Loose Message" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="89E-BM-erw">
                                 <rect key="frame" x="175" y="199" width="250" height="36"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="250" id="jJv-Nr-mAJ"/>
@@ -374,7 +376,7 @@
                     <navigationItem key="navigationItem" id="YCI-IH-Zwp">
                         <barButtonItem key="rightBarButtonItem" image="star" id="633-Hb-QXH">
                             <connections>
-                                <action selector="showScores:" destination="Tvf-Cl-yWk" id="hXf-ch-sUS"/>
+                                <action selector="showScorePage:" destination="Tvf-Cl-yWk" id="OsN-ux-oTX"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -386,12 +388,12 @@
                         <outlet property="OceaniaBtn" destination="TfH-V6-AJI" id="nXe-Jb-5bT"/>
                         <outlet property="SouthAmericaBtn" destination="dty-is-2aK" id="Cno-Jr-cEd"/>
                         <segue destination="X10-jV-LcE" kind="show" identifier="pickGame" id="jjm-L2-doL"/>
-                        <segue destination="aTO-0J-IZX" kind="show" identifier="ShowScores" id="5d2-u1-wEJ"/>
+                        <segue destination="aTO-0J-IZX" kind="presentation" identifier="TopScores" id="aUM-KC-KGG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hVi-8x-Xcp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="40" y="487"/>
+            <point key="canvasLocation" x="105" y="508"/>
         </scene>
         <!--Top Challenge Scores-->
         <scene sceneID="CVj-1g-GSI">
@@ -401,9 +403,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="sectionIndexBackgroundColor" red="0.90100160256410255" green="0.90100160256410255" blue="0.90100160256410255" alpha="1" colorSpace="calibratedRGB"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="1QD-o3-tIL">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N5J-zk-NdJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <items>
+                                        <navigationItem id="1Y9-Eq-dUl">
+                                            <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="rLG-lK-dvZ">
+                                                <connections>
+                                                    <action selector="refresh:" destination="aTO-0J-IZX" id="Xak-iq-VEm"/>
+                                                </connections>
+                                            </barButtonItem>
+                                            <rightBarButtonItems>
+                                                <barButtonItem title="Done" id="U8R-d0-2cb">
+                                                    <connections>
+                                                        <action selector="done:" destination="aTO-0J-IZX" id="X6c-4W-roG"/>
+                                                    </connections>
+                                                </barButtonItem>
+                                                <barButtonItem style="plain" id="c70-Ra-d48">
+                                                    <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gk8-oO-XXk">
+                                                        <rect key="frame" x="398" y="7" width="133" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </button>
+                                                </barButtonItem>
+                                            </rightBarButtonItems>
+                                        </navigationItem>
+                                    </items>
+                                </navigationBar>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IC5-tA-Lnr">
+                                    <rect key="frame" x="592" y="23" width="0.0" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Top Challenge Scores" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2q-GW-iDA">
+                                    <rect key="frame" x="223" y="4" width="154" height="36"/>
+                                    <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="28"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="N5J-zk-NdJ" secondAttribute="trailing" id="Gse-Bw-a9Z"/>
+                                <constraint firstItem="N5J-zk-NdJ" firstAttribute="top" secondItem="1QD-o3-tIL" secondAttribute="top" id="HuH-CH-PgP"/>
+                                <constraint firstItem="y2q-GW-iDA" firstAttribute="centerX" secondItem="1QD-o3-tIL" secondAttribute="centerX" id="LZh-21-bdS"/>
+                                <constraint firstItem="y2q-GW-iDA" firstAttribute="centerY" secondItem="1QD-o3-tIL" secondAttribute="centerY" id="MV8-KF-eEa"/>
+                                <constraint firstItem="N5J-zk-NdJ" firstAttribute="leading" secondItem="1QD-o3-tIL" secondAttribute="leading" id="h2Q-Bf-yay"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TopScoreCell" id="mgT-8Y-YtQ" customClass="CustomTableCell" customModule="MapQuiz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mgT-8Y-YtQ" id="UNd-Q6-slV">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -430,9 +484,15 @@
                                                 <constraint firstAttribute="height" constant="16" id="ajb-Bq-Sc8"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUj-85-kjc">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lUj-85-kjc">
                                             <rect key="frame" x="18" y="11" width="30" height="21"/>
                                             <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="24"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rank" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ljO-R9-Fme">
+                                            <rect key="frame" x="284" y="13" width="33" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -440,6 +500,7 @@
                                     <constraints>
                                         <constraint firstItem="ue4-Lh-xb7" firstAttribute="trailing" secondItem="UNd-Q6-slV" secondAttribute="trailingMargin" id="Azx-zw-phM"/>
                                         <constraint firstItem="S8p-Lq-GIu" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="HmT-7G-l8e"/>
+                                        <constraint firstItem="ljO-R9-Fme" firstAttribute="centerX" secondItem="UNd-Q6-slV" secondAttribute="centerX" id="K1x-0V-IId"/>
                                         <constraint firstItem="S8p-Lq-GIu" firstAttribute="leading" secondItem="168-Tg-ppt" secondAttribute="trailing" constant="15" id="Qbw-Q8-Eap"/>
                                         <constraint firstItem="lUj-85-kjc" firstAttribute="leading" secondItem="UNd-Q6-slV" secondAttribute="leadingMargin" constant="10" id="YOr-oI-ye5"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="lUj-85-kjc" secondAttribute="bottom" constant="3" id="kTC-Ix-rAN"/>
@@ -447,17 +508,19 @@
                                         <constraint firstItem="lUj-85-kjc" firstAttribute="top" secondItem="UNd-Q6-slV" secondAttribute="topMargin" constant="3" id="sfv-Qa-EIU"/>
                                         <constraint firstItem="ue4-Lh-xb7" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="v8M-xh-1Hz"/>
                                         <constraint firstItem="168-Tg-ppt" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="woC-Po-xM8"/>
+                                        <constraint firstItem="ljO-R9-Fme" firstAttribute="centerY" secondItem="UNd-Q6-slV" secondAttribute="centerY" id="x9E-Xy-oCy"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="lifeOne" destination="ue4-Lh-xb7" id="iJg-J7-dnn"/>
                                     <outlet property="lifeTwo" destination="S8p-Lq-GIu" id="JOi-K0-Z9k"/>
                                     <outlet property="liftThree" destination="168-Tg-ppt" id="lrT-PX-zxJ"/>
+                                    <outlet property="rankLabel" destination="ljO-R9-Fme" id="cwm-n5-dtl"/>
                                     <outlet property="timeLabel" destination="lUj-85-kjc" id="ulC-2d-C1e"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeaderCell" id="gyY-mO-Lm3" customClass="CustomHeaderCell" customModule="MapQuiz" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="136" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="116" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gyY-mO-Lm3" id="rqf-q9-qCT">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -493,10 +556,13 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="doneButton" destination="U8R-d0-2cb" id="Zjs-zt-NHv"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AJg-QT-cWt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="772" y="-563"/>
+            <point key="canvasLocation" x="964" y="-489"/>
         </scene>
         <!--Choose Quiz Mode View Controller-->
         <scene sceneID="zk9-HW-YKC">
@@ -510,7 +576,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9c9-0V-Weg">
                                 <rect key="frame" x="265" y="193" width="71" height="53"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="32"/>
                                 <state key="normal" title="Practice">
@@ -520,7 +586,7 @@
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="showPractice" id="R5b-EE-tPZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sxn-Bc-Ym6">
                                 <rect key="frame" x="257" y="273" width="86" height="53"/>
                                 <fontDescription key="fontDescription" name="AmaticSC-Bold" family="Amatic SC" pointSize="32"/>
                                 <state key="normal" title="Challenge">

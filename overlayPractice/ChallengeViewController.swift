@@ -282,6 +282,21 @@ class ChallengeViewController: CoreDataController {
             timerScheduler.invalidate()
             //save the game on finish
             app.landAreas.save()
+            //send current finished game to the client file to send to server
+            if Reachability.isConnectedToNetwork() {
+                if NSUserDefaults.standardUserDefaults().objectForKey("user_id") != nil {
+                    if NSUserDefaults.standardUserDefaults().objectForKey("user_secret") != nil {
+                        Helpers.sendGameToClient(currentGame)
+                    } else {
+                        throwAlert("The game cannot be saved",message: "There is no user_id regestered with this phone. To save a game, terminate and restart the app in an area with internet.")
+                    }
+                } else {
+                    throwAlert("The game cannot be saved",message: "There is no user_id regestered with this phone. To save a game, terminate and restart the app in an area with internet.")
+                }
+            } else {
+                throwAlert("Alert",message: "There is no internet connection. Please connect to the interenet to view this page.")
+            }
+            //if the game not saved then alert the user that it was not saved
             
             Helpers.delay(1.0) {
                 self.performSegueWithIdentifier("showChallengeScore", sender: nil)
@@ -289,6 +304,15 @@ class ChallengeViewController: CoreDataController {
         }
     }
     
+    func throwAlert (title:String,message:String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
+        let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
+        }
+        alertController.addAction(Action)
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            self.presentViewController(alertController, animated: true, completion:nil)
+        }
+    }
 
     func updateMapOverlays(titleOfPolyToRemove: String) {
         for overlay: MKOverlay in worldMap.overlays {
@@ -364,7 +388,7 @@ class ChallengeViewController: CoreDataController {
         do {
             entities = try moc.executeFetchRequest(fetchRequest) as! [Game]
         } catch {
-            fatalError("Failed to fetch employees: \(error)")
+            fatalError("Failed to fetch data: \(error)")
         }
         
         // set the current game if needed else return to main menu

@@ -74,7 +74,15 @@ extension CoreDataTableViewController{
             return 0
         }
     }
-      
+    
+    override func tableView(tableView: UITableView, sectionForSectionIndexTitle title: String, atIndex index: Int) -> Int {
+        if let fc = fetchedResultsController{
+            return fc.sectionForSectionIndexTitle(title, atIndex: index)
+        }else{
+            return 0
+        }
+    }
+    
     // add custom table cell
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let fc = fetchedResultsController{
