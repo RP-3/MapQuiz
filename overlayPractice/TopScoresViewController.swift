@@ -12,11 +12,13 @@ import CoreData
 class TopScoresViewController: CoreDataTableViewController {
     
     // this controller is to show the top 3 scores for each continent
-    
+    var refresherCtrl = UIRefreshControl()
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     let Client = GameAPIClient.sharedInstance
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
+    
+    var activitySpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,10 @@ class TopScoresViewController: CoreDataTableViewController {
         refreshRanks()
         self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 0, 0)
         doneButton.setTitleTextAttributes([NSFontAttributeName: UIFont(name: "AmaticSC-Bold", size: 24)!], forState: .Normal)
+        
+        self.refresherCtrl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        self.refresherCtrl.addTarget(self, action: #selector(TopScoresViewController.refresh(_:)), forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView?.addSubview(refresherCtrl)
         
     }
     
@@ -98,7 +104,7 @@ class TopScoresViewController: CoreDataTableViewController {
     }
     
     
-    @IBAction func refresh(sender: AnyObject) {
+    func refresh(sender: AnyObject) {
         if Reachability.isConnectedToNetwork() {
             refreshRanks()
         } else {
@@ -157,6 +163,9 @@ class TopScoresViewController: CoreDataTableViewController {
                 }
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock {
+                    if self.refresherCtrl.refreshing {
+                        self.refresherCtrl.endRefreshing()
+                    }
                     self.app.landAreas.save()
                     print("reload data")
                     self.tableView.reloadData()

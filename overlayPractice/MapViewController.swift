@@ -42,7 +42,7 @@ class MapViewController: CoreDataController {
         worldMap.delegate = mapDelegate
         // add tap recogniser to allow user to select country
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
-        view.addGestureRecognizer(gestureRecognizer)
+        view.addGestureRecognizer(gestureRecognizer!)
         // set map type
         worldMap.mapType = .Satellite
         
