@@ -19,7 +19,7 @@ Learn all 197 countries in the world! Use this app to learn and test your skills
 * `cd mapkit-overlays`
 * `pod install`
 * In Xcode:
-  - click on the root-level MapQuiz icon in the left menu bar,
+  - click on the root-level MapQuiz icon in the left menu bar (when .xcworkspace file has been used to open the project in Xcode)
   - In the utilities pane, ensure location and full path point
     to MapQuiz.xcodeproj correctly in your file system
 
