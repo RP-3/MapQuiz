@@ -19,6 +19,7 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var lifeThree: UIImageView!
     @IBOutlet weak var lifeTwo: UIImageView!
     @IBOutlet weak var lifeOne: UIImageView!
+    @IBOutlet weak var stepper: UIStepper!
     
     let Helpers = HelperFunctions.sharedInstance
     
@@ -43,10 +44,13 @@ class ChallengeViewController: CoreDataController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //skip button on the top bar
         let skipButton: UIBarButtonItem = UIBarButtonItem(title: "Skip", style: .Plain, target: self, action: #selector(self.skip))
         navigationItem.rightBarButtonItem = skipButton
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
+        
+        
         
         worldMap.delegate = mapDelegate
         gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
@@ -400,5 +404,13 @@ class ChallengeViewController: CoreDataController {
         }
     }
     
+    @IBAction func zoom(sender: AnyObject) {
+        let viewCenter = worldMap.centerCoordinate
+        let latDelta:CLLocationDegrees = 100 - (stepper.value)
+        let longDelta:CLLocationDegrees = 100 - (stepper.value)
+        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(viewCenter, theSpan)
+        worldMap.setRegion(region, animated: true)
+    }
 }
 

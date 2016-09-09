@@ -414,7 +414,6 @@ class MapViewController: CoreDataController {
     
     @IBAction func zoom(sender: AnyObject) {
         //find center of the view/map zoom in here
-        print(100 - (stepper.value))
         let viewCenter = worldMap.centerCoordinate
         let latDelta:CLLocationDegrees = 100 - (stepper.value)
         let longDelta:CLLocationDegrees = 100 - (stepper.value)

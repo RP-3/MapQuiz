@@ -58,7 +58,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="TkQ-ss-Kff"/>
                                     <barButtonItem style="plain" id="10H-3h-K0X">
-                                        <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" maximumValue="90" stepValue="15" id="zzr-hG-o7K">
+                                        <stepper key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" maximumValue="90" stepValue="15" id="zzr-hG-o7K">
                                             <rect key="frame" x="404" y="8" width="94" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <connections>
@@ -635,7 +635,7 @@
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="eiJ-CX-zj5">
-                                        <rect key="frame" x="489" y="8" width="24" height="28"/>
+                                        <rect key="frame" x="504" y="8" width="24" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="Eii-kq-EtC"/>
                                             <constraint firstAttribute="width" constant="24" id="LDW-PA-umL"/>
@@ -647,7 +647,7 @@
                                         </variation>
                                     </imageView>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="life" translatesAutoresizingMaskIntoConstraints="NO" id="Gfj-Fv-isq">
-                                        <rect key="frame" x="427" y="8" width="24" height="28"/>
+                                        <rect key="frame" x="460" y="8" width="24" height="28"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="28" id="0ee-l1-RPt"/>
                                             <constraint firstAttribute="width" constant="24" id="5Hb-kk-JO1"/>
@@ -666,6 +666,12 @@
                                         <color key="textColor" red="0.17798479950000001" green="0.1134844859" blue="0.058141421280000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" maximumValue="90" stepValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="AJU-A8-5Qg">
+                                        <rect key="frame" x="346" y="7" width="94" height="29"/>
+                                        <connections>
+                                            <action selector="zoom:" destination="G5K-E1-s6u" eventType="valueChanged" id="e04-Jm-3MY"/>
+                                        </connections>
+                                    </stepper>
                                 </subviews>
                                 <color key="backgroundColor" red="0.97550080130000005" green="0.97550080130000005" blue="0.97550080130000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -673,12 +679,14 @@
                                     <constraint firstAttribute="trailing" secondItem="HvO-Mt-LQJ" secondAttribute="trailing" constant="28" id="3M1-fJ-xzI"/>
                                     <constraint firstAttribute="bottom" secondItem="Gfj-Fv-isq" secondAttribute="bottom" constant="8" id="KxH-Oe-65M"/>
                                     <constraint firstItem="HvO-Mt-LQJ" firstAttribute="top" secondItem="f1r-Su-rrO" secondAttribute="top" constant="8" id="NPW-rI-WWG"/>
+                                    <constraint firstItem="Gfj-Fv-isq" firstAttribute="leading" secondItem="AJU-A8-5Qg" secondAttribute="trailing" constant="20" id="Pw2-Xb-k18"/>
                                     <constraint firstAttribute="bottom" secondItem="eiJ-CX-zj5" secondAttribute="bottom" constant="8" id="QUT-b7-Hoq"/>
                                     <constraint firstItem="eiJ-CX-zj5" firstAttribute="top" secondItem="f1r-Su-rrO" secondAttribute="top" constant="8" id="Rqr-k4-TvY"/>
                                     <constraint firstAttribute="bottom" secondItem="HvO-Mt-LQJ" secondAttribute="bottom" constant="8" id="a44-j1-dLf"/>
                                     <constraint firstItem="eiJ-CX-zj5" firstAttribute="centerY" secondItem="f1r-Su-rrO" secondAttribute="centerY" id="e7Q-59-emP"/>
-                                    <constraint firstItem="HvO-Mt-LQJ" firstAttribute="leading" secondItem="eiJ-CX-zj5" secondAttribute="trailing" constant="35" id="g7d-Ou-91g"/>
-                                    <constraint firstItem="eiJ-CX-zj5" firstAttribute="leading" secondItem="Gfj-Fv-isq" secondAttribute="trailing" constant="38" id="qdS-ya-UAk"/>
+                                    <constraint firstItem="HvO-Mt-LQJ" firstAttribute="leading" secondItem="eiJ-CX-zj5" secondAttribute="trailing" constant="20" id="g7d-Ou-91g"/>
+                                    <constraint firstItem="eiJ-CX-zj5" firstAttribute="leading" secondItem="Gfj-Fv-isq" secondAttribute="trailing" constant="20" id="qdS-ya-UAk"/>
+                                    <constraint firstItem="AJU-A8-5Qg" firstAttribute="centerY" secondItem="f1r-Su-rrO" secondAttribute="centerY" id="sbF-cA-Bwc"/>
                                     <constraint firstAttribute="height" constant="44" id="yYr-oi-j4x"/>
                                 </constraints>
                                 <variation key="default">
@@ -704,6 +712,7 @@
                         <outlet property="lifeOne" destination="Gfj-Fv-isq" id="leZ-zf-oLx"/>
                         <outlet property="lifeThree" destination="HvO-Mt-LQJ" id="uIy-jT-NT2"/>
                         <outlet property="lifeTwo" destination="eiJ-CX-zj5" id="7RO-UT-5AN"/>
+                        <outlet property="stepper" destination="AJU-A8-5Qg" id="WLa-UU-Tho"/>
                         <outlet property="timerLabel" destination="3NK-4o-D8U" id="nb2-yB-WTi"/>
                         <outlet property="worldMap" destination="B82-If-DOD" id="KLj-8V-Ym6"/>
                         <segue destination="eOy-0M-5nD" kind="show" identifier="showChallengeScore" id="TMX-ex-ICM"/>
