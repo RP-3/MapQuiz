@@ -78,7 +78,7 @@ class HelperFunctions {
         // dictionary of points and zooms for the continents
         var midPoints = [
             "EU": ["lat": 60, "long": 10, "scale": 70.0],
-            "AF": ["lat": 10, "long": 22, "scale": 98.0],
+            "AF": ["lat": 10, "long": 22, "scale": 100.0],
             "OC": ["lat": -14, "long": 160, "scale": 100.0],
             "AS": ["lat": 35, "long": 85, "scale": 100.0],
             "NA": ["lat": 50, "long":  -101, "scale": 100.0],

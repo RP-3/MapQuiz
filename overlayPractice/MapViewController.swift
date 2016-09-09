@@ -17,6 +17,7 @@ class MapViewController: CoreDataController {
     @IBOutlet weak var worldMap: MKMapView!
     @IBOutlet weak var revealButton: UIBarButtonItem!
     @IBOutlet weak var showAllButton: UIBarButtonItem!
+    @IBOutlet weak var stepper: UIStepper!
     
     let Helpers = HelperFunctions.sharedInstance
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -411,6 +412,16 @@ class MapViewController: CoreDataController {
         
     }
     
+    @IBAction func zoom(sender: AnyObject) {
+        //find center of the view/map zoom in here
+        print(100 - (stepper.value))
+        let viewCenter = worldMap.centerCoordinate
+        let latDelta:CLLocationDegrees = 100 - (stepper.value)
+        let longDelta:CLLocationDegrees = 100 - (stepper.value)
+        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
+        let region:MKCoordinateRegion = MKCoordinateRegionMake(viewCenter, theSpan)
+        worldMap.setRegion(region, animated: true)
+    }
 }
 
 
