@@ -39,6 +39,7 @@ class ChallengeViewController: CoreDataController {
     var mapDelegate = MapViewDelegate()
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
     
+    var gestureRecognizer: UITapGestureRecognizer?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,10 +49,8 @@ class ChallengeViewController: CoreDataController {
         navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: Helpers.labelFont], forState: .Normal)
         
         worldMap.delegate = mapDelegate
-        
-        //make an array of country models - loop through core data for all with desired continent code and make to model
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
-        view.addGestureRecognizer(gestureRecognizer)
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
+        view.addGestureRecognizer(gestureRecognizer!)
         // set map
         worldMap.mapType = .Satellite
     }
@@ -275,6 +274,7 @@ class ChallengeViewController: CoreDataController {
             label!.text = "Find: \(randomVal)"
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
+            view.removeGestureRecognizer(gestureRecognizer!)
             // only set the lives left and match_length for when the user completes the game as these are only used by the top scores table
             currentGame.match_length = (Helpers.totalCountries*8) - stopwatch
             currentGame.lives_left = lives

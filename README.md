@@ -18,11 +18,10 @@ Learn all 197 countries in the world! Use this app to learn and test your skills
 * `git clone git@github.com:muddybarefeet/mapkit-overlays.git`
 * `cd mapkit-overlays`
 * `pod install`
-* In xCode:
+* In Xcode:
   - click on the root-level MapQuiz icon in the left menu bar,
   - In the utilities pane, ensure location and full path point
     to MapQuiz.xcodeproj correctly in your file system
-* Open the `overlayPractice.xcworkspace` file in xcode and hit build
 
 ###Requirements:
 * XCode 7.3.1
