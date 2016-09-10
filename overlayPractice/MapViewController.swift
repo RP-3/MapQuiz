@@ -293,6 +293,7 @@ class MapViewController: CoreDataController {
     @IBAction func showAll(sender: AnyObject) {
         //TODO: more functionality??
         //delete all overlays off the map
+        view.removeGestureRecognizer(gestureRecognizer!)
         for overlay in worldMap.overlays {
             //TODO: show name of country
             worldMap.removeOverlay(overlay)
