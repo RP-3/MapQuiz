@@ -39,7 +39,7 @@ class TopScoresViewController: CoreDataTableViewController {
         fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: land.context, sectionNameKeyPath: "continent", cacheName: nil)
         
         if fetchedResultsController!.sections!.count == 0 {
-            let alertController = UIAlertController(title: "Notice", message: "You have not yet played and finished any challenges yet. One you have they will be shown here", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Notice", message: "You have not yet played and finished any challenges yet. When you have they will be shown here", preferredStyle: UIAlertControllerStyle.Alert)
             let Action = UIAlertAction(title: "OK", style: .Default) { (action:UIAlertAction!) in
             }
             alertController.addAction(Action)

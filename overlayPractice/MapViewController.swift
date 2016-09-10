@@ -31,6 +31,7 @@ class MapViewController: CoreDataController {
     var entities: [LandArea]!
     
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
+    var gestureRecognizer:UITapGestureRecognizer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +42,8 @@ class MapViewController: CoreDataController {
         
         worldMap.delegate = mapDelegate
         // add tap recogniser to allow user to select country
-        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
-        view.addGestureRecognizer(gestureRecognizer)
+        gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(MapViewController.overlaySelected))
+        view.addGestureRecognizer(gestureRecognizer!)
         // set map type
         worldMap.mapType = .Satellite
         
@@ -234,6 +235,7 @@ class MapViewController: CoreDataController {
             label!.text = "Find: \(randomVal)"
             label!.backgroundColor = UIColor(red: 0.3,green: 0.5,blue: 1,alpha: 1)
         } else {
+            view.removeGestureRecognizer(gestureRecognizer!)
             //nothing left to play - all countries have been guessed
             //push to score screen
             Helpers.delay(2.0) {
