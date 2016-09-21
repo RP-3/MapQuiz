@@ -17,7 +17,6 @@ class MapViewController: CoreDataController {
     @IBOutlet weak var worldMap: MKMapView!
     @IBOutlet weak var revealButton: UIBarButtonItem!
     @IBOutlet weak var showAllButton: UIBarButtonItem!
-    @IBOutlet weak var stepper: UIStepper!
     
     let Helpers = HelperFunctions.sharedInstance
     let app = UIApplication.sharedApplication().delegate as! AppDelegate
@@ -323,6 +322,7 @@ class MapViewController: CoreDataController {
             worldMap.addOverlay(overlay)
             worldMap.addAnnotation(Helpers.addCountryLabel(overlay.title!!, overlay: overlay))
         }
+        view.removeGestureRecognizer(gestureRecognizer!)
         //delete the countries dictionary
         Helpers.createdPolygonOverlays.removeAll()
         label!.removeFromSuperview()
@@ -411,16 +411,7 @@ class MapViewController: CoreDataController {
         }
         
     }
-    
-    @IBAction func zoom(sender: AnyObject) {
-        //find center of the view/map zoom in here
-        let viewCenter = worldMap.centerCoordinate
-        let latDelta:CLLocationDegrees = 100 - (stepper.value)
-        let longDelta:CLLocationDegrees = 100 - (stepper.value)
-        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(viewCenter, theSpan)
-        worldMap.setRegion(region, animated: true)
-    }
+
 }
 
 

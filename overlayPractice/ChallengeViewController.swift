@@ -19,7 +19,7 @@ class ChallengeViewController: CoreDataController {
     @IBOutlet weak var lifeThree: UIImageView!
     @IBOutlet weak var lifeTwo: UIImageView!
     @IBOutlet weak var lifeOne: UIImageView!
-    @IBOutlet weak var stepper: UIStepper!
+    
     
     let Helpers = HelperFunctions.sharedInstance
     
@@ -404,13 +404,5 @@ class ChallengeViewController: CoreDataController {
         }
     }
     
-    @IBAction func zoom(sender: AnyObject) {
-        let viewCenter = worldMap.centerCoordinate
-        let latDelta:CLLocationDegrees = 100 - (stepper.value)
-        let longDelta:CLLocationDegrees = 100 - (stepper.value)
-        let theSpan:MKCoordinateSpan = MKCoordinateSpanMake(latDelta, longDelta)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(viewCenter, theSpan)
-        worldMap.setRegion(region, animated: true)
-    }
 }
 
